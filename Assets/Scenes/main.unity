@@ -452,6 +452,7 @@ GameObject:
   - component: {fileID: 1018405735}
   - component: {fileID: 1018405734}
   - component: {fileID: 1018405736}
+  - component: {fileID: 1018405737}
   m_Layer: 0
   m_Name: "\uBB3C\uACE0\uAE30 1-2"
   m_TagString: Untagged
@@ -543,5 +544,26 @@ MonoBehaviour:
   moveSpot: {fileID: 1571604426959940143, guid: 87aae6ee19390894eae6744ef1ab857b, type: 3}
   minX: -50
   maxX: 50
-  minY: -50
+  minY: -30
   maxY: 0
+--- !u!50 &1018405737
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1018405733}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 0.1
+  m_LinearDrag: 1
+  m_AngularDrag: 0.05
+  m_GravityScale: 0.01
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
