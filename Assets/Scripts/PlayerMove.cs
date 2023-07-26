@@ -19,15 +19,14 @@ public class PlayerMove : MonoBehaviour
 
     private bool CurrentSpeed = false;
 
-    private PlayerInput playerInput;
-    private Rigidbody2D playerRigidbody;
+    private PlayerController playerInput;
     private Animator playerAnimator;
     
     // Start is called before the first frame update
     private void Start()
     {
         // 초기화
-        playerInput = GetComponent<PlayerInput>();
+        playerInput = GetComponent<PlayerController>();
         playerRigidbody = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         playerAudio = GetComponent<AudioSource>();
