@@ -13,10 +13,13 @@ public class fpatrol : MonoBehaviour
     public float maxX;
     public float minY;
     public float maxY;
+    private SpriteRenderer Renderer;
+
     private void Start()
     {
-        waitTime = startWaitTime;
-        moveSpot.position = new Vector2(Random.Range(minX, maxX), Random.Range(minY, maxY));
+        Renderer = GetComponent<SpriteRenderer>();
+        setNewSpot();
+        
     }
     private void Update()
     {
@@ -26,16 +29,29 @@ public class fpatrol : MonoBehaviour
         {
             if (waitTime <= 0)
             {
-                moveSpot.position = new Vector2(Random.Range(minX, maxX), Random.Range(minY, maxY));
-                waitTime = startWaitTime;
+                setNewSpot();
             }
             else
             {
                 waitTime -= Time.deltaTime;
             }
         }
+    }
+    public void setNewSpot()
+    {
+        waitTime = startWaitTime;
+        moveSpot.position = new Vector2(Random.Range(minX, maxX), Random.Range(minY, maxY));
+        if(moveSpot.position.x > transform.position.x)
+        {
+                Renderer.flipX = false;
+            }
+        else
+        {
+                Renderer.flipX = true ;
+            }
+    }
         
 
-    }
+    
 }
 
