@@ -20,11 +20,14 @@ public class PlayerMove : MonoBehaviour
     // private AudioSource playerAudio; // 사용할 오디오 소스 컴포넌트
 
     protected bool CurrentSpeed = false; // 이건 뭔지 모르겠습니다...?
+    //아마 시작했을 때 달리면 안되니까 오류 방지하려고 false로 초기화 한 듯 합니다.
 
     public PlayerController playerInput;
     // private Animator playerAnimator;
 
     public GameObject inventoryparents;
+
+    public bool hitSea = false; // 플레이어의 박스캐스트가 바다에 닿았는가에 대한 변수
     
     // Start is called before the first frame update
     void Start()
@@ -38,8 +41,12 @@ public class PlayerMove : MonoBehaviour
         onboard = true;
         inventoryparents.SetActive(false);
 
+        CapsuleCollider2D my_collider = GetComponent<CapsuleCollider2D>();  
+        my_collider.enabled = false;    //박스 캐스트가 본인의 콜라이더를 인식하지 않도록
+
     }
 
+    
     // Update is called once per frame
     void Update()
     {
@@ -48,7 +55,7 @@ public class PlayerMove : MonoBehaviour
         // {
         //     return;
             // }
-        if (onboard == true)
+        if (onboard == true && hitSea == true)
         {
             playerRigidbody.gravityScale = 1; // 배 위에 있을 때 중력 1
             playerRigidbody.drag = 1;
@@ -63,6 +70,7 @@ public class PlayerMove : MonoBehaviour
 
         Attack();
 
+        BoxCastHit();
         
         // animator.SetBool("Grounded",isGrounded);
         // animator.SetBool("CurrentSpeed", CurrentSpeed);
@@ -92,25 +100,26 @@ public class PlayerMove : MonoBehaviour
         // x축 방향으로 움직일 때 사용되는 내용입니다.
         transform.Translate(Vector3.right * Speed * playerInput.move_x * Time.deltaTime);
         
-
-        // current speed가 필요가 없다면 위의 내용과 아래의 내용은 같습니다.
-        // if (playerInput.move_x > 0)
-        // {
-        //     transform.Translate(Vector3.right * Speed * playerInput.move_x * Time.deltaTime);
-        //     // playerSpriteRenderer.flipX = false;
-        //     CurrentSpeed = true;
-        // }
-        // else if (playerInput.move_x < 0)
-        // {
-        //     transform.Translate(Vector3.right * Speed * playerInput.move_x * Time.deltaTime);
-        //     // playerSpriteRenderer.flipX = true;
-        //     CurrentSpeed = true;
-        // }
-        // else if (playerInput.move_x == 0 || Input.GetKeyUp("A") || Input.GetKeyUp("D"))
-        // {
-        //     transform.Translate(Vector3.zero);
-        //     CurrentSpeed = false;
-        // }
+        /*
+        current speed가 필요가 없다면 위의 내용과 아래의 내용은 같습니다.
+        if (playerInput.move_x > 0)
+        {
+            transform.Translate(Vector3.right * Speed * playerInput.move_x * Time.deltaTime);
+            // playerSpriteRenderer.flipX = false;
+            CurrentSpeed = true;
+        }
+        else if (playerInput.move_x < 0)
+        {
+            transform.Translate(Vector3.right * Speed * playerInput.move_x * Time.deltaTime);
+            // playerSpriteRenderer.flipX = true;
+            CurrentSpeed = true;
+        }
+        else if (playerInput.move_x == 0 || Input.GetKeyUp("A") || Input.GetKeyUp("D"))
+        {
+            transform.Translate(Vector3.zero);
+            CurrentSpeed = false;
+        }
+        */
     }
 
     // 플레이어가 물 속에 있을 때 움직이는 것에 관한 함수입니다.
@@ -118,36 +127,38 @@ public class PlayerMove : MonoBehaviour
     {
         playerRigidbody.AddForce(Vector3.right * playerInput.move_x);
         playerRigidbody.AddForce(Vector3.up * playerInput.move_y);
+        
+        /*
+        // x축 방향으로 움직일 때
+        if (playerInput.move_x > 0)
+        {
+            playerRigidbody.AddForce(Vector3.right * playerInput.move_x);
+            // playerSpriteRenderer.flipX = false;
+        }
+        else if (playerInput.move_x < 0)
+        {
+            playerRigidbody.AddForce(Vector3.right * playerInput.move_x);
+            // playerSpriteRenderer.flipX = true;
+        }
+        else
+        {
+            transform.Translate(Vector3.zero);
+        }
 
-        // // x축 방향으로 움직일 때
-        // if (playerInput.move_x > 0)
-        // {
-        //     playerRigidbody.AddForce(Vector3.right * playerInput.move_x);
-        //     // playerSpriteRenderer.flipX = false;
-        // }
-        // else if (playerInput.move_x < 0)
-        // {
-        //     playerRigidbody.AddForce(Vector3.right * playerInput.move_x);
-        //     // playerSpriteRenderer.flipX = true;
-        // }
-        // else
-        // {
-        //     transform.Translate(Vector3.zero);
-        // }
-
-        // // y축 방향으로 움직일 때 
-        // if (playerInput.move_y > 0)
-        // {
-        //     playerRigidbody.AddForce(Vector3.up * playerInput.move_y);
-        // }
-        // else if (playerInput.move_y < 0)
-        // {
-        //     playerRigidbody.AddForce(Vector3.up * playerInput.move_y);
-        // }
-        // else
-        // {
-        //     transform.Translate(Vector3.zero);
-        // }
+        // y축 방향으로 움직일 때 
+        if (playerInput.move_y > 0)
+        {
+            playerRigidbody.AddForce(Vector3.up * playerInput.move_y);
+        }
+        else if (playerInput.move_y < 0)
+        {
+            playerRigidbody.AddForce(Vector3.up * playerInput.move_y);
+        }
+        else
+        {
+            transform.Translate(Vector3.zero);
+        }
+        */
     }
 
     public void Attack()
@@ -158,7 +169,23 @@ public class PlayerMove : MonoBehaviour
         }
     }
 
+    //플레이어의 박스캐스트가 surfaceofsea 콜라이더에 닿았는지 여부 판단 함수
+
+    
+    private void BoxCastHit(){
+        RaycastHit2D hit = Physics2D.BoxCast(transform.position,new Vector2(1,0.01f),0,new Vector2(0,-1));
+        if (hit.collider.name == "surfaceofsea"){
+            hitSea = true;
+        }
+        else{
+            hitSea = false;
+        }
+
+    }
+
     private void OnCollisionEnter2D(Collision2D collision) {
+
+        
         // 바닥에 닿았음을 감지하는 처리
         if (collision.contacts[0].normal.y > 0.7f)
         {
