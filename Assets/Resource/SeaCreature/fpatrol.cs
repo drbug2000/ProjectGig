@@ -5,21 +5,30 @@ using UnityEngine;
 
 public class fpatrol : MonoBehaviour
 {
-    public float speed;
+    //움직임 관련 변수
     public float startWaitTime;
-    private float waitTime;
+    public float waitTime;
     public Transform moveSpot;
     public float minX;
     public float maxX;
     public float minY;
     public float maxY;
-    private SpriteRenderer Renderer;
-    private Rigidbody2D fishRigidbody;
-
-    Vector2 dir;
+    public SpriteRenderer Renderer;
+    public Rigidbody2D fishRigidbody;
 
 
-    private void Start()
+    //이동방향을 담는 벡터
+    public Vector2 dir;
+
+    //물고기 특성 관련 변수
+    public float mass;//무게
+    public float drag;//저항
+    public float gravity;//받는 중력
+    public float speed;
+    public int turnPercent;
+
+
+    public virtual void Start()
     {
         Renderer = GetComponent<SpriteRenderer>();
         fishRigidbody = GetComponent<Rigidbody2D>();
@@ -27,7 +36,7 @@ public class fpatrol : MonoBehaviour
         speed = 10;
         
     }
-    private void Update()
+    public virtual void Update()
     {
         //transform.position = Vector2.MoveTowards(transform.position, moveSpot.position, speed *Time.deltaTime);
         //MoveSpot에 도달하면 waitTime만큼 대기
@@ -43,7 +52,7 @@ public class fpatrol : MonoBehaviour
             }
         }
         //속도가 1 이하로 떨어지면 방향 재설정 이후 다시 가속
-        if(fishRigidbody.velocity.magnitude < 1)
+        if(fishRigidbody.velocity.magnitude < 3)
         {
             dir = moveSpot.position - transform.position;
             fishRigidbody.AddForce(dir * (speed/dir.magnitude));
@@ -58,14 +67,14 @@ public class fpatrol : MonoBehaviour
             }
         }
     }
-    public void setNewSpot()
+    public virtual void setNewSpot()
     {
         waitTime = startWaitTime;
         moveSpot.position = new Vector2(Random.Range(minX, maxX), Random.Range(minY, maxY));
         Debug.Log(moveSpot.position);
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    public virtual void OnTriggerEnter2D(Collider2D other)
     {
         if (other.tag == "Player")
         {
