@@ -25,7 +25,8 @@ public class PlayerMove : MonoBehaviour
     public PlayerController playerInput;
     // private Animator playerAnimator;
 
-    public GameObject inventoryparents;
+    // inventory는 당장의 만들 것 같지 않고 오류가 계속 나서 일단 주석처리 하겠습니다.
+    // public GameObject inventoryparents;
 
     public bool hitSea = false; // 플레이어의 박스캐스트가 바다에 닿았는가에 대한 변수
     
@@ -39,7 +40,6 @@ public class PlayerMove : MonoBehaviour
         // playerAudio = GetComponent<AudioSource>();
         // playerSpriteRenderer = GetComponent<SpriteRenderer>();
         onboard = true;
-        inventoryparents.SetActive(false);
 
         CapsuleCollider2D my_collider = GetComponent<CapsuleCollider2D>();  
         my_collider.enabled = false;    //박스 캐스트가 본인의 콜라이더를 인식하지 않도록
