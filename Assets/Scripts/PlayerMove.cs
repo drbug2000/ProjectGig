@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+    
 public class PlayerMove : MonoBehaviour
 {
     // public AudioClip deathClip; // 사망시 재생할 오디오 클립
@@ -12,7 +13,7 @@ public class PlayerMove : MonoBehaviour
    
     protected bool isGrounded = false; // 바닥에 닿았는지 나타냄 점프할 때 쓰는 변수
     // private bool isDead = false; // 사망 상태
-    public bool onboard; // 갑판 위에 있는지
+    public bool onSea; // 갑판 위에 있는지
 
     protected Rigidbody2D playerRigidbody; // 사용할 리지드바디 컴포넌트
     // private SpriteRenderer playerSpriteRenderer;
@@ -25,25 +26,32 @@ public class PlayerMove : MonoBehaviour
     public PlayerController playerInput;
     // private Animator playerAnimator;
 
-    // inventory는 당장의 만들 것 같지 않고 오류가 계속 나서 일단 주석처리 하겠습니다.
-    // public GameObject inventoryparents;
+    public GameObject inventoryparents;
 
-    public bool hitSea = false; // 플레이어의 박스캐스트가 바다에 닿았는가에 대한 변수
+    public RaycastHit2D hit;
+    
+    public bool hitGround; // 플레이어의 레이캐스트 초기화
+
+    public LayerMask Ground;
+    public int layerMask;
     
     // Start is called before the first frame update
     void Start()
     {
+        layerMask = 1 << LayerMask.NameToLayer("Player");
+        layerMask = ~layerMask;
         // 초기화
         playerInput = GetComponent<PlayerController>();
         playerRigidbody = GetComponent<Rigidbody2D>();
         // animator = GetComponent<Animator>();
         // playerAudio = GetComponent<AudioSource>();
         // playerSpriteRenderer = GetComponent<SpriteRenderer>();
-        onboard = true;
+        onSea = false;
+        //inventoryparents.SetActive(false);
 
-        CapsuleCollider2D my_collider = GetComponent<CapsuleCollider2D>();  
-        my_collider.enabled = false;    //박스 캐스트가 본인의 콜라이더를 인식하지 않도록
-
+        //CapsuleCollider2D my_collider = GetComponent<CapsuleCollider2D>();  
+        //my_collider.enabled = false;    //레이캐스트가 본인의 콜라이더를 인식하지 않도록
+        hitGround = true;
     }
 
     
@@ -54,8 +62,12 @@ public class PlayerMove : MonoBehaviour
         // if (isDead)
         // {
         //     return;
-            // }
-        if (onboard == true && hitSea == true)
+        // }
+        
+        RayCastHit();
+
+
+        if (onSea == false && hitGround == true)
         {
             playerRigidbody.gravityScale = 1; // 배 위에 있을 때 중력 1
             playerRigidbody.drag = 1;
@@ -70,12 +82,13 @@ public class PlayerMove : MonoBehaviour
 
         Attack();
 
-        BoxCastHit();
+    
         
         // animator.SetBool("Grounded",isGrounded);
         // animator.SetBool("CurrentSpeed", CurrentSpeed);
     }
     
+
     // 플레이어가 땅 위에서 움직이는 것에 관한 함수
     public void playerwalk()
     {
@@ -169,16 +182,17 @@ public class PlayerMove : MonoBehaviour
         }
     }
 
-    //플레이어의 박스캐스트가 surfaceofsea 콜라이더에 닿았는지 여부 판단 함수
-
-    
-    private void BoxCastHit(){
-        RaycastHit2D hit = Physics2D.BoxCast(transform.position,new Vector2(1,0.01f),0,new Vector2(0,-1));
-        if (hit.collider.name == "surfaceofsea"){
-            hitSea = true;
+    //플레이어의 레이캐스트가 ground tag에 해당하는 collider에 닿았는지 여부 판단 함수
+    public void RayCastHit()
+    {
+        //Debug.DrawRay(transform.TransformVector(0,-1), new Vector2(0,-1),Color.red,5.0f);
+        hit = Physics2D.Raycast(transform.position, new Vector2(0,-1), 5.0f, layerMask);
+        //Debug.Log(hit.collider.tag);
+        if (hit.collider.tag == "ground"){
+            hitGround = true;
         }
         else{
-            hitSea = false;
+            hitGround = false;
         }
 
     }
