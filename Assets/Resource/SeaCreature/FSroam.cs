@@ -34,10 +34,10 @@ public class FSroam : FState
     public void stateUpdate()
     {
 
-        if (fishtail.SpotDistance() < 5)
+        if (fishtail.SpotDistance() < 10)
         {
             tail.Speed = fish.speed/2;
-            //fishtail.SetDrag(1f);
+            fishtail.SetDrag(1f);
             //Debug.Log("almost spot");
         }
         else if (fishtail.SpotDistance() < 3)
