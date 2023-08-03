@@ -67,13 +67,13 @@ public class PlayerMove : MonoBehaviour
         RayCastHit();
 
 
-        if (onSea == false && hitGround == true)
+        if (onSea == false) //&& hitGround == true)
         {
             playerRigidbody.gravityScale = 1; // 배 위에 있을 때 중력 1
             playerRigidbody.drag = 1;
             playerwalk();
         }
-        else
+        else //if (onSea == true && hitGround == false)
         {
             playerRigidbody.gravityScale = 0; // 물 속에 있을 때 중력 0
             playerRigidbody.drag = 1.5f;
@@ -105,10 +105,7 @@ public class PlayerMove : MonoBehaviour
 
         }
         
-        else if(Input.GetButtonDown("Jump") && playerRigidbody.velocity.y > 0 )
-        {
-            playerRigidbody.velocity = playerRigidbody.velocity * 0.5f;
-        }
+        
 
         // x축 방향으로 움직일 때 사용되는 내용입니다.
         transform.Translate(Vector3.right * Speed * playerInput.move_x * Time.deltaTime);
@@ -201,7 +198,7 @@ public class PlayerMove : MonoBehaviour
 
         
         // 바닥에 닿았음을 감지하는 처리
-        if (collision.contacts[0].normal.y > 0.7f)
+        if (/*collision.contacts[0].normal.y > 0.7f &&*/ collision.collider.tag == "ground")
         {
             isGrounded = true;
             jumpCount = 0;
@@ -210,7 +207,9 @@ public class PlayerMove : MonoBehaviour
 
     private void OnCollisionExit2D(Collision2D collision) {
         // 바닥에서 벗어났음을 감지하는 처리
+        if(collision.collider.tag == "sea")
         isGrounded = false;
+        jumpCount = 1;
     }
 
 
