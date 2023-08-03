@@ -18,9 +18,9 @@ public class FSaway : FState
         tail = new Tail();
         fishtail.SetTail(tail);
 
-        startWaitTime = 5;
+        startWaitTime = 5f;
 
-        awayTime = 5;
+        awayTime = 5f;
 
 
         tail.SetSpot( -this.fish.awaytarget.transform.position);
@@ -28,12 +28,13 @@ public class FSaway : FState
         fishtail.SetTail(tail);
         fishtail.StopFish();
 
-        Debug.Log(" FSroam OnEnter");
+        Debug.Log(" FSaway OnEnter");
     }
     public void stateUpdate()
     {
         if (awayTime <= 0)
         {
+            
             fish.DefaultState();
 
         }
@@ -46,7 +47,7 @@ public class FSaway : FState
 
     public void OnExit()
     {
-
+        //fish.SetAway(fasle);
     }
 
     

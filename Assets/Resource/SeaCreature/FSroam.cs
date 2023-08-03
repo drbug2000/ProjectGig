@@ -25,7 +25,7 @@ public class FSroam : FState
         maxX = 50;
         minY = -50;
         maxY = 0;
-        startWaitTime = 5;
+        startWaitTime = 2;
 
         setNewSpot();
 
@@ -33,14 +33,8 @@ public class FSroam : FState
     }
     public void stateUpdate()
     {
-
-        if (fishtail.SpotDistance() < 10)
-        {
-            tail.Speed = fish.speed/2;
-            fishtail.SetDrag(1f);
-            //Debug.Log("almost spot");
-        }
-        else if (fishtail.SpotDistance() < 3)
+        //DeBug.Log(fishtail.SpotDistance());
+        if (fishtail.SpotDistance() < 3)
         { 
             if (waitTime <= 0)
             {
@@ -49,8 +43,16 @@ public class FSroam : FState
             }
             else
             {
+                tail.Speed = fish.speed / 5;
+                Debug.Log("in spot");
                 waitTime -= Time.deltaTime;
             }
+        }else if (fishtail.SpotDistance() < 10)
+        {
+            tail.Speed = fish.speed / 2;
+            fishtail.SetDrag(1f);
+            //Debug.Log("almost spot");
+            Debug.Log(fishtail.SpotDistance());
         }
     }
 

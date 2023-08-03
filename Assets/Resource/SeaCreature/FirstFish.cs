@@ -7,6 +7,7 @@ public class FirstFish : Fish
 
     FSroam roam;
     FSaway away;
+    bool awayNow;
 
     // Start is called before the first frame update
     public void Start()
@@ -16,7 +17,7 @@ public class FirstFish : Fish
         away = new FSaway();
         SetState(roam);
 
-        InvokeRepeating("FindAwayTarget", 0f,0.5f);
+        InvokeRepeating("FindAwayTarget", 0f,1f);
     }
 
     // Update is called once per frame
@@ -32,8 +33,8 @@ public class FirstFish : Fish
         
         int palyermask = LayerMask.GetMask("player");
 
-        Collider2D tar = Physics2D.OverlapCircle(fishtail.currentPos, 5f, palyermask);
-        if (tar != null)
+        Collider2D tar = Physics2D.OverlapCircle(fishtail.currentPos, 3f, palyermask);
+        if ( (tar != null) && currentState==roam)
         {
             awaytarget = tar.gameObject;
             SetState(away);
@@ -44,6 +45,11 @@ public class FirstFish : Fish
     void DefaultState()
     {
         SetState(roam);
+    }
+    void SetAway(bool Baway)
+    {
+        awayNow = Baway;
+
     }
 
 }

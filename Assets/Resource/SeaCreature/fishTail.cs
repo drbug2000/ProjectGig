@@ -23,6 +23,8 @@ public class FishTail : MonoBehaviour
 
     public Vector2 currentPos;
 
+    public GameObject SpotPoint;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -41,11 +43,13 @@ public class FishTail : MonoBehaviour
         //if ((tail.Spot - Vector2.zero).magnitude!=0)
 
         // fishRigidbody.AddForce(tail.Speed * tail.Dir);
+        SpotPoint.transform.position = tail.Spot;
+        //Debug.Log(tail.Spot);
         if (velocity.magnitude < MinSpeed)
         {
             tail.ReDir(currentPos);
             SetDrag(0.25f);
-            fishRigidbody.AddForce(tail.Speed * tail.Dir);
+            fishRigidbody.AddForce(/*tail.Speed */ tail.Dir);
 
             if (tail.IsRight())
             {
