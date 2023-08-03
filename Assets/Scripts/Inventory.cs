@@ -4,18 +4,19 @@ using UnityEngine;
 
 public class Inventory : MonoBehaviour
 {
-    public static bool invectoryActivated = false;  // 인벤토리 활성화 여부. true가 되면 카메라 움직임과 다른 입력을 막을 것이다.
-
+    // inventoryparent을 활성화하고 비활성화하는 역할을 할 것이다. 다시 말해 이 창이 켜지면 inventoy가 켜질 것 이고 이 창이 꺼지면 inventory가 꺼질 것이다.
     [SerializeField]
-    private GameObject go_InventoryBase; // Inventory_Base 이미지
+    private GameObject go_InventoryBase;
+    // 모든 slot들의 컴포넌트에 접근하기위해 받아왔다.
     [SerializeField] 
-    private GameObject go_SlotsParent;  // Slot들의 부모인 Grid Setting 
+    private ItemSlotUI[] slots;
 
-    private ItemSlotUI[] slots;  // 슬롯들 배열
+    private bool inventoryActivated;
 
     void Start()
     {
-        slots = go_SlotsParent.GetComponentsInChildren<ItemSlotUI>();
+        // 처음 실행할 때는 inventory는 비활성화 시켜야한다.
+        inventoryActivated = false;
     }
 
     void Update()
@@ -27,13 +28,16 @@ public class Inventory : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.I))
         {
-            invectoryActivated = !invectoryActivated;
+            inventoryActivated = !inventoryActivated;
 
-            if (invectoryActivated)
+            if (inventoryActivated)
+            {
                 OpenInventory();
+            }
             else
+            {
                 CloseInventory();
-
+            }
         }
     }
 
@@ -53,7 +57,7 @@ public class Inventory : MonoBehaviour
         {
             for (int i = 0; i < slots.Length; i++)
             {
-                if (slots[i].item != null)  // null 이라면 slots[i].item.itemName 할 때 런타임 에러 나서
+                if (slots[i].item != null)
                 {
                     if (slots[i].item.itemName == _item.itemName)
                     {

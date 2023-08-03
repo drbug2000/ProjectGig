@@ -10,7 +10,6 @@ public class Item : ScriptableObject
         Ingredient,
         ETC,
     }
-
     public string itemName; // 아이템의 이름
     public ItemType itemType; // 아이템 유형
     public Sprite itemImage; // 아이템의 이미지(인벤 토리 안에서 띄울)
