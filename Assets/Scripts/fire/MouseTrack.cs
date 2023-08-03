@@ -15,13 +15,9 @@ public class MouseTrack : MonoBehaviour
 
     void Update()
     {
-        // ScreenToWorldPoint() 함수를 이용해 마우스의 좌표를 게임 좌표로 변환한다.
-        // 2D게임이기에 Vector2로 변환
-        Vector2 mousePos = _camera.ScreenToWorldPoint(Input.mousePosition);
-        // (마우스 위치 - 오브젝트 위치)로 마우스의 방향을 구한다.
-        Vector2 dirVec = mousePos - (Vector2)transform.position;
-
-        // 방향벡터를 정규화한 다음 transform.up 벡터에 계속 대입
-        transform.up = dirVec.normalized;
+        
+        Vector2 mousePos = _camera.ScreenToWorldPoint(Input.mousePosition); //마우스 좌표 카메라 좌표로 변환
+        Vector2 dirVec = mousePos - (Vector2)transform.position; //마우스 방향 구함
+        transform.up = dirVec.normalized; // 방향벡터를 정규화한 다음 transform.up 벡터에 계속 대입
     }
 }
