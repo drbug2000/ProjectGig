@@ -51,7 +51,7 @@ public class Inventory : MonoBehaviour
         go_InventoryBase.SetActive(false);
     }
 
-    public void AcquireItem(Item _item, int _count = 1)
+    public void AcquireItem(Item _item)
     {
         if(Item.ItemType.Equipment != _item.itemType)
         {
@@ -61,18 +61,19 @@ public class Inventory : MonoBehaviour
                 {
                     if (slots[i].item.itemName == _item.itemName)
                     {
-                        slots[i].SetSlotCount(_count);
+                        slots[i].SetSlotCount();
                         return;
                     }
                 }
             }
         }
+        
 
         for (int i = 0; i < slots.Length; i++)
         {
             if (slots[i].item == null)
             {
-                slots[i].AddItem(_item, _count);
+                slots[i].AddItem(_item);
                 return;
             }
         }
