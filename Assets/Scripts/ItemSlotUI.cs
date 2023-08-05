@@ -7,9 +7,8 @@ using TMPro;
 public class ItemSlotUI : MonoBehaviour
 {
     public Item item; // 획득한 아이템
-    public int itemCount; // 획득한 아이템의 개수
+    public static int itemCount = 1; // 획득한 아이템의 개수
     public Image itemImage;  // 아이템의 이미지
-    public int _count = 1;
     
     [SerializeField]
     private TMP_Text text_Count;
@@ -47,6 +46,7 @@ public class ItemSlotUI : MonoBehaviour
     // 해당 슬롯의 아이템 갯수 업데이트
     public void SetSlotCount()
     {
+        itemCount += 1;
         text_Count.text = itemCount.ToString();
 
         if (itemCount <= 0)
