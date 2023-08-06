@@ -28,6 +28,19 @@ public class Fish : MonoBehaviour
     public float drag;//저항
     public float gravity;//받는 중력
     public float speed;
+
+    public float MaxSpeed;
+    public float MinSpeed;
+    //유영 범위
+    public float RoamBoxMaxX;
+    public float RoamBoxMinX;
+    public float RoamBoxMaxY;
+    public float RoamBoxMinY;
+    //Spot범위 
+    public float SpotRangeBig;
+    public float SpotRangeSmall;
+
+
     //public int turnPercent;
 
     // Start is called before the first frame update
