@@ -14,6 +14,9 @@ public class FSroam : FState
     public float waitTime;
     public float startWaitTime;
 
+    float SpotMax ;
+    float SpotsMin;
+
     public void OnEnter(Fish pfish, FishTail FT)
     {
         this.fish = pfish;
@@ -21,12 +24,14 @@ public class FSroam : FState
         tail = new Tail();
         fishtail.SetTail(tail);
       
-        minX = -50;
-        maxX = 50;
-        minY = -50;
-        maxY = 0;
-        startWaitTime = 5;
+        minX = fish.RoamBoxMinX;
+        maxX = fish.RoamBoxMaxX;
+        minY = fish.RoamBoxMaxY;
+        maxY = fish.RoamBoxMinX;
+        startWaitTime = fish.RoamBoxMaxX;
 
+        SpotMax = fish.SpotRangeBig;
+        SpotsMin = fish.SpotRangeBig;
         setNewSpot();
 
         Debug.Log(" FSroam OnEnter");
@@ -34,13 +39,13 @@ public class FSroam : FState
     public void stateUpdate()
     {
 
-        if (fishtail.SpotDistance() < 10)
+        if (fishtail.SpotDistance() < SpotMax)
         {
             tail.Speed = fish.speed/2;
             fishtail.SetDrag(1f);
             //Debug.Log("almost spot");
         }
-        else if (fishtail.SpotDistance() < 3)
+        else if (fishtail.SpotDistance() < SpotsMin)
         { 
             if (waitTime <= 0)
             {

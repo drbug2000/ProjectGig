@@ -55,8 +55,8 @@ public class FishTail : MonoBehaviour
             {
                 Renderer.flipX = true;
             }
-
         }
+        
 
     }
     public virtual void LateUpdate()
@@ -78,7 +78,14 @@ public class FishTail : MonoBehaviour
         {
             fishRigidbody.velocity = velocity.normalized * MaxSpeed; 
         }
-       
+        //바다 표면위로 올라가지 않게
+        if (currentPos.y >= 0)
+        {
+            StopFish();
+
+        }
+
+
     }
 
     public float SpotDistance()
@@ -98,6 +105,7 @@ public class FishTail : MonoBehaviour
     public void SetTail(Tail T)
     {
         this.tail = T;
+        StopFish();
     }
 
     public void StopFish() 
