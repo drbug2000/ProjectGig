@@ -54,7 +54,6 @@ public class Tail
         {
             isright = true;
         }
-
             return isright;
     }
     

@@ -2,12 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Fish : MonoBehaviour
+public class FishClass : MonoBehaviour
 {
 
 
-    public FishTail fishtail;
-    public FState currentState;
+    public FishFin fishfin;
+    public FishState currentState;
     public GameObject target;
     public GameObject awaytarget;
 
@@ -46,19 +46,19 @@ public class Fish : MonoBehaviour
     //public int turnPercent;
 
     // Start is called before the first frame update
-    public void Start()
+    public virtual void Start()
     {
-        fishtail = GetComponent<FishTail>();
+        fishfin = GetComponent<FishFin>();
 
     }
 
     // Update is called once per frame
-    void Update()
+    public virtual void Update()
     {
         currentState.stateUpdate();
     }
 
-    public void SetState(FState nextState)
+    public void SetState(FishState nextState)
     {
         if (currentState != null)
         {
@@ -67,10 +67,10 @@ public class Fish : MonoBehaviour
 
         currentState = nextState;
 
-        currentState.OnEnter(this,fishtail);
+        currentState.OnEnter(this,this.fishfin);
 
     }
-    public void DefaultState()
+    public virtual void DefaultState()
     {
 
     }
