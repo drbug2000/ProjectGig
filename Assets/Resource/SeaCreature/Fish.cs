@@ -40,6 +40,8 @@ public class Fish : MonoBehaviour
     public float SpotRangeBig;
     public float SpotRangeSmall;
 
+    public float RoamWaitTime;
+
 
     //public int turnPercent;
 

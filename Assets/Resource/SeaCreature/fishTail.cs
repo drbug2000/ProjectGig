@@ -25,6 +25,9 @@ public class FishTail : MonoBehaviour
 
     public GameObject SpotPoint;
 
+    //DeBug
+    public float velocityM;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -45,11 +48,11 @@ public class FishTail : MonoBehaviour
         // fishRigidbody.AddForce(tail.Speed * tail.Dir);
         SpotPoint.transform.position = tail.Spot;
         //Debug.Log(tail.Spot);
-        if (velocity.magnitude < MinSpeed)
+        if (velocity.magnitude <= MinSpeed)
         {
             tail.ReDir(currentPos);
             SetDrag(0.25f);
-            fishRigidbody.AddForce(/*tail.Speed */ tail.Dir);
+            fishRigidbody.AddForce(MaxSpeed * tail.Dir);
 
             if (tail.IsRight())
             {
@@ -77,6 +80,7 @@ public class FishTail : MonoBehaviour
         */
         //최대속력 한계 설정
         velocity = fishRigidbody.velocity;
+        velocityM = velocity.magnitude;
 
         if (velocity.magnitude > MaxSpeed)
         {
@@ -85,6 +89,7 @@ public class FishTail : MonoBehaviour
         //바다 표면위로 올라가지 않게
         if (currentPos.y >= 0)
         {
+            Debug.Log("fish out");
             StopFish();
 
         }
