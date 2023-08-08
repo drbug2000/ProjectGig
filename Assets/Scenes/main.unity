@@ -210,11 +210,11 @@ MonoBehaviour:
   fishRigidbody: {fileID: 0}
   Renderer: {fileID: 0}
   velocity: {x: 0, y: 0}
-  MaxSpeed: 7
-  MinSpeed: 3
-  waitTime: 2
+  MaxSpeed: 0
+  MinSpeed: 0
+  waitTime: 0
   currentPos: {x: 0, y: 0}
-  SpotPoint: {fileID: 1594240393}
+  SpotPoint: {fileID: 1266110389}
   velocityM: 0
 --- !u!212 &42112974
 SpriteRenderer:
@@ -899,14 +899,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   orientation: 0
   rotation: 0
-  fishRigidbody: {fileID: 321562185}
-  Renderer: {fileID: 321562186}
+  fishRigidbody: {fileID: 0}
+  Renderer: {fileID: 0}
   velocity: {x: 0, y: 0}
-  MaxSpeed: 10
-  MinSpeed: 3
-  waitTime: 0.3
+  MaxSpeed: 0
+  MinSpeed: 0
+  waitTime: 0
   currentPos: {x: 0, y: 0}
-  SpotPoint: {fileID: 1266110389}
+  SpotPoint: {fileID: 1594240393}
   velocityM: 0
 --- !u!70 &321562189
 CapsuleCollider2D:
