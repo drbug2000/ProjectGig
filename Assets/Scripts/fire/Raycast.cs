@@ -31,8 +31,11 @@ public class Raycast : MonoBehaviour
             dir = transform.position;
             dir = MousePosition - dir;
             Debug.DrawRay(fpos.position, dir.normalized * Distance, Color.red,0.5f); //·¹ÀÌÀú ºö
+            //Debug.DrawRay(fpos.position, transform.forward * Distance, Color.blue, 0.5f);
             
             Ray();
         }
+       
     }
+    
 }
