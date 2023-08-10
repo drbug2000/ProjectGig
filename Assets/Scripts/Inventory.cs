@@ -13,10 +13,6 @@ public class Inventory : MonoBehaviour
 
     private bool inventoryActivated;
 
-    public GameObject selector;
-
-    private int selectorpoint = 0;
-
     void Start()
     {
         // 처음 실행할 때는 inventory는 비활성화 시켜야한다.
@@ -26,23 +22,6 @@ public class Inventory : MonoBehaviour
     void Update()
     {
         TryOpenInventory();
-
-        if (Input.GetKeyDown(KeyCode.RightArrow))
-        {
-            MoveSelector("right");
-        }
-        if (Input.GetKeyDown(KeyCode.LeftArrow))
-        {
-            MoveSelector("left");
-        }
-        if (Input.GetKeyDown(KeyCode.UpArrow))
-        {
-            MoveSelector("up");
-        }
-        if (Input.GetKeyDown(KeyCode.DownArrow))
-        {
-            MoveSelector("down");
-        }
     }
 
     private void TryOpenInventory()
@@ -98,55 +77,5 @@ public class Inventory : MonoBehaviour
                 return;
             }
         }
-    }
-
-    void MoveSelector(string direction)
-    {
-        switch (direction)
-        {
-            case "right":
-                {
-                    if (selectorpoint != 44)
-                    {
-                        selectorpoint++;
-                        selector.transform.position = slots[selectorpoint].transform.position;
-                    }
-                    break;
-                }
-            case "left":
-                {
-                    if (selectorpoint != 0)
-                    {
-                        selectorpoint--;
-                        selector.transform.position = slots[selectorpoint].transform.position;
-                    }
-                    break;
-                }
-            case "up":
-                {
-                    if (selectorpoint > 8)
-                    {
-                        selectorpoint -= 9;
-                        selector.transform.position = slots[selectorpoint].transform.position;
-                    }
-                    break;
-                }
-            case "down":
-                {
-                    if (selectorpoint < 36)
-                    {
-                        selectorpoint += 9;
-                        selector.transform.position = slots[selectorpoint].transform.position;
-                    }
-                    break;
-                }
-        }
-
-        /*if (pickingUpItem != null)
-        {
-            pickingUpItem.transform.position = selector.transform.position;
-        }*/
-
-        // ChangeName();
     }
 }
