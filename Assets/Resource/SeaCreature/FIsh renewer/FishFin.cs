@@ -153,4 +153,8 @@ public class FishFin  : MonoBehaviour
 
     }
 
+    public Vector2 TransVector(Vector3 V)
+    {
+        return new Vector2(V.x, V.y);
+    }
 }

@@ -549,7 +549,7 @@ GameObject:
   - component: {fileID: 98688247}
   - component: {fileID: 98688248}
   - component: {fileID: 98688249}
-  m_Layer: 3
+  m_Layer: 7
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -576,7 +576,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 2
+  m_Constraints: 0
 --- !u!212 &98688245
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -637,7 +637,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 98688243}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 15.6, y: -3.7, z: 0}
+  m_LocalPosition: {x: 4.71, y: 3.16, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -677,7 +677,7 @@ MonoBehaviour:
   Speed: 7
   onboard: 0
   playerInput: {fileID: 98688249}
-  inventoryparents: {fileID: 0}
+  inventoryparents: {fileID: 98688243}
 --- !u!114 &98688249
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1008,12 +1008,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   orientation: 0
   rotation: 0
-  fishRigidbody: {fileID: 0}
-  Renderer: {fileID: 0}
+  fishRigidbody: {fileID: 321562185}
+  Renderer: {fileID: 321562186}
   velocity: {x: 0, y: 0}
-  MaxSpeed: 0
-  MinSpeed: 0
-  waitTime: 0
+  MaxSpeed: 20
+  MinSpeed: 5
+  waitTime: 0.1
   currentPos: {x: 0, y: 0}
   SpotPoint: {fileID: 1594240393}
   velocityM: 0
@@ -1056,11 +1056,11 @@ MonoBehaviour:
   MinSpeed: 5
   RoamBoxMaxX: -40
   RoamBoxMinX: 40
-  RoamBoxMaxY: 0
+  RoamBoxMaxY: -10
   RoamBoxMinY: -20
-  SpotRangeBig: 10
-  SpotRangeSmall: 3
-  RoamWaitTime: 3
+  SpotRangeBig: 11
+  SpotRangeSmall: 10
+  RoamWaitTime: 0.1
 --- !u!1 &460895189
 GameObject:
   m_ObjectHideFlags: 0
@@ -1776,6 +1776,7 @@ MonoBehaviour:
   SpotRangeBig: 10
   SpotRangeSmall: 3
   RoamWaitTime: 3
+  awaytime: 0
 --- !u!114 &1782671463
 MonoBehaviour:
   m_ObjectHideFlags: 0

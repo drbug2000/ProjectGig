@@ -2,11 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SecondFish : FishClass
+public class NewShark : FishClass
 {
 
     FSRoam roam;
-    FSAway away;
+    FSaway away;
     bool awayNow;
 
     // Start is called before the first frame update
@@ -14,10 +14,10 @@ public class SecondFish : FishClass
     {
         base.Start();
         roam = new FSRoam();
-        away = new FSAway();
+        //away = new FSaway();
         SetState(roam);
         //Debug.Log("Second start");
-        InvokeRepeating("FindAwayTarget", 0f, 1f);
+        //InvokeRepeating("FindAwayTarget", 0f, 1f);
     }
 
     // Update is called once per frame
@@ -30,16 +30,16 @@ public class SecondFish : FishClass
 
     private void FindAwayTarget()
     {
-        //Debug.Log("new fish envoke");
-        int palyermask = LayerMask.GetMask("Player");
-        //int palyermask = 7;
-        Collider2D tar = Physics2D.OverlapCircle(fishfin.currentPos, 1f, palyermask);
+        /*
+        int palyermask = LayerMask.GetMask("player");
+
+        Collider2D tar = Physics2D.OverlapCircle(fishtail.currentPos, 1f, palyermask);
         if ((tar != null) && currentState == roam)
         {
             awaytarget = tar.gameObject;
             SetState(away);
         }
-        
+        */
 
     }
     void DefaultState()

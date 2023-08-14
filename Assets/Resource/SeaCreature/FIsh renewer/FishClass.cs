@@ -42,6 +42,9 @@ public class FishClass : MonoBehaviour
 
     public float RoamWaitTime;
 
+    //µµ¸Á
+    public float awaytime;
+
 
     //public int turnPercent;
 

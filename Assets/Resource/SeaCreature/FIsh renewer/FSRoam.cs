@@ -76,7 +76,7 @@ public class FSRoam : FishState
     {
         waitTime = startWaitTime;
         fishfin.Speed = fish.speed;
-        fishfin.SpotMove(new Vector2(Random.Range(minX, maxX), Random.Range(minY, maxY)));
+        fishfin.SetSpot(new Vector2(Random.Range(minX, maxX), Random.Range(minY, maxY)));
        
 
         Debug.Log("new" + fishfin.Spot);
