@@ -44,6 +44,7 @@ public class FishClass : MonoBehaviour
 
     //µµ¸Á
     public float awaytime;
+    public float awaySpeed;
 
 
     //public int turnPercent;

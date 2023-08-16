@@ -17,7 +17,7 @@ public class SecondFish : FishClass
         away = new FSAway();
         SetState(roam);
         //Debug.Log("Second start");
-        InvokeRepeating("FindAwayTarget", 0f, 1f);
+        InvokeRepeating("FindAwayTarget", 0f, 0.5f);
     }
 
     // Update is called once per frame
@@ -33,16 +33,18 @@ public class SecondFish : FishClass
         //Debug.Log("new fish envoke");
         int palyermask = LayerMask.GetMask("Player");
         //int palyermask = 7;
-        Collider2D tar = Physics2D.OverlapCircle(fishfin.currentPos, 1f, palyermask);
-        if ((tar != null) && currentState == roam)
+        Collider2D tar = Physics2D.OverlapCircle(fishfin.currentPos, 4f, palyermask);
+        //Debug.Log(tar);
+        if ((tar != null) /*&& currentState == roam*/)
         {
+            Debug.Log("overlap circle active");
             awaytarget = tar.gameObject;
             SetState(away);
         }
         
 
     }
-    void DefaultState()
+    public override void DefaultState()
     {
         SetState(roam);
     }

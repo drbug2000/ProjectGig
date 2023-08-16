@@ -78,7 +78,7 @@ public class FSroam : FState
 
         fishtail.SetTail(tail);
 
-        Debug.Log("1" + tail.Spot);
+        //Debug.Log("1" + tail.Spot);
     }
 }
 

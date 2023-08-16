@@ -9,17 +9,20 @@ public class FSAway : FishState
    
 
     public float awayTime;
+    
 
-    public void OnEnter(FishClass pfish, FishFin FF)
+    public override void OnEnter(FishClass pfish, FishFin FF)
     {
         base.OnEnter(pfish, FF);
 
 
         awayTime = this.fish.awaytime;
         //fishfin.SetSpot()
+        fishfin.accelFin(fishfin.currentPos - fishfin.TransVector(fish.awaytarget.transform.position)
+                , fish.MaxSpeed / 0.8f);
         Debug.Log(" new FSAway OnEnter");
     }
-    public void stateUpdate()
+    public override void stateUpdate()
     {
         if (awayTime <= 0)
         {
@@ -30,13 +33,19 @@ public class FSAway : FishState
         else
         {
             awayTime -= Time.deltaTime;
-            fishfin.accelFin(fishfin.currentPos - fishfin.TransVector(fish.awaytarget.transform.position)
-                ,fish.MaxSpeed / 0.8f);
+
+            if (fishfin.velocityM < fish.awaySpeed)
+            {
+                fishfin.accelFin(fishfin.currentPos - fishfin.TransVector(fish.awaytarget.transform.position)
+                , fish.MaxSpeed / 0.8f);
+
+            }
+            
         }
 
     }
 
-    public void OnExit()
+    public override void OnExit()
     {
         //fish.SetAway(fasle);
     }

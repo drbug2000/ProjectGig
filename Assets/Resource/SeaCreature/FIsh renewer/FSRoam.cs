@@ -79,7 +79,7 @@ public class FSRoam : FishState
         fishfin.SetSpot(new Vector2(Random.Range(minX, maxX), Random.Range(minY, maxY)));
        
 
-        Debug.Log("new" + fishfin.Spot);
+        //Debug.Log("new" + fishfin.Spot);
     }
 }
 
