@@ -18,8 +18,6 @@ public class MouseTrack : MonoBehaviour
     void Update()
     {
         
-        Vector2 mousePos = _camera.ScreenToWorldPoint(Input.mousePosition); //마우스 좌표 카메라 좌표로 변환
-        Vector2 dirVec = mousePos - (Vector2)transform.position; //마우스 방향 구함
-        transform.up = dirVec.normalized; // 방향벡터를 정규화한 다음 transform.up 벡터에 계속 대입
+        
     }
 }

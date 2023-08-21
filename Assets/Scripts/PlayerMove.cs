@@ -36,7 +36,7 @@ public class PlayerMove : MonoBehaviour
         // playerAudio = GetComponent<AudioSource>();
         // playerSpriteRenderer = GetComponent<SpriteRenderer>();
         onboard = true;
-        inventoryparents.SetActive(false);
+        //inventoryparents.SetActive(false);
 
     }
 
