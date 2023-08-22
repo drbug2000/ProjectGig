@@ -47,9 +47,9 @@ TagManager:
   - name: MidGround
     uniqueID: 2404561051
     locked: 0
+  - name: Mid2
+    uniqueID: 541610599
+    locked: 0
   - name: ForeGround
     uniqueID: 567251483
-    locked: 0
-  - name: New Layer 4
-    uniqueID: 541610599
     locked: 0
