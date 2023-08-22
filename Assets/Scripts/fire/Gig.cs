@@ -8,6 +8,7 @@ public class Gig : MonoBehaviour
     private GameObject gun;
     private Gun gunscript;
     private Rigidbody2D rb;
+    LineRenderer LR;
 
     public enum gigState { fire, hit, rollback, ready };
     public gigState State;
@@ -44,6 +45,9 @@ public class Gig : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        LR = GetComponent<LineRenderer>();
+        LR.startWidth = 0.3f;
+        LR.endWidth = 0.3f;
 
         rb = GetComponent<Rigidbody2D>();
         State = gigState.ready;
@@ -81,6 +85,7 @@ public class Gig : MonoBehaviour
         State = gigState.fire;
         Timer = fireTime;
         StartCoroutine("RollBasck", Speed);
+        StartCoroutine("Line");
     }
 
     IEnumerator RollBasck(float speed)
@@ -111,6 +116,21 @@ public class Gig : MonoBehaviour
 
         //다시 ready 상태로
 
+
+    }
+    IEnumerator Line()
+    {
+        LR.enabled = true;
+        while (State != gigState.ready)
+        {
+            LR.SetPosition(0, gun.transform.position);
+            LR.SetPosition(1, transform.position);
+
+            yield return null;
+        }
+        LR.enabled = false;
+
+        
 
     }
 
