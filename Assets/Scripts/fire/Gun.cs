@@ -47,7 +47,7 @@ public class Gun : MonoBehaviour
 
         //½ò¶§
 
-        if (Input.GetButtonDown("Fire1"))
+        if (Input.GetButtonDown("Fire1")&&State == fireState.ready)
         {
             State = fireState.fire;
             Debug.Log("fire");

@@ -51,7 +51,7 @@ public class Gig : MonoBehaviour
         gunscript = gun.GetComponent<Gun>();
         //Destroy(gameObject, 3f);
         //transform.position = new Vector3(-0.7f, 2,0);
-        Timer = -1f;
+        //Timer = -1f;
         
     }
 
@@ -79,7 +79,7 @@ public class Gig : MonoBehaviour
     public void fire(float fireTime,float Speed)
     {
         State = gigState.fire;
-        //Timer = fireTime;
+        Timer = fireTime;
         StartCoroutine("RollBasck", Speed);
     }
 
