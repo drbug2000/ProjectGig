@@ -27,6 +27,8 @@ public class fpatrol : MonoBehaviour
     public float speed;
     public int turnPercent;
 
+    public GameObject SpotPoint;
+
 
     public virtual void Start()
     {
@@ -40,6 +42,9 @@ public class fpatrol : MonoBehaviour
     {
         //transform.position = Vector2.MoveTowards(transform.position, moveSpot.position, speed *Time.deltaTime);
         //MoveSpot에 도달하면 waitTime만큼 대기
+
+        SpotPoint.transform.position = moveSpot.position;
+
         if (Vector2.Distance(transform.position, moveSpot.position) < 2)
         {
             if (waitTime <= 0)
