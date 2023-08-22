@@ -678,13 +678,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gig: {fileID: 1000005830}
-  bulletSpeed: 0
+  bulletSpeed: 10
   Fpos: {fileID: 0}
   gigrb: {fileID: 0}
   gigScript: {fileID: 0}
   State: 0
   reloadTime: 0
-  fireTime: 0
+  fireTime: 3
   StateTimer: 0
 --- !u!50 &506223146
 Rigidbody2D:
@@ -1189,6 +1189,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 3362207180585397088, guid: f04d68bdcf668ba41814169094def129, type: 3}
+    - {fileID: 4739352794293675513, guid: f04d68bdcf668ba41814169094def129, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: f04d68bdcf668ba41814169094def129, type: 3}
 --- !u!1 &1510549114
 GameObject:

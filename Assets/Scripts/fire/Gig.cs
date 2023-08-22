@@ -87,7 +87,7 @@ public class Gig : MonoBehaviour
     {
         Debug.Log("Rollback corutine");
         Debug.Log("re speed"+speed);
-        //Debug.Log("timer" + Timer);
+        Debug.Log("timer" + Timer);
         //น฿ป็
         while (State == gigState.fire )
         {
