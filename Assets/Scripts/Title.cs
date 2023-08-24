@@ -5,6 +5,24 @@ using UnityEngine.SceneManagement;
 
 public class Title : MonoBehaviour
 {
+    public GameObject SettingWindow;
+
+
+    void Awake()
+    {
+        SettingWindow.SetActive(false);
+    }
+
+    void Update()
+    {
+        if (SettingWindow.activeSelf == true)
+        {
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                SettingWindow.SetActive(false);
+            }
+        }
+    }
 
     public void startgame()
     {
@@ -18,7 +36,7 @@ public class Title : MonoBehaviour
 
     public void Setting()
     {
-        
+        SettingWindow.SetActive(true);
     }
 
     public void ExitGame()
