@@ -15,6 +15,8 @@ public class FSRoam : FishState
     float SpotMax;
     float SpotMin;
 
+    float MinSpeed;
+
     public override void OnEnter(FishClass pfish, FishFin FF)
     {
         base.OnEnter(pfish,FF);
@@ -30,8 +32,10 @@ public class FSRoam : FishState
 
         SpotMax = fish.SpotRangeBig;
         SpotMin = fish.SpotRangeSmall;
-        setNewSpot();
 
+
+        setNewSpot();
+        setDefault();
         Debug.Log(" new FSRoam OnEnter");
     }
     public override void stateUpdate()
@@ -42,24 +46,28 @@ public class FSRoam : FishState
             if (waitTime <= 0)
             {
                 setNewSpot();
+
             }
             else
             {
-                fishfin.Speed = fish.speed / 5;
+                //fishfin.Speed = fish.speed / 5;
+                
                 //Debug.Log("in spot");
                 waitTime -= Time.deltaTime;
+                MinSpeed = fish.MinSpeed *  0.7f;
             }
         }
         else if (fishfin.SpotDistance < SpotMax)
         {
-            fishfin.Speed = fish.speed / 2;
+            fishfin.SetDrag(0.5f);
+            //fishfin.Speed = fish.speed / 2;
             //fishtail.SetDrag(1f);
             //Debug.Log("almost spot");
             //Debug.Log(fishtail.SpotDistance());
         }
 
         //Àç°¡¼Ó
-        if (fishfin.velocityM < fish.MinSpeed)
+        if (fishfin.velocityM < MinSpeed)
         {
             fishfin.SpotMove();
 
@@ -69,17 +77,25 @@ public class FSRoam : FishState
 
     public override void OnExit()
     {
-
+        setDefault();
     }
 
     void setNewSpot()
     {
-        waitTime = startWaitTime;
-        fishfin.Speed = fish.speed;
+        
+        
         fishfin.SetSpot(new Vector2(Random.Range(minX, maxX), Random.Range(minY, maxY)));
-       
-
+        //fishfin.StopFish();
+        setDefault();
         //Debug.Log("new" + fishfin.Spot);
+    }
+
+    void setDefault()
+    {
+        fishfin.SetDrag(0.25f);
+        fishfin.Speed = fish.speed;
+        MinSpeed = fish.MinSpeed;
+        waitTime = startWaitTime;
     }
 }
 

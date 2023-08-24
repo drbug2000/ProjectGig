@@ -143,7 +143,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!50 &42112971
 Rigidbody2D:
   serializedVersion: 4
@@ -210,11 +210,11 @@ MonoBehaviour:
   fishRigidbody: {fileID: 0}
   Renderer: {fileID: 0}
   velocity: {x: 0, y: 0}
-  MaxSpeed: 0
-  MinSpeed: 0
-  waitTime: 0
+  MaxSpeed: 7
+  MinSpeed: 3
+  waitTime: 2
   currentPos: {x: 0, y: 0}
-  SpotPoint: {fileID: 0}
+  SpotPoint: {fileID: 1266110389}
   velocityM: 0
 --- !u!212 &42112974
 SpriteRenderer:
@@ -425,7 +425,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 567251483
-  m_SortingLayer: 4
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: e8e877689f703534aa279cc9ecc17557, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -653,7 +653,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 567251483
-  m_SortingLayer: 4
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: -17641383, guid: 1dc04eeab148b8c498b3611a14c19c9d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -1342,7 +1342,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 567251483
-  m_SortingLayer: 4
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 988556790, guid: f17d8eb6a8739be46940200382761bbb, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -1495,7 +1495,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 541610599
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 00de1cead976390439b353ad019c790a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -1523,7 +1523,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &653719680
 Transform:
   m_ObjectHideFlags: 0
@@ -1583,7 +1583,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2.9, y: 0.5}
+  m_Size: {x: 7, y: 1.5}
   m_EdgeRadius: 0
 --- !u!212 &745719359
 SpriteRenderer:
@@ -1624,7 +1624,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 541610599
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 2cfee7ea5cea7df418ffc4c9a2cac8aa, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -1779,7 +1779,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 567251483
-  m_SortingLayer: 4
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: d981f5daa3322a941a5da5e1e79d20ae, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -2359,6 +2359,7 @@ GameObject:
   - component: {fileID: 1782671464}
   - component: {fileID: 1782671463}
   - component: {fileID: 1782671462}
+  - component: {fileID: 1782671467}
   m_Layer: 0
   m_Name: new Fish
   m_TagString: Untagged
@@ -2384,9 +2385,9 @@ MonoBehaviour:
   mass: 0
   drag: 0
   gravity: 0
-  speed: 10
-  MaxSpeed: 12
-  MinSpeed: 5
+  speed: 6
+  MaxSpeed: 9
+  MinSpeed: 4
   RoamBoxMaxX: 30
   RoamBoxMinX: -30
   RoamBoxMaxY: 0
@@ -2408,6 +2409,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41a59d206030c9e4580ec7042d948478, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fish: {fileID: 0}
   orientation: 0
   rotation: 0
   fishRigidbody: {fileID: 1782671464}
@@ -2419,10 +2421,7 @@ MonoBehaviour:
   velocityM: 0
   SpotDistance: 0
   SpotDir: {x: 0, y: 0}
-  MaxSpeed: 10
   Speed: 10
-  MinSpeed: 3
-  waitTime: 2
   SpotPoint: {fileID: 76004488}
 --- !u!50 &1782671464
 Rigidbody2D:
@@ -2483,10 +2482,10 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 567251483
+  m_SortingLayer: 3
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: a3a4218c57a46e34c8eea509a180ef70, type: 3}
+  m_Sprite: {fileID: 988556790, guid: f17d8eb6a8739be46940200382761bbb, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -2506,12 +2505,33 @@ Transform:
   m_GameObject: {fileID: 1782671461}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 1.43, y: -5.89, z: 0}
-  m_LocalScale: {x: 3, y: 3, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 18
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &1782671467
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1782671461}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: e61feeef4b9d9e2478fbfe2397d0b2bc, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &2055966539
 GameObject:
   m_ObjectHideFlags: 0

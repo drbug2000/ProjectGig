@@ -6,18 +6,22 @@ public class NewShark : FishClass
 {
 
     FSRoam roam;
-    FSaway away;
+    //FSaway away;
+    FSAttack attack;
     bool awayNow;
+
+    public float attackTime;
 
     // Start is called before the first frame update
     public override void Start()
     {
         base.Start();
         roam = new FSRoam();
+        attack = new FSAttack();
         //away = new FSaway();
         SetState(roam);
         //Debug.Log("Second start");
-        //InvokeRepeating("FindAwayTarget", 0f, 1f);
+        InvokeRepeating("FindAwayTarget", 2f, detectTime);
     }
 
     // Update is called once per frame
@@ -30,19 +34,20 @@ public class NewShark : FishClass
 
     private void FindAwayTarget()
     {
-        /*
-        int palyermask = LayerMask.GetMask("player");
+        
+        int palyermask = LayerMask.GetMask("Player");
 
-        Collider2D tar = Physics2D.OverlapCircle(fishtail.currentPos, 1f, palyermask);
-        if ((tar != null) && currentState == roam)
+        Collider2D tar = Physics2D.OverlapCircle(fishfin.currentPos, detectArea, palyermask);
+        if ((tar != null) )
         {
             awaytarget = tar.gameObject;
-            SetState(away);
+            Debug.Log("overlap circle active target : " + awaytarget);
+            SetState(attack);
         }
-        */
+        
 
     }
-    void DefaultState()
+    public override void DefaultState()
     {
         SetState(roam);
     }

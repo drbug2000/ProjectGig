@@ -5,10 +5,13 @@ using UnityEngine;
 public class FishFin  : MonoBehaviour
 {
 
+    
+
     public float orientation;
     public float rotation;
     // public Vector2 dir;
 
+    public FishClass fish;
     public Rigidbody2D fishRigidbody;
     public SpriteRenderer Renderer;
 
@@ -25,10 +28,10 @@ public class FishFin  : MonoBehaviour
     public Vector2 SpotDir;
 
 
-    public float MaxSpeed;
+    //public float MaxSpeed;
     public float Speed;
-    public float MinSpeed;
-    public float waitTime;
+    //public float MinSpeed;
+    //public float waitTime;
 
     public GameObject SpotPoint;
 
@@ -38,6 +41,7 @@ public class FishFin  : MonoBehaviour
     { 
         Renderer = GetComponent<SpriteRenderer>();
         fishRigidbody = GetComponent<Rigidbody2D>();
+        fish = GetComponent<FishClass>();
     }
 
 
@@ -61,11 +65,11 @@ public class FishFin  : MonoBehaviour
         //방향전환
         if (velocity.x>0)
         {
-            Renderer.flipX = false;
+            Renderer.flipX = true;
         }
         else
         {
-            Renderer.flipX = true;
+            Renderer.flipX = false;
         }
 
 
@@ -86,9 +90,9 @@ public class FishFin  : MonoBehaviour
         }
         */
         //최대속력 한계 설정
-        if (velocity.magnitude > MaxSpeed)
+        if (velocity.magnitude > fish.MaxSpeed)
         {
-            fishRigidbody.velocity = velocity.normalized * MaxSpeed;
+            fishRigidbody.velocity = velocity.normalized * fish.MaxSpeed;
         }
         //바다 표면위로 올라가지 않게
         if (currentPos.y >= 0)
