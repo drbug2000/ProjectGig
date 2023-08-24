@@ -11,6 +11,7 @@ public class NewShark : FishClass
     bool awayNow;
 
     public float attackTime;
+    public bool Bite;
 
     // Start is called before the first frame update
     public override void Start()
@@ -38,10 +39,10 @@ public class NewShark : FishClass
         int palyermask = LayerMask.GetMask("Player");
 
         Collider2D tar = Physics2D.OverlapCircle(fishfin.currentPos, detectArea, palyermask);
-        if ((tar != null) )
+        if ((tar != null)&& ReferenceEquals(currentState, roam))
         {
-            awaytarget = tar.gameObject;
-            Debug.Log("overlap circle active target : " + awaytarget);
+            target = tar.gameObject;
+            Debug.Log("overlap circle active target : " + target);
             SetState(attack);
         }
         
@@ -54,6 +55,15 @@ public class NewShark : FishClass
     void SetAway(bool Baway)
     {
         awayNow = Baway;
+
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.gameObject.tag == "Player")
+        {
+            this.Bite = true;
+        }
 
     }
 

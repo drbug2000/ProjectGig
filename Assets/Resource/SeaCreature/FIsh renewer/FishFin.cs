@@ -129,6 +129,7 @@ public class FishFin  : MonoBehaviour
         ReDirSpot();
         accelFin(SpotDir,acc);
     } 
+
     public void SpotMove(Vector2 SPOT,float acc = 1.0f)
     {
         SetSpot(SPOT);
@@ -138,6 +139,12 @@ public class FishFin  : MonoBehaviour
     public void ReDirSpot()
     {
         SpotDir = Spot - currentPos;
+    }
+
+    public void SpotMoveBack(float acc = 1.0f)
+    {
+        ReDirSpot();
+        accelFin(-1*SpotDir, acc);
     }
     
     public void SpeedReset()
