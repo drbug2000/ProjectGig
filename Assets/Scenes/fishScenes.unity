@@ -2734,7 +2734,8 @@ MonoBehaviour:
   detectTime: 1
   awaytime: 0
   awaySpeed: 0
-  attackTime: 5
+  attackTime: 2
+  Bite: 0
 --- !u!114 &2139213391
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -10,16 +10,19 @@ public class FSAttack : FishState
     public Animator animator;
     private GameObject target;
     private bool away;
+    public float awayTimer;
 
     public override void OnEnter(FishClass pfish, FishFin FF)
     {
         base.OnEnter(pfish, FF);
         away = false;
-        //animator = GetComponent<Animator>();
+        
         attackTime = ((NewShark)this.fish).attackTime;
         Timer = attackTime;
-        //fishfin.SetSpot()
+        
         target = pfish.target;
+
+        //animator = GetComponent<Animator>();
         //animator.SetBool("Detected", true);
         Debug.Log(" new FSAway OnEnter");
     }
@@ -34,24 +37,28 @@ public class FSAttack : FishState
             if (away)
             {
                 
-                while (Timer <= 0)
+                while (awayTimer >= 0)
                 {
                     if (fishfin.velocityM < fish.MinSpeed * 1.2f)
                     {
                         fishfin.SpotMoveBack(fish.MaxSpeed / 0.6f);
                     }
-                    Timer -= Time.deltaTime;
+                    awayTimer -= Time.deltaTime;
                     return;
                 }
                 away = false;
                 ((NewShark)fish).Bite = false;
                 return;
-            }
-            else
+            }else
             {
-                Timer = attackTime / 0.5f;
+                
                 Dash(fish.MaxSpeed);
-                away = true;
+                if (fishfin.velocityM < fish.MinSpeed *0.8f )
+                {
+                    awayTimer = attackTime / 0.3f;
+                    away = true;
+                }
+                    
                 //StartCoroutine("Away");
             }
         }
