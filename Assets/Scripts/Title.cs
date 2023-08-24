@@ -43,4 +43,12 @@ public class Title : MonoBehaviour
     {
         Application.Quit();
     }
+    
+    public void ExitSetting()
+    {
+        if (SettingWindow.activeSelf == true)
+        {
+            SettingWindow.SetActive(false);
+        }
+    }
 }
