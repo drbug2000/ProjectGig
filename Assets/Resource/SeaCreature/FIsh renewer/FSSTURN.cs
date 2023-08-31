@@ -9,6 +9,7 @@ public class FSSTURN : FishState
     public override void OnEnter(FishClass pfish, FishFin FF)
     {
         sturnTime = fish.sturntime;
+        fishfin.SetSturn(true);
     }
 
     public override void stateUpdate()
@@ -24,6 +25,6 @@ public class FSSTURN : FishState
 
     public override void OnExit()
     {
-
+        fishfin.SetSturn(false);
     }
 }

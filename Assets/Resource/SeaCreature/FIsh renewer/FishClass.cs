@@ -32,6 +32,7 @@ public class FishClass : MonoBehaviour
 
     public float MaxSpeed;
     public float MinSpeed;
+
     //유영 범위
     public float RoamBoxMaxX;
     public float RoamBoxMinX;

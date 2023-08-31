@@ -6,7 +6,7 @@ public class FSDEAD : FishState
 {
     public override void OnEnter(FishClass pfish, FishFin FF)
     {
-
+        fishfin.SetSturn(true);
     }
 
     public override void stateUpdate()
@@ -16,6 +16,6 @@ public class FSDEAD : FishState
 
     public override void OnExit()
     {
-
+        fishfin.SetSturn(false);
     }
 }

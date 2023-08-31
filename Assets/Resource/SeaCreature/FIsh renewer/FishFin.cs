@@ -33,6 +33,8 @@ public class FishFin  : MonoBehaviour
     //public float MinSpeed;
     //public float waitTime;
 
+    bool sturn=false;
+
     public GameObject SpotPoint;
 
 
@@ -62,6 +64,8 @@ public class FishFin  : MonoBehaviour
         //SpotPoint.transform.position = Spot;
         //Debug.Log(tail.Spot);
 
+        if (sturn) { return; }
+
         //방향전환
         if (velocity.x>0)
         {
@@ -89,6 +93,8 @@ public class FishFin  : MonoBehaviour
             waitTime -= Time.deltaTime;
         }
         */
+        if (sturn){return;}
+
         //최대속력 한계 설정
         if (velocity.magnitude > fish.MaxSpeed)
         {
@@ -161,7 +167,10 @@ public class FishFin  : MonoBehaviour
     public void SetDrag(float drag)
     {
         fishRigidbody.drag = drag;
-
+    }
+    public void SetSturn(bool Sturn)
+    {
+        this.sturn = Sturn;
     }
 
     public Vector2 TransVector(Vector3 V)
