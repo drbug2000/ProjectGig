@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.EventSystems;
 
 public class Title : MonoBehaviour
 {
@@ -21,6 +22,11 @@ public class Title : MonoBehaviour
             {
                 SettingWindow.SetActive(false);
             }
+        }
+
+        if (IsPointerOverUI() == true)
+        {
+
         }
     }
 
@@ -50,5 +56,37 @@ public class Title : MonoBehaviour
         {
             SettingWindow.SetActive(false);
         }
+    }
+
+    private bool IsPointerOverUI()
+
+    {
+
+        PointerEventData pointerEventData = new PointerEventData(EventSystem.current);
+
+        pointerEventData.position = Input.mousePosition;
+
+
+
+        List<RaycastResult> results = new List<RaycastResult>();
+
+        EventSystem.current.RaycastAll(pointerEventData, results);
+
+
+
+        for (int i = 0; i < results.Count; i++)
+
+        {
+
+            if (results[i].gameObject.layer == LayerMask.NameToLayer("ButtonUI"))
+
+                return true;
+
+        }
+
+
+
+        return false;
+
     }
 }

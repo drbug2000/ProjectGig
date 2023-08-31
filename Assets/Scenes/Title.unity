@@ -376,7 +376,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 800, y: 600}
@@ -507,7 +507,7 @@ GameObject:
   - component: {fileID: 173793473}
   - component: {fileID: 173793472}
   - component: {fileID: 173793471}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: Exit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -662,7 +662,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -737,8 +737,8 @@ RectTransform:
   m_Father: {fileID: 1907530952}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMin: {x: 1, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -792,7 +792,7 @@ GameObject:
   - component: {fileID: 363293329}
   - component: {fileID: 363293328}
   - component: {fileID: 363293327}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: Start
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -925,7 +925,7 @@ GameObject:
   - component: {fileID: 387298579}
   - component: {fileID: 387298578}
   - component: {fileID: 387298577}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: Continue
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1058,7 +1058,7 @@ GameObject:
   - component: {fileID: 655483138}
   - component: {fileID: 655483137}
   - component: {fileID: 655483136}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: ExitSetting
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1196,7 +1196,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &681371955
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1585,7 +1585,7 @@ GameObject:
   - component: {fileID: 1132061161}
   - component: {fileID: 1132061160}
   - component: {fileID: 1132061159}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: Setting
   m_TagString: Untagged
   m_Icon: {fileID: 0}
