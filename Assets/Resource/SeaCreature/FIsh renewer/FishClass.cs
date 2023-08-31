@@ -7,6 +7,7 @@ public class FishClass : MonoBehaviour
 
 
     public FishFin fishfin;
+    public FishHealth FishHP;
     public FishState currentState;
     public GameObject target;
     public GameObject awaytarget;
@@ -50,9 +51,12 @@ public class FishClass : MonoBehaviour
     public float awaytime;
     public float awaySpeed;
 
+    //공격당함
+    public float sturntime;
+
 
     //public int turnPercent;
-
+    
     // Start is called before the first frame update
     public virtual void Start()
     {
@@ -80,6 +84,12 @@ public class FishClass : MonoBehaviour
     }
     public virtual void DefaultState()
     {
+
+    }
+
+    public virtual void OnDeath()
+    {
+        gameObject.SetActive(false);
 
     }
 }

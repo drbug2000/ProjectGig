@@ -5,12 +5,55 @@ using UnityEngine;
 public class FSAttack : FishState
 {
     
-    public float attackTime;
-    public float Timer;
     public Animator animator;
     private GameObject target;
+    
+    enum attState { follow , bite ,biteWait, away, end}
+    attState State;
     private bool away;
     public float awayTimer;
+
+    public float attackTime;
+
+    float timer;
+    public float Timer
+    {
+        get { return timer; }
+        set {
+            timer = value;
+            Debug.Log(State);
+            if(Timer <= 0)
+            {
+                switch (State)
+                {
+                    case attState.follow:
+                        fish.DefaultState();
+                        //timer = 1f;
+                        //State = attState.bite;
+                        break;
+                    case attState.bite:
+                        timer = 2f;
+                        Debug.Log("bite");
+                        //State = attState.away;
+                        break;
+                    case attState.biteWait:
+                        timer = 2f;
+                        State = attState.away;
+                        ((NewShark)fish).Bite = false;
+                        break;
+                    case attState.away:
+                        timer = attackTime;
+                        State = attState.follow;
+                        break;
+                    case attState.end:
+                        break;
+                    default:
+                        Debug.Log("attack FSM State error");
+                        break;
+                }
+            }
+        }
+    }
 
     public override void OnEnter(FishClass pfish, FishFin FF)
     {
@@ -28,49 +71,41 @@ public class FSAttack : FishState
     }
     public override void stateUpdate()
     {
-        if (Timer <= 0)
+        Timer -= Time.deltaTime;
+        switch (State)
         {
-            fish.DefaultState();
-        }
-        else if(((NewShark)fish).Bite)
-        {//player을 물었을때
-            if (away)
-            {
-                
-                while (awayTimer >= 0)
+            case attState.follow:
+                if (((NewShark)fish).Bite)
                 {
-                    if (fishfin.velocityM < fish.MinSpeed * 1.2f)
-                    {
-                        fishfin.SpotMoveBack(fish.MaxSpeed / 0.6f);
-                    }
-                    awayTimer -= Time.deltaTime;
-                    return;
+                    State = attState.bite;
+                    Timer = 0.5f;
+                    break;
                 }
-                away = false;
-                ((NewShark)fish).Bite = false;
-                return;
-            }else
-            {
-                
+
+                if (fishfin.velocityM < fish.MinSpeed)
+                {
+                    Dash(fish.speed * 0.7f);
+                }
+                break;
+            case attState.bite:
                 Dash(fish.MaxSpeed);
-                if (fishfin.velocityM < fish.MinSpeed *0.8f )
+                State = attState.biteWait;
+                break;
+            case attState.biteWait:
+                //Dash(fish.MaxSpeed);
+                break;
+            case attState.away:
+                if (fishfin.velocityM < fish.MinSpeed * 0.9f)
                 {
-                    awayTimer = attackTime / 0.3f;
-                    away = true;
+
+                    fishfin.SpotMoveBack(fish.MaxSpeed * 0.8f);
                 }
-                    
-                //StartCoroutine("Away");
-            }
-        }
-        else
-        {//물기전, 물고 다시 물때
-            Timer -= Time.deltaTime;
-            if (fishfin.velocityM < fish.MinSpeed * 1.2f)
-            {
-                /*fishfin.accelFin(-(fishfin.currentPos - fishfin.TransVector(fish.awaytarget.transform.position))
-                , fish.MaxSpeed / 0.6f);*/
-                Dash(fish.MaxSpeed / 0.6f);
-            }
+                break;
+            case attState.end:
+                break;
+            default:
+                Debug.Log("attack FSM State error");
+                break;
         }
 
     }
@@ -88,6 +123,7 @@ public class FSAttack : FishState
         fishfin.SpotMove(speed);
     }
 
+    /*
     IEnumerator Away()
     {
         Timer = attackTime /0.5f ;
@@ -102,5 +138,5 @@ public class FSAttack : FishState
         
 
     }
-
+    */
 }

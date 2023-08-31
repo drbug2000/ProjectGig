@@ -59,7 +59,7 @@ public class FishFin  : MonoBehaviour
         //if ((tail.Spot - Vector2.zero).magnitude!=0)
 
         // fishRigidbody.AddForce(tail.Speed * tail.Dir);
-        SpotPoint.transform.position = Spot;
+        //SpotPoint.transform.position = Spot;
         //Debug.Log(tail.Spot);
 
         //방향전환
