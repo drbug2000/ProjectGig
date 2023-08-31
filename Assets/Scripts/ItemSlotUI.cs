@@ -7,13 +7,18 @@ using TMPro;
 public class ItemSlotUI : MonoBehaviour
 {
     public Item item; // 획득한 아이템
-    public static int itemCount = 1; // 획득한 아이템의 개수
+    public int itemCount; // 획득한 아이템의 개수
     public Image itemImage;  // 아이템의 이미지
     
     [SerializeField]
     private TMP_Text text_Count;
     [SerializeField]
     private GameObject go_CountImage;
+
+    void Start()
+    {
+        itemCount = 0;
+    }
 
     // 아이템 이미지의 투명도 조절
     // private void SetColor(float _alpha)
@@ -29,17 +34,9 @@ public class ItemSlotUI : MonoBehaviour
         item = _item;
         itemImage.sprite = item.itemImage;
         Debug.Log(this.gameObject.name);
-
-        if(item.itemType != Item.ItemType.Equipment)
-        {
-            go_CountImage.SetActive(true);
-            text_Count.text = itemCount.ToString();
-        }
-        else
-        {
-            text_Count.text = "0";
-            go_CountImage.SetActive(false);
-        }
+        go_CountImage.SetActive(true);
+        text_Count.text = itemCount.ToString();
+        SetSlotCount();
 
     }
 
@@ -54,13 +51,11 @@ public class ItemSlotUI : MonoBehaviour
     }
 
     // 해당 슬롯 하나 삭제
-    private void ClearSlot()
+    public void ClearSlot()
     {
         item = null;
-        itemCount = 0;
         itemImage.sprite = null;
-
-        text_Count.text = "0";
-        go_CountImage.SetActive(false);
+        itemCount = 0;
+        text_Count.text = "";
     }
 }

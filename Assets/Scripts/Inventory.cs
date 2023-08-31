@@ -9,14 +9,16 @@ public class Inventory : MonoBehaviour
     private GameObject go_InventoryBase;
     // 모든 slot들의 컴포넌트에 접근하기위해 받아왔다.
     [SerializeField] 
-    private ItemSlotUI[] slots;
+    public ItemSlotUI[] slots;
 
     private bool inventoryActivated;
 
+    private int allcost;
     void Start()
     {
         // 처음 실행할 때는 inventory는 비활성화 시켜야한다.
         inventoryActivated = false;
+        allcost = 0;
     }
 
     void Update()
@@ -53,21 +55,17 @@ public class Inventory : MonoBehaviour
 
     public void AcquireItem(Item _item)
     {
-        if(Item.ItemType.Equipment != _item.itemType)
+        for (int i = 0; i < slots.Length; i++)
         {
-            for (int i = 0; i < slots.Length; i++)
+            if (slots[i].item != null)
             {
-                if (slots[i].item != null)
+                if (slots[i].item.itemName == _item.itemName)
                 {
-                    if (slots[i].item.itemName == _item.itemName)
-                    {
-                        slots[i].SetSlotCount();
-                        return;
-                    }
+                    slots[i].SetSlotCount();
+                    return;
                 }
             }
         }
-        
 
         for (int i = 0; i < slots.Length; i++)
         {
@@ -77,5 +75,23 @@ public class Inventory : MonoBehaviour
                 return;
             }
         }
+    }
+
+    public int SellItem()
+    {
+        int multiplycost;
+        for (int i = 0; i < slots.Length; i++)
+        {
+            Debug.Log(i);
+            if (slots[i].item == null)
+            {
+                return allcost;
+            }
+            multiplycost = slots[i].item.Cost  * slots[i].itemCount;
+            allcost += multiplycost;
+            slots[i].ClearSlot();
+        }
+
+        return allcost;
     }
 }
