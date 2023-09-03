@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class FishState
 {
-    public FishFin fishfin;
-    public FishClass fish;
+    protected FishFin fishfin;
+    protected FishClass fish;
 
     public virtual void OnEnter(FishClass pfish, FishFin FISHFIN) 
     {

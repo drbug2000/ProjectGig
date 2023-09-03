@@ -5,15 +5,13 @@ using UnityEngine;
 public class FishFin  : MonoBehaviour
 {
 
-    
-
     public float orientation;
     public float rotation;
     // public Vector2 dir;
 
-    public FishClass fish;
-    public Rigidbody2D fishRigidbody;
-    public SpriteRenderer Renderer;
+    private FishClass fish;
+    private Rigidbody2D fishRigidbody;
+    private SpriteRenderer Renderer;
 
     //이동 정보
     public Vector2 Dir;
@@ -35,11 +33,11 @@ public class FishFin  : MonoBehaviour
 
     bool sturn=false;
 
-    public GameObject SpotPoint;
+    //public GameObject SpotPoint;
 
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     { 
         Renderer = GetComponent<SpriteRenderer>();
         fishRigidbody = GetComponent<Rigidbody2D>();
@@ -49,21 +47,13 @@ public class FishFin  : MonoBehaviour
 
     private void OnEnable()
     {
-        
-
-
+        bool sturn = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        //Spot이 지정되어 있을때
-        //if ((tail.Spot - Vector2.zero).magnitude!=0)
-
-        // fishRigidbody.AddForce(tail.Speed * tail.Dir);
-        //SpotPoint.transform.position = Spot;
-        //Debug.Log(tail.Spot);
-
+        
         if (sturn) { return; }
 
         //방향전환
@@ -86,13 +76,8 @@ public class FishFin  : MonoBehaviour
         SpotDistance = (currentPos - Spot).magnitude;
         velocity = fishRigidbody.velocity;
         velocityM = velocity.magnitude;
-        //wait time 설정 시 정지 대기
-        /*
-        if (waitTime > 0)
-        {
-            waitTime -= Time.deltaTime;
-        }
-        */
+        
+
         if (sturn){return;}
 
         //최대속력 한계 설정
@@ -108,7 +93,6 @@ public class FishFin  : MonoBehaviour
 
         }
 
-
     }
 
     public void accelFin(float acc=1.0f)
@@ -120,14 +104,11 @@ public class FishFin  : MonoBehaviour
     {
         this.Dir = DIR;
         accelFin(acc);
-
     }
 
     public void SetSpot(Vector2 nextSpot)
     {
-
         Spot = nextSpot;
-
     }
 
     public void SpotMove(float acc = 1.0f)
@@ -171,6 +152,11 @@ public class FishFin  : MonoBehaviour
     public void SetSturn(bool Sturn)
     {
         this.sturn = Sturn;
+    }
+
+    public void SetPosition(Vector3 targetPosition)
+    {
+        gameObject.transform.position = targetPosition;
     }
 
     public Vector2 TransVector(Vector3 V)

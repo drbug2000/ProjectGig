@@ -5,18 +5,18 @@ using UnityEngine;
 public class FSAttack : FishState
 {
     
-    public Animator animator;
+    private Animator animator;
     private GameObject target;
     
     enum attState { follow , bite ,biteWait, away, end}
     attState State;
     private bool away;
-    public float awayTimer;
+    private float awayTimer;
 
-    public float attackTime;
+    private float attackTime;
 
     float timer;
-    public float Timer
+    private float Timer
     {
         get { return timer; }
         set {
@@ -33,7 +33,7 @@ public class FSAttack : FishState
                         break;
                     case attState.bite:
                         timer = 2f;
-                        Debug.Log("bite");
+                        
                         //State = attState.away;
                         break;
                     case attState.biteWait:
@@ -44,6 +44,7 @@ public class FSAttack : FishState
                     case attState.away:
                         timer = attackTime;
                         State = attState.follow;
+                        fishfin.StopFish();
                         break;
                     case attState.end:
                         break;
@@ -67,7 +68,7 @@ public class FSAttack : FishState
 
         //animator = GetComponent<Animator>();
         //animator.SetBool("Detected", true);
-        Debug.Log(" new FSAway OnEnter");
+        Debug.Log(" new FSATttack Enter");
     }
     public override void stateUpdate()
     {
@@ -79,6 +80,7 @@ public class FSAttack : FishState
                 {
                     State = attState.bite;
                     Timer = 0.5f;
+                    Debug.Log("bite");
                     break;
                 }
 

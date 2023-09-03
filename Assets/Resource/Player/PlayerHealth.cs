@@ -30,7 +30,7 @@ public class PlayerHealth : LivingEntity
     }
 
     // 데미지 처리
-    public override void OnDamage(float damage, Vector3 hitPoint, Vector3 hitDirection)
+    public override void OnDamage(float damage, GameObject hiter, Vector3 hitPoint, Vector3 hitDirection)
     {
         if (!dead)
         {
@@ -39,7 +39,7 @@ public class PlayerHealth : LivingEntity
         }
 
         // LivingEntity의 OnDamage() 실행(데미지 적용)
-        base.OnDamage(damage, hitPoint, hitDirection);
+        base.OnDamage(damage, hiter ,hitPoint, hitDirection);
     }
     //색 변환 코루틴 구현
     private IEnumerator DamageEffect()

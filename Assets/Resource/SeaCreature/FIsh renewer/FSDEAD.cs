@@ -11,7 +11,7 @@ public class FSDEAD : FishState
 
     public override void stateUpdate()
     {
-
+        fishfin.SetPosition(fish.target.transform.position);
     }
 
     public override void OnExit()

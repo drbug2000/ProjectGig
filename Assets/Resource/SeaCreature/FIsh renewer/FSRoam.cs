@@ -4,18 +4,18 @@ using UnityEngine;
 
 public class FSRoam : FishState
 {
-    
-    public float minX;
-    public float maxX;
-    public float minY;
-    public float maxY;
-    public float waitTime;
-    public float startWaitTime;
 
-    float SpotMax;
-    float SpotMin;
+    private float minX;
+    private float maxX;
+    private float minY;
+    private float maxY;
+    private float waitTime;
+    private float startWaitTime;
 
-    float MinSpeed;
+    private float SpotMax;
+    private float SpotMin;
+
+    private float MinSpeed;
 
     public override void OnEnter(FishClass pfish, FishFin FF)
     {
