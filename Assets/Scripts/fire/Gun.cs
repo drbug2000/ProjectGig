@@ -63,6 +63,7 @@ public class Gun : MonoBehaviour
         State = fireState.ready;
         gigScript = gig.GetComponent<Gig>();
         gigtr = gig.GetComponent<Transform>();
+        gigrb = gig.GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
@@ -105,6 +106,8 @@ public class Gun : MonoBehaviour
 
     IEnumerator Fire()
     {
+
+        gigrb.isKinematic = false;
         float StopTime = 0;
         gigScript.onfire();
 
@@ -145,7 +148,7 @@ public class Gun : MonoBehaviour
             Timer -= Time.deltaTime;
             yield return null;
         }
-
+        gigrb.isKinematic = true;
         gigScript.outfire();
     }
 }
