@@ -6,6 +6,7 @@ public class FSDEAD : FishState
 {
     public override void OnEnter(FishClass pfish, FishFin FF)
     {
+        base.OnEnter(pfish, FF);
         fishfin.SetSturn(true);
     }
 

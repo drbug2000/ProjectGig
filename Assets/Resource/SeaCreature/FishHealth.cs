@@ -12,14 +12,14 @@ public class FishHealth : LivingEntity
     //5. 사망 시 아이템화: playerAttack 또는 작살에서 fish.onDeath 이벤트를 구독
     private FishClass fish;
     private SpriteRenderer flshSpriteRenderer;
-    Action Dead;
+    //Action Dead;
 
     private void Awake()
     {
         //컴포넌트 할당: 피격 시에 색 변환
         flshSpriteRenderer = GetComponent<SpriteRenderer>();
         fish = GetComponent<FishClass>();
-        Dead += fish.OnDeath;
+        onDeath += fish.OnDeath;
 
     }
 

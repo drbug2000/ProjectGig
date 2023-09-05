@@ -12,8 +12,11 @@ public class Gig : MonoBehaviour
 
     public enum gigState { fire,  ready };
     public gigState State;
+
     private float timer;
     public bool isfire=false;
+
+    IDamageable AttTarget;
 
     // Start is called before the first frame update
     void Start()
@@ -66,7 +69,35 @@ public class Gig : MonoBehaviour
         }
         LR.enabled = false;
     }
-    
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        Debug.Log("gig : Hit somthing");
+        if (collision.gameObject.tag == "fish")
+        {
+            gunscript.Hit();
+            Debug.Log("gig : Hit fish");
+            AttTarget = collision.gameObject.GetComponent<IDamageable>();
+            //임시 변수
+            AttTarget.OnDamage(3, gameObject, Vector2.zero, Vector2.zero);
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        Debug.Log("gig : Hit somthing(trigger)");
+        if (other.gameObject.tag == "fish")
+        {
+            gunscript.Hit();
+            Debug.Log("gig : Hit fish(trigger)");
+            AttTarget = other.gameObject.GetComponent<IDamageable>();
+            //임시 변수
+            AttTarget.OnDamage(3, gameObject, Vector2.zero, Vector2.zero);
+        }
+
+    }
+
+
 
 
 

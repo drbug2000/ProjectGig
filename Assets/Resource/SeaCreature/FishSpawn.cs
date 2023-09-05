@@ -23,6 +23,11 @@ public class FishSpawn : MonoBehaviour
         {
             spawnFish(smallfish, RandomStartPos(20,5));
         }
+
+        for (int i = 0; i < middleFishCounter; i++)
+        {
+            spawnFish(middlefish, RandomStartPos(20, 5));
+        }
     }
 
     // Update is called once per frame

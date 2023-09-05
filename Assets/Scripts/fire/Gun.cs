@@ -73,7 +73,7 @@ public class Gun : MonoBehaviour
             return;
         }
 
-        //발사중이 아닐시 총이 마우스를 짜라 각도가 조정됨
+        //발사중이 아닐시 총이 마우스를 따라 각도가 조정됨
         if(State != fireState.fire)
         {
             Vector2 mousePos = _camera.ScreenToWorldPoint(Input.mousePosition); //마우스 좌표 카메라 좌표로 변환
@@ -97,7 +97,10 @@ public class Gun : MonoBehaviour
         State = fireState.ready;
     }
 
-
+    public void Hit()
+    {
+        State = fireState.hit;
+    }
 
 
     IEnumerator Fire()

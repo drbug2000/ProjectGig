@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 5722816824412703013}
   m_Layer: 0
   m_Name: Shark
-  m_TagString: Untagged
+  m_TagString: fish
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -124,7 +124,7 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: -0.2, y: -0.07}
-  m_Size: {x: 1.5, y: 0.4}
+  m_Size: {x: 2.3, y: 0.8}
   m_Direction: 1
 --- !u!114 &5722816824412703038
 MonoBehaviour:
