@@ -100,7 +100,10 @@ public class Gun : MonoBehaviour
 
     public void Hit()
     {
-        State = fireState.hit;
+        if (State != fireState.hit)
+        {
+            State = fireState.hit;
+        }
     }
 
 

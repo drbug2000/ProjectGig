@@ -73,7 +73,7 @@ public class Gig : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         Debug.Log("gig : Hit somthing");
-        if (collision.gameObject.tag == "fish")
+        if (collision.gameObject.tag == "fish" && isfire)
         {
             gunscript.Hit();
             Debug.Log("gig : Hit fish");
@@ -86,7 +86,7 @@ public class Gig : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other)
     {
         Debug.Log("gig : Hit somthing(trigger)");
-        if (other.gameObject.tag == "fish")
+        if (other.gameObject.tag == "fish" && isfire)
         {
             gunscript.Hit();
             Debug.Log("gig : Hit fish(trigger)");
