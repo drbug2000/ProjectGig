@@ -1,0 +1,60 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags:
+<<<<<<< HEAD
+  - ground
+=======
+  - fish
+>>>>>>> develop
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - 
+  - Water
+  - UI
+  - 
+  - Player
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Default
+    uniqueID: 0
+    locked: 0
+  - name: BackGround
+    uniqueID: 2769031425
+    locked: 0
+  - name: MidGround
+    uniqueID: 2404561051
+    locked: 0
+  - name: Mid2
+    uniqueID: 541610599
+    locked: 0
+  - name: ForeGround
+    uniqueID: 567251483
+    locked: 0

@@ -71,6 +71,10 @@ public class Gun : MonoBehaviour
     {
         if(State != fireState.ready)
         {
+            if (Timer < 0)
+            {
+                Timer = 0;
+            }
             return;
         }
 
