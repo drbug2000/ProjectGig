@@ -67,7 +67,7 @@ public class FSAttack : FishState
         target = pfish.target;
 
         //animator = GetComponent<Animator>();
-        //animator.SetBool("Detected", true);
+        fish.animator.SetBool("Detected", true);
         Debug.Log(" new FSATttack Enter");
     }
     public override void stateUpdate()
@@ -114,7 +114,7 @@ public class FSAttack : FishState
 
     public override void OnExit()
     {
-        //animator.SetBool("Detected", false);
+        fish.animator.SetBool("Detected", false);
         //fish.SetAway(fasle);
     }
 

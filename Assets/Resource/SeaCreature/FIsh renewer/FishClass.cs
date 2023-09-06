@@ -11,6 +11,7 @@ public class FishClass : MonoBehaviour
     public FishState currentState { get; private set; }
     public GameObject target;
     public GameObject awaytarget;
+    public Animator animator;
 
     //기본 상태
     public FSRoam roam;
@@ -75,6 +76,7 @@ public class FishClass : MonoBehaviour
     {
         fishfin = GetComponent<FishFin>();
         FishHP = GetComponent<FishHealth>();
+        animator = GetComponent<Animator>();
 
         roam = new FSRoam();
         dead = new FSDEAD();
