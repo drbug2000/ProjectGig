@@ -11,7 +11,7 @@ public class underthesea : MonoBehaviour
     {
         if (collision.gameObject.name == "Player")
         {
-            theplayermove.onSea = true;
+            theplayermove.onboard = false;
         }
     }
 
@@ -19,7 +19,7 @@ public class underthesea : MonoBehaviour
     {
         if (collision.gameObject.name == "Player")
         {
-            theplayermove.onSea = false;
+            theplayermove.onboard = true;
         }
     }
 }

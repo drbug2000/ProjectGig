@@ -848,7 +848,7 @@ MonoBehaviour:
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 821377076}
-          m_ObjectArgumentAssemblyTypeName: TabButton, Assembly-CSharp
+          m_ObjectArgumentAssemblyTypeName: TabSet, Assembly-CSharp
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -1935,7 +1935,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1383712974}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1002974938}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1383712974
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2608,7 +2620,7 @@ MonoBehaviour:
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 1733607037}
-          m_ObjectArgumentAssemblyTypeName: TabButton, Assembly-CSharp
+          m_ObjectArgumentAssemblyTypeName: TabSet, Assembly-CSharp
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
