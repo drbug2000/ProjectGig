@@ -41,7 +41,7 @@ public class PlayerHealth : LivingEntity
         //바다, 육지 확인하여 피를 깎는다
         if (playerMove.onboard != true)
         {
-            OnDamage(seaDamage, new Vector3(0, 0, 0), new Vector3(0, 0, 0));
+            OnDamage(seaDamage,null, new Vector3(0, 0, 0), new Vector3(0, 0, 0));
         }
         else
         {
