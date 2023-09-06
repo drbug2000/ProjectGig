@@ -2,8 +2,8 @@ using System;
 using UnityEngine;
 
 // 생명체 게임 오브젝트의 뼈대
-// Health, OnDamage, Die, onDeath 이벤트를 제공
-//기존 소스코드에서 체력 회복 기능 삭제
+// Health , OnDamage, Die, restoreHealth, onDeath 이벤트를 제공
+
 
 public class LivingEntity : MonoBehaviour, IDamageable
 {
@@ -32,6 +32,18 @@ public class LivingEntity : MonoBehaviour, IDamageable
         {
             Die();
         }
+    }
+
+    public virtual void RestoreHealth(float newHealth)
+    {
+        if (dead)
+        {
+            // 이미 사망한 경우 체력을 회복할 수 없음
+            return;
+        }
+
+        // 체력 추가
+        health += newHealth;
     }
 
 
