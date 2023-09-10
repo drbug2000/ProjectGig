@@ -800,8 +800,20 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 3408001756398335430, guid: 7a7c75ed7e254a943a1d9e03082ae1eb, type: 3}
     - target: {fileID: 3968353520739857586, guid: e08e841a3009ddd40897be02f526f3fd, type: 3}
-      propertyPath: sharkCounter
+      propertyPath: respawnTime
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3968353520739857586, guid: e08e841a3009ddd40897be02f526f3fd, type: 3}
+      propertyPath: spawnRangeX
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 3968353520739857586, guid: e08e841a3009ddd40897be02f526f3fd, type: 3}
+      propertyPath: spawnRangeY
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 3968353520739857586, guid: e08e841a3009ddd40897be02f526f3fd, type: 3}
+      propertyPath: sharkCounter
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3968353520739857586, guid: e08e841a3009ddd40897be02f526f3fd, type: 3}
       propertyPath: bigFishCounter
@@ -809,11 +821,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3968353520739857586, guid: e08e841a3009ddd40897be02f526f3fd, type: 3}
       propertyPath: smallFishCounter
-      value: 12
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3968353520739857586, guid: e08e841a3009ddd40897be02f526f3fd, type: 3}
       propertyPath: middleFishCounter
-      value: 5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3968353520739857587, guid: e08e841a3009ddd40897be02f526f3fd, type: 3}
       propertyPath: m_Name
@@ -825,6 +837,50 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e08e841a3009ddd40897be02f526f3fd, type: 3}
+--- !u!1 &500044700
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 500044702}
+  - component: {fileID: 500044701}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &500044701
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 500044700}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34b24fba172945141b36c4eee6337b56, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &500044702
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 500044700}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -3.1015458, y: -3.8841984, z: 0.19401897}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 12
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &506223139
 GameObject:
   m_ObjectHideFlags: 0

@@ -8,10 +8,12 @@ public class FishClass : MonoBehaviour
 
     protected FishFin fishfin;
     protected FishHealth FishHP;
+    public static FishSpawn spawner;
     public FishState currentState { get; private set; }
     public GameObject target;
     public GameObject awaytarget;
     public Animator animator;
+
 
     //기본 상태
     public FSRoam roam;
@@ -78,6 +80,11 @@ public class FishClass : MonoBehaviour
         FishHP = GetComponent<FishHealth>();
         animator = GetComponent<Animator>();
 
+        if (spawner == null)
+        {
+            
+            spawner = GameObject.Find("spawner").GetComponent<FishSpawn>();
+        }
         roam = new FSRoam();
         dead = new FSDEAD();
         sturn = new FSSTURN();
@@ -88,7 +95,7 @@ public class FishClass : MonoBehaviour
     // Start is called before the first frame update
     public virtual void Start() {
 
-        DefaultState();
+        //DefaultState();
     }
 
 
@@ -116,17 +123,40 @@ public class FishClass : MonoBehaviour
         currentState.OnEnter(this,this.fishfin);
 
     }
+
     public virtual void DefaultState()
     {
 
     }
 
-    public virtual void OnDeath()
+    public void OnDeath()
     {
         SetState(dead);
     }
-    public virtual void OnCatched()
+    public void OnCaught()
     {
+        spawner.fishOnCaught(gameObject);
         gameObject.SetActive(false);
+    }
+
+    public void respawn(Vector2 respawnPos)
+    {
+        fishfin.SetPosition(respawnPos);
+        gameObject.SetActive(true);
+    }
+
+    //Debug 임시 콜라이더
+    public virtual void OnCollisionEnter2D(Collision2D collision)
+    {
+        //Debug.Log("fish : touch something");
+        if (collision.gameObject.tag == "Player" && ReferenceEquals(currentState, dead))
+        {
+            //gunscript.Hit();
+            Debug.Log("fish : Player touch");
+            OnCaught();
+            //AttTarget = collision.gameObject.GetComponent<IDamageable>();
+            //임시 변수
+            //AttTarget.OnDamage(3, gameObject, Vector2.zero, Vector2.zero);
+        }
     }
 }

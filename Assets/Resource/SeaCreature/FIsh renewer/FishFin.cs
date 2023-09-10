@@ -47,7 +47,7 @@ public class FishFin  : MonoBehaviour
 
     private void OnEnable()
     {
-        bool sturn = false;
+        sturn = false;
     }
 
     // Update is called once per frame
