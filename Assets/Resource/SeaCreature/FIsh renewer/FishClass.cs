@@ -81,15 +81,14 @@ public class FishClass : MonoBehaviour
         animator = GetComponent<Animator>();
 
         if (spawner == null)
-        {
-            
+        {    
             spawner = GameObject.Find("spawner").GetComponent<FishSpawn>();
         }
         roam = new FSRoam();
         dead = new FSDEAD();
         sturn = new FSSTURN();
 
-        
+        FishHP.startingHealth = startHP;
     }
 
     // Start is called before the first frame update

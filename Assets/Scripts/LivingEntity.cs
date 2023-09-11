@@ -18,6 +18,7 @@ public class LivingEntity : MonoBehaviour, IDamageable
         // 사망하지 않은 상태로 시작
         dead = false;
         // 체력을 시작 체력으로 초기화
+        
         health = startingHealth;
     }
 

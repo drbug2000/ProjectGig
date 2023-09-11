@@ -20,6 +20,7 @@ public class FishHealth : LivingEntity
         flshSpriteRenderer = GetComponent<SpriteRenderer>();
         fish = GetComponent<FishClass>();
         onDeath += fish.OnDeath;
+        //startingHealth = fish.FishHP;
 
     }
 
@@ -28,7 +29,11 @@ public class FishHealth : LivingEntity
         
         // LivingEntity의 OnEnable() 실행 (상태 초기화)
         base.OnEnable();
-        startingHealth = fish.startHP;
+
+        //사망후 피격 스프라이트 정상화
+        flshSpriteRenderer.material.color = new Color(1f, 1f, 1f);
+        
+        //health = fish.startHP;
 
     }
 
@@ -53,7 +58,7 @@ public class FishHealth : LivingEntity
     private IEnumerator DamageEffect()
     {
         flshSpriteRenderer.material.color = new Color(1f, 168 / 255f, 168 / 255f);
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.7f);
         flshSpriteRenderer.material.color = new Color(1f, 1f, 1f);
     }
 

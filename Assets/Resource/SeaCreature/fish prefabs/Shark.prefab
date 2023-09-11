@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 2633367817043942541}
   - component: {fileID: 4249893747086449108}
   - component: {fileID: 3130247305762812312}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Shark
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -148,12 +148,12 @@ MonoBehaviour:
   target: {fileID: 0}
   awaytarget: {fileID: 0}
   animator: {fileID: 0}
-  startHP: 0
+  startHP: 20
   DefaultSize: 0
   RatioSize: 1
-  mass: 0
-  drag: 0
-  gravity: 0
+  mass: 0.1
+  drag: 0.25
+  gravity: 0.05
   speed: 6
   MaxSpeed: 9
   MinSpeed: 4
