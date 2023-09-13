@@ -1,33 +1,33 @@
 using System;
 using UnityEngine;
 
-// »ý¸íÃ¼ °ÔÀÓ ¿ÀºêÁ§Æ®ÀÇ »À´ë
-// Health, OnDamage, Die, onDeath ÀÌº¥Æ®¸¦ Á¦°ø
-//±âÁ¸ ¼Ò½ºÄÚµå¿¡¼­ Ã¼·Â È¸º¹ ±â´É »èÁ¦
+// ï¿½ï¿½ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+// Health, OnDamage, Die, onDeath ï¿½Ìºï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+//ï¿½ï¿½ï¿½ï¿½ ï¿½Ò½ï¿½ï¿½Úµå¿¡ï¿½ï¿½ Ã¼ï¿½ï¿½ È¸ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 
 public class LivingEntity : MonoBehaviour, IDamageable
 {
-    public float startingHealth; // ½ÃÀÛ Ã¼·Â
-    public float health { get; protected set; } // ÇöÀç Ã¼·Â
-    public bool dead { get; protected set; } // »ç¸Á »óÅÂ
-    public event Action onDeath; // »ç¸Á½Ã ¹ßµ¿ÇÒ ÀÌº¥Æ®
+    public float startingHealth; // ï¿½ï¿½ï¿½ï¿½ Ã¼ï¿½ï¿½
+    public float health { get; protected set; } // ï¿½ï¿½ï¿½ï¿½ Ã¼ï¿½ï¿½
+    public bool dead { get; protected set; } // ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+    public event Action onDeath; // ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ßµï¿½ï¿½ï¿½ ï¿½Ìºï¿½Æ®
 
-    // »ý¸íÃ¼°¡ È°¼ºÈ­µÉ¶§ »óÅÂ¸¦ ¸®¼Â
+    // ï¿½ï¿½ï¿½ï¿½Ã¼ï¿½ï¿½ È°ï¿½ï¿½È­ï¿½É¶ï¿½ ï¿½ï¿½ï¿½Â¸ï¿½ ï¿½ï¿½ï¿½ï¿½
     protected virtual void OnEnable()
     {
-        // »ç¸ÁÇÏÁö ¾ÊÀº »óÅÂ·Î ½ÃÀÛ
+        // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Â·ï¿½ ï¿½ï¿½ï¿½ï¿½
         dead = false;
-        // Ã¼·ÂÀ» ½ÃÀÛ Ã¼·ÂÀ¸·Î ÃÊ±âÈ­
+        // Ã¼ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Ã¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê±ï¿½È­
         health = startingHealth;
     }
 
-    // µ¥¹ÌÁö¸¦ ÀÔ´Â ±â´É
+    // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ô´ï¿½ ï¿½ï¿½ï¿½
     public virtual void OnDamage(float damage, GameObject hiter, Vector3 hitPoint, Vector3 hitNormal)
     {
-        // µ¥¹ÌÁö¸¸Å­ Ã¼·Â °¨¼Ò
+        // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Å­ Ã¼ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         health -= damage;
         Debug.Log("fishHP script : heart"+ health);
-        // Ã¼·ÂÀÌ 0 ÀÌÇÏ && ¾ÆÁ÷ Á×Áö ¾Ê¾Ò´Ù¸é »ç¸Á Ã³¸® ½ÇÇà
+        // Ã¼ï¿½ï¿½ï¿½ï¿½ 0 ï¿½ï¿½ï¿½ï¿½ && ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ê¾Ò´Ù¸ï¿½ ï¿½ï¿½ï¿½ Ã³ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         if (health <= 0 && !dead)
         {
             Die();
@@ -35,16 +35,16 @@ public class LivingEntity : MonoBehaviour, IDamageable
     }
 
 
-    // »ç¸Á Ã³¸®
+    // ï¿½ï¿½ï¿½ Ã³ï¿½ï¿½
     public virtual void Die()
     {
-        // onDeath ÀÌº¥Æ®¿¡ µî·ÏµÈ ¸Þ¼­µå°¡ ÀÖ´Ù¸é ½ÇÇà
+        // onDeath ï¿½Ìºï¿½Æ®ï¿½ï¿½ ï¿½ï¿½Ïµï¿½ ï¿½Þ¼ï¿½ï¿½å°¡ ï¿½Ö´Ù¸ï¿½ ï¿½ï¿½ï¿½ï¿½
         if (onDeath != null)
         {
             onDeath();
         }
 
-        // »ç¸Á »óÅÂ¸¦ ÂüÀ¸·Î º¯°æ
+        // ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Â¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         dead = true;
     }
 }
