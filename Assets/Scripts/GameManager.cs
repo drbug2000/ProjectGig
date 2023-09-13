@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -38,6 +39,10 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         isGameover = false;
+
+        //LivingEntity event 구독
+        LivingEntity deathEvent = new LivingEntity();
+        deathEvent.onDeath += new System.Action(playeronDeath);
         //PlayLobbyMusic();
     }
 
@@ -66,15 +71,17 @@ public class GameManager : MonoBehaviour
     //GameManager의 playeronDeath 메서드 실행
 
     //you died 화면창에 띄우기
-    /*
+    
      void Update() {
         // 게임 오버 상태에서 게임을 재시작할 수 있게 하는 처리
         if (isGameover && Input.GetKeyDown("r"))
         {
+            //현재 활성화 된 씬 불러오기
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
     }
-    */
+    
+    
 
     public void playeronDeath(){
 
