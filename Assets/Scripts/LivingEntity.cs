@@ -8,9 +8,10 @@ using UnityEngine;
 public class LivingEntity : MonoBehaviour, IDamageable
 {
     public float startingHealth; // 시작 체력
+    public float maxHp;
     public float health { get; protected set; } // 현재 체력
     public bool dead { get; protected set; } // 사망 상태
-    public event Action onDeath; // 사망시 발동할 이벤트
+    //public event Action onDeath; // 사망시 발동할 이벤트
 
     // 생명체가 활성화될때 상태를 리셋
     protected virtual void OnEnable()
@@ -41,9 +42,8 @@ public class LivingEntity : MonoBehaviour, IDamageable
             // 이미 사망한 경우 체력을 회복할 수 없음
             return;
         }
-
-        // 체력 추가
-        health += newHealth;
+         health += newHealth;
+            
     }
 
 
@@ -51,10 +51,10 @@ public class LivingEntity : MonoBehaviour, IDamageable
     public virtual void Die()
     {
         // onDeath 이벤트에 등록된 메서드가 있다면 실행
-        if (onDeath != null)
-        {
-            onDeath();
-        }
+        //if (onDeath != null)
+        //{
+        //    onDeath();
+        //}
 
         // 사망 상태를 참으로 변경
         dead = true;

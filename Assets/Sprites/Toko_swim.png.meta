@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 1dc04eeab148b8c498b3611a14c19c9d
+guid: 841acb2f730acd04989e3464bc2ea9f9
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -101,23 +101,11 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
-    buildTarget: WebGL
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Toko_Run_0
+      name: Toko_swim_0
       rect:
         serializedVersion: 2
         x: 0
@@ -131,14 +119,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0c74001f0fdfdde4b9af5c0a63d65b5b
-      internalID: -17641383
+      spriteID: ff85cc6c14600aa4f84ee4dfa5035b22
+      internalID: 265804187
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Toko_Run_1
+      name: Toko_swim_1
       rect:
         serializedVersion: 2
         x: 64
@@ -152,14 +140,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5ed4b32856c0cec43a664d048e534bad
-      internalID: -1115626109
+      spriteID: e055a79c52c88204ca22f42750703f2b
+      internalID: -1462874342
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Toko_Run_2
+      name: Toko_swim_2
       rect:
         serializedVersion: 2
         x: 128
@@ -173,14 +161,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a3181499384d918409a7da1df7045fad
-      internalID: -279104714
+      spriteID: 7ffe374fdbcd8e84582245b5af709097
+      internalID: -1811227643
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Toko_Run_3
+      name: Toko_swim_3
       rect:
         serializedVersion: 2
         x: 192
@@ -194,14 +182,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e4234ba4bea6f3145adfb282eef0cb84
-      internalID: 616434754
+      spriteID: bfc5d025270cbdb4f8027a619a9081be
+      internalID: 1385390343
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Toko_Run_4
+      name: Toko_swim_4
       rect:
         serializedVersion: 2
         x: 256
@@ -215,71 +203,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 917084e58ea88df478666cc12d3a33b0
-      internalID: -30990044
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Toko_Run_5
-      rect:
-        serializedVersion: 2
-        x: 320
-        y: 0
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 9f8b184e0b1157647a2be05bf8a4fa8b
-      internalID: 182781105
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Toko_Run_6
-      rect:
-        serializedVersion: 2
-        x: 384
-        y: 0
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: cb02b99ad8a4d8e4093c4cb123e7563d
-      internalID: 2125046731
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Toko_Run_7
-      rect:
-        serializedVersion: 2
-        x: 448
-        y: 0
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 044af794a0470fe46909eb85a64b37a8
-      internalID: -465501394
+      spriteID: 26c533ef5c4c1074d85aae4ad5465e9c
+      internalID: -638566021
       vertices: []
       indices: 
       edges: []
@@ -295,14 +220,11 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Toko_Run_0: -17641383
-      Toko_Run_1: -1115626109
-      Toko_Run_2: -279104714
-      Toko_Run_3: 616434754
-      Toko_Run_4: -30990044
-      Toko_Run_5: 182781105
-      Toko_Run_6: 2125046731
-      Toko_Run_7: -465501394
+      Toko_swim_0: 265804187
+      Toko_swim_1: -1462874342
+      Toko_swim_2: -1811227643
+      Toko_swim_3: 1385390343
+      Toko_swim_4: -638566021
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
