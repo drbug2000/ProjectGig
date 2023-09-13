@@ -20,7 +20,7 @@ public class Gun : MonoBehaviour
     public float StateTimer;
 
     
-    private float timer;
+    public float timer;
     
     private float Timer
     {
@@ -152,6 +152,14 @@ public class Gun : MonoBehaviour
         while (State == fireState.rollback)
         {
             gigtr.Translate(-1*transform.up * bulletSpeed * Time.deltaTime, Space.World);
+            Timer -= Time.deltaTime;
+            yield return null;
+        }
+
+        //rollback 도중 HIT 된 상황
+        while (State == fireState.hit)
+        {
+            //잠시 정지
             Timer -= Time.deltaTime;
             yield return null;
         }
