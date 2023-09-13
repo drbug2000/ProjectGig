@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using Unity.VisualScripting;
 
 public class ItemSlotUI : MonoBehaviour
 {
@@ -17,16 +18,17 @@ public class ItemSlotUI : MonoBehaviour
 
     void Start()
     {
+        SetColor(0f);
         itemCount = 0;
     }
 
-    // 아이템 이미지의 투명도 조절
-    // private void SetColor(float _alpha)
-    // {
-    //     Color color = itemImage.color;
-    //     color.a = _alpha;
-    //     itemImage.color = color;
-    // }
+    //아이템 이미지의 투명도 조절
+    private void SetColor(float _alpha)
+    {
+        Color color = itemImage.color;
+        color.a = _alpha;
+        itemImage.color = color;
+    }
 
     // 인벤토리에 새로운 아이템 슬롯 추가
     public void AddItem(Item _item)
@@ -35,6 +37,7 @@ public class ItemSlotUI : MonoBehaviour
         itemImage.sprite = item.itemImage;
         Debug.Log(this.gameObject.name);
         go_CountImage.SetActive(true);
+        SetColor(255f);
         text_Count.text = itemCount.ToString();
         SetSlotCount();
 
@@ -57,5 +60,6 @@ public class ItemSlotUI : MonoBehaviour
         itemImage.sprite = null;
         itemCount = 0;
         text_Count.text = "";
+        SetColor(0f);
     }
 }
