@@ -13,10 +13,11 @@ public class PlayerHealth : LivingEntity
     //7. 상점에서 플레이어의 hp를 업그레이드할 수 있다. :
     //PlayerHealth 컴포넌트를 가져와 RestoreHealth()를 실행한다.
     //8. onDeath 메서드를 구현
+    //9. Update 메서드에서 지속데미지와 지속회복
 
-    
-    private int seaDamage = 5;
-    private int restorevalue = 10; 
+
+    private float durationTime = 3; //지속데미지 쿨타임
+
 
     public SpriteRenderer playerSpriteRenderer;
     public PlayerMove playerMove;
@@ -38,42 +39,34 @@ public class PlayerHealth : LivingEntity
         base.OnEnable();
         //바다, 육지임을 판별하여 피를 깎거나 채운다
         //StartCoroutine(OceanDamaging(seaDamage, new Vector3(0, 0, 0), new Vector3(0, 0, 0)));
-
-
-
     }
 
-    //천천히 회복하는 코루틴 처리
-    private IEnumerator Restoring(int value)
+    private void Update()
     {
-        while(health < maxHp)
+        durationTime -= Time.deltaTime;
+
+        if (!playerMove.onboard && durationTime <= 0 && !dead)
         {
-            RestoreHealth(value);
-            yield return new WaitForSeconds(4f);
+            OnDamage(3, Vector3.zero, Vector3.zero );
+            durationTime = 3;
         }
-        
+
+        if (playerMove.onboard && durationTime <= 0 && !dead && health < maxHp)
+        {
+            RestoreHealth(10);
+            durationTime = 3;
+        }
+
     }
-    //바다에서 데미지를 입거나 회복하는 코루틴 처리
-    private IEnumerator OceanDamaging(float damage, Vector3 hitpoint, Vector3 hitDirection)
+    
+
+    //색 변환 코루틴
+    private IEnumerator DamagedEffect()
     {
-        while (!dead)
-        {
-            if (!playerMove.onboard)
-            {
-                OnDamage(damage, hitpoint, hitDirection);
-                //색 변환 코루틴
-                //playerSpriteRenderer.material.color = new Color(1f, 168 / 255f, 168 / 255f);
-                //yield return new WaitForSeconds(0.3f);
-                //playerSpriteRenderer.material.color = new Color(1f, 1f, 1f);
-                //데미지 지연
-                yield return new WaitForSeconds(5f);
-            }
-            else
-            {
-                StartCoroutine(Restoring(restorevalue));
-            }
-        }
-        
+        playerSpriteRenderer.material.color = new Color(1f, 168 / 255f, 168 / 255f);
+        yield return new WaitForSeconds(0.3f);
+        playerSpriteRenderer.material.color = new Color(1f, 1f, 1f);
+
     }
 
 
@@ -87,12 +80,12 @@ public class PlayerHealth : LivingEntity
     // 데미지 처리
     public override void OnDamage(float damage, Vector3 hitPoint, Vector3 hitDirection)
     {
-
+        StartCoroutine(DamagedEffect());
         // LivingEntity의 OnDamage() 실행(데미지 적용)
 
         base.OnDamage(damage, hitPoint, hitDirection);
     }
-
+    
 
     public override void Die()
     {
