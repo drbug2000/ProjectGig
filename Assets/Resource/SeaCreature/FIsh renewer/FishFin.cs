@@ -139,7 +139,7 @@ public class FishFin  : MonoBehaviour
         //Collider로 구현하면 조금 더 좋을꺼 같긴함
         if (currentPos.y >= 0)
         {
-            Debug.Log("fish out");
+            //Debug.Log("fish out");
             this.UnderTheSea = false;
             //StopFish();
 

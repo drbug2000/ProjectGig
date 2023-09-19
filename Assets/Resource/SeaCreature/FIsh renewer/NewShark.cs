@@ -7,9 +7,10 @@ public class NewShark : FishClass
 
     //FSRoam roam;
     //FSaway away;
-    FSAttack attack;
+    //FSAttack attack;
+    FSDashAttack attack;
     bool awayNow;
-    float aggroTime;
+    public float aggroRange;
 
     public float attackTime;
     public bool Bite;
@@ -21,7 +22,8 @@ public class NewShark : FishClass
     {
         base.Awake();
         //roam = new FSRoam();
-        attack = new FSAttack();
+        //attack = new FSAttack();
+        attack = new FSDashAttack();
         //away = new FSaway();
         //SetState(roam);
         //Debug.Log("Second start");

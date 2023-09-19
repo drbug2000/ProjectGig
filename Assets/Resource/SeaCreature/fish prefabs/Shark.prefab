@@ -169,6 +169,7 @@ MonoBehaviour:
   awaytime: 0
   awaySpeed: 0
   sturntime: 0
+  aggroRange: 6
   attackTime: 2
   Bite: 0
 --- !u!50 &2633367817043942541

@@ -4,13 +4,19 @@ using UnityEngine;
 
 public class FSDashAttack : FishState
 {
-    
+    NewShark shark;
+
     private Animator animator;
     private GameObject target;
     
     private Vector2 targetPos;
-    enum attState { ready, setTarget, Dash, bite, shake, restore, end}
+    enum attState { ready=1, setTarget=2, Dash=3, bite=4, shake=5, restore=6, end=7}
     attState State;
+    /*
+    attState tempState;
+    int stateTrans { get tempState; set; }
+    */
+    //public 
     //private bool away;
     //private float awayTimer;
     
@@ -31,30 +37,31 @@ public class FSDashAttack : FishState
 
                         timer = 1f;
                         
-                        setState(attState.setTarget);
+                        setState((int)attState.setTarget);
                         break;
                     case attState.setTarget:
-                        timer = 2f;
-                        setState(attState.Dash);
+                        timer = 0.5f;
+                        setState((int)attState.Dash);
                         break;
                     case attState.Dash:
                         timer = 2f;
-                        setState(attState.ready);
-                        ((NewShark)fish).Bite = false;
+                        setState((int)attState.ready);
+                        //((NewShark)fish).Bite = false;
                         break;
                     case attState.bite:
-                        timer =attackTime;
+                        //timer =attackTime;
                         
-                        setState(attState.shake);
+                        setState((int)attState.shake);
+                        timer = 2.5f;
                         fishfin.StopFish();
                         break;
                     case attState.shake:
-
-                        setState(attState.restore);
+                        timer = 1.5f;
+                        setState((int)attState.restore);
                         break;
                     case attState.restore:
-
-                        setState(attState.ready);
+                        timer = 2f;
+                        setState((int)attState.ready);
                         break;
                     case attState.end:
                         break;
@@ -68,16 +75,17 @@ public class FSDashAttack : FishState
 
     //attState를 설정하는 함수
     //State가 바뀌는 경우 필요한 코드를 작성(매 프레임이 아닌 한번 실행)
-    public setState(attState state)
+    public void setState( int state )
     {
-        State = state;
+        State = (attState)state;
         switch (State) 
         {
             case attState.ready:
-                
+                fishfin.SetDrag(1f);
+                LookTarget();
+                //fishfin.StopFish();
                 break;
             case attState.setTarget:
-
                 //set target spot
                 fishfin.SetSpot(fishfin.TransVector(target.transform.position));
                 //change anime
@@ -87,13 +95,16 @@ public class FSDashAttack : FishState
                 //Ainime : Dash anime
                 fishfin.ReDirSpot();
 
-                if (fishfin.SpotDir.magnitude > fish.aggroTime)
+                if (fishfin.SpotDir.magnitude > shark.aggroRange)
                 {
                     //공격 해제
-                    SetState(attState.end);
+                    Debug.Log("attack end");
+                    setState((int)attState.end);
                 }
                 else
                 {
+                    Debug.Log("Dash");
+                    fishfin.SetDrag(0.05f);
                     Dash(fish.MaxSpeed);
                 }
                 
@@ -104,12 +115,10 @@ public class FSDashAttack : FishState
                 Dash(fish.MaxSpeed);
                 break;
             case attState.shake:
-                //add joint with target
-                //Ainime : Stop anime
-                //Dash(fish.MaxSpeed);
+                
                 break;
             case attState.end:
-                pfish.DefaultState();
+                fish.DefaultState();
                 break;
         }
     }
@@ -118,7 +127,7 @@ public class FSDashAttack : FishState
     {
         base.OnEnter(pfish, FF);
         //away = false;
-        
+        shark = (NewShark)pfish;
         attackTime = ((NewShark)this.fish).attackTime;
         Timer = attackTime;
         
@@ -127,6 +136,8 @@ public class FSDashAttack : FishState
         //animator = GetComponent<Animator>();
         fish.animator.SetBool("Detected", true);
         Debug.Log(" new FSATttack Enter");
+
+        State = attState.ready;
     }
 
     //해당 state동작중 작동하는 코드를 작성(매 프레임 마다)
@@ -136,7 +147,7 @@ public class FSDashAttack : FishState
         switch (State)
         {
             case attState.ready:
-                fish.SetDrag(1f);
+                
                 /*
                 if (((NewShark)fish).Bite)
                 {
@@ -155,15 +166,19 @@ public class FSDashAttack : FishState
                 //Dash(fish.MaxSpeed);
                 //State = attState.biteWait;
                 
-                fishfin.stopfish();
+                fishfin.StopFish();
                 break;
             case attState.Dash:
-                fish.SetDrag(0.05f);
+
                 //Dash(fish.MaxSpeed);
                 //State = attState.biteWait;
+                if (shark.Bite)
+                {
+                    setState((int)attState.bite);
+                }
                 if(fishfin.velocityM < fish.MinSpeed * 0.9f)
                 {
-                    Dash.
+                    //Dash.
                     fishfin.SpotMoveBack(fish.MaxSpeed * 0.8f);
                 }
                 break;
@@ -198,9 +213,9 @@ public class FSDashAttack : FishState
     {
         int shakePer = 80;//방형전환 확률
         Vector2 dashdir;
-        if (fishfin.velocityM < fish.speedMin)
+        if (fishfin.velocityM < fish.MinSpeed)
         {
-            dashdir = new Vector2(Random.Range(fish.speedMin, fish.speedMax), Random.Range(-0.5f, 0.5f));
+            dashdir = new Vector2(Random.Range(fish.MinSpeed, fish.MaxSpeed), Random.Range(-0.5f, 0.5f));
             if (Percent(shakePer))
             {
                 dashdir.x *= -1;
@@ -212,10 +227,29 @@ public class FSDashAttack : FishState
     {
         if (a > Random.Range(0, 100))
         {
-            return ture;
+            return true;
         }
         return false;
     }
+
+    void LookTarget()
+    {
+        fishfin.SpotMove(0.1f);
+    }
+
+    public virtual void setDefault()
+    {
+        fishfin.SetDrag(fish.drag);
+        fishfin.Speed = fish.speed;
+       
+    }
+
+    /*
+    public bool Bite()
+    {
+    //fish script에서 이 script의 함수를 직접 호출하는 것이 애매하다고 판단
+    }
+    */
     /*
     IEnumerator Away()
     {
