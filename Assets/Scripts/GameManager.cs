@@ -14,6 +14,8 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
+        fishspawn = GameObject.Find("spawner").GetComponent<FishSpawn>();
+
         if (instance == null)
             instance = this;
         else if (instance != this)
@@ -34,13 +36,15 @@ public class GameManager : MonoBehaviour
     public AudioClip _introLobbyAudioClip;
     public AudioClip _inGameClip;
 
+    public FishSpawn fishspawn ; //외부에서 접근 가능한 변수 추가
+
     
     // Start is called before the first frame update
     void Start()
     {
         isGameover = false;
 
-        //LivingEntity event 구독
+        //LivingEntity event subscribe
         LivingEntity deathEvent = new LivingEntity();
         deathEvent.onDeath += new System.Action(playeronDeath);
         //PlayLobbyMusic();
