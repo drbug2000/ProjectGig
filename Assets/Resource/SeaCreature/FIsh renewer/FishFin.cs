@@ -19,12 +19,15 @@ public class FishFin  : MonoBehaviour
 
     public Vector2 currentPos;
     public Vector2 velocity;
+
+
     //DeBug
     public float velocityM;
+    //public GameObject SpotPoint;
+
 
     public float SpotDistance;
     public Vector2 SpotDir;
-
 
     //public float MaxSpeed;
     public float Speed;
@@ -32,8 +35,34 @@ public class FishFin  : MonoBehaviour
     //public float waitTime;
 
     bool sturn=false;
+    private bool inWater;
+    public bool UnderTheSea
+    {
+        get { return inWater; }
+        set
+        {
+            if (inWater == value)
+            {
+                return;
+            }
 
-    //public GameObject SpotPoint;
+            if (value)
+            {//물속에 다시 들어왔을 때
+                //중력 상승
+                //Drag 상승
+                fishRigidbody.gravityScale = fish.gravity;
+                SetDrag(fish.drag);
+            }
+            else
+            {//물밖으로 나갔을때
+                fishRigidbody.gravityScale = fish.gravity*10;
+                SetDrag(fish.drag*2);
+                //첨벙거림 effect
+            }
+            inWater = value;
+        }
+    }
+    
 
 
     // Start is called before the first frame update
@@ -47,7 +76,19 @@ public class FishFin  : MonoBehaviour
 
     private void OnEnable()
     {
-        bool sturn = false;
+        sturn = false;
+        if (currentPos.y >= 0)
+        {
+            //Debug.Log("fish out");
+            this.UnderTheSea = false;
+            //StopFish();
+
+        }
+        else
+        {
+            this.UnderTheSea = false;
+        }
+
     }
 
     // Update is called once per frame
@@ -85,19 +126,29 @@ public class FishFin  : MonoBehaviour
         {
             fishRigidbody.velocity = velocity.normalized * fish.MaxSpeed;
         }
+
         //바다 표면위로 올라가지 않게
+        //Collider로 구현하면 조금 더 좋을꺼 같긴함
         if (currentPos.y >= 0)
         {
             Debug.Log("fish out");
-            StopFish();
+            this.UnderTheSea = false;
+            //StopFish();
 
+        }
+        else
+        {
+            this.UnderTheSea = true;
         }
 
     }
 
     public void accelFin(float acc=1.0f)
     {
-        fishRigidbody.AddForce(acc * Speed * Dir.normalized);
+        if (!sturn && UnderTheSea)
+        {
+            fishRigidbody.AddForce(acc * Speed * Dir.normalized);
+        }
         //Debug.Log(acc + Speed +"accele active");
     }
     public void accelFin(Vector2 DIR, float acc=1.0f )

@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 3408001756398335432}
   - component: {fileID: 3408001756398335439}
   - component: {fileID: 7782358266526826503}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: middle fish
   m_TagString: fish
   m_Icon: {fileID: 0}
@@ -147,12 +147,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 0}
   awaytarget: {fileID: 0}
-  startHP: 0
+  animator: {fileID: 0}
+  startHP: 10
   DefaultSize: 0
   RatioSize: 1
-  mass: 0
-  drag: 0
-  gravity: 0
+  mass: 0.1
+  drag: 0.25
+  gravity: 0.05
   speed: 6
   MaxSpeed: 9
   MinSpeed: 4

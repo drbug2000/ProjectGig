@@ -4,7 +4,11 @@
 TagManager:
   serializedVersion: 2
   tags:
+<<<<<<< HEAD
+  - ground
+=======
   - fish
+>>>>>>> develop
   layers:
   - Default
   - TransparentFX
@@ -12,7 +16,7 @@ TagManager:
   - 
   - Water
   - UI
-  - fish
+  - 
   - Player
   - 
   - 
@@ -53,7 +57,4 @@ TagManager:
     locked: 0
   - name: ForeGround
     uniqueID: 567251483
-    locked: 0
-  - name: Forer2
-    uniqueID: 4019511237
     locked: 0

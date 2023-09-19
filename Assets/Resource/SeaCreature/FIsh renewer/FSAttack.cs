@@ -10,8 +10,8 @@ public class FSAttack : FishState
     
     enum attState { follow , bite ,biteWait, away, end}
     attState State;
-    private bool away;
-    private float awayTimer;
+    //private bool away;
+    //private float awayTimer;
 
     private float attackTime;
 
@@ -59,7 +59,7 @@ public class FSAttack : FishState
     public override void OnEnter(FishClass pfish, FishFin FF)
     {
         base.OnEnter(pfish, FF);
-        away = false;
+        //away = false;
         
         attackTime = ((NewShark)this.fish).attackTime;
         Timer = attackTime;
@@ -67,7 +67,7 @@ public class FSAttack : FishState
         target = pfish.target;
 
         //animator = GetComponent<Animator>();
-        //animator.SetBool("Detected", true);
+        fish.animator.SetBool("Detected", true);
         Debug.Log(" new FSATttack Enter");
     }
     public override void stateUpdate()
@@ -114,7 +114,7 @@ public class FSAttack : FishState
 
     public override void OnExit()
     {
-        //animator.SetBool("Detected", false);
+        fish.animator.SetBool("Detected", false);
         //fish.SetAway(fasle);
     }
 
