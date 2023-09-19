@@ -9,6 +9,7 @@ public class NewShark : FishClass
     //FSaway away;
     FSAttack attack;
     bool awayNow;
+    float aggroTime;
 
     public float attackTime;
     public bool Bite;

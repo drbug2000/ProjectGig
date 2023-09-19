@@ -12,6 +12,7 @@ public class FishFin  : MonoBehaviour
     private FishClass fish;
     private Rigidbody2D fishRigidbody;
     private SpriteRenderer Renderer;
+    private Animator fishAimator;
 
     //이동 정보
     public Vector2 Dir;
@@ -33,6 +34,10 @@ public class FishFin  : MonoBehaviour
     public float Speed;
     //public float MinSpeed;
     //public float waitTime;
+
+    //fishfin script의 애니메이션 속도 통제권
+    //true일시 물고기 애니메이션 속도가 이동속도와 같음
+    private bool aniControl = true;
 
     bool sturn=false;
     private bool inWater;
@@ -71,6 +76,7 @@ public class FishFin  : MonoBehaviour
         Renderer = GetComponent<SpriteRenderer>();
         fishRigidbody = GetComponent<Rigidbody2D>();
         fish = GetComponent<FishClass>();
+        fishAimator = GetComponent<Animator>();
     }
 
 
@@ -117,8 +123,10 @@ public class FishFin  : MonoBehaviour
         SpotDistance = (currentPos - Spot).magnitude;
         velocity = fishRigidbody.velocity;
         velocityM = velocity.magnitude;
-        
 
+        if (aniControl){
+            fishAimator.SetFloat("fishSpeed", velocityM * 0.5f + 0.5f);
+        }
         if (sturn){return;}
 
         //최대속력 한계 설정
@@ -208,6 +216,11 @@ public class FishFin  : MonoBehaviour
     public void SetPosition(Vector3 targetPosition)
     {
         gameObject.transform.position = targetPosition;
+    }
+
+    public void SetAniControl(bool flag)
+    {
+        aniControl = flag;
     }
 
     public Vector2 TransVector(Vector3 V)
