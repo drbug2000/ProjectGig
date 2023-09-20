@@ -184,7 +184,7 @@ public class FishFin  : MonoBehaviour
     
     public void ReDirSpot()
     {
-        SpotDir = Spot - currentPos;
+        SpotDir = Spot-currentPos  ;
     }
 
     public void SpotMoveBack(float acc = 1.0f)

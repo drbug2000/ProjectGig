@@ -1991,6 +1991,7 @@ MonoBehaviour:
   awaytime: 0
   awaySpeed: 0
   sturntime: 4
+  aggroRange: 0
   attackTime: 3
   Bite: 0
 --- !u!114 &873195479

@@ -813,7 +813,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3968353520739857586, guid: e08e841a3009ddd40897be02f526f3fd, type: 3}
       propertyPath: sharkCounter
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3968353520739857586, guid: e08e841a3009ddd40897be02f526f3fd, type: 3}
       propertyPath: bigFishCounter
@@ -2088,6 +2088,14 @@ PrefabInstance:
     - target: {fileID: 2633367817043942528, guid: 02ca0e61d16951e42a85c402f8529c9a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2633367817043942531, guid: 02ca0e61d16951e42a85c402f8529c9a, type: 3}
+      propertyPath: aggroRange
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 2633367817043942531, guid: 02ca0e61d16951e42a85c402f8529c9a, type: 3}
+      propertyPath: detectArea
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 2633367817043942535, guid: 02ca0e61d16951e42a85c402f8529c9a, type: 3}
       propertyPath: m_Name
