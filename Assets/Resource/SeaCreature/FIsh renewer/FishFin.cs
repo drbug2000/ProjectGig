@@ -197,6 +197,11 @@ public class FishFin  : MonoBehaviour
     {
         
     }
+
+    public void SetVelocity(Vector2 velo)
+    {
+        fishRigidbody.velocity = velo;
+    }
     
 
     public void StopFish()
@@ -208,6 +213,7 @@ public class FishFin  : MonoBehaviour
     {
         fishRigidbody.drag = drag;
     }
+
     public void SetSturn(bool Sturn)
     {
         this.sturn = Sturn;
