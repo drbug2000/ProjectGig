@@ -1,0 +1,11 @@
+{
+    "Gold": 100,
+    "GigDamLvl": 4,
+    "GigRangeLvl": 4,
+    "HpLvl": 4,
+    "playerpos": {
+        "x": 100.0,
+        "y": -20.0,
+        "z": 0.0
+    }
+}

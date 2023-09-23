@@ -3,7 +3,8 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - fish
   layers:
   - Default
   - TransparentFX
@@ -11,7 +12,7 @@ TagManager:
   - 
   - Water
   - UI
-  - 
+  - fish
   - Player
   - 
   - 
@@ -52,4 +53,7 @@ TagManager:
     locked: 0
   - name: ForeGround
     uniqueID: 567251483
+    locked: 0
+  - name: Forer2
+    uniqueID: 4019511237
     locked: 0

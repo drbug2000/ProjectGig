@@ -6,10 +6,23 @@ public class FishClass : MonoBehaviour
 {
 
 
-    public FishFin fishfin;
-    public FishState currentState;
+    protected FishFin fishfin;
+    protected FishHealth FishHP;
+    public static FishSpawn spawner;
+    public FishState currentState { get; private set; }
     public GameObject target;
     public GameObject awaytarget;
+    public Animator animator;
+
+
+    //기본 상태
+    public FSRoam roam;
+    public FSDEAD dead;
+    public FSSTURN sturn;
+    //FScatched;
+
+    //HP 관련 변수
+    public int startHP;
 
     //움직임 관련 변수
     // public float startWaitTime;
@@ -19,11 +32,10 @@ public class FishClass : MonoBehaviour
     //public SpriteRenderer Renderer;
     //public Rigidbody2D fishRigidbody;
 
-
-    //이동방향을 담는 벡터
-    //public Vector2 dir;
-
     //물고기 특성 관련 변수
+    public float DefaultSize;//물고기 기본 크기(물고기 종류 고유값)
+    public float RatioSize=1;//곱해지는 크기 (DefaultSize * RatioSize = 실제 크기)
+
     public float mass;//무게
     public float drag;//저항
     public float gravity;//받는 중력
@@ -31,30 +43,66 @@ public class FishClass : MonoBehaviour
 
     public float MaxSpeed;
     public float MinSpeed;
+
     //유영 범위
     public float RoamBoxMaxX;
     public float RoamBoxMinX;
     public float RoamBoxMaxY;
     public float RoamBoxMinY;
+    
     //Spot범위 
     public float SpotRangeBig;
     public float SpotRangeSmall;
 
     public float RoamWaitTime;
 
+    //감지
+    public float detectArea;
+    public float detectTime;
+
     //도망
     public float awaytime;
     public float awaySpeed;
 
+    //공격당함
+    public float sturntime;
+
+
 
     //public int turnPercent;
 
-    // Start is called before the first frame update
-    public virtual void Start()
+    
+
+
+    public virtual void Awake()
     {
         fishfin = GetComponent<FishFin>();
+        FishHP = GetComponent<FishHealth>();
+        animator = GetComponent<Animator>();
 
+        if (spawner == null)
+        {    
+            spawner = GameObject.Find("spawner").GetComponent<FishSpawn>();
+        }
+        roam = new FSRoam();
+        dead = new FSDEAD();
+        sturn = new FSSTURN();
+
+        FishHP.startingHealth = startHP;
     }
+
+    // Start is called before the first frame update
+    public virtual void Start() {
+
+        //DefaultState();
+    }
+
+
+    public virtual void OnEnable()
+    {
+        DefaultState();
+    }
+
 
     // Update is called once per frame
     public virtual void Update()
@@ -74,8 +122,40 @@ public class FishClass : MonoBehaviour
         currentState.OnEnter(this,this.fishfin);
 
     }
+
     public virtual void DefaultState()
     {
 
+    }
+
+    public void OnDeath()
+    {
+        SetState(dead);
+    }
+    public void OnCaught()
+    {
+        spawner.fishOnCaught(gameObject);
+        gameObject.SetActive(false);
+    }
+
+    public void respawn(Vector2 respawnPos)
+    {
+        fishfin.SetPosition(respawnPos);
+        gameObject.SetActive(true);
+    }
+
+    //Debug 임시 콜라이더
+    public virtual void OnCollisionEnter2D(Collision2D collision)
+    {
+        //Debug.Log("fish : touch something");
+        if (collision.gameObject.tag == "Player" && ReferenceEquals(currentState, dead))
+        {
+            //gunscript.Hit();
+            Debug.Log("fish : Player touch");
+            OnCaught();
+            //AttTarget = collision.gameObject.GetComponent<IDamageable>();
+            //임시 변수
+            //AttTarget.OnDamage(3, gameObject, Vector2.zero, Vector2.zero);
+        }
     }
 }

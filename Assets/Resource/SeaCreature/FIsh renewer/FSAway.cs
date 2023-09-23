@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class FSAway : FishState
 {
-    
-   
-   
 
-    public float awayTime;
+
+
+
+    private float awayTime;
     
 
     public override void OnEnter(FishClass pfish, FishFin FF)

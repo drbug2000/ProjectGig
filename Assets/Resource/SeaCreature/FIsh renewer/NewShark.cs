@@ -5,51 +5,76 @@ using UnityEngine;
 public class NewShark : FishClass
 {
 
-    FSRoam roam;
-    FSaway away;
+    //FSRoam roam;
+    //FSaway away;
+    FSAttack attack;
     bool awayNow;
 
-    // Start is called before the first frame update
-    public override void Start()
+    public float attackTime;
+    public bool Bite;
+
+
+    
+
+    public override void Awake()
     {
-        base.Start();
-        roam = new FSRoam();
+        base.Awake();
+        //roam = new FSRoam();
+        attack = new FSAttack();
         //away = new FSaway();
-        SetState(roam);
+        //SetState(roam);
         //Debug.Log("Second start");
-        //InvokeRepeating("FindAwayTarget", 0f, 1f);
+        InvokeRepeating("FindAttackTarget", 2f, detectTime);
+    }
+
+    // Start is called before the first frame update
+    public override void Start() {
+        base.Start();
+    }
+
+    public override void OnEnable()
+    {
+        base.OnEnable();//SetStateDefault();
     }
 
     // Update is called once per frame
     public override void Update()
     {
+        //현재 State에 함수를 매 프레임 실행함
         currentState.stateUpdate();
-
-
     }
 
-    private void FindAwayTarget()
+    private void FindAttackTarget()
     {
-        /*
-        int palyermask = LayerMask.GetMask("player");
+        
+        int palyermask = LayerMask.GetMask("Player");
 
-        Collider2D tar = Physics2D.OverlapCircle(fishtail.currentPos, 1f, palyermask);
-        if ((tar != null) && currentState == roam)
+        Collider2D tar = Physics2D.OverlapCircle(fishfin.currentPos, detectArea, palyermask);
+        if ((tar != null)&& ReferenceEquals(currentState, roam))
         {
-            awaytarget = tar.gameObject;
-            SetState(away);
+            target = tar.gameObject;
+            Debug.Log("overlap circle active target : " + target);
+            SetState(attack);
         }
-        */
+        
 
     }
-    void DefaultState()
+    public override void DefaultState()
     {
         SetState(roam);
     }
     void SetAway(bool Baway)
     {
         awayNow = Baway;
-
     }
 
+    public override void OnCollisionEnter2D(Collision2D collision)
+    {
+        base.OnCollisionEnter2D(collision);
+        if (collision.gameObject.tag == "Player")
+        {
+            this.Bite = true;
+            Debug.Log("bite value true");
+        }
+    }
 }
