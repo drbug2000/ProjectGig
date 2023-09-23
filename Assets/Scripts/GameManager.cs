@@ -6,22 +6,37 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     #region Singleton
-    public static GameManager instance = null;
+    private static GameManager instance = null;
 
     public GameObject gameoverText;
     private bool isGameover = false;
     public GameObject gameoverUI; // 게임 오버시 활성화 할 UI 게임 오브젝트
 
-    private void Awake()
+    void Awake()
     {
-        fishspawn = GameObject.Find("spawner").GetComponent<FishSpawn>();
+        // fishspawn = GameObject.Find("spawner").GetComponent<FishSpawn>();
 
         if (instance == null)
+        {
             instance = this;
-        else if (instance != this)
-            Destroy(gameObject);
+            DontDestroyOnLoad(this.gameObject);
+        }
+        else if (instance != null)
+        {
+            Destroy(this.gameObject);
+        }
+    }
 
-        DontDestroyOnLoad(gameObject);
+    public static GameManager Instance
+    {
+        get
+        {
+            if (null == GameManager.instance)
+            {
+                return null;
+            }
+            return GameManager.instance;
+        }
     }
     #endregion
 
@@ -84,8 +99,6 @@ public class GameManager : MonoBehaviour
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
     }
-    
-    
 
     public void playeronDeath(){
 
