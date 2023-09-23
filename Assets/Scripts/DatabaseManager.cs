@@ -11,7 +11,7 @@ public class SaveData {
     public int GigRangeLvl = 0;
     public int HpLvl = 0;
 
-    public Vector3 Playerpos;
+    public Vector3 playerpos;
 }
 
 public class DatabaseManager : MonoBehaviour
@@ -19,6 +19,8 @@ public class DatabaseManager : MonoBehaviour
     string path;
     #region singleton
     private static DatabaseManager instance = null;
+
+    public GameObject player;
 
     void Awake()
     {
@@ -50,14 +52,13 @@ public class DatabaseManager : MonoBehaviour
     void Start()
     {
         string path = JsonUtility.ToJson(saveData);
-        Debug.Log(path);
         SaveData save1 = JsonUtility.FromJson<SaveData>(path);
         JsonLoad();
     }
 
     [ContextMenu("From Json Data")]
     public void JsonLoad() {
-        SaveData saveData = new SaveData();
+        // SaveData saveData = new SaveData();
 
         if (!File.Exists(path)) {
             GameManager.Instance.Gold = 100;
@@ -82,14 +83,21 @@ public class DatabaseManager : MonoBehaviour
     [ContextMenu("To Json Data")] // 컴포넌트 메뉴에 아래 함수를 호출하는 To Json Data 라는 명령어가 생성됨
     public void JsonSave() {
         
-        SaveData saveData = new SaveData();
+        // SaveData saveData = new SaveData();
+
         saveData.Gold = GameManager.Instance.Gold;
         saveData.GigDamLvl = GameManager.Instance.GigDamLvl;
         saveData.GigRangeLvl = GameManager.Instance.GigRangeLvl;
         saveData.HpLvl = GameManager.Instance.HpLvl;
+        playerpos();
+        Debug.Log(saveData.playerpos);
 
         string json = JsonUtility.ToJson(saveData, true);
         path = Path.Combine(Application.dataPath + "/Data/", "database.json");
         File.WriteAllText(path, json);
+    }
+
+    public void playerpos() {
+        saveData.playerpos = player.gameObject.transform.position;
     }
 }
