@@ -41,6 +41,7 @@ public class FishFin  : MonoBehaviour
 
     bool sturn=false;
     private bool inWater;
+
     public bool UnderTheSea
     {
         get { return inWater; }
@@ -62,6 +63,7 @@ public class FishFin  : MonoBehaviour
             {//¹°¹ÛÀ¸·Î ³ª°¬À»¶§
                 fishRigidbody.gravityScale = fish.gravity*10;
                 SetDrag(fish.drag*2);
+                fish.DefaultState();
                 //Ã·º¡°Å¸² effect
             }
             inWater = value;
@@ -83,7 +85,7 @@ public class FishFin  : MonoBehaviour
     private void OnEnable()
     {
         sturn = false;
-        if (currentPos.y >= 0)
+        if (currentPos.y>=0)
         {
             //Debug.Log("fish out");
             this.UnderTheSea = false;
@@ -104,13 +106,13 @@ public class FishFin  : MonoBehaviour
         if (sturn) { return; }
 
         //¹æÇâÀüÈ¯
-        if (velocity.x>0)
+        if (IsLeft())
         {
-            Renderer.flipX = true;
+            Renderer.flipX = false;
         }
         else
         {
-            Renderer.flipX = false;
+            Renderer.flipX = true;
         }
 
 
@@ -232,5 +234,16 @@ public class FishFin  : MonoBehaviour
     public Vector2 TransVector(Vector3 V)
     {
         return new Vector2(V.x, V.y);
+    }
+
+    public bool IsLeft()
+    {
+        if (velocity.x < 0)
+        {
+            return true;
+        }else
+        {
+            return false;
+        }
     }
 }

@@ -26,6 +26,8 @@ public class PlayerMove : MonoBehaviour
     // private Animator playerAnimator;
 
     public GameObject inventoryparents;
+
+    private bool Sturn = false;
     
     // Start is called before the first frame update
     void Start()
@@ -48,7 +50,7 @@ public class PlayerMove : MonoBehaviour
     {
         isDead = playerHealth.dead;
         // 사용자 입력을 감지하고 점프하는 처리
-        if (isDead)
+        if (isDead || Sturn)
         {
             return;
         }
@@ -65,7 +67,7 @@ public class PlayerMove : MonoBehaviour
         else
         {
             playerRigidbody.gravityScale = 0; // 물 속에 있을 때 중력 0
-            playerRigidbody.drag = 1.5f;
+            playerRigidbody.drag = 1.0f;
             playerswim();
             animator.SetBool("intoOcean", true);
         }
@@ -181,7 +183,64 @@ public class PlayerMove : MonoBehaviour
         isGrounded = false;
     }
 
+    public void Teleport(Vector2 POS)
+    {
+        gameObject.transform.position = POS;
+    }
+    
 
+    
+    //임시 저장 변수
+    float defaultmass;
+    float defaultdrag;
 
+    public void GetBitten()
+    {
+        Debug.Log("a물렸다");
+
+        Sturn = true;
+        defaultmass = playerRigidbody.mass;
+        defaultdrag = playerRigidbody.drag;
+        playerRigidbody.mass = 0;
+        playerRigidbody.drag = 0;
+    }
+
+    public void SpitOut()
+    {
+        Debug.Log("뱉었다");
+
+        playerRigidbody.mass = defaultmass;
+        playerRigidbody.drag = defaultdrag;
+        Sturn = false;
+    }
+
+    public void SetSturn(bool sturn)
+    {
+        Sturn = sturn;
+    }
+
+    public void getSturn(float sturntime)
+    {
+
+        StartCoroutine("Sturning", sturntime);
+
+    }
+
+    IEnumerator Sturning(float sturntime)
+    {
+        Sturn = true;
+        //float defaultmass = playerRigidbody.mass;
+        //float defaultdrag = playerRigidbody.drag;
+        //playerRigidbody.mass=0;
+        //playerRigidbody.drag=0;
+
+        yield return new WaitForSeconds(sturntime);
+
+        //playerRigidbody.mass = defaultmass;
+        //playerRigidbody.drag = defaultdrag;
+        Sturn = false;
+    }
+
+    
 
 }

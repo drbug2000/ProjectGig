@@ -10,6 +10,9 @@ public class FSDashAttack : FishState
     private GameObject target;
     
     private Vector2 targetPos;
+    private Rigidbody2D targetRD;
+
+    private PlayerMove playermove;
     enum attState { ready=1, setTarget=2, Dash=3, bite=4, shake=5, restore=6, end=7}
     attState State;
     /*
@@ -21,6 +24,7 @@ public class FSDashAttack : FishState
     //private float awayTimer;
     
     private float attackTime;
+    private float shakeTime;
 
     private int beforeShakeWay=1;
 
@@ -135,14 +139,18 @@ public class FSDashAttack : FishState
             case attState.bite:
                 timer = 1.5f;
                 //add joint with target
+                //shark.joint.connectedBody = targetRD;
+                Bite(targetRD);
                 //Ainime : Stop anime
                 Dash(fish.MaxSpeed);
                 break;
             case attState.shake:
-                timer = 4f;
+                timer = shakeTime;
                 fishfin.SetDrag(0.5f);
                 break;
             case attState.restore:
+                //shark.joint.connectedBody = null;
+                SpitOut();
                 timer = 1.5f;
                 break;
             case attState.end:
@@ -166,6 +174,11 @@ public class FSDashAttack : FishState
         Debug.Log(" new FSATttack Enter");
 
         State = attState.ready;
+
+        shakeTime = shark.shakeTime;
+
+        targetRD = target.GetComponent<Rigidbody2D>();
+        playermove = fish.target.GetComponent<PlayerMove>();
     }
 
     //해당 state동작중 작동하는 코드를 작성(매 프레임 마다)
@@ -236,7 +249,29 @@ public class FSDashAttack : FishState
 
     public void Dash(float speed)
     {
+
+        
         fishfin.SpotMove(speed);
+        if (shark.Bite)
+        {
+            playermove.Teleport(WhereMouth());
+        }
+    }
+
+    public void Bite(Rigidbody2D targetRigidbody)
+    {
+        shark.joint.connectedBody = targetRigidbody;
+        shark.joint.enabled = true;
+        playermove.GetBitten();
+        playermove.Teleport(WhereMouth());
+    }
+    public void SpitOut()
+    {
+        shark.joint.connectedBody = null;
+        shark.joint.enabled = false;
+        playermove.SpitOut();
+        shark.Bite = false;
+        
     }
 
     public void Shake()
@@ -248,17 +283,20 @@ public class FSDashAttack : FishState
         {
             Debug.Log("shake");
             dashdir = new Vector2(Random.Range(6, 8), Random.Range(-3, 3));
-            shakespeed = Random.Range(10, fish.MaxSpeed);
+            shakespeed = Random.Range(10, fish.MaxSpeed)*10;
             if (Percent(shakePer))
             {
                 beforeShakeWay *= -1;
+                playermove.Teleport(WhereMouth(-1));
             }
-
-            Debug.Log("speed " + fishfin.velocityM);
-            Debug.Log("shake Dir " + dashdir);
+            
             //fishfin.StopFish();
             fishfin.SetVelocity(dashdir.normalized * shakespeed * beforeShakeWay);
+            Debug.Log("shake speed " + shakespeed);
+            Debug.Log("fish speed " + fishfin.velocityM);
+            Debug.Log("shake Dir " + dashdir);
         }
+
     }
 
     bool Percent(int a)
@@ -280,6 +318,29 @@ public class FSDashAttack : FishState
         fishfin.SetDrag(fish.drag);
         fishfin.Speed = fish.speed;
        
+    }
+
+    //입의 좌표를 출력하는 함수
+    //way parameter = -1 설정시 현재 이동 방향과 반대로 출력
+    public Vector2 WhereMouth(int way = 1) 
+    {
+        //콜라이더 사이즈에 따른 상어입 상대 위치 조정
+        Vector2 mouth = fish.fishcollider.size;
+        mouth *= new Vector2(-0.5f, -0.5f);
+        //보정값 적용
+        mouth += shark.mouthPosAdder + fish.fishcollider.offset;
+        //상어 방향에 따른 x좌표 방향 조정
+        if (!fishfin.IsLeft()) { mouth.x *= -1; Debug.Log("주댕이 반대"); }
+        else { Debug.Log("주댕이 안반대"); }
+        
+        if(way == -1) { mouth.x *= -1; }
+        return fishfin.currentPos + mouth;
+
+    }
+
+    private void targetToMouth(Vector2 mouth)
+    {
+        playermove.Teleport(mouth);
     }
 
     /*

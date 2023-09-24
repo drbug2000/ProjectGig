@@ -14,9 +14,11 @@ public class NewShark : FishClass
 
     public float attackTime;
     public bool Bite;
+    public float shakeTime;
 
+    public FixedJoint2D joint;
 
-    
+    public Vector2 mouthPosAdder;
 
     public override void Awake()
     {
@@ -28,6 +30,9 @@ public class NewShark : FishClass
         //SetState(roam);
         //Debug.Log("Second start");
         InvokeRepeating("FindAttackTarget", 2f, detectTime);
+
+        joint = GetComponent<FixedJoint2D>();
+        joint.enabled = false;
     }
 
     // Start is called before the first frame update
@@ -74,10 +79,22 @@ public class NewShark : FishClass
     public override void OnCollisionEnter2D(Collision2D collision)
     {
         base.OnCollisionEnter2D(collision);
-        if (collision.gameObject.tag == "Player")
+        if (collision.gameObject.name == "Player" && ReferenceEquals(currentState,attack))
         {
             this.Bite = true;
             Debug.Log("bite value true");
+
+        }
+    }
+
+    public void OnTriggerEnter2D(Collider2D other)
+    {
+        //base.OnCollisionEnter2D(collision);
+        if (other.gameObject.name == "Player" && ReferenceEquals(currentState, attack))
+        {
+            this.Bite = true;
+            Debug.Log("bite value true");
+
         }
     }
 }
