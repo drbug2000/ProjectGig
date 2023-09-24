@@ -22,6 +22,8 @@ public class FSDashAttack : FishState
     
     private float attackTime;
 
+    private int beforeShakeWay=1;
+
     float timer;
     private float Timer
     {
@@ -138,7 +140,7 @@ public class FSDashAttack : FishState
                 break;
             case attState.shake:
                 timer = 4f;
-                fishfin.SetDrag(1f);
+                fishfin.SetDrag(0.5f);
                 break;
             case attState.restore:
                 timer = 1.5f;
@@ -242,19 +244,20 @@ public class FSDashAttack : FishState
         int shakePer = 90;//방형전환 확률
         Vector2 dashdir;
         float shakespeed;
-        if (fishfin.velocityM < 6)
+        if (fishfin.velocityM < 9)
         {
             Debug.Log("shake");
-            dashdir = new Vector2(Random.Range(4, 8), Random.Range(-3, 3));
-            shakespeed = Random.Range(7, fish.MaxSpeed);
+            dashdir = new Vector2(Random.Range(6, 8), Random.Range(-3, 3));
+            shakespeed = Random.Range(10, fish.MaxSpeed);
             if (Percent(shakePer))
             {
-                dashdir.x *= -1;
+                beforeShakeWay *= -1;
             }
+
             Debug.Log("speed " + fishfin.velocityM);
             Debug.Log("shake Dir " + dashdir);
             //fishfin.StopFish();
-            fishfin.SetVelocity(dashdir.normalized * shakespeed);
+            fishfin.SetVelocity(dashdir.normalized * shakespeed * beforeShakeWay);
         }
     }
 

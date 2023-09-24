@@ -155,7 +155,7 @@ MonoBehaviour:
   drag: 0.25
   gravity: 0.05
   speed: 6
-  MaxSpeed: 9
+  MaxSpeed: 15
   MinSpeed: 4
   RoamBoxMaxX: -20
   RoamBoxMinX: 30
@@ -222,3 +222,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startingHealth: 0
+  maxHp: 0
