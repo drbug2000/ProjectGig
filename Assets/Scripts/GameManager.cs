@@ -9,7 +9,8 @@ public class GameManager : MonoBehaviour
     private static GameManager instance = null;
 
     public GameObject gameoverText;
-    private bool isGameover = false;
+    // 현재는 이 변수가 쓰이고 있지 않습니다.
+    // private bool isGameover = false;
     public GameObject gameoverUI; // 게임 오버시 활성화 할 UI 게임 오브젝트
 
     void Awake()
@@ -57,7 +58,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        isGameover = false;
+        // isGameover = false;
 
         //LivingEntity event subscribe
         LivingEntity deathEvent = new LivingEntity();
@@ -90,15 +91,6 @@ public class GameManager : MonoBehaviour
     //GameManager의 playeronDeath 메서드 실행
 
     //you died 화면창에 띄우기
-    
-     void Update() {
-        // 게임 오버 상태에서 게임을 재시작할 수 있게 하는 처리
-        if (isGameover && Input.GetKeyDown("r"))
-        {
-            //현재 활성화 된 씬 불러오기
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-        }
-    }
 
     public void playeronDeath(){
 
@@ -110,7 +102,30 @@ public class GameManager : MonoBehaviour
         else{
             Gold = 0;
         }
-        isGameover = true;
+        StartCoroutine(RestartGame());
         gameoverUI.SetActive(true);
+    }
+
+    // 게임 오버 상태일때 다시 실행하게 해주는 함수
+    IEnumerator RestartGame()
+    {
+        yield return null;
+        if (Input.GetKeyDown("r"))
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            StopAllCoroutines();
+        }
+
+        StartCoroutine(RestartGame());
+    }
+
+    public void PauseGame()
+    {
+        Time.timeScale = 0;
+    }
+
+    public void ReactiveGame()
+    {
+        Time.timeScale = 1;
     }
 }
