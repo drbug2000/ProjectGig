@@ -53,10 +53,13 @@ public class GameManager : MonoBehaviour
 
     public FishSpawn fishspawn ; //외부에서 접근 가능한 변수 추가
 
+    public GameObject PauseMenu;
+
     
     // Start is called before the first frame update
     void Start()
     {
+        PauseMenu.SetActive(false);
         isGameover = false;
 
         //LivingEntity event subscribe
@@ -97,6 +100,21 @@ public class GameManager : MonoBehaviour
         {
             //현재 활성화 된 씬 불러오기
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
+
+        if (SceneManager.GetActiveScene().name == "title")
+        {
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                PauseMenu.SetActive(true);
+            }
+        }
+        else if (SceneManager.GetActiveScene().name == "Main")
+        {
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                PauseMenu.SetActive(true);
+            }
         }
     }
 

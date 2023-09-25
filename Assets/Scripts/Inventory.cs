@@ -14,10 +14,13 @@ public class Inventory : MonoBehaviour
     private bool inventoryActivated;
 
     private int allcost;
+
+    public bool isinventoryfull;
     void Start()
     {
         // 처음 실행할 때는 inventory는 비활성화 시켜야한다.
         inventoryActivated = false;
+        isinventoryfull = false;
         allcost = 0;
     }
 
@@ -57,6 +60,10 @@ public class Inventory : MonoBehaviour
     {
         for (int i = 0; i < slots.Length; i++)
         {
+            if (i == slots.Length - 1 && slots[i].item !) {
+                isinventoryfull = true;
+                return;
+            }
             if (slots[i].item != null)
             {
                 if (slots[i].item.itemName == _item.itemName)
@@ -65,10 +72,7 @@ public class Inventory : MonoBehaviour
                     return;
                 }
             }
-        }
 
-        for (int i = 0; i < slots.Length; i++)
-        {
             if (slots[i].item == null)
             {
                 slots[i].AddItem(_item);
@@ -91,7 +95,7 @@ public class Inventory : MonoBehaviour
             allcost += multiplycost;
             slots[i].ClearSlot();
         }
-
+        isinventoryfull = false;
         return allcost;
     }
 }
