@@ -68,11 +68,13 @@ public class FishClass : MonoBehaviour
     //공격당함
     public float sturntime;
 
+    public Vector2 mouthPosAdder;
+
 
 
     //public int turnPercent;
 
-    
+
 
 
     public virtual void Awake()

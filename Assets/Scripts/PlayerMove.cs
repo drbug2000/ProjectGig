@@ -197,20 +197,28 @@ public class PlayerMove : MonoBehaviour
     public void GetBitten()
     {
         Debug.Log("a물렸다");
-
+        
         Sturn = true;
-        defaultmass = playerRigidbody.mass;
-        defaultdrag = playerRigidbody.drag;
+        if (playerRigidbody.mass > 0.1f){
+            defaultmass = playerRigidbody.mass; }
+        if (playerRigidbody.drag > 1f) {
+            defaultdrag = playerRigidbody.drag;
+        }
         playerRigidbody.mass = 0;
         playerRigidbody.drag = 0;
+        Debug.Log("default mass : " + defaultmass + "\n default drag : " + defaultdrag);
+        Debug.Log("current mass : " + playerRigidbody.mass + "\n current drag : " + playerRigidbody.drag);
     }
 
-    public void SpitOut()
+    public void SpitOut(Vector2 spitForce)
     {
         Debug.Log("뱉었다");
-
+        Debug.Log(spitForce);
         playerRigidbody.mass = defaultmass;
         playerRigidbody.drag = defaultdrag;
+        playerRigidbody.AddForce(spitForce*2);
+        Debug.Log("default mass : " + defaultmass + "\n default drag : " + defaultdrag);
+        Debug.Log("current mass : " + playerRigidbody.mass + "\n current drag : " + playerRigidbody.drag);
         Sturn = false;
     }
 

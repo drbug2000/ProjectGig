@@ -61,7 +61,7 @@ public class FSDashAttack : FishState
                         Debug.Log("Timeset" + State);
                         setState((int)attState.shake);
                         
-                        fishfin.StopFish();
+                        //fishfin.StopFish();
                         break;
                     case attState.shake:
                         Debug.Log("Timeset" + State);
@@ -224,6 +224,11 @@ public class FSDashAttack : FishState
                 }
                 break;
             case attState.bite:
+                if (fishfin.IsTurn)
+                {
+                    playermove.Teleport(fishfin.WhereMouth());
+                    fishfin.IsTurn = false;
+                }
                 break;
             case attState.shake:
                 Shake();
@@ -254,7 +259,7 @@ public class FSDashAttack : FishState
         fishfin.SpotMove(speed);
         if (shark.Bite)
         {
-            playermove.Teleport(WhereMouth());
+            playermove.Teleport(fishfin.WhereMouth());
         }
     }
 
@@ -263,14 +268,19 @@ public class FSDashAttack : FishState
         shark.joint.connectedBody = targetRigidbody;
         shark.joint.enabled = true;
         playermove.GetBitten();
-        playermove.Teleport(WhereMouth());
+        playermove.Teleport(fishfin.WhereMouth());
     }
     public void SpitOut()
     {
+        //fishfin.SetSpot(fishfin.TransVector(target.transform.position));
+        //fishfin.ReDirSpot();
+
+
         shark.joint.connectedBody = null;
         shark.joint.enabled = false;
-        playermove.SpitOut();
         shark.Bite = false;
+        playermove.SpitOut(fishfin.WhereMouth() - fishfin.currentPos);
+        
         
     }
 
@@ -287,14 +297,20 @@ public class FSDashAttack : FishState
             if (Percent(shakePer))
             {
                 beforeShakeWay *= -1;
-                playermove.Teleport(WhereMouth(-1));
+                
             }
             
             //fishfin.StopFish();
             fishfin.SetVelocity(dashdir.normalized * shakespeed * beforeShakeWay);
+            
             Debug.Log("shake speed " + shakespeed);
             Debug.Log("fish speed " + fishfin.velocityM);
             Debug.Log("shake Dir " + dashdir);
+        }
+        if (fishfin.IsTurn)
+        {
+            playermove.Teleport(fishfin.WhereMouth());
+            fishfin.IsTurn = false;
         }
 
     }
@@ -319,7 +335,7 @@ public class FSDashAttack : FishState
         fishfin.Speed = fish.speed;
        
     }
-
+    /*
     //입의 좌표를 출력하는 함수
     //way parameter = -1 설정시 현재 이동 방향과 반대로 출력
     public Vector2 WhereMouth(int way = 1) 
@@ -330,13 +346,15 @@ public class FSDashAttack : FishState
         //보정값 적용
         mouth += shark.mouthPosAdder + fish.fishcollider.offset;
         //상어 방향에 따른 x좌표 방향 조정
-        if (!fishfin.IsLeft()) { mouth.x *= -1; Debug.Log("주댕이 반대"); }
-        else { Debug.Log("주댕이 안반대"); }
+        if (!fishfin.IsLeft()) { mouth.x *= -1; Debug.Log("주댕이 왼"); }
+        else { Debug.Log("주댕이 오른"); }
         
         if(way == -1) { mouth.x *= -1; }
         return fishfin.currentPos + mouth;
 
     }
+    //fishfin으로 이동
+    */
 
     private void targetToMouth(Vector2 mouth)
     {

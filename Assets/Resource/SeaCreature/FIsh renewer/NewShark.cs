@@ -18,7 +18,7 @@ public class NewShark : FishClass
 
     public FixedJoint2D joint;
 
-    public Vector2 mouthPosAdder;
+    
 
     public override void Awake()
     {
