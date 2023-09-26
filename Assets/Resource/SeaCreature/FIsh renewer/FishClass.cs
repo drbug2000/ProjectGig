@@ -154,13 +154,15 @@ public class FishClass : MonoBehaviour
         //Debug.Log("fish : touch something");
         if (collision.gameObject.tag == "Player" && ReferenceEquals(currentState, dead))
         {
+            /*
             //gunscript.Hit();
-            if (ReferenceEquals(currentState, dead){
+            if (ReferenceEquals(currentState, dead)){
                 Inventory playerInventory = collision.gameObject.GetComponent<playerInventory>();
-                if (/*playerInventory.isinventoryfull()*/) {
+                //if (playerInventory.isinventoryfull()) {
                     OnCaught(playerInventory);
-                }
+                //}
             }
+            */
             //Debug.Log("fish : Player touch");
             
             //AttTarget = collision.gameObject.GetComponent<IDamageable>();
