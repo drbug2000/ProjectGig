@@ -23,7 +23,7 @@ public class PlayerHealth : LivingEntity
     public SpriteRenderer playerSpriteRenderer;
     public PlayerMove playerMove;
 
-    Image hp;
+    public Image hp;
 
     private void Awake()
     {
