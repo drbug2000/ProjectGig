@@ -31,7 +31,7 @@ public class PlayerHealth : LivingEntity
         playerSpriteRenderer = GetComponent<SpriteRenderer>();
         //컴포넌트 할당: 바다와 육지 판별 위함
         playerMove = GetComponent<PlayerMove>();
-        hp = GetComponent<Image>();
+        
     }
 
 
@@ -60,6 +60,7 @@ public class PlayerHealth : LivingEntity
             RestoreHealth(10);
             durationTime = 3;
         }
+        
         hp.fillAmount = health / maxHp;
 
     }
