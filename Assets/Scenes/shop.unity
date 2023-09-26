@@ -140,7 +140,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &106641121
 RectTransform:
   m_ObjectHideFlags: 0
@@ -859,6 +859,7 @@ GameObject:
   - component: {fileID: 539681389}
   - component: {fileID: 539681388}
   - component: {fileID: 539681387}
+  - component: {fileID: 539681390}
   m_Layer: 5
   m_Name: Sell Button
   m_TagString: Untagged
@@ -930,7 +931,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 539681388}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 539681390}
+        m_TargetAssemblyTypeName: SellItem, Assembly-CSharp
+        m_MethodName: Clicksellbutton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &539681388
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -969,6 +982,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 539681385}
   m_CullTransparentMesh: 1
+--- !u!114 &539681390
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 539681385}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0aa43cca88ed34fc8903f9f075bc20de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  theinventory: {fileID: 0}
+  Cost: 0
+  CostText: 
 --- !u!1 &821377071
 GameObject:
   m_ObjectHideFlags: 0
@@ -2731,6 +2759,7 @@ GameObject:
   - component: {fileID: 1622078177}
   - component: {fileID: 1622078176}
   - component: {fileID: 1622078180}
+  - component: {fileID: 1622078181}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -2835,6 +2864,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   subbox: {fileID: 106641120}
   subintext: {fileID: 1751742920}
+--- !u!114 &1622078181
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1622078175}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9eadf5bbf8474737b41d1bc9098a010, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  go_InventoryBase: {fileID: 0}
+  slots: []
+  allcost: 0
 --- !u!1 &1733607032
 GameObject:
   m_ObjectHideFlags: 0

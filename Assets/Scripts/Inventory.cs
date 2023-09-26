@@ -13,7 +13,7 @@ public class Inventory : MonoBehaviour
 
     private bool inventoryActivated;
 
-    private int allcost;
+    public int allcost;
     void Start()
     {
         // 처음 실행할 때는 inventory는 비활성화 시켜야한다.
