@@ -7,8 +7,10 @@ public class NewShark : FishClass
 
     //FSRoam roam;
     //FSaway away;
-    FSAttack attack;
+    //FSAttack attack;
+    FSDashAttack attack;
     bool awayNow;
+    public float aggroRange;
 
     public float attackTime;
     public bool Bite;
@@ -20,7 +22,8 @@ public class NewShark : FishClass
     {
         base.Awake();
         //roam = new FSRoam();
-        attack = new FSAttack();
+        //attack = new FSAttack();
+        attack = new FSDashAttack();
         //away = new FSaway();
         //SetState(roam);
         //Debug.Log("Second start");
@@ -68,9 +71,10 @@ public class NewShark : FishClass
         awayNow = Baway;
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    public override void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.gameObject.tag == "Player")
+        base.OnCollisionEnter2D(collision);
+        if (collision.gameObject.tag == "Player")
         {
             this.Bite = true;
             Debug.Log("bite value true");

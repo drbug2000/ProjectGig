@@ -36,7 +36,7 @@ public class FSRoam : FishState
 
         setNewSpot();
         setDefault();
-        Debug.Log(" new FSRoam OnEnter");
+        //Debug.Log(" new FSRoam OnEnter");
     }
     public override void stateUpdate()
     {
@@ -79,7 +79,13 @@ public class FSRoam : FishState
     {
         setDefault();
     }
-
+    public override void setDefault()
+    {
+        fishfin.SetDrag(fish.drag);
+        fishfin.Speed = fish.speed;
+        MinSpeed = fish.MinSpeed;
+        waitTime = startWaitTime;
+    }
     void setNewSpot()
     {
         
@@ -90,12 +96,6 @@ public class FSRoam : FishState
         //Debug.Log("new" + fishfin.Spot);
     }
 
-    void setDefault()
-    {
-        fishfin.SetDrag(0.25f);
-        fishfin.Speed = fish.speed;
-        MinSpeed = fish.MinSpeed;
-        waitTime = startWaitTime;
-    }
+    
 }
 

@@ -44,10 +44,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a74c74abd82048949951a132f49badfa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  smallfish: {fileID: 4619199556152030557, guid: ebb199cb6a87f7a43922134f2c9e683d, type: 3}
-  middlefish: {fileID: 0}
+  smallfish: {fileID: 5362708597037056094, guid: 1c1c626675d77904da922a115ff9a449, type: 3}
+  middlefish: {fileID: 3408001756398335430, guid: 7a7c75ed7e254a943a1d9e03082ae1eb, type: 3}
   bigish: {fileID: 0}
-  shark: {fileID: 0}
+  shark: {fileID: 2633367817043942535, guid: 02ca0e61d16951e42a85c402f8529c9a, type: 3}
   smallFishCounter: 0
   middleFishCounter: 0
   bigFishCounter: 0

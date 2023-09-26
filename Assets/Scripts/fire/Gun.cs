@@ -17,10 +17,10 @@ public class Gun : MonoBehaviour
     public float reloadTime;
     public float fireTime;
     public float hitTime;
-    public float StateTimer;
 
     
-    private float timer;
+    public float StateTimer;
+    public float timer;
     
     private float Timer
     {
@@ -35,7 +35,7 @@ public class Gun : MonoBehaviour
                 {
                     case fireState.fire:
                     case fireState.hit:
-                        
+                        Timer = fireTime;
                         State = fireState.rollback;
                         break;
                     case fireState.rollback:
@@ -71,6 +71,10 @@ public class Gun : MonoBehaviour
     {
         if(State != fireState.ready)
         {
+            if (Timer < 0)
+            {
+                Timer = 0;
+            }
             return;
         }
 
@@ -103,6 +107,7 @@ public class Gun : MonoBehaviour
         if (State != fireState.hit)
         {
             State = fireState.hit;
+            Timer = hitTime;
         }
     }
 
@@ -111,10 +116,10 @@ public class Gun : MonoBehaviour
     {
 
         gigrb.isKinematic = false;
-        float StopTime = 0;
+        //float StopTime = 0;
         gigScript.onfire();
 
-        
+        /*
         Debug.Log("fire corutine start");
 
         //Debug.Log("transform.up"+ transform.up);
@@ -151,7 +156,64 @@ public class Gun : MonoBehaviour
             Timer -= Time.deltaTime;
             yield return null;
         }
+
+        //rollback 도중 HIT 된 상황
+        while (State == fireState.hit)
+        {
+            //잠시 정지
+            Timer -= Time.deltaTime;
+            yield return null;
+        }
+
+        */
+        
+
+
+        /*New Code*/
+
+        float FireTimer=0;
+        Timer = fireTime;
+        
+
+        while (FireTimer >= 0)
+        {
+            Timer -= Time.deltaTime;
+            //FireTimer -= Time.deltaTime;
+            //Debug.Log("corrutine while ");
+            switch (State)
+            {
+                case fireState.fire:
+                    gigtr.Translate(transform.up * bulletSpeed * Time.deltaTime, Space.World);
+                    FireTimer += Time.deltaTime;
+                    //Debug.Log("switch fire");
+                    //Timer -= Time.deltaTime;
+                    //yield return null;
+                    break;
+                case fireState.hit:
+                    //Timer = hitTime;
+                    //State = fireState.rollback;
+                    break;
+                case fireState.rollback:
+                    //State = fireState.ready;
+                    FireTimer -= Time.deltaTime;
+                    gigtr.Translate(-1 * transform.up * bulletSpeed * Time.deltaTime, Space.World);
+                    break;
+                case fireState.ready:
+                    break;
+                default:
+                    Debug.Log("corutine Timer set error" + State);
+                    break;
+            }
+            
+            yield return null;
+
+        }
+        State = fireState.ready;
         gigrb.isKinematic = true;
         gigScript.outfire();
+
+
     }
+
+
 }

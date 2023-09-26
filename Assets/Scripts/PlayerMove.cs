@@ -11,12 +11,13 @@ public class PlayerMove : MonoBehaviour
     protected int jumpCount = 0; // 누적 점프 횟수
    
     protected bool isGrounded = false; // 바닥에 닿았는지 나타냄 점프할 때 쓰는 변수
-    // private bool isDead = false; // 사망 상태
+    private bool isDead = false; // 사망 상태
     public bool onboard; // 갑판 위에 있는지
+    private PlayerHealth playerHealth;
 
     protected Rigidbody2D playerRigidbody; // 사용할 리지드바디 컴포넌트
     // private SpriteRenderer playerSpriteRenderer;
-    // private Animator animator; // 사용할 애니메이터 컴포넌트
+    private Animator animator; // 사용할 애니메이터 컴포넌트
     // private AudioSource playerAudio; // 사용할 오디오 소스 컴포넌트
 
     protected bool CurrentSpeed = false; // 이건 뭔지 모르겠습니다...?
@@ -32,7 +33,9 @@ public class PlayerMove : MonoBehaviour
         // 초기화
         playerInput = GetComponent<PlayerController>();
         playerRigidbody = GetComponent<Rigidbody2D>();
-        // animator = GetComponent<Animator>();
+        playerHealth = GetComponent<PlayerHealth>();
+        
+        animator = GetComponent<Animator>();
         // playerAudio = GetComponent<AudioSource>();
         // playerSpriteRenderer = GetComponent<SpriteRenderer>();
         onboard = true;
@@ -43,22 +46,28 @@ public class PlayerMove : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        isDead = playerHealth.dead;
         // 사용자 입력을 감지하고 점프하는 처리
-        // if (isDead)
-        // {
-        //     return;
-            // }
+        if (isDead)
+        {
+            return;
+        }
         if (onboard == true)
         {
             playerRigidbody.gravityScale = 1; // 배 위에 있을 때 중력 1
             playerRigidbody.drag = 1;
             playerwalk();
+            animator.SetBool("intoOcean", false);
+
+
+
         }
         else
         {
             playerRigidbody.gravityScale = 0; // 물 속에 있을 때 중력 0
             playerRigidbody.drag = 1.5f;
             playerswim();
+            animator.SetBool("intoOcean", true);
         }
 
         Attack();
