@@ -16,5 +16,11 @@ public class FishState
     }
     public virtual void stateUpdate() { }
     public virtual void OnExit() { }
-
+    public virtual void setDefault() { }
+    /*
+        fishfin.SetDrag(fish.drag);
+        fishfin.Speed = fish.speed;
+        //MinSpeed = fish.MinSpeed;
+        //waitTime = startWaitTime;
+    */
 }

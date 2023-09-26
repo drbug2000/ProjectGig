@@ -16,9 +16,10 @@ GameObject:
   - component: {fileID: 2633367817043942541}
   - component: {fileID: 4249893747086449108}
   - component: {fileID: 3130247305762812312}
+  - component: {fileID: 6465844373232659305}
   m_Layer: 6
   m_Name: Shark
-  m_TagString: Untagged
+  m_TagString: fish
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -155,7 +156,7 @@ MonoBehaviour:
   drag: 0.25
   gravity: 0.05
   speed: 6
-  MaxSpeed: 9
+  MaxSpeed: 20
   MinSpeed: 4
   RoamBoxMaxX: -20
   RoamBoxMinX: 30
@@ -169,8 +170,11 @@ MonoBehaviour:
   awaytime: 0
   awaySpeed: 0
   sturntime: 0
+  aggroRange: 6
   attackTime: 2
   Bite: 0
+  shakeTime: 10
+  joint: {fileID: 0}
 --- !u!50 &2633367817043942541
 Rigidbody2D:
   serializedVersion: 4
@@ -206,7 +210,7 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 1, y: 0}
-  m_Size: {x: 12, y: 3.5}
+  m_Size: {x: 10, y: 3.5}
   m_Direction: 1
 --- !u!114 &3130247305762812312
 MonoBehaviour:
@@ -221,3 +225,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startingHealth: 0
+  maxHp: 0
+--- !u!255 &6465844373232659305
+FixedJoint2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2633367817043942535}
+  m_Enabled: 1
+  serializedVersion: 4
+  m_EnableCollision: 0
+  m_ConnectedRigidBody: {fileID: 0}
+  m_BreakForce: Infinity
+  m_BreakTorque: Infinity
+  m_AutoConfigureConnectedAnchor: 1
+  m_Anchor: {x: -4, y: -1}
+  m_ConnectedAnchor: {x: -4.2, y: -10.3}
+  m_DampingRatio: 0
+  m_Frequency: 0

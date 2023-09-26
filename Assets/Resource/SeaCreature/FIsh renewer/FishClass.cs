@@ -13,6 +13,7 @@ public class FishClass : MonoBehaviour
     public GameObject target;
     public GameObject awaytarget;
     public Animator animator;
+    public CapsuleCollider2D fishcollider;
 
 
     //기본 상태
@@ -67,11 +68,13 @@ public class FishClass : MonoBehaviour
     //공격당함
     public float sturntime;
 
+    public Vector2 mouthPosAdder;
+
 
 
     //public int turnPercent;
 
-    
+
 
 
     public virtual void Awake()
@@ -79,6 +82,7 @@ public class FishClass : MonoBehaviour
         fishfin = GetComponent<FishFin>();
         FishHP = GetComponent<FishHealth>();
         animator = GetComponent<Animator>();
+        fishcollider = GetComponent<CapsuleCollider2D>();
 
         if (spawner == null)
         {    
