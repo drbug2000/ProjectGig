@@ -14,6 +14,12 @@ public class Title : MonoBehaviour
         SettingWindow.SetActive(false);
     }
 
+    void Start() {
+
+    }
+
+    
+
     void Update()
     {
         if (SettingWindow.activeSelf == true)
@@ -32,12 +38,13 @@ public class Title : MonoBehaviour
 
     public void startgame()
     {
-        SceneManager.LoadScene("Main");
+        SceneManager.LoadScene("fishScenes");
     }
 
     public void Loadgame()
     {  
-
+        DatabaseManager.Instance.JsonLoad();
+        SceneManager.LoadScene("fishScenes");
     }
 
     public void Setting()

@@ -1,11 +1,14 @@
 {
-    "Gold": 100,
-    "GigDamLvl": 4,
-    "GigRangeLvl": 4,
-    "HpLvl": 4,
+    "Gold": 0,
+    "GigDamLvl": 0,
+    "GigRangeLvl": 0,
+    "HpLvl": 0,
     "playerpos": {
-        "x": 100.0,
-        "y": -20.0,
+        "x": 2.6500000953674318,
+        "y": 1.909999966621399,
         "z": 0.0
+    },
+    "item": {
+        "instanceID": 0
     }
 }

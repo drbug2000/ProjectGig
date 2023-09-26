@@ -8,11 +8,6 @@ public class GameManager : MonoBehaviour
     #region Singleton
     private static GameManager instance = null;
 
-    public GameObject gameoverText;
-    // 현재는 이 변수가 쓰이고 있지 않습니다.
-    // private bool isGameover = false;
-    public GameObject gameoverUI; // 게임 오버시 활성화 할 UI 게임 오브젝트
-
     void Awake()
     {
         // fishspawn = GameObject.Find("spawner").GetComponent<FishSpawn>();
@@ -41,11 +36,15 @@ public class GameManager : MonoBehaviour
     }
     #endregion
 
-
+    public GameObject gameoverText;
+    // 현재는 이 변수가 쓰이고 있지 않습니다.
+    // private bool isGameover = false;
+    public GameObject gameoverUI; // 게임 오버시 활성화 할 UI 게임 오브젝트
     public int Gold = 0;
     public int GigDamLvl = 0;
     public int GigRangeLvl = 0;
     public int HpLvl = 0;
+    // Queue<PauseGameCanvas> poolingObjectQueue = new Queue<PauseGameCanvas>();
     
 
     public AudioSource _audioSource;
@@ -54,16 +53,38 @@ public class GameManager : MonoBehaviour
 
     public FishSpawn fishspawn ; //외부에서 접근 가능한 변수 추가
 
+    public GameObject PauseGameWindowCanvas;
+
+
+
+
     
     // Start is called before the first frame update
     void Start()
     {
+        PauseGameWindowCanvas.SetActive(false);
         // isGameover = false;
 
         //LivingEntity event subscribe
         LivingEntity deathEvent = new LivingEntity();
         deathEvent.onDeath += new System.Action(playeronDeath);
         //PlayLobbyMusic();
+    }
+
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape)) {
+            if (PauseGameWindowCanvas.activeSelf == true) {
+                ReactiveGame();
+                PauseGameWindowCanvas.SetActive(false);
+                Debug.Log(PauseGameWindowCanvas.activeSelf);
+            }
+            else {
+                PauseGame();
+                PauseGameWindowCanvas.SetActive(true);
+                Debug.Log(PauseGameWindowCanvas.activeSelf);
+            }
+        }
     }
 
     /*

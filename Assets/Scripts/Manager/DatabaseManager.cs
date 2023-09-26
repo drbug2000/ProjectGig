@@ -10,13 +10,13 @@ public class SaveData {
     public int GigDamLvl = 0;
     public int GigRangeLvl = 0;
     public int HpLvl = 0;
-
     public Vector3 playerpos;
+    public Item item;
+
 }
 
 public class DatabaseManager : MonoBehaviour
 {
-    string path;
     #region singleton
     private static DatabaseManager instance = null;
 
@@ -33,7 +33,9 @@ public class DatabaseManager : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
+        string path = JsonUtility.ToJson(saveData);
     }
+
     public static DatabaseManager Instance
     {
         get
@@ -47,11 +49,13 @@ public class DatabaseManager : MonoBehaviour
     }
     #endregion
 
+    string path;
+
+    public GameObject ContinueButton;
     SaveData saveData = new SaveData();
     // Start is called before the first frame update
     void Start()
     {
-        string path = JsonUtility.ToJson(saveData);
         SaveData save1 = JsonUtility.FromJson<SaveData>(path);
         JsonLoad();
     }
@@ -61,14 +65,12 @@ public class DatabaseManager : MonoBehaviour
         // SaveData saveData = new SaveData();
 
         if (!File.Exists(path)) {
-            GameManager.Instance.Gold = 100;
-            GameManager.Instance.GigDamLvl = 4;
-            GameManager.Instance.GigRangeLvl = 4;
-            GameManager.Instance.HpLvl = 4;
+            ContinueButton.SetActive(false);
             JsonSave();
         } 
         else 
         {
+            ContinueButton.SetActive(true);
             string loadJson = File.ReadAllText(path);
             saveData = JsonUtility.FromJson<SaveData>(loadJson);
 
