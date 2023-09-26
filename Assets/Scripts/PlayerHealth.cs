@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerHealth : LivingEntity
 {
@@ -21,7 +22,8 @@ public class PlayerHealth : LivingEntity
 
     public SpriteRenderer playerSpriteRenderer;
     public PlayerMove playerMove;
-    
+
+    Image hp;
 
     private void Awake()
     {
@@ -29,7 +31,9 @@ public class PlayerHealth : LivingEntity
         playerSpriteRenderer = GetComponent<SpriteRenderer>();
         //컴포넌트 할당: 바다와 육지 판별 위함
         playerMove = GetComponent<PlayerMove>();
+        hp = GetComponent<Image>();
     }
+
 
     protected override void OnEnable()
     {
@@ -38,7 +42,7 @@ public class PlayerHealth : LivingEntity
         // LivingEntity의 OnEnable() 실행 (상태 초기화)
         base.OnEnable();
         //바다, 육지임을 판별하여 피를 깎거나 채운다
-        //StartCoroutine(OceanDamaging(seaDamage, new Vector3(0, 0, 0), new Vector3(0, 0, 0)));
+        
     }
 
     private void Update()
@@ -56,6 +60,7 @@ public class PlayerHealth : LivingEntity
             RestoreHealth(10);
             durationTime = 3;
         }
+        hp.fillAmount = health / maxHp;
 
     }
     
@@ -98,10 +103,10 @@ public class PlayerHealth : LivingEntity
         base.Die();
 
     }
-}
+
 
 //onDeath()
 
-
+}
 
 
