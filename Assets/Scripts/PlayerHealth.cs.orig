@@ -43,7 +43,7 @@ public class PlayerHealth : LivingEntity
 
     private void Update()
     {
-<<<<<<< HEAD
+
         //바다, 육지 확인하여 피를 깎는다
         if (playerMove.onboard != true)
         {
@@ -51,9 +51,9 @@ public class PlayerHealth : LivingEntity
         }
         else
         {
-=======
+
         durationTime -= Time.deltaTime;
->>>>>>> fish/image
+
 
         if (!playerMove.onboard && durationTime <= 0 && !dead)
         {
@@ -92,12 +92,11 @@ public class PlayerHealth : LivingEntity
     {
         StartCoroutine(DamagedEffect());
         // LivingEntity의 OnDamage() 실행(데미지 적용)
-<<<<<<< HEAD
-        base.OnDamage(damage, hiter ,hitPoint, hitDirection);
-=======
 
-        base.OnDamage(damage, hitPoint, hitDirection);
->>>>>>> fish/image
+        base.OnDamage(damage, hiter ,hitPoint, hitDirection);
+
+
+
     }
     
 
