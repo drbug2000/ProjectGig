@@ -1,0 +1,73 @@
+using System;
+using UnityEngine;
+
+<<<<<<< HEAD:Assets/Resource/LivingEntity/LivingEntity.cs
+// ï¿½ï¿½ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+// Health, OnDamage, Die, onDeath ï¿½Ìºï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+//ï¿½ï¿½ï¿½ï¿½ ï¿½Ò½ï¿½ï¿½Úµå¿¡ï¿½ï¿½ Ã¼ï¿½ï¿½ È¸ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+=======
+// »ý¸íÃ¼ °ÔÀÓ ¿ÀºêÁ§Æ®ÀÇ »À´ë
+// Health , OnDamage, Die, restoreHealth, onDeath ÀÌº¥Æ®¸¦ Á¦°ø
+
+>>>>>>> develop:Assets/Scripts/LivingEntity.cs
+
+public class LivingEntity : MonoBehaviour, IDamageable
+{
+    public float startingHealth; // ï¿½ï¿½ï¿½ï¿½ Ã¼ï¿½ï¿½
+    public float health { get; protected set; } // ï¿½ï¿½ï¿½ï¿½ Ã¼ï¿½ï¿½
+    public bool dead { get; protected set; } // ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+    public event Action onDeath; // ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ßµï¿½ï¿½ï¿½ ï¿½Ìºï¿½Æ®
+
+    // ï¿½ï¿½ï¿½ï¿½Ã¼ï¿½ï¿½ È°ï¿½ï¿½È­ï¿½É¶ï¿½ ï¿½ï¿½ï¿½Â¸ï¿½ ï¿½ï¿½ï¿½ï¿½
+    protected virtual void OnEnable()
+    {
+        // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Â·ï¿½ ï¿½ï¿½ï¿½ï¿½
+        dead = false;
+<<<<<<< HEAD:Assets/Resource/LivingEntity/LivingEntity.cs
+        // Ã¼ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Ã¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê±ï¿½È­
+=======
+        // Ã¼·ÂÀ» ½ÃÀÛ Ã¼·ÂÀ¸·Î ÃÊ±âÈ­
+        
+>>>>>>> develop:Assets/Scripts/LivingEntity.cs
+        health = startingHealth;
+    }
+
+    // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ô´ï¿½ ï¿½ï¿½ï¿½
+    public virtual void OnDamage(float damage, GameObject hiter, Vector3 hitPoint, Vector3 hitNormal)
+    {
+        // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Å­ Ã¼ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+        health -= damage;
+        Debug.Log("fishHP script : heart"+ health);
+        // Ã¼ï¿½ï¿½ï¿½ï¿½ 0 ï¿½ï¿½ï¿½ï¿½ && ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ê¾Ò´Ù¸ï¿½ ï¿½ï¿½ï¿½ Ã³ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+        if (health <= 0 && !dead)
+        {
+            Die();
+        }
+    }
+
+    public virtual void RestoreHealth(float newHealth)
+    {
+        if (dead)
+        {
+            // ÀÌ¹Ì »ç¸ÁÇÑ °æ¿ì Ã¼·ÂÀ» È¸º¹ÇÒ ¼ö ¾øÀ½
+            return;
+        }
+
+        // Ã¼·Â Ãß°¡
+        health += newHealth;
+    }
+
+
+    // ï¿½ï¿½ï¿½ Ã³ï¿½ï¿½
+    public virtual void Die()
+    {
+        // onDeath ï¿½Ìºï¿½Æ®ï¿½ï¿½ ï¿½ï¿½Ïµï¿½ ï¿½Þ¼ï¿½ï¿½å°¡ ï¿½Ö´Ù¸ï¿½ ï¿½ï¿½ï¿½ï¿½
+        if (onDeath != null)
+        {
+            onDeath();
+        }
+
+        // ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Â¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+        dead = true;
+    }
+}

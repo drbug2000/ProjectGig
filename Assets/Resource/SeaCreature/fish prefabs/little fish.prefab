@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 5362708597037056092}
   - component: {fileID: 5362708597037056095}
   - component: {fileID: 7246860648973840185}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: little fish
   m_TagString: fish
   m_Icon: {fileID: 0}
@@ -125,12 +125,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 0}
   awaytarget: {fileID: 0}
+  animator: {fileID: 0}
   startHP: 3
   DefaultSize: 0
   RatioSize: 1
-  mass: 0
-  drag: 1
-  gravity: 0
+  mass: 0.1
+  drag: 0.25
+  gravity: 0.01
   speed: 5
   MaxSpeed: 7
   MinSpeed: 3
