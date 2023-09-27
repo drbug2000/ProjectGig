@@ -3,22 +3,26 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.EventSystems;
+using System.IO;
 
 public class Title : MonoBehaviour
 {
     public GameObject SettingWindow;
+    public GameObject ContinueButton;
 
 
-    void Awake()
+    void Start()
     {
         SettingWindow.SetActive(false);
+        if (!File.Exists(DatabaseManager.Instance.path)) {
+            Debug.Log("없어요");
+            ContinueButton.SetActive(false);
+        }
+        else {
+            Debug.Log("있어요");
+            ContinueButton.SetActive(true);
+        }
     }
-
-    void Start() {
-
-    }
-
-    
 
     void Update()
     {
@@ -28,11 +32,6 @@ public class Title : MonoBehaviour
             {
                 SettingWindow.SetActive(false);
             }
-        }
-
-        if (IsPointerOverUI() == true)
-        {
-
         }
     }
 
@@ -65,35 +64,5 @@ public class Title : MonoBehaviour
         }
     }
 
-    private bool IsPointerOverUI()
-
-    {
-
-        PointerEventData pointerEventData = new PointerEventData(EventSystem.current);
-
-        pointerEventData.position = Input.mousePosition;
-
-
-
-        List<RaycastResult> results = new List<RaycastResult>();
-
-        EventSystem.current.RaycastAll(pointerEventData, results);
-
-
-
-        for (int i = 0; i < results.Count; i++)
-
-        {
-
-            if (results[i].gameObject.layer == LayerMask.NameToLayer("ButtonUI"))
-
-                return true;
-
-        }
-
-
-
-        return false;
-
-    }
+       
 }

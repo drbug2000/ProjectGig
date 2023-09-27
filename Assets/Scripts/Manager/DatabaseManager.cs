@@ -33,7 +33,7 @@ public class DatabaseManager : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
-        string path = JsonUtility.ToJson(saveData);
+        path = Path.Combine(Application.dataPath + "/Data/database.json");
     }
 
     public static DatabaseManager Instance
@@ -49,15 +49,13 @@ public class DatabaseManager : MonoBehaviour
     }
     #endregion
 
-    string path;
+    public string path;
+    private string savefilepathpath;
 
-    public GameObject ContinueButton;
     SaveData saveData = new SaveData();
     // Start is called before the first frame update
     void Start()
     {
-        SaveData save1 = JsonUtility.FromJson<SaveData>(path);
-        JsonLoad();
     }
 
     [ContextMenu("From Json Data")]
@@ -65,12 +63,10 @@ public class DatabaseManager : MonoBehaviour
         // SaveData saveData = new SaveData();
 
         if (!File.Exists(path)) {
-            ContinueButton.SetActive(false);
             JsonSave();
         } 
         else 
         {
-            ContinueButton.SetActive(true);
             string loadJson = File.ReadAllText(path);
             saveData = JsonUtility.FromJson<SaveData>(loadJson);
 
@@ -92,7 +88,6 @@ public class DatabaseManager : MonoBehaviour
         saveData.GigRangeLvl = GameManager.Instance.GigRangeLvl;
         saveData.HpLvl = GameManager.Instance.HpLvl;
         playerpos();
-        Debug.Log(saveData.playerpos);
 
         string json = JsonUtility.ToJson(saveData, true);
         path = Path.Combine(Application.dataPath + "/Data/", "database.json");

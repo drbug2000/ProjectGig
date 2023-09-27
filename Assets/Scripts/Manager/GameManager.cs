@@ -44,7 +44,6 @@ public class GameManager : MonoBehaviour
     public int GigDamLvl = 0;
     public int GigRangeLvl = 0;
     public int HpLvl = 0;
-    // Queue<PauseGameCanvas> poolingObjectQueue = new Queue<PauseGameCanvas>();
     
 
     public AudioSource _audioSource;
@@ -53,7 +52,6 @@ public class GameManager : MonoBehaviour
 
     public FishSpawn fishspawn ; //외부에서 접근 가능한 변수 추가
 
-    public GameObject PauseGameWindowCanvas;
 
 
 
@@ -62,7 +60,6 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        PauseGameWindowCanvas.SetActive(false);
         // isGameover = false;
 
         //LivingEntity event subscribe
@@ -73,18 +70,8 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape)) {
-            if (PauseGameWindowCanvas.activeSelf == true) {
-                ReactiveGame();
-                PauseGameWindowCanvas.SetActive(false);
-                Debug.Log(PauseGameWindowCanvas.activeSelf);
-            }
-            else {
-                PauseGame();
-                PauseGameWindowCanvas.SetActive(true);
-                Debug.Log(PauseGameWindowCanvas.activeSelf);
-            }
-        }
+
+
     }
 
     /*
