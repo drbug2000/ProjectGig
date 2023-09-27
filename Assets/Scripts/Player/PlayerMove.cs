@@ -48,7 +48,7 @@ public class PlayerMove : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        isDead = playerHealth.dead;
+        // isDead = playerHealth.dead;
         // 사용자 입력을 감지하고 점프하는 처리
         if (isDead || Sturn)
         {

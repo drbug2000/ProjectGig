@@ -53,10 +53,6 @@ public class DatabaseManager : MonoBehaviour
     private string savefilepathpath;
 
     SaveData saveData = new SaveData();
-    // Start is called before the first frame update
-    void Start()
-    {
-    }
 
     [ContextMenu("From Json Data")]
     public void JsonLoad() {
@@ -90,11 +86,22 @@ public class DatabaseManager : MonoBehaviour
         playerpos();
 
         string json = JsonUtility.ToJson(saveData, true);
-        path = Path.Combine(Application.dataPath + "/Data/", "database.json");
         File.WriteAllText(path, json);
+
+        StartCoroutines(Loading());
     }
 
     public void playerpos() {
         saveData.playerpos = player.gameObject.transform.position;
+    }
+
+    IEnumerator Loading() {
+        yield return null;
+        if (File.Exists(path)) {
+            StopAllCoroutines();
+        }
+        else {
+            Loading();
+        }
     }
 }
