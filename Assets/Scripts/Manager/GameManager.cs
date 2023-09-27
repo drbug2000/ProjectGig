@@ -51,11 +51,6 @@ public class GameManager : MonoBehaviour
     public AudioClip _inGameClip;
 
     public FishSpawn fishspawn ; //외부에서 접근 가능한 변수 추가
-
-
-
-
-
     
     // Start is called before the first frame update
     void Start()
@@ -125,15 +120,5 @@ public class GameManager : MonoBehaviour
         }
 
         StartCoroutine(RestartGame());
-    }
-
-    public void PauseGame()
-    {
-        Time.timeScale = 0;
-    }
-
-    public void ReactiveGame()
-    {
-        Time.timeScale = 1;
     }
 }
