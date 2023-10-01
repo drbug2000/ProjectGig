@@ -18,7 +18,12 @@ public class NewShark : FishClass
 
     public FixedJoint2D joint;
 
-    
+    public float spitforce;
+    public float shakeForce;
+    public float shakeMinSpeed;
+
+    public int shakeDamage;
+
 
     public override void Awake()
     {

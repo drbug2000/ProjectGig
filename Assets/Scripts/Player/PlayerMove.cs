@@ -216,7 +216,7 @@ public class PlayerMove : MonoBehaviour
         Debug.Log(spitForce);
         playerRigidbody.mass = defaultmass;
         playerRigidbody.drag = defaultdrag;
-        playerRigidbody.AddForce(spitForce*2);
+        playerRigidbody.AddForce(spitForce);
         Debug.Log("default mass : " + defaultmass + "\n default drag : " + defaultdrag);
         Debug.Log("current mass : " + playerRigidbody.mass + "\n current drag : " + playerRigidbody.drag);
         Sturn = false;

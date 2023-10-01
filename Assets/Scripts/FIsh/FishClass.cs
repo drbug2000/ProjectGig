@@ -15,9 +15,12 @@ public class FishClass : MonoBehaviour
     public Animator animator;
     public CapsuleCollider2D fishcollider;
 
+    public Item item;
+
 
     //기본 상태
     public FSRoam roam;
+    public FSGrab grab;
     public FSDEAD dead;
     public FSSTURN sturn;
     //FScatched;
@@ -89,6 +92,7 @@ public class FishClass : MonoBehaviour
             spawner = GameObject.Find("spawner").GetComponent<FishSpawn>();
         }
         roam = new FSRoam();
+        grab = new FSGrab();
         dead = new FSDEAD();
         sturn = new FSSTURN();
 
@@ -105,6 +109,7 @@ public class FishClass : MonoBehaviour
     public virtual void OnEnable()
     {
         DefaultState();
+        
     }
 
 
@@ -134,10 +139,23 @@ public class FishClass : MonoBehaviour
 
     public void OnDeath()
     {
-        SetState(dead);
+        //이전 상태와 상관없이 공격을 받음 && 체력 0 이면 작살에 끌려가기
+        SetState(grab);
+        /*
+        if (ReferenceEquals(currentState, dead))
+        {
+            SetState();
+        }
+        else
+        {
+            SetState(dead);
+        }
+        */
+
     }
-    public void OnCaught()
+    public void OnCaught(Inventory Inven)
     {
+        Inven.AcquireItem(item);
         spawner.fishOnCaught(gameObject);
         gameObject.SetActive(false);
     }
@@ -152,22 +170,25 @@ public class FishClass : MonoBehaviour
     public virtual void OnCollisionEnter2D(Collision2D collision)
     {
         //Debug.Log("fish : touch something");
-        if (collision.gameObject.tag == "Player" && ReferenceEquals(currentState, dead))
+        if (collision.gameObject.tag == "Player" && ReferenceEquals(currentState, grab))
         {
-            /*
-            //gunscript.Hit();
-            if (ReferenceEquals(currentState, dead)){
-                Inventory playerInventory = collision.gameObject.GetComponent<playerInventory>();
-                //if (playerInventory.isinventoryfull()) {
-                    OnCaught(playerInventory);
-                //}
+           
+      
+            Inventory playerInventory = collision.gameObject.GetComponent<Inventory>();
+            if (!playerInventory.isinventoryfull) {
+                OnCaught(playerInventory);
+            }else{
+                //인벤토리 가득 찼을 시 떨어져 나감
+                fishfin.accelFin(4*(new Vector2(Random.Range(-2,2),2)));
+                SetState(dead);
             }
-            */
-            //Debug.Log("fish : Player touch");
             
+            //Debug.Log("fish : Player touch");
+
             //AttTarget = collision.gameObject.GetComponent<IDamageable>();
             //임시 변수
             //AttTarget.OnDamage(3, gameObject, Vector2.zero, Vector2.zero);
         }
     }
+    
 }
