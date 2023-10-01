@@ -88,7 +88,7 @@ public class DatabaseManager : MonoBehaviour
         string json = JsonUtility.ToJson(saveData, true);
         File.WriteAllText(path, json);
 
-        StartCoroutines(Loading());
+        StartCoroutine(Loading());
     }
 
     public void playerpos() {
@@ -97,7 +97,9 @@ public class DatabaseManager : MonoBehaviour
 
     IEnumerator Loading() {
         yield return null;
+        Time.timeScale = 0f;
         if (File.Exists(path)) {
+            Time.timeScale = 1f;
             StopAllCoroutines();
         }
         else {
