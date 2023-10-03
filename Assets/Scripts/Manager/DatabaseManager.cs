@@ -51,6 +51,7 @@ public class DatabaseManager : MonoBehaviour
 
     public string path;
     private string savefilepathpath;
+    private Animator animator;
 
     SaveData saveData = new SaveData();
 

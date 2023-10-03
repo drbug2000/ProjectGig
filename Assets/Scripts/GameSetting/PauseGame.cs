@@ -2,13 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-
+using System.IO;
 public class PauseGame : MonoBehaviour
 {
-    // 향후 다른 설정 구현
+    // 향후 다른 설정들 구현 ex) 소리, 언어, 해상도 기타 등등
+    // Loading Window를 위한 gameobject
+    public GameObject LoadingWindow;
+    public Animator Loadinganimator;
 
     void Start() {
         gameObject.SetActive(false);
+        LoadingWindow.SetActive(false);
     }
 
     void OnEnable() {
@@ -21,6 +25,8 @@ public class PauseGame : MonoBehaviour
 
     public void SaveButtonClick() {
         DatabaseManager.Instance.JsonSave();
+        LoadingWindow.SetActive(true);
+        
     }
 
     public void QuitButtonClick() {
