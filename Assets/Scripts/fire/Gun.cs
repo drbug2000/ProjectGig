@@ -69,6 +69,8 @@ public class Gun : MonoBehaviour
         gigScript = gig.GetComponent<Gig>();
         gigtr = gig.GetComponent<Transform>();
         gigrb = gig.GetComponent<Rigidbody2D>();
+        GameManager.Instance.shopManager.DamageUpgrade += DamageUP;
+        GameManager.Instance.shopManager.RangeUpgrade += RangeUP;
     }
 
     // Update is called once per frame
@@ -227,6 +229,7 @@ public class Gun : MonoBehaviour
     {
         gigDamage += gigDamageUpGap;
         gigScript.updateDamage();
+
     }
 
     public void RangeUP()

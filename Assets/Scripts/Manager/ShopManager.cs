@@ -2,11 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System;
 using TMPro;
 
 public class ShopManager : MonoBehaviour
 {
     public AssetManager assetManager;
+    public Action OxygenUpgrade;
+    public Action DamageUpgrade;
+    public Action RangeUpgrade;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -22,6 +27,7 @@ public class ShopManager : MonoBehaviour
         if (GameManager.Instance.Gold >= 1000){
             assetManager.Buy();
             GameManager.Instance.HpLvl++;
+            OxygenUpgrade();
             Debug.Log("OxygenLvl:"+ GameManager.Instance.HpLvl);
         }
         else{
@@ -33,6 +39,7 @@ public class ShopManager : MonoBehaviour
         if (GameManager.Instance.Gold >= 1000){
             assetManager.Buy();
             GameManager.Instance.GigDamLvl++;
+            DamageUpgrade();
             Debug.Log("DamageLvl:"+ GameManager.Instance.GigDamLvl);
         }
         else{
@@ -44,6 +51,7 @@ public class ShopManager : MonoBehaviour
         if (GameManager.Instance.Gold >= 1000){
             assetManager.Buy();
             GameManager.Instance.GigRangeLvl++;
+            RangeUpgrade();
             Debug.Log("RangeLvl:"+ GameManager.Instance.GigRangeLvl);
         }
         else{
