@@ -22,4 +22,6 @@ public class underthesea : MonoBehaviour
             theplayermove.onboard = true;
         }
     }
+
+    //OnEnter
 }

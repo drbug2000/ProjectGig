@@ -17,7 +17,6 @@ GameObject:
   - component: {fileID: 4249893747086449108}
   - component: {fileID: 3130247305762812312}
   - component: {fileID: 6465844373232659305}
-  - component: {fileID: 2777538371761881460}
   m_Layer: 6
   m_Name: Shark
   m_TagString: fish
@@ -152,6 +151,7 @@ MonoBehaviour:
   awaytarget: {fileID: 0}
   animator: {fileID: 0}
   fishcollider: {fileID: 0}
+  item: {fileID: 11400000, guid: 65e144ebc43666d4f89e74b84715ff49, type: 2}
   startHP: 20
   DefaultSize: 0
   RatioSize: 1
@@ -168,17 +168,21 @@ MonoBehaviour:
   SpotRangeBig: 10
   SpotRangeSmall: 4
   RoamWaitTime: 2
-  detectArea: 6
+  detectArea: 12
   detectTime: 1
   awaytime: 0
   awaySpeed: 0
   sturntime: 0
   mouthPosAdder: {x: 0, y: 0}
-  aggroRange: 6
+  aggroRange: 15
   attackTime: 2
   Bite: 0
-  shakeTime: 10
+  shakeTime: 5
   joint: {fileID: 0}
+  spitforce: 100
+  shakeForce: 11
+  shakeMinSpeed: 13
+  shakeDamage: 10
 --- !u!50 &2633367817043942541
 Rigidbody2D:
   serializedVersion: 4
@@ -248,17 +252,3 @@ FixedJoint2D:
   m_ConnectedAnchor: {x: -4, y: -9}
   m_DampingRatio: 0
   m_Frequency: 0
---- !u!114 &2777538371761881460
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2633367817043942535}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e244c6167fcba4700b44882a4e5a21e8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  item: {fileID: 11400000, guid: 65e144ebc43666d4f89e74b84715ff49, type: 2}
-  theinventory: {fileID: 0}

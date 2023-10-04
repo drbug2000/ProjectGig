@@ -85,7 +85,7 @@ public class Gig : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log("gig : Hit somthing(trigger)"+ other);
+        //Debug.Log("gig : Hit somthing(trigger)"+ other);
         if (other.gameObject.tag == "fish" && isfire)
         {
             gunscript.Hit();
