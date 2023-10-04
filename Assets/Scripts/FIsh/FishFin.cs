@@ -107,7 +107,7 @@ public class FishFin  : MonoBehaviour
         {
             this.UnderTheSea = false;
         }
-
+        SetDeadState(false);
     }
 
     // Update is called once per frame
@@ -128,23 +128,24 @@ public class FishFin  : MonoBehaviour
         if (IsLeft())
         {
             Renderer.flipX = false;
+        }else{
+            if (!IsStop(velocity.x))
+            {
+                Renderer.flipX = true;
+            }
         }
-        else
-        {
-            Renderer.flipX = true;
-        }
-
-
-
     }
     public virtual void LateUpdate()
     {
-        
 
+        if (sturn) {
+            fishAimator.SetFloat("fishSpeed", 0f);
+            return; 
+        }
         if (aniControl){
             fishAimator.SetFloat("fishSpeed", velocityM * 0.5f + 0.5f);
         }
-        if (sturn){return;}
+        
 
         //최대속력 한계 설정
         if (velocity.magnitude > fish.MaxSpeed)
@@ -279,10 +280,20 @@ public class FishFin  : MonoBehaviour
     
     public bool IsLeft(Vector2 velocity)
     {
-        
         return velocity.x < 0;
     }
 
+
+    public bool IsStop(float velocityM)
+    {
+        return velocityM == 0;
+    }
+    /*
+    public void SetLeft(bool left)
+    {
+
+    }
+    */
     //입의 좌표를 출력하는 함수
     //way parameter = -1 설정시 현재 이동 방향과 반대로 출력
     public Vector2 WhereMouth(int way = 1)
@@ -299,7 +310,15 @@ public class FishFin  : MonoBehaviour
         Debug.Log("현재 측정 속도 방향" + velocity.x);
 
         //if (way == -1) { mouth.x *= -1; }
+        if(way == 0) { return mouth; }
         return currentPos + mouth;
+
+    }
+
+    public void SetDeadState(bool ISDEAD)
+    {
+        //죽은 상태. 뒤집어지고 충돌 무시
+        Renderer.flipY = ISDEAD;
 
     }
 }

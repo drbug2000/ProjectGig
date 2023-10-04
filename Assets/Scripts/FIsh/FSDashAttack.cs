@@ -25,6 +25,7 @@ public class FSDashAttack : FishState
     
     private float attackTime;
     private float shakeTime;
+    
 
     private int beforeShakeWay=1;
 
@@ -179,6 +180,8 @@ public class FSDashAttack : FishState
 
         targetRD = target.GetComponent<Rigidbody2D>();
         playermove = fish.target.GetComponent<PlayerMove>();
+
+        target.GetComponent<IDamageable>().OnDamage(shark.shakeDamage, shark.gameObject, Vector2.zero, Vector2.zero);
     }
 
     //해당 state동작중 작동하는 코드를 작성(매 프레임 마다)
@@ -279,21 +282,21 @@ public class FSDashAttack : FishState
         shark.joint.connectedBody = null;
         shark.joint.enabled = false;
         shark.Bite = false;
-        playermove.SpitOut(fishfin.WhereMouth() - fishfin.currentPos);
+        playermove.SpitOut(shark.spitforce*(fishfin.WhereMouth() - fishfin.currentPos));
         
         
     }
 
     public void Shake()
     {
-        int shakePer = 90;//방형전환 확률
+        int shakePer = 95;//방형전환 확률
         Vector2 dashdir;
         float shakespeed;
-        if (fishfin.velocityM < 9)
+        if (fishfin.velocityM < shark.shakeMinSpeed)
         {
             Debug.Log("shake");
             dashdir = new Vector2(Random.Range(6, 8), Random.Range(-3, 3));
-            shakespeed = Random.Range(10, fish.MaxSpeed)*10;
+            shakespeed = Random.Range(10, fish.MaxSpeed)* shark.shakeForce;
             if (Percent(shakePer))
             {
                 beforeShakeWay *= -1;
@@ -302,10 +305,15 @@ public class FSDashAttack : FishState
             
             //fishfin.StopFish();
             fishfin.SetVelocity(dashdir.normalized * shakespeed * beforeShakeWay);
-            
+            if (fishfin.UnderTheSea)
+            {
+                target.GetComponent<IDamageable>().OnDamage(shark.shakeDamage, shark.gameObject, Vector2.zero, Vector2.zero);
+            }
+            /*
             Debug.Log("shake speed " + shakespeed);
             Debug.Log("fish speed " + fishfin.velocityM);
             Debug.Log("shake Dir " + dashdir);
+            */
         }
         if (fishfin.IsTurn)
         {
