@@ -58,12 +58,16 @@ public class Inventory : MonoBehaviour
 
     public void AcquireItem(Item _item)
     {
+        Debug.Log("Inventory  Get itme: " + _item);
         for (int i = 0; i < slots.Length; i++)
         {
+            /*
             if (i == slots.Length - 1 && slots[i].item !) {
                 isinventoryfull = true;
                 return;
             }
+            */
+            Debug.Log("1");
             if (slots[i].item != null)
             {
                 if (slots[i].item.itemName == _item.itemName)
