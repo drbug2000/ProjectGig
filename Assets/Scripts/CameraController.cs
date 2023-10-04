@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
- public PlayerController thePC;
+    public Vector3 playerpos;
     [SerializeField]
-    Transform playerTransform;
+    Transform gunTransform;
     [SerializeField]
     Vector3 cameraPosition;
 
@@ -20,10 +20,13 @@ public class CameraController : MonoBehaviour
     float height;
     float width;
 
+    private float distancex;
+    private float distancey;
+    private float distanceplayerandgig;
+
     void Start()
     {
-        playerTransform = GameObject.Find("Player").GetComponent<Transform>();
-
+        gunTransform = GameObject.Find("Gig").GetComponent<Transform>();
         height = Camera.main.orthographicSize;
         width = height * Screen.width / Screen.height;
     }
@@ -31,11 +34,12 @@ public class CameraController : MonoBehaviour
     void FixedUpdate()
     {
         LimitCameraArea();
+        MoveCameraSize();
     }
 
     void LimitCameraArea()
     {
-        transform.position = Vector3.Lerp(transform.position, playerTransform.position + cameraPosition, Time.deltaTime * cameraMoveSpeed);
+        transform.position = Vector3.Lerp(transform.position, gunTransform.position + cameraPosition, Time.deltaTime * cameraMoveSpeed);
         float lx = mapSize.x - width;
         float clampX = Mathf.Clamp(transform.position.x, -lx + center.x, lx + center.x);
 
@@ -43,6 +47,16 @@ public class CameraController : MonoBehaviour
         float clampY = Mathf.Clamp(transform.position.y, -ly + center.y, ly + center.y);
 
         transform.position = new Vector3(clampX, clampY, -10f);
+    }
+
+    void MoveCameraSize() {
+        distancex = gunTransform.position.x - playerpos.x;
+        distancey = gunTransform.position.y - playerpos.y;
+        distancex = Mathf.Pow(distancex, 2);
+        distancey = Mathf.Pow(distancey, 2);
+        distanceplayerandgig = distancex + distancey;
+        distanceplayerandgig = Mathf.Pow(distanceplayerandgig, 1/2);
+        this.camera.Size = distanceplayerandgig;
     }
 
     private void OnDrawGizmos()
