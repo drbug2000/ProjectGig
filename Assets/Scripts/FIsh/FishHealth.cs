@@ -45,7 +45,13 @@ public class FishHealth : LivingEntity
             //붉은 색으로 1초간 변환하는 코루틴 실행
             StartCoroutine(DamageEffect());
         }
-
+        else
+        {
+            //이미 죽어있는 물고기를 공격했을 때
+            //처음 물고기를 죽였을 때와의 차이는 fishclass에서 처리
+            Die();
+        }
+        
         // LivingEntity의 OnDamage() 실행(데미지 적용)
         base.OnDamage(damage, hiter,hitPoint, hitDirection);
 
