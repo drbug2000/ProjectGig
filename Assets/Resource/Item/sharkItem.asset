@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: sharkItem
   m_EditorClassIdentifier: 
   itemName: shark
-  itemImage: {fileID: 0}
-  Cost: 0
+  itemImage: {fileID: -357874725, guid: fa4434df0f772c7478b227a728978b85, type: 3}
+  Cost: 100
