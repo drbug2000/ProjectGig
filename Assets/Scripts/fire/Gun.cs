@@ -19,6 +19,9 @@ public class Gun : MonoBehaviour
     public float hitTime;
 
     public float gigDamage;
+    public float gigDamageUpGap;
+
+    public float gigRangeUpGap;
 
     
     public float StateTimer;
@@ -214,8 +217,26 @@ public class Gun : MonoBehaviour
         gigrb.isKinematic = true;
         gigScript.outfire();
 
+        
+
 
     }
 
+
+    public void DamageUP()
+    {
+        gigDamage += gigDamageUpGap;
+        gigScript.updateDamage();
+    }
+
+    public void RangeUP()
+    {
+        // 0.4
+        float SpeedPercent = 1.1f;
+        
+
+        bulletSpeed *= SpeedPercent;
+        fireTime *= gigRangeUpGap / SpeedPercent;
+    }
 
 }
