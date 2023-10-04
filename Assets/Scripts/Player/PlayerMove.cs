@@ -28,10 +28,15 @@ public class PlayerMove : MonoBehaviour
     public GameObject inventoryparents;
 
     private bool Sturn = false;
+    // 저장된 위치로 옮기기 위한 변수입니다.
+    private Vector3 playerpos;
     
     // Start is called before the first frame update
     void Start()
     {
+        if (DatabaseManager.Instance.path != null) {
+            playerpos = DatabaseManager.Instance.toplayerpos;
+        }
         // 초기화
         playerInput = GetComponent<PlayerController>();
         playerRigidbody = GetComponent<Rigidbody2D>();

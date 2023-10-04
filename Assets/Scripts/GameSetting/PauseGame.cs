@@ -7,11 +7,12 @@ public class PauseGame : MonoBehaviour
 {
     // 향후 다른 설정들 구현 ex) 소리, 언어, 해상도 기타 등등
     // Loading Window를 위한 gameobject
+    public GameObject PauseWindow;
     public GameObject LoadingWindow;
     public Animator Loadinganimator;
 
     void Start() {
-        gameObject.SetActive(false);
+        PauseWindow.SetActive(false);
         LoadingWindow.SetActive(false);
     }
 

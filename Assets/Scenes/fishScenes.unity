@@ -593,7 +593,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 572128045}
-  - component: {fileID: 572128044}
   m_Layer: 0
   m_Name: InactiveGame
   m_TagString: Untagged
@@ -601,20 +600,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &572128044
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 572128043}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 224c57a2842d1418d91e8980f069e8e0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  LoadingWindow: {fileID: 0}
-  Loadinganimator: {fileID: 0}
 --- !u!4 &572128045
 Transform:
   m_ObjectHideFlags: 0
@@ -1166,6 +1151,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 6178303647020321859}
   path: 
+  toplayerpos: {x: 0, y: 0, z: 0}
 --- !u!4 &1123707372
 Transform:
   m_ObjectHideFlags: 0
@@ -1580,7 +1566,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 572128044}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: PauseGame, Assembly-CSharp
         m_MethodName: SaveButtonClick
         m_Mode: 1
@@ -1713,7 +1699,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 572128044}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: PauseGame, Assembly-CSharp
         m_MethodName: QuitButtonClick
         m_Mode: 1
@@ -1852,6 +1838,7 @@ GameObject:
   - component: {fileID: 1994714770814373891}
   - component: {fileID: 1994714770814373890}
   - component: {fileID: 1994714770814373894}
+  - component: {fileID: 1994714770814373895}
   m_Layer: 5
   m_Name: PauseGameCanvas
   m_TagString: Untagged
@@ -1953,7 +1940,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65625bb1dee66438e83943862a892ec8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PauseGameWindow: {fileID: 1817460939}
+  PauseGameWindow: {fileID: 572128043}
+--- !u!114 &1994714770814373895
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1994714770814373889}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 224c57a2842d1418d91e8980f069e8e0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PauseWindow: {fileID: 572128043}
+  LoadingWindow: {fileID: 1817460939}
+  Loadinganimator: {fileID: 790420969}
 --- !u!1001 &3408001758180859299
 PrefabInstance:
   m_ObjectHideFlags: 0

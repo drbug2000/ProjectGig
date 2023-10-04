@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
+using UnityEditor.PackageManager;
 
 [System.Serializable]
 public class SaveData {
@@ -52,6 +53,7 @@ public class DatabaseManager : MonoBehaviour
     public string path;
     private string savefilepathpath;
     private Animator animator;
+    public Vector3 toplayerpos;
 
     SaveData saveData = new SaveData();
 
@@ -72,6 +74,10 @@ public class DatabaseManager : MonoBehaviour
                 GameManager.Instance.GigDamLvl = saveData.GigDamLvl;
                 GameManager.Instance.GigRangeLvl = saveData.GigRangeLvl;
                 GameManager.Instance.HpLvl = saveData.HpLvl;
+                toplayerpos = saveData.playerpos;
+            }
+            else {
+                Debug.Log("ERROR:NOSAVEDATAEXIST");
             }
         }
     }
