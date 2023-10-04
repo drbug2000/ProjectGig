@@ -7,17 +7,7 @@ using TMPro;
 public class ShopManager : MonoBehaviour
 {
     public AssetManager assetManager;
-    // Start is called before the first frame update
-    void Start()
-    {
-        //assetManager = GetComponent<AssetManager>();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    
     public void OxygenLvlUp(){
         if (GameManager.Instance.Gold >= 1000){
             assetManager.Buy();
