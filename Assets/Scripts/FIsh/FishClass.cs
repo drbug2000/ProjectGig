@@ -175,6 +175,7 @@ public class FishClass : MonoBehaviour
            
       
             Inventory playerInventory = collision.gameObject.GetComponent<Inventory>();
+            Debug.Log("playerInventory : " + playerInventory);
             if (!playerInventory.isinventoryfull) {
                 OnCaught(playerInventory);
             }else{
