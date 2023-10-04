@@ -35,10 +35,15 @@ public class PlayerMove : MonoBehaviour
 
 
     private bool Sturn = false;
+    // 저장된 위치로 옮기기 위한 변수입니다.
+    private Vector3 playerpos;
     
     // Start is called before the first frame update
     void Start()
     {
+        if (DatabaseManager.Instance.path != null) {
+            playerpos = DatabaseManager.Instance.toplayerpos;
+        }
         // 초기화
         playerInput = GetComponent<PlayerController>();
         playerRigidbody = GetComponent<Rigidbody2D>();
@@ -55,7 +60,7 @@ public class PlayerMove : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        isDead = playerHealth.dead;
+        // isDead = playerHealth.dead;
         // 사용자 입력을 감지하고 점프하는 처리
         if (isDead || Sturn)
         {
