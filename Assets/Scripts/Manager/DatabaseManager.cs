@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
 using UnityEditor.PackageManager;
+using Unity.IO.LowLevel.Unsafe;
 
 [System.Serializable]
 public class SaveData {
@@ -83,8 +84,7 @@ public class DatabaseManager : MonoBehaviour
     }
     [ContextMenu("To Json Data")] // 컴포넌트 메뉴에 아래 함수를 호출하는 To Json Data 라는 명령어가 생성됨
     public void JsonSave() {
-        
-        // SaveData saveData = new SaveData();
+        Time.timeScale = 0f;
 
         saveData.Gold = GameManager.Instance.Gold;
         saveData.GigDamLvl = GameManager.Instance.GigDamLvl;
@@ -94,8 +94,8 @@ public class DatabaseManager : MonoBehaviour
 
         string json = JsonUtility.ToJson(saveData, true);
         File.WriteAllText(path, json);
-
         StartCoroutine(Loading());
+        Time.timeScale = 1f;
     }
 
     public void playerpos() {
@@ -104,13 +104,13 @@ public class DatabaseManager : MonoBehaviour
 
     IEnumerator Loading() {
         yield return null;
-        Time.timeScale = 0f;
+        Debug.Log("enter");
         if (File.Exists(path)) {
             Time.timeScale = 1f;
             StopAllCoroutines();
         }
         else {
-            Loading();
+            StartCoroutine(Loading());
         }
     }
 }

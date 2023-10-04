@@ -599,7 +599,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &572128045
 Transform:
   m_ObjectHideFlags: 0
@@ -1566,7 +1566,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1994714770814373895}
         m_TargetAssemblyTypeName: PauseGame, Assembly-CSharp
         m_MethodName: SaveButtonClick
         m_Mode: 1
@@ -1699,7 +1699,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1994714770814373895}
         m_TargetAssemblyTypeName: PauseGame, Assembly-CSharp
         m_MethodName: QuitButtonClick
         m_Mode: 1
@@ -1953,9 +1953,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 224c57a2842d1418d91e8980f069e8e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PauseWindow: {fileID: 572128043}
   LoadingWindow: {fileID: 1817460939}
-  Loadinganimator: {fileID: 790420969}
 --- !u!1001 &3408001758180859299
 PrefabInstance:
   m_ObjectHideFlags: 0
