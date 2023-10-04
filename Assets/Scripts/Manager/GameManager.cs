@@ -44,7 +44,6 @@ public class GameManager : MonoBehaviour
     public int GigDamLvl = 0;
     public int GigRangeLvl = 0;
     public int HpLvl = 0;
-    // Queue<PauseGameCanvas> poolingObjectQueue = new Queue<PauseGameCanvas>();
     
 
     public AudioSource _audioSource;
@@ -52,12 +51,6 @@ public class GameManager : MonoBehaviour
     public AudioClip _inGameClip;
 
     public FishSpawn fishspawn ; //외부에서 접근 가능한 변수 추가
-
-    public GameObject PauseGameWindowCanvas;
-
-
-
-
     
     // Start is called before the first frame update
     void Start()
@@ -73,18 +66,8 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape)) {
-            if (PauseGameWindowCanvas.activeSelf == true) {
-                ReactiveGame();
-                PauseGameWindowCanvas.SetActive(false);
-                Debug.Log(PauseGameWindowCanvas.activeSelf);
-            }
-            else {
-                PauseGame();
-                PauseGameWindowCanvas.SetActive(true);
-                Debug.Log(PauseGameWindowCanvas.activeSelf);
-            }
-        }
+
+
     }
 
     /*
@@ -138,15 +121,5 @@ public class GameManager : MonoBehaviour
         }
 
         StartCoroutine(RestartGame());
-    }
-
-    public void PauseGame()
-    {
-        Time.timeScale = 0;
-    }
-
-    public void ReactiveGame()
-    {
-        Time.timeScale = 1;
     }
 }

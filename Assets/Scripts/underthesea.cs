@@ -9,7 +9,7 @@ public class underthesea : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.gameObject.name == "Player")
+        if (collision.gameObject.tag == "Player")
         {
             theplayermove.onboard = false;
         }
@@ -17,9 +17,11 @@ public class underthesea : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.gameObject.name == "Player")
+        if (collision.gameObject.tag == "Player")
         {
             theplayermove.onboard = true;
         }
     }
+
+    //OnEnter
 }

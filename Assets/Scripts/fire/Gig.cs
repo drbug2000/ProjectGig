@@ -16,14 +16,16 @@ public class Gig : MonoBehaviour
     private float timer;
     public bool isfire=false;
 
+    private float gigdamage;
+
     IDamageable AttTarget;
 
     // Start is called before the first frame update
     void Start()
     {
         LR = GetComponent<LineRenderer>();
-        LR.startWidth = 0.3f;
-        LR.endWidth = 0.3f;
+        LR.startWidth = 0.1f;
+        LR.endWidth = 0.1f;
 
         //rb = GetComponent<Rigidbody2D>();
         State = gigState.ready;
@@ -32,6 +34,8 @@ public class Gig : MonoBehaviour
         //Destroy(gameObject, 3f);
         //transform.position = new Vector3(-0.7f, 2,0);
         //Timer = -1f;
+
+        gigdamage = gunscript.gigDamage;
         
     }
 
@@ -79,20 +83,20 @@ public class Gig : MonoBehaviour
             Debug.Log("gig : Hit fish");
             AttTarget = collision.gameObject.GetComponent<IDamageable>();
             //임시 변수
-            AttTarget.OnDamage(3, gameObject, Vector2.zero, Vector2.zero);
+            AttTarget.OnDamage(gigdamage, gameObject, Vector2.zero, Vector2.zero);
         }
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log("gig : Hit somthing(trigger)"+ other);
+        //Debug.Log("gig : Hit somthing(trigger)"+ other);
         if (other.gameObject.tag == "fish" && isfire)
         {
             gunscript.Hit();
             Debug.Log("gig : Hit fish(trigger)");
             AttTarget = other.gameObject.GetComponent<IDamageable>();
             //임시 변수
-            AttTarget.OnDamage(3, gameObject, Vector2.zero, Vector2.zero);
+            AttTarget.OnDamage(gigdamage, gameObject, Vector2.zero, Vector2.zero);
         }
 
     }

@@ -133,6 +133,7 @@ MonoBehaviour:
   SpotDistance: 0
   SpotDir: {x: 0, y: 0}
   Speed: 10
+  IsTurn: 0
 --- !u!114 &3408001756398335429
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -148,6 +149,8 @@ MonoBehaviour:
   target: {fileID: 0}
   awaytarget: {fileID: 0}
   animator: {fileID: 0}
+  fishcollider: {fileID: 0}
+  item: {fileID: 11400000, guid: cd0da5a907105ef4fba88e0ac308722f, type: 2}
   startHP: 10
   DefaultSize: 0
   RatioSize: 1
@@ -169,6 +172,7 @@ MonoBehaviour:
   awaytime: 3
   awaySpeed: 6
   sturntime: 0
+  mouthPosAdder: {x: 0, y: 0}
 --- !u!95 &3408001756398335432
 Animator:
   serializedVersion: 5
@@ -203,6 +207,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startingHealth: 7
+  maxHp: 0
 --- !u!70 &7782358266526826503
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
