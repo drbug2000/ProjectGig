@@ -6,7 +6,8 @@ public class PlayerMove : MonoBehaviour
 {
     // public AudioClip deathClip; // 사망시 재생할 오디오 클립
     public float jumpForce = 700f; // 점프 힘
-    public float swimForce = 350f; // 헤엄 힘
+    public float swimForce = 3f; // 헤엄 힘
+    public int DashForce;//대쉬 힘
     public float Speed = 5f;
     protected int jumpCount = 0; // 누적 점프 횟수
    
@@ -27,11 +28,22 @@ public class PlayerMove : MonoBehaviour
 
     public GameObject inventoryparents;
 
+
+    public float DashCoolTime;
+    public float DashMoveCool;
+    public float DashTimer;
+
+
     private bool Sturn = false;
+    // 저장된 위치로 옮기기 위한 변수입니다.
+    private Vector3 playerpos;
     
     // Start is called before the first frame update
     void Start()
     {
+        if (DatabaseManager.Instance.path != null) {
+            playerpos = DatabaseManager.Instance.toplayerpos;
+        }
         // 초기화
         playerInput = GetComponent<PlayerController>();
         playerRigidbody = GetComponent<Rigidbody2D>();
@@ -48,7 +60,7 @@ public class PlayerMove : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        isDead = playerHealth.dead;
+        // isDead = playerHealth.dead;
         // 사용자 입력을 감지하고 점프하는 처리
         if (isDead || Sturn)
         {
@@ -127,8 +139,37 @@ public class PlayerMove : MonoBehaviour
     // 플레이어가 물 속에 있을 때 움직이는 것에 관한 함수입니다.
     public void playerswim()
     {
-        playerRigidbody.AddForce(Vector3.right * playerInput.move_x);
-        playerRigidbody.AddForce(Vector3.up * playerInput.move_y);
+         if(DashTimer < DashMoveCool)
+        {
+
+            playerRigidbody.AddForce(swimForce * Vector3.right * playerInput.move_x);
+            playerRigidbody.AddForce(swimForce * Vector3.up * playerInput.move_y);
+        }
+
+        if (DashTimer <= 0 && Input.GetButtonDown("Jump"))
+        {
+            float x;
+            float y;
+            //Dash
+            if(playerInput.move_x == 0 && playerInput.move_y == 0)
+            {
+                x = playerRigidbody.velocity.x;
+                y = playerRigidbody.velocity.y;
+            }
+            else
+            {
+                x = playerInput.move_x;
+                y = playerInput.move_y;
+            }
+            playerRigidbody.AddForce(DashForce*(new Vector2(x,y)));
+            DashTimer = DashCoolTime;
+        }
+
+        if(DashTimer >= 0)
+        {
+            DashTimer -= Time.deltaTime;
+        }
+
 
         // // x축 방향으로 움직일 때
         // if (playerInput.move_x > 0)
@@ -146,19 +187,19 @@ public class PlayerMove : MonoBehaviour
         //     transform.Translate(Vector3.zero);
         // }
 
-        // // y축 방향으로 움직일 때 
-        // if (playerInput.move_y > 0)
-        // {
-        //     playerRigidbody.AddForce(Vector3.up * playerInput.move_y);
-        // }
-        // else if (playerInput.move_y < 0)
-        // {
-        //     playerRigidbody.AddForce(Vector3.up * playerInput.move_y);
-        // }
-        // else
-        // {
-        //     transform.Translate(Vector3.zero);
-        // }
+            // // y축 방향으로 움직일 때 
+            // if (playerInput.move_y > 0)
+            // {
+            //     playerRigidbody.AddForce(Vector3.up * playerInput.move_y);
+            // }
+            // else if (playerInput.move_y < 0)
+            // {
+            //     playerRigidbody.AddForce(Vector3.up * playerInput.move_y);
+            // }
+            // else
+            // {
+            //     transform.Translate(Vector3.zero);
+            // }
     }
 
     public void Attack()

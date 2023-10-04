@@ -22,8 +22,8 @@ public class Gig : MonoBehaviour
     void Start()
     {
         LR = GetComponent<LineRenderer>();
-        LR.startWidth = 0.3f;
-        LR.endWidth = 0.3f;
+        LR.startWidth = 0.1f;
+        LR.endWidth = 0.1f;
 
         //rb = GetComponent<Rigidbody2D>();
         State = gigState.ready;

@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
+using UnityEditor.PackageManager;
+using Unity.IO.LowLevel.Unsafe;
 
 [System.Serializable]
 public class SaveData {
@@ -33,7 +35,7 @@ public class DatabaseManager : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
-        string path = JsonUtility.ToJson(saveData);
+        path = Path.Combine(Application.dataPath + "/Data/database.json");
     }
 
     public static DatabaseManager Instance
@@ -49,28 +51,22 @@ public class DatabaseManager : MonoBehaviour
     }
     #endregion
 
-    string path;
+    public string path;
+    private string savefilepathpath;
+    private Animator animator;
+    public Vector3 toplayerpos;
 
-    public GameObject ContinueButton;
     SaveData saveData = new SaveData();
-    // Start is called before the first frame update
-    void Start()
-    {
-        SaveData save1 = JsonUtility.FromJson<SaveData>(path);
-        JsonLoad();
-    }
 
     [ContextMenu("From Json Data")]
     public void JsonLoad() {
         // SaveData saveData = new SaveData();
 
         if (!File.Exists(path)) {
-            ContinueButton.SetActive(false);
             JsonSave();
         } 
         else 
         {
-            ContinueButton.SetActive(true);
             string loadJson = File.ReadAllText(path);
             saveData = JsonUtility.FromJson<SaveData>(loadJson);
 
@@ -79,27 +75,42 @@ public class DatabaseManager : MonoBehaviour
                 GameManager.Instance.GigDamLvl = saveData.GigDamLvl;
                 GameManager.Instance.GigRangeLvl = saveData.GigRangeLvl;
                 GameManager.Instance.HpLvl = saveData.HpLvl;
+                toplayerpos = saveData.playerpos;
+            }
+            else {
+                Debug.Log("ERROR:NOSAVEDATAEXIST");
             }
         }
     }
     [ContextMenu("To Json Data")] // 컴포넌트 메뉴에 아래 함수를 호출하는 To Json Data 라는 명령어가 생성됨
     public void JsonSave() {
-        
-        // SaveData saveData = new SaveData();
+        Time.timeScale = 0f;
 
         saveData.Gold = GameManager.Instance.Gold;
         saveData.GigDamLvl = GameManager.Instance.GigDamLvl;
         saveData.GigRangeLvl = GameManager.Instance.GigRangeLvl;
         saveData.HpLvl = GameManager.Instance.HpLvl;
         playerpos();
-        Debug.Log(saveData.playerpos);
 
         string json = JsonUtility.ToJson(saveData, true);
-        path = Path.Combine(Application.dataPath + "/Data/", "database.json");
         File.WriteAllText(path, json);
+        StartCoroutine(Loading());
+        Time.timeScale = 1f;
     }
 
     public void playerpos() {
         saveData.playerpos = player.gameObject.transform.position;
+    }
+
+    IEnumerator Loading() {
+        yield return null;
+        Debug.Log("enter");
+        if (File.Exists(path)) {
+            Time.timeScale = 1f;
+            StopAllCoroutines();
+        }
+        else {
+            StartCoroutine(Loading());
+        }
     }
 }
