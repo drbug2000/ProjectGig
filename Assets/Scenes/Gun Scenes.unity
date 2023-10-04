@@ -1969,33 +1969,9 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2510044129336525769, guid: d8e5647f1fa2e8c408389857ed3190a5, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0.16
-      objectReference: {fileID: 0}
-    - target: {fileID: 2510044129336525769, guid: d8e5647f1fa2e8c408389857ed3190a5, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -0.19
-      objectReference: {fileID: 0}
     - target: {fileID: 3294160003625457056, guid: d8e5647f1fa2e8c408389857ed3190a5, type: 3}
       propertyPath: m_Name
       value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 3294160003625457060, guid: d8e5647f1fa2e8c408389857ed3190a5, type: 3}
-      propertyPath: DashForce
-      value: 500
-      objectReference: {fileID: 0}
-    - target: {fileID: 3294160003625457060, guid: d8e5647f1fa2e8c408389857ed3190a5, type: 3}
-      propertyPath: swimForce
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 3294160003625457060, guid: d8e5647f1fa2e8c408389857ed3190a5, type: 3}
-      propertyPath: DashCoolTime
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 3294160003625457060, guid: d8e5647f1fa2e8c408389857ed3190a5, type: 3}
-      propertyPath: DashMoveCool
-      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3294160003625457064, guid: d8e5647f1fa2e8c408389857ed3190a5, type: 3}
       propertyPath: m_RootOrder
