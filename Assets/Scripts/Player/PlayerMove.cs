@@ -41,9 +41,11 @@ public class PlayerMove : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        /*
         if (DatabaseManager.Instance.path != null) {
             playerpos = DatabaseManager.Instance.toplayerpos;
         }
+        */
         // 초기화
         playerInput = GetComponent<PlayerController>();
         playerRigidbody = GetComponent<Rigidbody2D>();
@@ -78,6 +80,7 @@ public class PlayerMove : MonoBehaviour
         }
         else
         {
+            
             playerRigidbody.gravityScale = 0; // 물 속에 있을 때 중력 0
             playerRigidbody.drag = 1.0f;
             playerswim();
