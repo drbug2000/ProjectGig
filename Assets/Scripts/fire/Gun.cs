@@ -18,6 +18,8 @@ public class Gun : MonoBehaviour
     public float fireTime;
     public float hitTime;
 
+    public float gigDamage;
+
     
     public float StateTimer;
     public float timer;

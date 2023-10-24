@@ -80,6 +80,7 @@ public class PlayerMove : MonoBehaviour
         }
         else
         {
+            
             playerRigidbody.gravityScale = 0; // 물 속에 있을 때 중력 0
             playerRigidbody.drag = 1.0f;
             playerswim();

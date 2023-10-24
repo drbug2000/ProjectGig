@@ -182,7 +182,7 @@ MonoBehaviour:
   spitforce: 100
   shakeForce: 11
   shakeMinSpeed: 13
-  shakeDamage: 10
+  shakeDamage: 5
 --- !u!50 &2633367817043942541
 Rigidbody2D:
   serializedVersion: 4
@@ -234,6 +234,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startingHealth: 0
   maxHp: 0
+  health: 0
 --- !u!255 &6465844373232659305
 FixedJoint2D:
   m_ObjectHideFlags: 0

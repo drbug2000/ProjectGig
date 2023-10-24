@@ -37,13 +37,13 @@ public class Title : MonoBehaviour
 
     public void startgame()
     {
-        SceneManager.LoadScene("fishScenes");
+        SceneManager.LoadScene("Merge 1");
     }
 
     public void Loadgame()
     {  
         DatabaseManager.Instance.JsonLoad();
-        SceneManager.LoadScene("fishScenes");
+        SceneManager.LoadScene("Merge 1");
     }
 
     public void Setting()
