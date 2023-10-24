@@ -8,6 +8,8 @@ public class AssetManager : MonoBehaviour
 {
     public TMP_Text tmp;
     public int GoldText;
+    public SellItem sellItem;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -15,14 +17,14 @@ public class AssetManager : MonoBehaviour
         tmp.text = GoldText.ToString();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public void Buy(){
         GameManager.Instance.Gold -= 1000;
+        GoldText = GameManager.Instance.Gold;
+        tmp.text = GoldText.ToString();
+    }
+
+    public void Sell(){
+        GameManager.Instance.Gold += sellItem.Cost;
         GoldText = GameManager.Instance.Gold;
         tmp.text = GoldText.ToString();
     }

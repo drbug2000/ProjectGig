@@ -930,7 +930,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   theinventory: {fileID: 1310525200}
-  Cost: 0
+  Cost: 1000
   CostText: 
 --- !u!1 &593764146
 GameObject:
@@ -2599,6 +2599,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tmp: {fileID: 254984281}
   GoldText: 0
+  sellItem: {fileID: 539681390}
 --- !u!1 &1488975523
 GameObject:
   m_ObjectHideFlags: 0
