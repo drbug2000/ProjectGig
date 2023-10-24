@@ -19,11 +19,13 @@ public class Gun : MonoBehaviour
     public float hitTime;
 
     public float gigDamage;
+    //damage upgrade 시 늘어나는 damage값
     public float gigDamageUpGap;
 
+    //range upgrade시 늘어나는 범위/속도 비율 
     public float gigRangeUpGap;
+    public float SpeedPercent = 1.1f;
 
-    
     public float StateTimer;
     public float timer;
     
@@ -69,8 +71,9 @@ public class Gun : MonoBehaviour
         gigScript = gig.GetComponent<Gig>();
         gigtr = gig.GetComponent<Transform>();
         gigrb = gig.GetComponent<Rigidbody2D>();
-        GameManager.Instance.shopManager.DamageUpgrade += DamageUP;
-        GameManager.Instance.shopManager.RangeUpgrade += RangeUP;
+        //shopManager까지 연결후 활성화
+        //GameManager.Instance.shopManager.DamageUpgrade += DamageUP;
+        //GameManager.Instance.shopManager.RangeUpgrade += RangeUP;
     }
 
     // Update is called once per frame
@@ -235,9 +238,6 @@ public class Gun : MonoBehaviour
     public void RangeUP()
     {
         // 0.4
-        float SpeedPercent = 1.1f;
-        
-
         bulletSpeed *= SpeedPercent;
         fireTime *= gigRangeUpGap / SpeedPercent;
     }
