@@ -20,14 +20,15 @@ public class PlayerMove : MonoBehaviour
     // private SpriteRenderer playerSpriteRenderer;
     private Animator animator; // 사용할 애니메이터 컴포넌트
     // private AudioSource playerAudio; // 사용할 오디오 소스 컴포넌트
-
+    private SpriteRenderer Renderer;
     protected bool CurrentSpeed = false; // 이건 뭔지 모르겠습니다...?
 
     public PlayerController playerInput;
     // private Animator playerAnimator;
 
     public GameObject inventoryparents;
-
+    public GameObject Gun;
+    public Gun Gunscript;
 
     public float DashCoolTime;
     public float DashMoveCool;
@@ -37,7 +38,20 @@ public class PlayerMove : MonoBehaviour
     private bool Sturn = false;
     // 저장된 위치로 옮기기 위한 변수입니다.
     private Vector3 playerpos;
-    
+
+    private bool ISLEFT = true;
+    public bool isleft
+    {
+        get { return ISLEFT; }
+        set
+        {
+            if (ISLEFT ^ value)
+            {
+                ISLEFT = value;
+                //IsTurn = true;
+            }
+        }
+    }
     // Start is called before the first frame update
     void Start()
     {
@@ -50,11 +64,13 @@ public class PlayerMove : MonoBehaviour
         playerInput = GetComponent<PlayerController>();
         playerRigidbody = GetComponent<Rigidbody2D>();
         playerHealth = GetComponent<PlayerHealth>();
-        
+        Renderer = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
         // playerAudio = GetComponent<AudioSource>();
         // playerSpriteRenderer = GetComponent<SpriteRenderer>();
         onboard = true;
+        Gun = transform.Find("gun").gameObject;
+        Gunscript = Gun.GetComponent < Gun> ();
         //inventoryparents.SetActive(false);
 
     }
@@ -68,6 +84,7 @@ public class PlayerMove : MonoBehaviour
         {
             return;
         }
+
         if (onboard == true)
         {
             playerRigidbody.gravityScale = 1; // 배 위에 있을 때 중력 1
@@ -87,6 +104,19 @@ public class PlayerMove : MonoBehaviour
             animator.SetBool("intoOcean", true);
         }
 
+        //방향전환
+        if (IsLeft())
+        {
+            Renderer.flipX = true;
+        }
+        else
+        {
+            //if (!IsStop(velocity.x))
+            {
+                Renderer.flipX = false;
+            }
+        }
+        
         Attack();
 
         
@@ -97,8 +127,11 @@ public class PlayerMove : MonoBehaviour
     // 플레이어가 땅 위에서 움직이는 것에 관한 함수
     public void playerwalk()
     {
+        //walk의 경우 현재 작살의 방향을 기준으로 
+        isleft = IsLeft(Gunscript.dirVec);
+
         // 점프에 관한 내용입니다.
-        if(Input.GetButtonDown("Jump") && jumpCount < 2)
+        if (Input.GetButtonDown("Jump") && jumpCount < 2)
         {
             jumpCount++;
 
@@ -142,10 +175,15 @@ public class PlayerMove : MonoBehaviour
     // 플레이어가 물 속에 있을 때 움직이는 것에 관한 함수입니다.
     public void playerswim()
     {
-         if(DashTimer < DashMoveCool)
+        //물속의 경우 현재 운동 방향을 기준으로 sprite 방향 설정
+        //isleft = IsLeft(playerRigidbody.velocity.x);
+
+        if (DashTimer < DashMoveCool)
         {
 
             playerRigidbody.AddForce(swimForce * Vector3.right * playerInput.move_x);
+            //물속의 경우 현재 입력 방향을 기준으로 sprite 방향 설정
+            isleft = IsLeft(playerInput.move_x);
             playerRigidbody.AddForce(swimForce * Vector3.up * playerInput.move_y);
         }
 
@@ -203,6 +241,24 @@ public class PlayerMove : MonoBehaviour
             // {
             //     transform.Translate(Vector3.zero);
             // }
+    }
+
+    public bool IsLeft()
+    {
+        return isleft;
+    }
+    public bool IsLeft(float velocityX)
+    {
+        return velocityX < 0;
+    }
+    public bool IsLeft(Vector2 velocity)
+    {
+        return velocity.x < 0;
+    }
+
+    public bool IsStop(float velocityM)
+    {
+        return velocityM == 0;
     }
 
     public void Attack()

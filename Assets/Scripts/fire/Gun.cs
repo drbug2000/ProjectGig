@@ -12,6 +12,9 @@ public class Gun : MonoBehaviour
     public Gig gigScript;
     private Camera _camera;
 
+    private SpriteRenderer Gunsprite;
+    private SpriteRenderer Gigsprite;
+
     public enum fireState { ready, fire , hit, rollback,  notready };
     public fireState State;
     public float reloadTime;
@@ -19,11 +22,18 @@ public class Gun : MonoBehaviour
     public float hitTime;
 
     public float gigDamage;
+    //damage upgrade ½Ã ´Ã¾î³ª´Â damage°ª
+    public float gigDamageUpGap;
 
-    
+    //range upgrade½Ã ´Ã¾î³ª´Â ¹üÀ§/¼Óµµ ºñÀ² 
+    public float gigRangeUpGap;
+    public float SpeedPercent = 1.1f;
+
     public float StateTimer;
     public float timer;
-    
+
+    //public bool GunIsLeft;
+    public Vector2 dirVec;
     private float Timer
     {
         get { return timer; }
@@ -61,11 +71,16 @@ public class Gun : MonoBehaviour
     {
         _camera = Camera.main;
         gig = transform.Find("Gig").gameObject;
-        //Debug.Log(gig);
+        Debug.Log(gig);
         State = fireState.ready;
         gigScript = gig.GetComponent<Gig>();
         gigtr = gig.GetComponent<Transform>();
         gigrb = gig.GetComponent<Rigidbody2D>();
+        Gunsprite = transform.Find("Gun").gameObject.GetComponent<SpriteRenderer>();
+        Gigsprite = gig.GetComponent<SpriteRenderer>();
+        //shopManager±îÁö ¿¬°áÈÄ È°¼ºÈ­
+        GameManager.Instance.shopManager.DamageUpgrade += DamageUP;
+        GameManager.Instance.shopManager.RangeUpgrade += RangeUP;
     }
 
     // Update is called once per frame
@@ -80,20 +95,32 @@ public class Gun : MonoBehaviour
             return;
         }
 
-        //ï¿½ß»ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Æ´Ò½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ì½ºï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+        //¹ß»çÁßÀÌ ¾Æ´Ò½Ã ÃÑÀÌ ¸¶¿ì½º¸¦ µû¶ó °¢µµ°¡ Á¶Á¤µÊ
         if(State != fireState.fire)
         {
-            Vector2 mousePos = _camera.ScreenToWorldPoint(Input.mousePosition); //ï¿½ï¿½ï¿½ì½º ï¿½ï¿½Ç¥ Ä«ï¿½Þ¶ï¿½ ï¿½ï¿½Ç¥ï¿½ï¿½ ï¿½ï¿½È¯
-            Vector2 dirVec = mousePos - (Vector2)transform.position; //ï¿½ï¿½ï¿½ì½º ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
-            transform.up = dirVec.normalized; // ï¿½ï¿½ï¿½âº¤ï¿½Í¸ï¿½ ï¿½ï¿½ï¿½ï¿½È­ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ transform.up ï¿½ï¿½ï¿½Í¿ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+            Vector2 mousePos = _camera.ScreenToWorldPoint(Input.mousePosition); //¸¶¿ì½º ÁÂÇ¥ Ä«¸Þ¶ó ÁÂÇ¥·Î º¯È¯
+            dirVec = mousePos - (Vector2)transform.position; //¸¶¿ì½º ¹æÇâ ±¸ÇÔ
+            if (dirVec.x < 0)
+            {
+                //GunIsLeft = true;
+                Gunsprite.flipY = true;
+                Gigsprite.flipY = true;
+            }
+            else
+            {
+                //GunIsLeft = false;
+                Gunsprite.flipY = false;
+                Gigsprite.flipY = false;
+            }
+            transform.up = dirVec.normalized; // ¹æÇâº¤ÅÍ¸¦ Á¤±ÔÈ­ÇÑ ´ÙÀ½ transform.up º¤ÅÍ¿¡ °è¼Ó ´ëÀÔ
 
         }
 
-        //ï¿½ï¿½
+        //½ò¶§
         if (Input.GetButtonDown("Fire1") )
         {
             State = fireState.fire;
-            //Debug.Log("fire");
+            Debug.Log("fire");
             
             StartCoroutine("Fire");
         }
@@ -135,7 +162,7 @@ public class Gun : MonoBehaviour
             yield return null;
         }
 
-        //ï¿½ï¿½ï¿½ß½ï¿½
+        //¸íÁß½Ã
         //Debug.Log("fire corutine on Hit");
         if(State == fireState.hit)
         {
@@ -144,7 +171,7 @@ public class Gun : MonoBehaviour
             Timer = hitTime;
         }
         while (State == fireState.hit) {
-            //ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+            //Àá½Ã Á¤Áö
             Timer -= Time.deltaTime;
             yield return null;
         }
@@ -159,10 +186,10 @@ public class Gun : MonoBehaviour
             yield return null;
         }
 
-        //rollback ï¿½ï¿½ï¿½ï¿½ HIT ï¿½ï¿½ ï¿½ï¿½È²
+        //rollback µµÁß HIT µÈ »óÈ²
         while (State == fireState.hit)
         {
-            //ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+            //Àá½Ã Á¤Áö
             Timer -= Time.deltaTime;
             yield return null;
         }
@@ -214,8 +241,24 @@ public class Gun : MonoBehaviour
         gigrb.isKinematic = true;
         gigScript.outfire();
 
+        
+
 
     }
 
+
+    public void DamageUP()
+    {
+        gigDamage += gigDamageUpGap;
+        gigScript.updateDamage();
+
+    }
+
+    public void RangeUP()
+    {
+        // 0.4
+        bulletSpeed *= SpeedPercent;
+        fireTime *= gigRangeUpGap / SpeedPercent;
+    }
 
 }

@@ -7,11 +7,8 @@ using TMPro;
 
 public class ShopManager : MonoBehaviour
 {
-    void start(){
-        gameObject.SetActive(false);
-    }
     public AssetManager assetManager;
-    //gun script에 upgrade 전달
+<<<<<<< HEAD
     public Action OxygenUpgrade;
     public Action DamageUpgrade;
     public Action RangeUpgrade;
@@ -27,6 +24,9 @@ public class ShopManager : MonoBehaviour
     {
         
     }
+=======
+    
+>>>>>>> develop
     public void OxygenLvlUp(){
         if (GameManager.Instance.Gold >= 1000){
             assetManager.Buy();
@@ -62,8 +62,5 @@ public class ShopManager : MonoBehaviour
             Debug.Log("RangeLvl:"+ GameManager.Instance.GigRangeLvl);
             Debug.Log("Gold 부족");
         }
-    }
-    public void ShopActive(){
-        gameObject.SetActive(true);
     }
 }
