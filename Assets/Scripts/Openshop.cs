@@ -30,10 +30,12 @@ public class Openshop : MonoBehaviour
     public void setActiveShop(){
         //Debug.Log("B");
         if (ShopImage.activeSelf == true) {
+            Debug.Log("on");
             Time.timeScale = 1f;
             ShopImage.SetActive(false);
         }
         else if (ShopImage.activeSelf == false) {
+            Debug.Log("off");
             Time.timeScale = 0f;
             ShopImage.SetActive(true);
         }
