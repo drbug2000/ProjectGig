@@ -7,7 +7,7 @@ public class Raycast : MonoBehaviour
     public float Distance = 15f;
     public Vector2 MousePosition;
     public Camera Camera;
-    public Transform fpos; //¹ß»ç À§Ä¡
+    public Transform fpos; //ï¿½ß»ï¿½ ï¿½ï¿½Ä¡
     Vector2 dir;
     public void Start()
     {
@@ -19,18 +19,18 @@ public class Raycast : MonoBehaviour
         RaycastHit2D hit = Physics2D.Raycast(fpos.position, dir, Distance);
         if (hit.collider != null)
         {
-            Debug.Log(hit.collider.name);
+            //Debug.Log(hit.collider.name);
         }
     }
     public void Update()
     {
-        if (Input.GetMouseButtonDown(0)) //¸¶¿ì½º Å¬¸¯ ½Ã
+        if (Input.GetMouseButtonDown(0)) //ï¿½ï¿½ï¿½ì½º Å¬ï¿½ï¿½ ï¿½ï¿½
         {
             
-            MousePosition = Camera.ScreenToWorldPoint(Input.mousePosition); //Ä«¸Þ¶ó ÁÂÇ¥·Î º¯È¯
+            MousePosition = Camera.ScreenToWorldPoint(Input.mousePosition); //Ä«ï¿½Þ¶ï¿½ ï¿½ï¿½Ç¥ï¿½ï¿½ ï¿½ï¿½È¯
             dir = transform.position;
             dir = MousePosition - dir;
-            Debug.DrawRay(fpos.position, dir.normalized * Distance, Color.red,0.5f); //·¹ÀÌÀú ºö
+            Debug.DrawRay(fpos.position, dir.normalized * Distance, Color.red,0.5f); //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
             //Debug.DrawRay(fpos.position, transform.forward * Distance, Color.blue, 0.5f);
             
             Ray();

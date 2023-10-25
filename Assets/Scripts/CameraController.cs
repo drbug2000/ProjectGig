@@ -50,15 +50,15 @@ public class CameraController : MonoBehaviour
     }
 
     void MoveCameraSize() {
-        Debug.Log(distancex);
-        Debug.Log(distancey);
+        //Debug.Log(distancex);
+        //Debug.Log(distancey);
         distancex = gunTransform.position.x - playerpos.x;
         distancey = gunTransform.position.y - playerpos.y;
         distancex = Mathf.Pow(distancex, 2);
         distancey = Mathf.Pow(distancey, 2);
         distanceplayerandgig = distancex + distancey;
         distanceplayerandgig = Mathf.Pow(distanceplayerandgig, 1/2);
-        Debug.Log("플레이어와 gig: " + distanceplayerandgig);
+        //Debug.Log("플레이어와 gig: " + distanceplayerandgig);
         if (distanceplayerandgig <= 10) {
             Camera.main.orthographicSize = 10;
         }

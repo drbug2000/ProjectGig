@@ -61,7 +61,7 @@ public class Gun : MonoBehaviour
     {
         _camera = Camera.main;
         gig = transform.Find("Gig").gameObject;
-        Debug.Log(gig);
+        //Debug.Log(gig);
         State = fireState.ready;
         gigScript = gig.GetComponent<Gig>();
         gigtr = gig.GetComponent<Transform>();
@@ -80,20 +80,20 @@ public class Gun : MonoBehaviour
             return;
         }
 
-        //¹ß»çÁßÀÌ ¾Æ´Ò½Ã ÃÑÀÌ ¸¶¿ì½º¸¦ µû¶ó °¢µµ°¡ Á¶Á¤µÊ
+        //ï¿½ß»ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Æ´Ò½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ì½ºï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         if(State != fireState.fire)
         {
-            Vector2 mousePos = _camera.ScreenToWorldPoint(Input.mousePosition); //¸¶¿ì½º ÁÂÇ¥ Ä«¸Þ¶ó ÁÂÇ¥·Î º¯È¯
-            Vector2 dirVec = mousePos - (Vector2)transform.position; //¸¶¿ì½º ¹æÇâ ±¸ÇÔ
-            transform.up = dirVec.normalized; // ¹æÇâº¤ÅÍ¸¦ Á¤±ÔÈ­ÇÑ ´ÙÀ½ transform.up º¤ÅÍ¿¡ °è¼Ó ´ëÀÔ
+            Vector2 mousePos = _camera.ScreenToWorldPoint(Input.mousePosition); //ï¿½ï¿½ï¿½ì½º ï¿½ï¿½Ç¥ Ä«ï¿½Þ¶ï¿½ ï¿½ï¿½Ç¥ï¿½ï¿½ ï¿½ï¿½È¯
+            Vector2 dirVec = mousePos - (Vector2)transform.position; //ï¿½ï¿½ï¿½ì½º ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+            transform.up = dirVec.normalized; // ï¿½ï¿½ï¿½âº¤ï¿½Í¸ï¿½ ï¿½ï¿½ï¿½ï¿½È­ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ transform.up ï¿½ï¿½ï¿½Í¿ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 
         }
 
-        //½ò¶§
+        //ï¿½ï¿½
         if (Input.GetButtonDown("Fire1") )
         {
             State = fireState.fire;
-            Debug.Log("fire");
+            //Debug.Log("fire");
             
             StartCoroutine("Fire");
         }
@@ -135,7 +135,7 @@ public class Gun : MonoBehaviour
             yield return null;
         }
 
-        //¸íÁß½Ã
+        //ï¿½ï¿½ï¿½ß½ï¿½
         //Debug.Log("fire corutine on Hit");
         if(State == fireState.hit)
         {
@@ -144,7 +144,7 @@ public class Gun : MonoBehaviour
             Timer = hitTime;
         }
         while (State == fireState.hit) {
-            //Àá½Ã Á¤Áö
+            //ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
             Timer -= Time.deltaTime;
             yield return null;
         }
@@ -159,10 +159,10 @@ public class Gun : MonoBehaviour
             yield return null;
         }
 
-        //rollback µµÁß HIT µÈ »óÈ²
+        //rollback ï¿½ï¿½ï¿½ï¿½ HIT ï¿½ï¿½ ï¿½ï¿½È²
         while (State == fireState.hit)
         {
-            //Àá½Ã Á¤Áö
+            //ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
             Timer -= Time.deltaTime;
             yield return null;
         }

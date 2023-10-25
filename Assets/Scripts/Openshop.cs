@@ -10,6 +10,31 @@ public class Openshop : MonoBehaviour
         ShopImage.SetActive(false);
     }
 
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.gameObject.name == "Player 1")
+        {
+            //Debug.Log("TriggerOn");
+            if (Input.GetKeyDown(KeyCode.P))
+            {
+                Debug.Log("P");
+                setActiveShop();
+                
+            }
+        }
+    }
+
+    public void setActiveShop(){
+        //Debug.Log("B");
+        if (ShopImage.activeSelf == true) {
+                ShopImage.SetActive(false);
+        }
+        else if (ShopImage.activeSelf == false) {
+                ShopImage.SetActive(true);
+        }
+    }
+
+    //아래부터는 코루틴
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.name == "Player 1")
@@ -44,7 +69,11 @@ public class Openshop : MonoBehaviour
                 ShopImage.SetActive(true);
             }
         }
+        else if (Input.GetMouseButtonDown(0)) {
+            if (ShopImage.activeSelf == true) {
+                Time.timeScale = 1f;
+            }
+        }
         StartCoroutine(CanOpenShop());
     }
-
 }
