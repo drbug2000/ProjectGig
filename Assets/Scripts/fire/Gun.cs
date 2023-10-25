@@ -31,7 +31,9 @@ public class Gun : MonoBehaviour
 
     public float StateTimer;
     public float timer;
-    
+
+    //public bool GunIsLeft;
+    public Vector2 dirVec;
     private float Timer
     {
         get { return timer; }
@@ -97,17 +99,18 @@ public class Gun : MonoBehaviour
         if(State != fireState.fire)
         {
             Vector2 mousePos = _camera.ScreenToWorldPoint(Input.mousePosition); //마우스 좌표 카메라 좌표로 변환
-            Vector2 dirVec = mousePos - (Vector2)transform.position; //마우스 방향 구함
+            dirVec = mousePos - (Vector2)transform.position; //마우스 방향 구함
             if (dirVec.x < 0)
             {
+                //GunIsLeft = true;
                 Gunsprite.flipY = true;
                 Gigsprite.flipY = true;
             }
             else
             {
+                //GunIsLeft = false;
                 Gunsprite.flipY = false;
                 Gigsprite.flipY = false;
-                
             }
             transform.up = dirVec.normalized; // 방향벡터를 정규화한 다음 transform.up 벡터에 계속 대입
 

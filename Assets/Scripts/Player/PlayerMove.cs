@@ -64,7 +64,7 @@ public class PlayerMove : MonoBehaviour
         playerInput = GetComponent<PlayerController>();
         playerRigidbody = GetComponent<Rigidbody2D>();
         playerHealth = GetComponent<PlayerHealth>();
-        
+        Renderer = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
         // playerAudio = GetComponent<AudioSource>();
         // playerSpriteRenderer = GetComponent<SpriteRenderer>();
@@ -107,13 +107,13 @@ public class PlayerMove : MonoBehaviour
         //방향전환
         if (IsLeft())
         {
-            Renderer.flipX = false;
+            Renderer.flipX = true;
         }
         else
         {
             //if (!IsStop(velocity.x))
             {
-                Renderer.flipX = true;
+                Renderer.flipX = false;
             }
         }
         
@@ -128,9 +128,10 @@ public class PlayerMove : MonoBehaviour
     public void playerwalk()
     {
         //walk의 경우 현재 작살의 방향을 기준으로 
+        isleft = IsLeft(Gunscript.dirVec);
 
         // 점프에 관한 내용입니다.
-        if(Input.GetButtonDown("Jump") && jumpCount < 2)
+        if (Input.GetButtonDown("Jump") && jumpCount < 2)
         {
             jumpCount++;
 
@@ -175,12 +176,14 @@ public class PlayerMove : MonoBehaviour
     public void playerswim()
     {
         //물속의 경우 현재 운동 방향을 기준으로 sprite 방향 설정
-        isleft = IsLeft(playerRigidbody.velocity.x);
+        //isleft = IsLeft(playerRigidbody.velocity.x);
 
         if (DashTimer < DashMoveCool)
         {
 
             playerRigidbody.AddForce(swimForce * Vector3.right * playerInput.move_x);
+            //물속의 경우 현재 입력 방향을 기준으로 sprite 방향 설정
+            isleft = IsLeft(playerInput.move_x);
             playerRigidbody.AddForce(swimForce * Vector3.up * playerInput.move_y);
         }
 

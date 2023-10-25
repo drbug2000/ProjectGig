@@ -270,6 +270,8 @@ MonoBehaviour:
   onboard: 0
   playerInput: {fileID: 98688249}
   inventoryparents: {fileID: 0}
+  Gun: {fileID: 0}
+  Gunscript: {fileID: 0}
   DashCoolTime: 0
   DashMoveCool: 0
   DashTimer: 0
@@ -1404,6 +1406,7 @@ MonoBehaviour:
   SpeedPercent: 1.1
   StateTimer: 0
   timer: 0
+  dirVec: {x: 0, y: 0}
 --- !u!50 &506223146
 Rigidbody2D:
   serializedVersion: 4
@@ -2468,6 +2471,38 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3803771818066673108, guid: d8e5647f1fa2e8c408389857ed3190a5, type: 3}
+      propertyPath: m_FlipX
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3803771818066673108, guid: d8e5647f1fa2e8c408389857ed3190a5, type: 3}
+      propertyPath: m_Size.x
+      value: 3.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3803771818066673108, guid: d8e5647f1fa2e8c408389857ed3190a5, type: 3}
+      propertyPath: m_Size.y
+      value: 3.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3803771818066673108, guid: d8e5647f1fa2e8c408389857ed3190a5, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3803771818066673108, guid: d8e5647f1fa2e8c408389857ed3190a5, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3803771818066673108, guid: d8e5647f1fa2e8c408389857ed3190a5, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5639244804673207508, guid: d8e5647f1fa2e8c408389857ed3190a5, type: 3}
+      propertyPath: m_Name
+      value: Gun
+      objectReference: {fileID: 0}
+    - target: {fileID: 5876032787650369306, guid: d8e5647f1fa2e8c408389857ed3190a5, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6041257912066099664, guid: d8e5647f1fa2e8c408389857ed3190a5, type: 3}
       propertyPath: m_RootOrder
       value: 4
@@ -2495,6 +2530,10 @@ PrefabInstance:
     - target: {fileID: 6071760206674843744, guid: d8e5647f1fa2e8c408389857ed3190a5, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6198170853656653893, guid: d8e5647f1fa2e8c408389857ed3190a5, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6387453242653632990, guid: d8e5647f1fa2e8c408389857ed3190a5, type: 3}
       propertyPath: m_AnchorMax.y
