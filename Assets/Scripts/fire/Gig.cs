@@ -103,6 +103,9 @@ public class Gig : MonoBehaviour
 
 
 
-
+    public void updateDamage()
+    {
+        gigdamage = gunscript.gigDamage;
+    }
 
 }
