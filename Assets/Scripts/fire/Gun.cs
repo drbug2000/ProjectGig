@@ -79,8 +79,8 @@ public class Gun : MonoBehaviour
         Gunsprite = transform.Find("Gun").gameObject.GetComponent<SpriteRenderer>();
         Gigsprite = gig.GetComponent<SpriteRenderer>();
         //shopManager까지 연결후 활성화
-        //GameManager.Instance.shopManager.DamageUpgrade += DamageUP;
-        //GameManager.Instance.shopManager.RangeUpgrade += RangeUP;
+        GameManager.Instance.shopManager.DamageUpgrade += DamageUP;
+        GameManager.Instance.shopManager.RangeUpgrade += RangeUP;
     }
 
     // Update is called once per frame
