@@ -12,6 +12,13 @@ public class Gun : MonoBehaviour
     public Gig gigScript;
     private Camera _camera;
 
+    public Vector3 defaultGunTrans = new Vector3(-0.7f , +0.4f , 0 );
+    public Vector3 flipGunTrans = new Vector3(0.9f, +1.0f, 0);
+
+    public Vector3 defaultGigTrans = new Vector3(0, 0, 0);
+    public Vector3 flipGigTrans = new Vector3(1.1f, -4f, 0);
+
+    public GameObject gun;
     private SpriteRenderer Gunsprite;
     private SpriteRenderer Gigsprite;
 
@@ -69,6 +76,7 @@ public class Gun : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //transform = defaultTransform;
         _camera = Camera.main;
         gig = transform.Find("Gig").gameObject;
         Debug.Log(gig);
@@ -76,7 +84,8 @@ public class Gun : MonoBehaviour
         gigScript = gig.GetComponent<Gig>();
         gigtr = gig.GetComponent<Transform>();
         gigrb = gig.GetComponent<Rigidbody2D>();
-        Gunsprite = transform.Find("Gun").gameObject.GetComponent<SpriteRenderer>();
+        gun = transform.Find("Gun").gameObject;
+        Gunsprite = gun.GetComponent<SpriteRenderer>();
         Gigsprite = gig.GetComponent<SpriteRenderer>();
         //shopManager까지 연결후 활성화
         //GameManager.Instance.shopManager.DamageUpgrade += DamageUP;
@@ -103,12 +112,20 @@ public class Gun : MonoBehaviour
             if (dirVec.x < 0)
             {
                 //GunIsLeft = true;
+                //transform.position = flipTrans + defaultTransform;
+                //gun.transform.localPosition = defaultGunTrans + flipGunTrans;
+                //Debug.Log(defaultGunTrans + flipGunTrans);
+                //gigtr.localPosition = defaultGigTrans + flipGigTrans;
                 Gunsprite.flipY = true;
                 Gigsprite.flipY = true;
             }
             else
             {
                 //GunIsLeft = false;
+                //transform.localPosition = defaultTransform;
+                //gun.transform.localPosition = defaultGunTrans ;
+                //gigtr.localPosition = defaultGigTrans ;
+
                 Gunsprite.flipY = false;
                 Gigsprite.flipY = false;
             }
@@ -195,8 +212,6 @@ public class Gun : MonoBehaviour
         }
 
         */
-        
-
 
         /*New Code*/
 
