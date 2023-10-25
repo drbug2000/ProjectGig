@@ -12,6 +12,9 @@ public class Gun : MonoBehaviour
     public Gig gigScript;
     private Camera _camera;
 
+    private SpriteRenderer Gunsprite;
+    private SpriteRenderer Gigsprite;
+
     public enum fireState { ready, fire , hit, rollback,  notready };
     public fireState State;
     public float reloadTime;
@@ -19,11 +22,18 @@ public class Gun : MonoBehaviour
     public float hitTime;
 
     public float gigDamage;
+    //damage upgrade 시 늘어나는 damage값
+    public float gigDamageUpGap;
 
-    
+    //range upgrade시 늘어나는 범위/속도 비율 
+    public float gigRangeUpGap;
+    public float SpeedPercent = 1.1f;
+
     public float StateTimer;
     public float timer;
-    
+
+    //public bool GunIsLeft;
+    public Vector2 dirVec;
     private float Timer
     {
         get { return timer; }
@@ -66,6 +76,11 @@ public class Gun : MonoBehaviour
         gigScript = gig.GetComponent<Gig>();
         gigtr = gig.GetComponent<Transform>();
         gigrb = gig.GetComponent<Rigidbody2D>();
+        Gunsprite = transform.Find("Gun").gameObject.GetComponent<SpriteRenderer>();
+        Gigsprite = gig.GetComponent<SpriteRenderer>();
+        //shopManager까지 연결후 활성화
+        //GameManager.Instance.shopManager.DamageUpgrade += DamageUP;
+        //GameManager.Instance.shopManager.RangeUpgrade += RangeUP;
     }
 
     // Update is called once per frame
@@ -84,7 +99,19 @@ public class Gun : MonoBehaviour
         if(State != fireState.fire)
         {
             Vector2 mousePos = _camera.ScreenToWorldPoint(Input.mousePosition); //마우스 좌표 카메라 좌표로 변환
-            Vector2 dirVec = mousePos - (Vector2)transform.position; //마우스 방향 구함
+            dirVec = mousePos - (Vector2)transform.position; //마우스 방향 구함
+            if (dirVec.x < 0)
+            {
+                //GunIsLeft = true;
+                Gunsprite.flipY = true;
+                Gigsprite.flipY = true;
+            }
+            else
+            {
+                //GunIsLeft = false;
+                Gunsprite.flipY = false;
+                Gigsprite.flipY = false;
+            }
             transform.up = dirVec.normalized; // 방향벡터를 정규화한 다음 transform.up 벡터에 계속 대입
 
         }
@@ -214,8 +241,24 @@ public class Gun : MonoBehaviour
         gigrb.isKinematic = true;
         gigScript.outfire();
 
+        
+
 
     }
 
+
+    public void DamageUP()
+    {
+        gigDamage += gigDamageUpGap;
+        gigScript.updateDamage();
+
+    }
+
+    public void RangeUP()
+    {
+        // 0.4
+        bulletSpeed *= SpeedPercent;
+        fireTime *= gigRangeUpGap / SpeedPercent;
+    }
 
 }

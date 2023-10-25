@@ -935,9 +935,11 @@ MonoBehaviour:
   gigScript: {fileID: 0}
   State: 0
   reloadTime: 0
-  fireTime: 1
+  fireTime: 2
   hitTime: 0
   gigDamage: 3
+  gigDamageUpGap: 2
+  gigRangeUpGap: 1.4
   StateTimer: 0
   timer: 0
 --- !u!50 &2666246710255181183

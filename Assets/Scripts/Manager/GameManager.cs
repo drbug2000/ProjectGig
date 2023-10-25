@@ -51,7 +51,8 @@ public class GameManager : MonoBehaviour
     public AudioClip _inGameClip;
 
     public FishSpawn fishspawn ; //외부에서 접근 가능한 변수 추가
-    
+    public ShopManager shopManager;
+
     // Start is called before the first frame update
     void Start()
     {
