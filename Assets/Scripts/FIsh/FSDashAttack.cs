@@ -86,8 +86,8 @@ public class FSDashAttack : FishState
         }
     }
 
-    //attState¸¦ ¼³Á¤ÇÏ´Â ÇÔ¼ö
-    //State°¡ ¹Ù²î´Â °æ¿ì ÇÊ¿äÇÑ ÄÚµå¸¦ ÀÛ¼º(¸Å ÇÁ·¹ÀÓÀÌ ¾Æ´Ñ ÇÑ¹ø ½ÇÇà)
+    //attStateï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½Ô¼ï¿½
+    //Stateï¿½ï¿½ ï¿½Ù²ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½Ê¿ï¿½ï¿½ï¿½ ï¿½Úµå¸¦ ï¿½Û¼ï¿½(ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Æ´ï¿½ ï¿½Ñ¹ï¿½ ï¿½ï¿½ï¿½ï¿½)
     public void setState( int state )
     {
         State = (attState)state;
@@ -114,25 +114,25 @@ public class FSDashAttack : FishState
                 //check target length
                 //Ainime : Dash anime
                 fishfin.ReDirSpot();
-                Debug.Log("how far:" + fishfin.SpotDir.magnitude);
-                Debug.Log("shark.aggroRange:" + shark.aggroRange);
+                //Debug.Log("how far:" + fishfin.SpotDir.magnitude);
+                //Debug.Log("shark.aggroRange:" + shark.aggroRange);
                 if (fishfin.SpotDir.magnitude > shark.aggroRange)
                 {
-                    //°ø°Ý ÇØÁ¦
-                    Debug.Log("attack end");
+                    //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+                    //Debug.Log("attack end");
                     setState((int)attState.end);
                 }
                 else
                 {
-                    Debug.Log("Dash");
+                    //Debug.Log("Dash");
                     fishfin.SetDrag(0.05f);
                     Dash(fish.MaxSpeed);
                 }
 
 
-                Debug.Log("Spot " + fishfin.Spot);
-                Debug.Log("SpotDir " + fishfin.SpotDir);
-                Debug.Log("Dir " + fishfin.Dir);
+                //Debug.Log("Spot " + fishfin.Spot);
+                //Debug.Log("SpotDir " + fishfin.SpotDir);
+                //Debug.Log("Dir " + fishfin.Dir);
 
 
 
@@ -184,7 +184,7 @@ public class FSDashAttack : FishState
         target.GetComponent<IDamageable>().OnDamage(shark.shakeDamage, shark.gameObject, Vector2.zero, Vector2.zero);
     }
 
-    //ÇØ´ç stateµ¿ÀÛÁß ÀÛµ¿ÇÏ´Â ÄÚµå¸¦ ÀÛ¼º(¸Å ÇÁ·¹ÀÓ ¸¶´Ù)
+    //ï¿½Ø´ï¿½ stateï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ûµï¿½ï¿½Ï´ï¿½ ï¿½Úµå¸¦ ï¿½Û¼ï¿½(ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½)
     public override void stateUpdate()
     {
         Timer -= Time.deltaTime;
@@ -289,7 +289,7 @@ public class FSDashAttack : FishState
 
     public void Shake()
     {
-        int shakePer = 95;//¹æÇüÀüÈ¯ È®·ü
+        int shakePer = 95;//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È¯ È®ï¿½ï¿½
         Vector2 dashdir;
         float shakespeed;
         if (fishfin.velocityM < shark.shakeMinSpeed)
@@ -344,24 +344,24 @@ public class FSDashAttack : FishState
        
     }
     /*
-    //ÀÔÀÇ ÁÂÇ¥¸¦ Ãâ·ÂÇÏ´Â ÇÔ¼ö
-    //way parameter = -1 ¼³Á¤½Ã ÇöÀç ÀÌµ¿ ¹æÇâ°ú ¹Ý´ë·Î Ãâ·Â
+    //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ç¥ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½Ô¼ï¿½
+    //way parameter = -1 ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ìµï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ý´ï¿½ï¿½ ï¿½ï¿½ï¿½
     public Vector2 WhereMouth(int way = 1) 
     {
-        //ÄÝ¶óÀÌ´õ »çÀÌÁî¿¡ µû¸¥ »ó¾îÀÔ »ó´ë À§Ä¡ Á¶Á¤
+        //ï¿½Ý¶ï¿½ï¿½Ì´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½î¿¡ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ ï¿½ï¿½ï¿½ï¿½
         Vector2 mouth = fish.fishcollider.size;
         mouth *= new Vector2(-0.5f, -0.5f);
-        //º¸Á¤°ª Àû¿ë
+        //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         mouth += shark.mouthPosAdder + fish.fishcollider.offset;
-        //»ó¾î ¹æÇâ¿¡ µû¸¥ xÁÂÇ¥ ¹æÇâ Á¶Á¤
-        if (!fishfin.IsLeft()) { mouth.x *= -1; Debug.Log("ÁÖ´óÀÌ ¿Þ"); }
-        else { Debug.Log("ÁÖ´óÀÌ ¿À¸¥"); }
+        //ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½â¿¡ ï¿½ï¿½ï¿½ï¿½ xï¿½ï¿½Ç¥ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+        if (!fishfin.IsLeft()) { mouth.x *= -1; Debug.Log("ï¿½Ö´ï¿½ï¿½ï¿½ ï¿½ï¿½"); }
+        else { Debug.Log("ï¿½Ö´ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½"); }
         
         if(way == -1) { mouth.x *= -1; }
         return fishfin.currentPos + mouth;
 
     }
-    //fishfinÀ¸·Î ÀÌµ¿
+    //fishfinï¿½ï¿½ï¿½ï¿½ ï¿½Ìµï¿½
     */
 
     private void targetToMouth(Vector2 mouth)
@@ -372,7 +372,7 @@ public class FSDashAttack : FishState
     /*
     public bool Bite()
     {
-    //fish script¿¡¼­ ÀÌ scriptÀÇ ÇÔ¼ö¸¦ Á÷Á¢ È£ÃâÇÏ´Â °ÍÀÌ ¾Ö¸ÅÇÏ´Ù°í ÆÇ´Ü
+    //fish scriptï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ scriptï¿½ï¿½ ï¿½Ô¼ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ È£ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ö¸ï¿½ï¿½Ï´Ù°ï¿½ ï¿½Ç´ï¿½
     }
     */
     /*

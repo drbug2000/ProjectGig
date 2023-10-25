@@ -10,6 +10,8 @@ public class SellItem : MonoBehaviour
     public int Cost = 0;
     public string CostText;
 
+    public AssetManager theassetmanager;
+
     public void Awake(){
         _notice = FindObjectOfType<NoticeUI>();
     }
@@ -17,7 +19,9 @@ public class SellItem : MonoBehaviour
     public void Clicksellbutton()
     {
         Cost = theinventory.SellItem();
+        theassetmanager.GetComponent<AssetManager>().Sell();
         CostText = Cost.ToString();
+        Cost = 0;
         SellAll();
         Debug.Log(Cost);
     }

@@ -91,7 +91,6 @@ public class Inventory : MonoBehaviour
         int multiplycost;
         for (int i = 0; i < slots.Length; i++)
         {
-            Debug.Log(i);
             if (slots[i].item == null)
             {
                 return allcost;
