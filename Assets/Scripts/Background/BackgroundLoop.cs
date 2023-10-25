@@ -1,30 +1,30 @@
 using UnityEngine;
 
-// ¿ÞÂÊ ³¡À¸·Î ÀÌµ¿ÇÑ ¹è°æÀ» ¿À¸¥ÂÊ ³¡À¸·Î Àç¹èÄ¡ÇÏ´Â ½ºÅ©¸³Æ®
+// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ìµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ä¡ï¿½Ï´ï¿½ ï¿½ï¿½Å©ï¿½ï¿½Æ®
 public class BackgroundLoop : MonoBehaviour
 {
-    private float width; // ¹è°æÀÇ °¡·Î ±æÀÌ
+    private float width; // ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 
     private void Awake()
     {
-        // °¡·Î ±æÀÌ¸¦ ÃøÁ¤ÇÏ´Â Ã³¸®
+        // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ì¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ Ã³ï¿½ï¿½
         BoxCollider2D backgroundCollider = GetComponent<BoxCollider2D>();
         width = backgroundCollider.size.x;
     }
 
     private void Update()
     {
-        // ÇöÀç À§Ä¡°¡ ¿øÁ¡¿¡¼­ ¿ÞÂÊÀ¸·Î width ÀÌ»ó ÀÌµ¿ÇßÀ»¶§ À§Ä¡¸¦ ¸®¼Â
-        if (transform.position.x <= -width)
+        // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ width ï¿½Ì»ï¿½ ï¿½Ìµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+        if (transform.position.x <= -3*width)
         {
             Reposition();
         }
     }
 
-    // À§Ä¡¸¦ ¸®¼ÂÇÏ´Â ¸Þ¼­µå
+    // ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½Þ¼ï¿½ï¿½ï¿½
     private void Reposition()
     {
-        Vector2 offset = new Vector2(width * 2f, 0);
+        Vector2 offset = new Vector2(width * 6f, 0);
         transform.position = (Vector2)transform.position + offset;
 
     }

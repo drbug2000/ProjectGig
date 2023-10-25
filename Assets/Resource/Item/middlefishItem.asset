@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: middlefishItem
   m_EditorClassIdentifier: 
   itemName: middlefish
-  itemImage: {fileID: 0}
+  itemImage: {fileID: 988556790, guid: f17d8eb6a8739be46940200382761bbb, type: 3}
   Cost: 50
