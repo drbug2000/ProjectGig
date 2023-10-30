@@ -20,7 +20,6 @@ public class FSAway : FishState
         //fishfin.SetSpot()
         fishfin.accelFin(fishfin.currentPos - fishfin.TransVector(fish.awaytarget.transform.position)
                 , fish.MaxSpeed / 0.8f);
-        Debug.Log(" new FSAway OnEnter");
     }
     public override void stateUpdate()
     {

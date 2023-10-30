@@ -41,45 +41,37 @@ public class FSDashAttack : FishState
                 switch (State)
                 {
                     case attState.ready:
-                        Debug.Log("Timeset" + State);
                         
                         
                         setState((int)attState.setTarget);
                         break;
                     case attState.setTarget:
-                        Debug.Log("Timeset" + State);
                         
                         setState((int)attState.Dash);
                         break;
                     case attState.Dash:
-                        Debug.Log("Timeset" + State);
                         
                         setState((int)attState.ready);
                         //((NewShark)fish).Bite = false;
                         break;
                     case attState.bite:
                         //timer =attackTime;
-                        Debug.Log("Timeset" + State);
                         setState((int)attState.shake);
                         
                         //fishfin.StopFish();
                         break;
                     case attState.shake:
-                        Debug.Log("Timeset" + State);
                         
                         setState((int)attState.restore);
                         break;
                     case attState.restore:
-                        Debug.Log("Timeset" + State);
                         
                         setState((int)attState.ready);
                         break;
                     case attState.end:
 
-                        Debug.Log("Timeset" + State);
                         break;
                     default:
-                        Debug.Log("attack FSM State error");
                         break;
                 }
             }
@@ -91,7 +83,7 @@ public class FSDashAttack : FishState
     public void setState( int state )
     {
         State = (attState)state;
-        Debug.Log("state set" + State);
+
         switch (State) 
         {
             case attState.ready:
@@ -104,8 +96,6 @@ public class FSDashAttack : FishState
                 timer = 1f;
                 //set target spot
                 fishfin.SetSpot(fishfin.TransVector(target.transform.position));
-                Debug.Log("player " + target.transform.position);
-                Debug.Log("shark " + fish.GetComponent<Transform>().position);
 
                 //change anime
                 break;
@@ -172,7 +162,6 @@ public class FSDashAttack : FishState
 
         //animator = GetComponent<Animator>();
         fish.animator.SetBool("Detected", true);
-        Debug.Log(" new FSATttack Enter");
 
         State = attState.ready;
 

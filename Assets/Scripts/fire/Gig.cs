@@ -82,7 +82,7 @@ public class Gig : MonoBehaviour
             gunscript.Hit();
             Debug.Log("gig : Hit fish");
             AttTarget = collision.gameObject.GetComponent<IDamageable>();
-            //юс╫ц ╨╞╪Ж
+            //О©╫с╫О©╫ О©╫О©╫О©╫О©╫
             AttTarget.OnDamage(gigdamage, gameObject, Vector2.zero, Vector2.zero);
         }
     }
@@ -93,9 +93,8 @@ public class Gig : MonoBehaviour
         if (other.gameObject.tag == "fish" && isfire)
         {
             gunscript.Hit();
-            Debug.Log("gig : Hit fish(trigger)");
             AttTarget = other.gameObject.GetComponent<IDamageable>();
-            //юс╫ц ╨╞╪Ж
+            //О©╫с╫О©╫ О©╫О©╫О©╫О©╫
             AttTarget.OnDamage(gigdamage, gameObject, Vector2.zero, Vector2.zero);
         }
 

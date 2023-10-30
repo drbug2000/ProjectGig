@@ -53,7 +53,7 @@ public class NewShark : FishClass
     // Update is called once per frame
     public override void Update()
     {
-        //ÇöÀç State¿¡ ÇÔ¼ö¸¦ ¸Å ÇÁ·¹ÀÓ ½ÇÇàÇÔ
+        //ï¿½ï¿½ï¿½ï¿½ Stateï¿½ï¿½ ï¿½Ô¼ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         currentState.stateUpdate();
     }
 
@@ -66,7 +66,6 @@ public class NewShark : FishClass
         if ((tar != null)&& ReferenceEquals(currentState, roam))
         {
             target = tar.gameObject;
-            Debug.Log("overlap circle active target : " + target);
             SetState(attack);
         }
         

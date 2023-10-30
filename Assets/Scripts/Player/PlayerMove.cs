@@ -306,19 +306,19 @@ public class PlayerMove : MonoBehaviour
         }
         playerRigidbody.mass = 0;
         playerRigidbody.drag = 0;
-        Debug.Log("default mass : " + defaultmass + "\n default drag : " + defaultdrag);
-        Debug.Log("current mass : " + playerRigidbody.mass + "\n current drag : " + playerRigidbody.drag);
+        // Debug.Log("default mass : " + defaultmass + "\n default drag : " + defaultdrag);
+        // Debug.Log("current mass : " + playerRigidbody.mass + "\n current drag : " + playerRigidbody.drag);
     }
 
     public void SpitOut(Vector2 spitForce)
     {
-        Debug.Log("뱉었다");
-        Debug.Log(spitForce);
+        // Debug.Log("뱉었다");
+        // Debug.Log(spitForce);
         playerRigidbody.mass = defaultmass;
         playerRigidbody.drag = defaultdrag;
         playerRigidbody.AddForce(spitForce);
-        Debug.Log("default mass : " + defaultmass + "\n default drag : " + defaultdrag);
-        Debug.Log("current mass : " + playerRigidbody.mass + "\n current drag : " + playerRigidbody.drag);
+        // Debug.Log("default mass : " + defaultmass + "\n default drag : " + defaultdrag);
+        // Debug.Log("current mass : " + playerRigidbody.mass + "\n current drag : " + playerRigidbody.drag);
         Sturn = false;
     }
 

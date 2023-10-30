@@ -22,17 +22,21 @@ public class NoticeUI : MonoBehaviour
 
     public void SUB(string message){
         subintext.text = message;
-        subbox.SetActive(false);
-        StopAllCoroutines();
         StartCoroutine(SUBDelay());
+        subbox.SetActive(false);
     }
 
     IEnumerator SUBDelay(){
         subbox.SetActive(true);
+        if (Input.anyKeyDown) {
+            subbox.SetActive(false);
+            StopCoroutine(SUBDelay());
+        }
+        yield return null;
         //subani.SetBool("isOn", true);
-        yield return _UIDelay1;
-        //subani.SetBool("isOn", false);
-        yield return _UIDelay2;
-        subbox.SetActive(false);
+        // yield return _UIDelay1;
+        // //subani.SetBool("isOn", false);
+        // yield return _UIDelay2;
+        StartCoroutine(SUBDelay());
     }
 }
