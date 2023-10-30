@@ -32,11 +32,12 @@ public class NoticeUI : MonoBehaviour
             subbox.SetActive(false);
             StopCoroutine(SUBDelay());
         }
-        yield return null;
+        yield return _UIDelay1;
         //subani.SetBool("isOn", true);
         // yield return _UIDelay1;
         // //subani.SetBool("isOn", false);
         // yield return _UIDelay2;
-        StartCoroutine(SUBDelay());
+        // StartCoroutine(SUBDelay());
+        StopCoroutine(SUBDelay());
     }
 }
