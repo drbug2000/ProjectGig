@@ -56,7 +56,7 @@ public class Gun : MonoBehaviour
                     case fireState.ready:
                         break;
                     default:
-                        Debug.Log("Timer set error"+State);
+                        // Debug.Log("Timer set error"+State);
                         break;
                 }
             }

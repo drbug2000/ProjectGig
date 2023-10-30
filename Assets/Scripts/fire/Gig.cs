@@ -38,18 +38,11 @@ public class Gig : MonoBehaviour
         gigdamage = gunscript.gigDamage;
         
     }
-
-    void Update()
-    {
-
-        
-
-    }
-
     
     public void onfire()
     {
         isfire = true;
+        Time.timeScale = 0.6f;
         //Timer = fireTime;
         //StartCoroutine("RollBasck", Speed);
         StartCoroutine("Line");
@@ -58,6 +51,7 @@ public class Gig : MonoBehaviour
     public void outfire()
     {
         isfire = false;
+        Time.timeScale = 1f;
         transform.localPosition = new Vector3(-0.7f, 2, 0);
     }
     
