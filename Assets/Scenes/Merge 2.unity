@@ -889,6 +889,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ShopImage: {fileID: 819518}
+  _setActiveShop: {fileID: 0}
 --- !u!61 &585050598
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1982,6 +1983,10 @@ PrefabInstance:
       propertyPath: theinventory
       value: 
       objectReference: {fileID: 1304242848}
+    - target: {fileID: 7437485434387895069, guid: 35c603a1598194e2b8d74f175420ce84, type: 3}
+      propertyPath: theassetmanager
+      value: 
+      objectReference: {fileID: 1673689377}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 35c603a1598194e2b8d74f175420ce84, type: 3}
 --- !u!1 &1445005887
@@ -2388,6 +2393,10 @@ PrefabInstance:
       propertyPath: bulletSpeed
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 4567713341176987131, guid: d8e5647f1fa2e8c408389857ed3190a5, type: 3}
+      propertyPath: Camera
+      value: 
+      objectReference: {fileID: 182433103}
     - target: {fileID: 6071760206674843744, guid: d8e5647f1fa2e8c408389857ed3190a5, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -2722,6 +2731,17 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1673689377 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7437485433607723931, guid: 35c603a1598194e2b8d74f175420ce84, type: 3}
+  m_PrefabInstance: {fileID: 1416074259}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8e109349e63c9247886b526ee0430c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1678662556
 GameObject:
   m_ObjectHideFlags: 0
@@ -2860,6 +2880,7 @@ MonoBehaviour:
   _introLobbyAudioClip: {fileID: 0}
   _inGameClip: {fileID: 0}
   fishspawn: {fileID: 1188881023}
+  shopManager: {fileID: 0}
 --- !u!4 &1801910941
 Transform:
   m_ObjectHideFlags: 0
