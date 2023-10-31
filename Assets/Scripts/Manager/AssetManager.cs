@@ -28,9 +28,6 @@ public class AssetManager : MonoBehaviour
 
     public void Sell(){
         GameManager.Instance.Gold += sellItem.Cost;
-        Debug.Log("GameManager에 있는 돈 : " + GameManager.Instance.Gold);
-        Debug.Log("GoldText에 표시할 돈 : " + GoldText);
-        Debug.Log("바뀔 돈 : " + sellItem.Cost);
         StartCoroutine(Changemoney());
 
     }

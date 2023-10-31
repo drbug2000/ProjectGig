@@ -23,7 +23,9 @@ public class NoticeUI : MonoBehaviour
     public void SUB(string message){
         subintext.text = message;
         StartCoroutine(SUBDelay());
-        subbox.SetActive(false);
+        if (subbox.activeSelf == true) {
+            subbox.SetActive(false);
+        }
     }
 
     IEnumerator SUBDelay(){
