@@ -35,7 +35,6 @@ public class ItemSlotUI : MonoBehaviour
     {
         item = _item;
         itemImage.sprite = item.itemImage;
-        Debug.Log(this.gameObject.name);
         go_CountImage.SetActive(true);
         SetColor(255f);
         text_Count.text = itemCount.ToString();

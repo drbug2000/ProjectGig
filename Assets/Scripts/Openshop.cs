@@ -11,7 +11,6 @@ public class Openshop : MonoBehaviour
 
     void Start() {
         ShopImage.SetActive(false);
-        Button btn = _setActiveShop.GetComponent<Button>();
     }
 /*
     private void OnTriggerStay2D(Collider2D collision)
@@ -31,14 +30,16 @@ public class Openshop : MonoBehaviour
     public void setActiveShop(){
         //Debug.Log("B");
         if (ShopImage.activeSelf == true) {
+            Debug.Log("on");
             Time.timeScale = 1f;
             ShopImage.SetActive(false);
         }
         else if (ShopImage.activeSelf == false) {
+            Debug.Log("off");
             Time.timeScale = 0f;
             ShopImage.SetActive(true);
         }
-        StartCoroutine(CanOpenShop());
+        //StartCoroutine(CanOpenShop());
     }
 
     //아래부터는 코루틴
@@ -76,13 +77,13 @@ public class Openshop : MonoBehaviour
                 ShopImage.SetActive(true);
             }
         }
-        
+        /*
         else if (_setActiveShop != null && _setActiveShop.interactable) {
             if (ShopImage.activeSelf == true) {
                 Time.timeScale = 1f;
             }
         }
-        
+        */
         StartCoroutine(CanOpenShop());
     }
 }

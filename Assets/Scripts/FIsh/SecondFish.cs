@@ -45,7 +45,6 @@ public class SecondFish : FishClass
         if ((tar != null) && ReferenceEquals(currentState, roam))
         {
             awaytarget = tar.gameObject;
-            Debug.Log("overlap circle active target : " + awaytarget);
             SetState(away);
         }
     }

@@ -18,12 +18,11 @@ public class SellItem : MonoBehaviour
     
     public void Clicksellbutton()
     {
+        Cost = 0;
         Cost = theinventory.SellItem();
         theassetmanager.GetComponent<AssetManager>().Sell();
         CostText = Cost.ToString();
-        Cost = 0;
         SellAll();
-        Debug.Log(Cost);
     }
     public void SellAll(){
         _notice.SUB(CostText);

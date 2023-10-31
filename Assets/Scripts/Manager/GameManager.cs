@@ -65,12 +65,6 @@ public class GameManager : MonoBehaviour
         //PlayLobbyMusic();
     }
 
-    void Update()
-    {
-
-
-    }
-
     /*
     public void PlayLobbyMusic()
     {
