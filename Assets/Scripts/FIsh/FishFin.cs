@@ -14,7 +14,7 @@ public class FishFin  : MonoBehaviour
     private SpriteRenderer Renderer;
     private Animator fishAimator;
 
-    //ÀÌµ¿ Á¤º¸
+    //ì´ë™ ì •ë³´
     public Vector2 Dir;
     public Vector2 Spot;
 
@@ -35,8 +35,8 @@ public class FishFin  : MonoBehaviour
     //public float MinSpeed;
     //public float waitTime;
 
-    //fishfin scriptÀÇ ¾Ö´Ï¸ŞÀÌ¼Ç ¼Óµµ ÅëÁ¦±Ç
-    //trueÀÏ½Ã ¹°°í±â ¾Ö´Ï¸ŞÀÌ¼Ç ¼Óµµ°¡ ÀÌµ¿¼Óµµ¿Í °°À½
+    //fishfin scriptì˜ ì• ë‹ˆë©”ì´ì…˜ ì†ë„ í†µì œê¶Œ
+    //trueì¼ì‹œ ë¬¼ê³ ê¸° ì• ë‹ˆë©”ì´ì…˜ ì†ë„ê°€ ì´ë™ì†ë„ì™€ ê°™ìŒ
     private bool aniControl = true;
 
     bool sturn=false;
@@ -53,18 +53,18 @@ public class FishFin  : MonoBehaviour
             }
 
             if (value)
-            {//¹°¼Ó¿¡ ´Ù½Ã µé¾î¿ÔÀ» ¶§
-                //Áß·Â »ó½Â
-                //Drag »ó½Â
+            {//ë¬¼ì†ì— ë‹¤ì‹œ ë“¤ì–´ì™”ì„ ë•Œ
+                //ì¤‘ë ¥ ìƒìŠ¹
+                //Drag ìƒìŠ¹
                 fishRigidbody.gravityScale = fish.gravity;
                 SetDrag(fish.drag);
             }
             else
-            {//¹°¹ÛÀ¸·Î ³ª°¬À»¶§
+            {//ë¬¼ë°–ìœ¼ë¡œ ë‚˜ê°”ì„ë•Œ
                 fishRigidbody.gravityScale = fish.gravity*10;
                 SetDrag(fish.drag*2);
                 //fish.DefaultState();
-                //Ã·º¡°Å¸² effect
+                //ì²¨ë²™ê±°ë¦¼ effect
             }
             inWater = value;
         }
@@ -113,7 +113,7 @@ public class FishFin  : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //º¯¼ö µ¿±âÈ­
+        //ë³€ìˆ˜ ë™ê¸°í™”
         currentPos = new Vector2(transform.position.x, transform.position.y);
         SpotDistance = (currentPos - Spot).magnitude;
 
@@ -124,7 +124,7 @@ public class FishFin  : MonoBehaviour
 
         if (sturn) { return; }
 
-        //¹æÇâÀüÈ¯
+        //ë°©í–¥ì „í™˜
         if (IsLeft())
         {
             Renderer.flipX = false;
@@ -143,18 +143,18 @@ public class FishFin  : MonoBehaviour
             return; 
         }
         if (aniControl){
-            fishAimator.SetFloat("fishSpeed", velocityM * 0.5f + 0.5f);
+            fishAimator.SetFloat("fishSpeed", velocityM * 0.3f + 0.3f);
         }
         
 
-        //ÃÖ´ë¼Ó·Â ÇÑ°è ¼³Á¤
+        //ìµœëŒ€ì†ë ¥ í•œê³„ ì„¤ì •
         if (velocity.magnitude > fish.MaxSpeed)
         {
             fishRigidbody.velocity = velocity.normalized * fish.MaxSpeed;
         }
 
-        //¹Ù´Ù Ç¥¸éÀ§·Î ¿Ã¶ó°¡Áö ¾Ê°Ô
-        //Collider·Î ±¸ÇöÇÏ¸é Á¶±İ ´õ ÁÁÀ»²¨ °°±äÇÔ
+        //ë°”ë‹¤ í‘œë©´ìœ„ë¡œ ì˜¬ë¼ê°€ì§€ ì•Šê²Œ
+        //Colliderë¡œ êµ¬í˜„í•˜ë©´ ì¡°ê¸ˆ ë” ì¢‹ì„êº¼ ê°™ê¸´í•¨
         if (currentPos.y >= 0)
         {
             //Debug.Log("fish out");
@@ -294,20 +294,20 @@ public class FishFin  : MonoBehaviour
 
     }
     */
-    //ÀÔÀÇ ÁÂÇ¥¸¦ Ãâ·ÂÇÏ´Â ÇÔ¼ö
-    //way parameter = -1 ¼³Á¤½Ã ÇöÀç ÀÌµ¿ ¹æÇâ°ú ¹İ´ë·Î Ãâ·Â
+    //ì…ì˜ ì¢Œí‘œë¥¼ ì¶œë ¥í•˜ëŠ” í•¨ìˆ˜
+    //way parameter = -1 ì„¤ì •ì‹œ í˜„ì¬ ì´ë™ ë°©í–¥ê³¼ ë°˜ëŒ€ë¡œ ì¶œë ¥
     public Vector2 WhereMouth(int way = 1)
     {
-        //Äİ¶óÀÌ´õ »çÀÌÁî¿¡ µû¸¥ »ó¾îÀÔ »ó´ë À§Ä¡ Á¶Á¤
+        //ì½œë¼ì´ë” ì‚¬ì´ì¦ˆì— ë”°ë¥¸ ìƒì–´ì… ìƒëŒ€ ìœ„ì¹˜ ì¡°ì •
         Vector2 mouth = fish.fishcollider.size;
-        mouth.x *= -0.5f;//¿ŞÂÊ ¾Æ·¡°¡ default
+        mouth.x *= -0.5f;//ì™¼ìª½ ì•„ë˜ê°€ default
         mouth.y *= -0.5f;
-        //º¸Á¤°ª Àû¿ë
+        //ë³´ì •ê°’ ì ìš©
         mouth += fish.mouthPosAdder + fish.fishcollider.offset;
-        //»ó¾î ¹æÇâ¿¡ µû¸¥ xÁÂÇ¥ ¹æÇâ Á¶Á¤
-        if (!isleft) { mouth.x *= -1; Debug.Log("ÁÖ´óÀÌ ¿À¸¥"); }
-        else { Debug.Log("ÁÖ´óÀÌ ¿Ş"); }
-        Debug.Log("ÇöÀç ÃøÁ¤ ¼Óµµ ¹æÇâ" + velocity.x);
+        //ìƒì–´ ë°©í–¥ì— ë”°ë¥¸ xì¢Œí‘œ ë°©í–¥ ì¡°ì •
+        if (!isleft) { mouth.x *= -1; Debug.Log("ì£¼ëŒ•ì´ ì˜¤ë¥¸"); }
+        else { Debug.Log("ì£¼ëŒ•ì´ ì™¼"); }
+        Debug.Log("í˜„ì¬ ì¸¡ì • ì†ë„ ë°©í–¥" + velocity.x);
 
         //if (way == -1) { mouth.x *= -1; }
         if(way == 0) { return mouth; }
@@ -317,7 +317,7 @@ public class FishFin  : MonoBehaviour
 
     public void SetDeadState(bool ISDEAD)
     {
-        //Á×Àº »óÅÂ. µÚÁı¾îÁö°í Ãæµ¹ ¹«½Ã
+        //ì£½ì€ ìƒíƒœ. ë’¤ì§‘ì–´ì§€ê³  ì¶©ëŒ ë¬´ì‹œ
         Renderer.flipY = ISDEAD;
 
     }

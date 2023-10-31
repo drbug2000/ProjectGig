@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using System;
 using TMPro;
+using UnityEngine.UIElements;
 
 public class ShopManager : MonoBehaviour
 {
@@ -16,17 +17,17 @@ public class ShopManager : MonoBehaviour
     public Action DamageUpgrade;
     public Action RangeUpgrade;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        //assetManager = GetComponent<AssetManager>();
+    public ItemSlotUI[] itemslotui;
+    public Item[] item;
+    public UnityEngine.UI.Image[] image;
+
+    void Start() {
+        itemslotui = new ItemSlotUI[8];
+        item = new Item[8];
+        image = new UnityEngine.UI.Image[8];
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    #region  Buy
     public void OxygenLvlUp(){
         if (GameManager.Instance.Gold >= 1000){
             assetManager.Buy();
@@ -66,4 +67,26 @@ public class ShopManager : MonoBehaviour
     public void ShopActive(){
         gameObject.SetActive(true);
     }
+
+    #endregion
+
+    #region Sell
+    // inventory의 변경사항을 다시 불러오는 역할을 할 것이다.
+    public void CallInventory() {
+        for (int i = 0; i < 8; ++i) {
+            if (itemslotui[i].item == null) {
+                break;
+            }
+            item[i] = itemslotui[i].item;
+        }
+    }
+
+    // Item 목록을 리스트에 저장을 한 뒤 상점에 item 이미지 띄우기
+    public void ShowInventory() {
+        for (int i = 0; i < 8; ++i) {
+            image[i].sprite = item[i].itemImage;
+        }
+    }
+
+    #endregion
 }
