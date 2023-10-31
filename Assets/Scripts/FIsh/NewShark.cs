@@ -66,8 +66,11 @@ public class NewShark : FishClass
         if ((tar != null)&& ReferenceEquals(currentState, roam))
         {
             target = tar.gameObject;
-            Debug.Log("overlap circle active target : " + target);
-            SetState(attack);
+            //Debug.Log("overlap circle active target : " + target);
+            if (!target.GetComponent<PlayerMove>().onboard)
+            {
+                SetState(attack);
+            }
         }
         
 

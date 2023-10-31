@@ -168,23 +168,23 @@ MonoBehaviour:
   startHP: 6
   DefaultSize: 0
   RatioSize: 1
-  mass: 0.1
-  drag: 0.35
+  mass: 0.05
+  drag: 0.4
   gravity: 0.01
   speed: 5
-  MaxSpeed: 7
-  MinSpeed: 3
+  MaxSpeed: 6
+  MinSpeed: 2.5
   RoamBoxMaxX: 40
   RoamBoxMinX: -40
   RoamBoxMaxY: -5
   RoamBoxMinY: -30
   SpotRangeBig: 10
-  SpotRangeSmall: 3
-  RoamWaitTime: 3
-  detectArea: 3
+  SpotRangeSmall: 4
+  RoamWaitTime: 4
+  detectArea: 4
   detectTime: 1
   awaytime: 3
-  awaySpeed: 8
+  awaySpeed: 7
   sturntime: 2
   mouthPosAdder: {x: 0, y: 0}
 --- !u!50 &1829918663520162329

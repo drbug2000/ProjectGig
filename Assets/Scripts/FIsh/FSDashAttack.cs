@@ -92,9 +92,12 @@ public class FSDashAttack : FishState
     {
         State = (attState)state;
         Debug.Log("state set" + State);
+        Debug.Log("Bite value" + shark.Bite);
         switch (State) 
         {
             case attState.ready:
+
+                
                 timer = 2f;
                 fishfin.SetDrag(1f);
                 LookTarget();
@@ -102,6 +105,7 @@ public class FSDashAttack : FishState
                 break;
             case attState.setTarget:
                 timer = 1f;
+                shark.Bite = false;
                 //set target spot
                 fishfin.SetSpot(fishfin.TransVector(target.transform.position));
                 Debug.Log("player " + target.transform.position);
@@ -281,10 +285,10 @@ public class FSDashAttack : FishState
 
         shark.joint.connectedBody = null;
         shark.joint.enabled = false;
-        shark.Bite = false;
+        
         playermove.SpitOut(shark.spitforce*(fishfin.WhereMouth() - fishfin.currentPos));
-        
-        
+        shark.Bite = false;//not work here
+
     }
 
     public void Shake()
