@@ -51,7 +51,6 @@ public class Gig : MonoBehaviour
     public void outfire()
     {
         isfire = false;
-        Time.timeScale = 1f;
         transform.localPosition = new Vector3(-0.7f, 2, 0);
     }
     
