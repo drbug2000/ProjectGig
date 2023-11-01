@@ -18,17 +18,17 @@ public class FishClass : MonoBehaviour
     public Item item;
 
 
-    //±âº» »óÅÂ
+    //ï¿½âº» ï¿½ï¿½ï¿½ï¿½
     public FSRoam roam;
     public FSGrab grab;
     public FSDEAD dead;
     public FSSTURN sturn;
     //FScatched;
 
-    //HP °ü·Ã º¯¼ö
+    //HP ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     public int startHP;
 
-    //¿òÁ÷ÀÓ °ü·Ã º¯¼ö
+    //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     // public float startWaitTime;
     //public float waitTime;
     //public Transform moveSpot;
@@ -36,39 +36,39 @@ public class FishClass : MonoBehaviour
     //public SpriteRenderer Renderer;
     //public Rigidbody2D fishRigidbody;
 
-    //¹°°í±â Æ¯¼º °ü·Ã º¯¼ö
-    public float DefaultSize;//¹°°í±â ±âº» Å©±â(¹°°í±â Á¾·ù °íÀ¯°ª)
-    public float RatioSize=1;//°öÇØÁö´Â Å©±â (DefaultSize * RatioSize = ½ÇÁ¦ Å©±â)
+    //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Æ¯ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+    public float DefaultSize;//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½âº» Å©ï¿½ï¿½(ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½)
+    public float RatioSize=1;//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Å©ï¿½ï¿½ (DefaultSize * RatioSize = ï¿½ï¿½ï¿½ï¿½ Å©ï¿½ï¿½)
 
-    public float mass;//¹«°Ô
-    public float drag;//ÀúÇ×
-    public float gravity;//¹Þ´Â Áß·Â
+    public float mass;//ï¿½ï¿½ï¿½ï¿½
+    public float drag;//ï¿½ï¿½ï¿½ï¿½
+    public float gravity;//ï¿½Þ´ï¿½ ï¿½ß·ï¿½
     public float speed;
 
     public float MaxSpeed;
     public float MinSpeed;
 
-    //À¯¿µ ¹üÀ§
+    //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     public float RoamBoxMaxX;
     public float RoamBoxMinX;
     public float RoamBoxMaxY;
     public float RoamBoxMinY;
     
-    //Spot¹üÀ§ 
+    //Spotï¿½ï¿½ï¿½ï¿½ 
     public float SpotRangeBig;
     public float SpotRangeSmall;
 
     public float RoamWaitTime;
 
-    //°¨Áö
+    //ï¿½ï¿½ï¿½ï¿½
     public float detectArea;
     public float detectTime;
 
-    //µµ¸Á
+    //ï¿½ï¿½ï¿½ï¿½
     public float awaytime;
     public float awaySpeed;
 
-    //°ø°Ý´çÇÔ
+    //ï¿½ï¿½ï¿½Ý´ï¿½ï¿½ï¿½
     public float sturntime;
 
     public Vector2 mouthPosAdder;
@@ -139,7 +139,7 @@ public class FishClass : MonoBehaviour
 
     public void OnDeath()
     {
-        //ÀÌÀü »óÅÂ¿Í »ó°ü¾øÀÌ °ø°ÝÀ» ¹ÞÀ½ && Ã¼·Â 0 ÀÌ¸é ÀÛ»ì¿¡ ²ø·Á°¡±â
+        //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Â¿ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ && Ã¼ï¿½ï¿½ 0 ï¿½Ì¸ï¿½ ï¿½Û»ì¿¡ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         SetState(grab);
         /*
         if (ReferenceEquals(currentState, dead))
@@ -166,7 +166,7 @@ public class FishClass : MonoBehaviour
         gameObject.SetActive(true);
     }
 
-    //Debug ÀÓ½Ã ÄÝ¶óÀÌ´õ
+    //Debug ï¿½Ó½ï¿½ ï¿½Ý¶ï¿½ï¿½Ì´ï¿½
     public virtual void OnCollisionEnter2D(Collision2D collision)
     {
         //Debug.Log("fish : touch something");
@@ -175,11 +175,10 @@ public class FishClass : MonoBehaviour
            
       
             Inventory playerInventory = collision.gameObject.GetComponent<Inventory>();
-            Debug.Log("playerInventory : " + playerInventory);
             if (!playerInventory.isinventoryfull) {
                 OnCaught(playerInventory);
             }else{
-                //ÀÎº¥Åä¸® °¡µæ Ã¡À» ½Ã ¶³¾îÁ® ³ª°¨
+                //ï¿½Îºï¿½ï¿½ä¸® ï¿½ï¿½ï¿½ï¿½ Ã¡ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
                 fishfin.accelFin(4*(new Vector2(Random.Range(-2,2),2)));
                 SetState(dead);
             }
@@ -187,7 +186,7 @@ public class FishClass : MonoBehaviour
             //Debug.Log("fish : Player touch");
 
             //AttTarget = collision.gameObject.GetComponent<IDamageable>();
-            //ÀÓ½Ã º¯¼ö
+            //ï¿½Ó½ï¿½ ï¿½ï¿½ï¿½ï¿½
             //AttTarget.OnDamage(3, gameObject, Vector2.zero, Vector2.zero);
         }
     }

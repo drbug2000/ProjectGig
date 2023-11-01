@@ -4,20 +4,20 @@ using UnityEngine.UI;
 
 public class PlayerHealth : LivingEntity
 {
-    //ÇÃ·¹ÀÌ¾îÀÇ hp¸¦ °ü¸®ÇÏ´Â ½ºÅ©¸³Æ®
-    //1. È°¼ºÈ­ ½Ã hp °ª ÃÊ±âÈ­
-    //2. ÇÇ°Ý ½Ã µ¥¹ÌÁö¸¦ ÀÔ°í, »öÀÌ º¯È¯µÈ´Ù.
-    //3. ÇÇ°Ý ½Ã Hp°¡ 0 ÀÌÇÏÀÏ °æ¿ì »ç¸Á »óÅÂ·Î º¯È¯ÇÑ´Ù.
-    //4. »ç¸Á ½Ã: ...¿¡¼­ onDeath ÀÌº¥Æ®¸¦ ±¸µ¶ (°ÔÀÓ ¸Å´ÏÀú¿¡¼­?)
-    //5. onDeath: ºñÈ°¼ºÈ­, ÀÎº¥Åä¸® ºñ·ÔÇÑ Á¤º¸ ÃÊ±âÈ­ ÈÄ ÀçÈ°¼ºÈ­
-    //6. ¹Ù´Ù¿Í À°Áö¸¦ ÆÇº°ÇÏ¿©, hp°¡ È¸º¹ ¶Ç´Â °¨¼ÒÇÑ´Ù.
-    //7. »óÁ¡¿¡¼­ ÇÃ·¹ÀÌ¾îÀÇ hp¸¦ ¾÷±×·¹ÀÌµåÇÒ ¼ö ÀÖ´Ù. :
-    //PlayerHealth ÄÄÆ÷³ÍÆ®¸¦ °¡Á®¿Í RestoreHealth()¸¦ ½ÇÇàÇÑ´Ù.
-    //8. onDeath ¸Þ¼­µå¸¦ ±¸Çö
-    //9. Update ¸Þ¼­µå¿¡¼­ Áö¼Óµ¥¹ÌÁö¿Í Áö¼ÓÈ¸º¹
+    //ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ï¿½ï¿½ hpï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½Å©ï¿½ï¿½Æ®
+    //1. È°ï¿½ï¿½È­ ï¿½ï¿½ hp ï¿½ï¿½ ï¿½Ê±ï¿½È­
+    //2. ï¿½Ç°ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ô°ï¿½, ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È¯ï¿½È´ï¿½.
+    //3. ï¿½Ç°ï¿½ ï¿½ï¿½ Hpï¿½ï¿½ 0 ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Â·ï¿½ ï¿½ï¿½È¯ï¿½Ñ´ï¿½.
+    //4. ï¿½ï¿½ï¿½ ï¿½ï¿½: ...ï¿½ï¿½ï¿½ï¿½ onDeath ï¿½Ìºï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ (ï¿½ï¿½ï¿½ï¿½ ï¿½Å´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½?)
+    //5. onDeath: ï¿½ï¿½È°ï¿½ï¿½È­, ï¿½Îºï¿½ï¿½ä¸® ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ê±ï¿½È­ ï¿½ï¿½ ï¿½ï¿½È°ï¿½ï¿½È­
+    //6. ï¿½Ù´Ù¿ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Çºï¿½ï¿½Ï¿ï¿½, hpï¿½ï¿½ È¸ï¿½ï¿½ ï¿½Ç´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½.
+    //7. ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ï¿½ï¿½ hpï¿½ï¿½ ï¿½ï¿½ï¿½×·ï¿½ï¿½Ìµï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ö´ï¿½. :
+    //PlayerHealth ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ RestoreHealth()ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½.
+    //8. onDeath ï¿½Þ¼ï¿½ï¿½å¸¦ ï¿½ï¿½ï¿½ï¿½
+    //9. Update ï¿½Þ¼ï¿½ï¿½å¿¡ï¿½ï¿½ ï¿½ï¿½ï¿½Óµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½È¸ï¿½ï¿½
 
 
-    private float durationTime = 3; //Áö¼Óµ¥¹ÌÁö ÄðÅ¸ÀÓ
+    private float durationTime = 3; //ï¿½ï¿½ï¿½Óµï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Å¸ï¿½ï¿½
 
 
     public SpriteRenderer playerSpriteRenderer;
@@ -27,9 +27,9 @@ public class PlayerHealth : LivingEntity
 
     private void Awake()
     {
-        //ÄÄÆ÷³ÍÆ® ÇÒ´ç: ÇÇ°Ý ½Ã¿¡ »ö º¯È¯À» À§ÇÔ
+        //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½Ò´ï¿½: ï¿½Ç°ï¿½ ï¿½Ã¿ï¿½ ï¿½ï¿½ ï¿½ï¿½È¯ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         playerSpriteRenderer = GetComponent<SpriteRenderer>();
-        //ÄÄÆ÷³ÍÆ® ÇÒ´ç: ¹Ù´Ù¿Í À°Áö ÆÇº° À§ÇÔ
+        //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½Ò´ï¿½: ï¿½Ù´Ù¿ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Çºï¿½ ï¿½ï¿½ï¿½ï¿½
         playerMove = GetComponent<PlayerMove>();
         
     }
@@ -39,9 +39,9 @@ public class PlayerHealth : LivingEntity
     {
         maxHp = 100;
         startingHealth = 100;
-        // LivingEntityÀÇ OnEnable() ½ÇÇà (»óÅÂ ÃÊ±âÈ­)
+        // LivingEntityï¿½ï¿½ OnEnable() ï¿½ï¿½ï¿½ï¿½ (ï¿½ï¿½ï¿½ï¿½ ï¿½Ê±ï¿½È­)
         base.OnEnable();
-        //¹Ù´Ù, À°ÁöÀÓÀ» ÆÇº°ÇÏ¿© ÇÇ¸¦ ±ð°Å³ª Ã¤¿î´Ù
+        //ï¿½Ù´ï¿½, ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Çºï¿½ï¿½Ï¿ï¿½ ï¿½Ç¸ï¿½ ï¿½ï¿½Å³ï¿½ Ã¤ï¿½ï¿½ï¿½
         
     }
 
@@ -63,10 +63,15 @@ public class PlayerHealth : LivingEntity
         
         hp.fillAmount = health / maxHp;
 
+        if (health == 0) {
+            Die();
+            GameManager.Instance.playeronDeath();
+        }
+
     }
     
 
-    //»ö º¯È¯ ÄÚ·çÆ¾
+    //ï¿½ï¿½ ï¿½ï¿½È¯ ï¿½Ú·ï¿½Æ¾
     private IEnumerator DamagedEffect()
     {
         playerSpriteRenderer.material.color = new Color(1f, 168 / 255f, 168 / 255f);
@@ -76,18 +81,18 @@ public class PlayerHealth : LivingEntity
     }
 
 
-    //È¸º¹ Ã³¸®
+    //È¸ï¿½ï¿½ Ã³ï¿½ï¿½
     public override void RestoreHealth(float newHealth)
     {
-        // LivingEntityÀÇ RestoreHealth() ½ÇÇà (Ã¼·Â Áõ°¡)
+        // LivingEntityï¿½ï¿½ RestoreHealth() ï¿½ï¿½ï¿½ï¿½ (Ã¼ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½)
         base.RestoreHealth(newHealth);
     }
 
-    // µ¥¹ÌÁö Ã³¸®
+    // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Ã³ï¿½ï¿½
     public override void OnDamage(float damage, GameObject hiter, Vector3 hitPoint, Vector3 hitDirection)
     {
         StartCoroutine(DamagedEffect());
-        // LivingEntityÀÇ OnDamage() ½ÇÇà(µ¥¹ÌÁö Àû¿ë)
+        // LivingEntityï¿½ï¿½ OnDamage() ï¿½ï¿½ï¿½ï¿½(ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½)
 
         base.OnDamage(damage, hiter ,hitPoint, hitDirection);
     }
@@ -95,12 +100,12 @@ public class PlayerHealth : LivingEntity
 
     public override void Die()
     {
-        //¾Ö´Ï¸ÞÀÌ¼Ç, »ç¿îµå Àç»ý
+        //ï¿½Ö´Ï¸ï¿½ï¿½Ì¼ï¿½, ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
         
-        //GameManagerÀÇ playeronDeath ¸Þ¼­µå ½ÇÇà
-        //µ· »©°¡°Å³ª À¯Áö½ÃÅ°±â
-        //you died! È­¸éÃ¢¿¡ ¶ç¿ì±â
-        // LivingEntityÀÇ Die() ½ÇÇà
+        //GameManagerï¿½ï¿½ playeronDeath ï¿½Þ¼ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+        //ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Å³ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Å°ï¿½ï¿½
+        //you died! È­ï¿½ï¿½Ã¢ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+        // LivingEntityï¿½ï¿½ Die() ï¿½ï¿½ï¿½ï¿½
         base.Die();
 
     }

@@ -1,9 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Security.Cryptography.X509Certificates;
 using UnityEngine;
 
 public class PlayerMove : MonoBehaviour
 {
+    // isfire 변수 값을 받아오기 위한 변수
+    [SerializeField]
+    private Gig gig;
     // public AudioClip deathClip; // 사망시 재생할 오디오 클립
     public float jumpForce = 700f; // 점프 힘
     public float swimForce = 3f; // 헤엄 힘
@@ -92,12 +96,9 @@ public class PlayerMove : MonoBehaviour
             playerwalk();
             animator.SetBool("intoOcean", false);
 
-
-
         }
         else
         {
-            
             playerRigidbody.gravityScale = 0; // 물 속에 있을 때 중력 0
             playerRigidbody.drag = 1.0f;
             playerswim();
@@ -180,11 +181,14 @@ public class PlayerMove : MonoBehaviour
 
         if (DashTimer < DashMoveCool)
         {
-
-            playerRigidbody.AddForce(swimForce * Vector3.right * playerInput.move_x);
+            if (playerRigidbody.velocity.x > -5 && playerRigidbody.velocity.x < 5) {
+                playerRigidbody.AddForce(swimForce * Vector3.right * playerInput.move_x);
+            }
             //물속의 경우 현재 입력 방향을 기준으로 sprite 방향 설정
             isleft = IsLeft(playerInput.move_x);
-            playerRigidbody.AddForce(swimForce * Vector3.up * playerInput.move_y);
+            if (playerRigidbody.velocity.y > -5 && playerRigidbody.velocity.y < 5) {
+                playerRigidbody.AddForce(swimForce * Vector3.up * playerInput.move_y);
+            }
         }
 
         if (DashTimer <= 0 && Input.GetButtonDown("Jump"))
@@ -263,8 +267,9 @@ public class PlayerMove : MonoBehaviour
 
     public void Attack()
     {
-        if (playerInput.fire == true)
+        if (gig.isfire == true)
         {
+            playerRigidbody.velocity = new Vector3(0f, 0f, 0);
             // Animator.SetBool("?", true);
         }
     }
@@ -306,19 +311,19 @@ public class PlayerMove : MonoBehaviour
         }
         playerRigidbody.mass = 0;
         playerRigidbody.drag = 0;
-        Debug.Log("default mass : " + defaultmass + "\n default drag : " + defaultdrag);
-        Debug.Log("current mass : " + playerRigidbody.mass + "\n current drag : " + playerRigidbody.drag);
+        // Debug.Log("default mass : " + defaultmass + "\n default drag : " + defaultdrag);
+        // Debug.Log("current mass : " + playerRigidbody.mass + "\n current drag : " + playerRigidbody.drag);
     }
 
     public void SpitOut(Vector2 spitForce)
     {
-        Debug.Log("뱉었다");
-        Debug.Log(spitForce);
+        // Debug.Log("뱉었다");
+        // Debug.Log(spitForce);
         playerRigidbody.mass = defaultmass;
         playerRigidbody.drag = defaultdrag;
         playerRigidbody.AddForce(spitForce);
-        Debug.Log("default mass : " + defaultmass + "\n default drag : " + defaultdrag);
-        Debug.Log("current mass : " + playerRigidbody.mass + "\n current drag : " + playerRigidbody.drag);
+        // Debug.Log("default mass : " + defaultmass + "\n default drag : " + defaultdrag);
+        // Debug.Log("current mass : " + playerRigidbody.mass + "\n current drag : " + playerRigidbody.drag);
         Sturn = false;
     }
 

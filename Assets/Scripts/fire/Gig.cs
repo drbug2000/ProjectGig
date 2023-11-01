@@ -38,18 +38,11 @@ public class Gig : MonoBehaviour
         gigdamage = gunscript.gigDamage;
         
     }
-
-    void Update()
-    {
-
-        
-
-    }
-
     
     public void onfire()
     {
         isfire = true;
+        Time.timeScale = 0.6f;
         //Timer = fireTime;
         //StartCoroutine("RollBasck", Speed);
         StartCoroutine("Line");
@@ -58,6 +51,7 @@ public class Gig : MonoBehaviour
     public void outfire()
     {
         isfire = false;
+        Time.timeScale = 1f;
         transform.localPosition = new Vector3(-0.7f, 2, 0);
     }
     
@@ -82,7 +76,7 @@ public class Gig : MonoBehaviour
             gunscript.Hit();
             Debug.Log("gig : Hit fish");
             AttTarget = collision.gameObject.GetComponent<IDamageable>();
-            //юс╫ц ╨╞╪Ж
+            //О©╫с╫О©╫ О©╫О©╫О©╫О©╫
             AttTarget.OnDamage(gigdamage, gameObject, Vector2.zero, Vector2.zero);
         }
     }
@@ -93,9 +87,8 @@ public class Gig : MonoBehaviour
         if (other.gameObject.tag == "fish" && isfire)
         {
             gunscript.Hit();
-            Debug.Log("gig : Hit fish(trigger)");
             AttTarget = other.gameObject.GetComponent<IDamageable>();
-            //юс╫ц ╨╞╪Ж
+            //О©╫с╫О©╫ О©╫О©╫О©╫О©╫
             AttTarget.OnDamage(gigdamage, gameObject, Vector2.zero, Vector2.zero);
         }
 
