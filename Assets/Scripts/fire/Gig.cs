@@ -42,7 +42,7 @@ public class Gig : MonoBehaviour
     public void onfire()
     {
         isfire = true;
-        Time.timeScale = 0.6f;
+        // Time.timeScale = 0.6f;
         //Timer = fireTime;
         //StartCoroutine("RollBasck", Speed);
         StartCoroutine("Line");

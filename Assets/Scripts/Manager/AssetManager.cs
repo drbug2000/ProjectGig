@@ -12,7 +12,7 @@ public class AssetManager : MonoBehaviour
     public int GoldText;
     public SellItem sellItem;
 
-    WaitForSeconds waitforseconds = new WaitForSeconds(0.01f);
+    WaitForSeconds waitforseconds = new WaitForSeconds(0.001f);
 
     // Start is called before the first frame update
     void Start()
