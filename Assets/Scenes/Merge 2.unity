@@ -1362,6 +1362,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3968353520739857586, guid: e08e841a3009ddd40897be02f526f3fd, type: 3}
+      propertyPath: sharkCounter
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3968353520739857586, guid: e08e841a3009ddd40897be02f526f3fd, type: 3}
       propertyPath: smallFishCounter
       value: 0
       objectReference: {fileID: 0}
@@ -1520,6 +1524,25 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1479076393 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3294160001957903593, guid: d8e5647f1fa2e8c408389857ed3190a5, type: 3}
+  m_PrefabInstance: {fileID: 1565593364}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1479076397
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1479076393}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5dbefa85edc25446aab9181fea515d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  subbox: {fileID: 7437485433098631762}
+  subintext: {fileID: 7437485433372607461}
 --- !u!114 &1483063545 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8702243974077584771, guid: d8e5647f1fa2e8c408389857ed3190a5, type: 3}
@@ -2504,6 +2527,7 @@ MonoBehaviour:
   _inGameClip: {fileID: 0}
   fishspawn: {fileID: 1188881023}
   shopManager: {fileID: 7437485433221565374}
+  theassetmanager: {fileID: 0}
 --- !u!4 &1801910941
 Transform:
   m_ObjectHideFlags: 0
