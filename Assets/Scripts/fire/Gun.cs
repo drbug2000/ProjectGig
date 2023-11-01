@@ -114,8 +114,8 @@ public class Gun : MonoBehaviour
         //Debug.Log("default gig " + default_gig);
 
         //shopManager까지 연결후 활성화
-        //GameManager.Instance.shopManager.DamageUpgrade += DamageUP;
-        //GameManager.Instance.shopManager.RangeUpgrade += RangeUP;
+        GameManager.Instance.shopManager.DamageUpgrade += DamageUP;
+        GameManager.Instance.shopManager.RangeUpgrade += RangeUP;
     }
 
     // Update is called once per frame

@@ -2495,7 +2495,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameoverText: {fileID: 523013996}
   gameoverUI: {fileID: 365585217}
-  Gold: 0
+  Gold: 1000
   GigDamLvl: 0
   GigRangeLvl: 0
   HpLvl: 0
@@ -2503,7 +2503,7 @@ MonoBehaviour:
   _introLobbyAudioClip: {fileID: 0}
   _inGameClip: {fileID: 0}
   fishspawn: {fileID: 1188881023}
-  shopManager: {fileID: 0}
+  shopManager: {fileID: 7437485433221565374}
 --- !u!4 &1801910941
 Transform:
   m_ObjectHideFlags: 0

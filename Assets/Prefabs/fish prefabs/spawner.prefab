@@ -44,13 +44,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a74c74abd82048949951a132f49badfa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  smallfish: {fileID: 5362708597037056094, guid: 1c1c626675d77904da922a115ff9a449, type: 3}
+  smallfish: {fileID: 1829918663520162535, guid: 98732d71c615d424f9b9d722779fa6d0, type: 3}
   middlefish: {fileID: 3408001756398335430, guid: 7a7c75ed7e254a943a1d9e03082ae1eb, type: 3}
-  bigfish: {fileID: 0}
+  bigfish: {fileID: 2604809352529202829, guid: d9dc803ec06a4b045a4724449a916d00, type: 3}
   shark: {fileID: 2633367817043942535, guid: 02ca0e61d16951e42a85c402f8529c9a, type: 3}
   smallFishCounter: 5
   middleFishCounter: 4
-  bigFishCounter: 0
+  bigFishCounter: 3
   sharkCounter: 1
   spawnRangeX: 30
   spawnRangeY: 40
