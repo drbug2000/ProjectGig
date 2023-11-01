@@ -64,6 +64,7 @@ public class PlayerHealth : LivingEntity
         hp.fillAmount = health / maxHp;
 
         if (health == 0) {
+            GameManager.Instance.pauseGame();
             Die();
             GameManager.Instance.playeronDeath();
         }

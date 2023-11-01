@@ -53,6 +53,8 @@ public class GameManager : MonoBehaviour
     public FishSpawn fishspawn ; //외부에서 접근 가능한 변수 추가
     public ShopManager shopManager;
 
+    public AssetManager theassetmanager;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -101,6 +103,7 @@ public class GameManager : MonoBehaviour
         else{
             Gold = 0;
         }
+        theassetmanager.Sell();
         StartCoroutine(RestartGame());
         gameoverUI.SetActive(true);
     }
@@ -116,5 +119,15 @@ public class GameManager : MonoBehaviour
         }
 
         StartCoroutine(RestartGame());
+    }
+
+    // Game을 멈추는 함수
+    public void pauseGame() {
+        Time.timeScale = 0f;
+    }
+
+    // Game을 멈춘 것을 재실행하는 함수
+    public void resumeGame() {
+        Time.timeScale = 1f;
     }
 }

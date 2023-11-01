@@ -12,35 +12,6 @@ public class Openshop : MonoBehaviour
     void Start() {
         ShopImage.SetActive(false);
     }
-/*
-    private void OnTriggerStay2D(Collider2D collision)
-    {
-        if (collision.gameObject.name == "Player 1")
-        {
-            //Debug.Log("TriggerOn");
-            if (Input.GetKeyDown(KeyCode.P))
-            {
-                Debug.Log("P");
-                setActiveShop();
-                
-            }
-        }
-    }
-    */
-    public void setActiveShop(){
-        //Debug.Log("B");
-        if (ShopImage.activeSelf == true) {
-            Debug.Log("on");
-            Time.timeScale = 1f;
-            ShopImage.SetActive(false);
-        }
-        else if (ShopImage.activeSelf == false) {
-            Debug.Log("off");
-            Time.timeScale = 0f;
-            ShopImage.SetActive(true);
-        }
-        //StartCoroutine(CanOpenShop());
-    }
 
     //아래부터는 코루틴
     private void OnTriggerEnter2D(Collider2D collision)
@@ -55,11 +26,11 @@ public class Openshop : MonoBehaviour
     {
         if (collision.gameObject.name == "Player 1")
         {
-            if (ShopImage.activeSelf == true) {
+            if (ShopImage.activeSelf) {
                 ShopImage.SetActive(false);
-                Time.timeScale = 1f;
+                GameManager.Instance.resumeGame();
             }
-            StopAllCoroutines();
+            StopCoroutine(CanOpenShop());
         }
     }
 
@@ -68,22 +39,16 @@ public class Openshop : MonoBehaviour
         yield return null;
         if (Input.GetKeyDown(KeyCode.P))
         {
-            if (ShopImage.activeSelf == true) {
-                Time.timeScale = 1f;
+            if (ShopImage.activeSelf) {
+                GameManager.Instance.resumeGame();
                 ShopImage.SetActive(false);
             }
-            else if (ShopImage.activeSelf == false) {
-                Time.timeScale = 0f;
+            else if (!ShopImage.activeSelf) {
+                GameManager.Instance.pauseGame();
                 ShopImage.SetActive(true);
             }
         }
-        /*
-        else if (_setActiveShop != null && _setActiveShop.interactable) {
-            if (ShopImage.activeSelf == true) {
-                Time.timeScale = 1f;
-            }
-        }
-        */
+
         StartCoroutine(CanOpenShop());
     }
 }
