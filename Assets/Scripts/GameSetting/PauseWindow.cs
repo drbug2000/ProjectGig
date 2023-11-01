@@ -21,11 +21,11 @@ public class PauseWindow : MonoBehaviour
 
     void InactiveGame()
     {
-        Time.timeScale = 0;
+        GameManager.Instance.pauseGame();
     }
 
     void activeGame()
     {
-        Time.timeScale = 1;
+        GameManager.Instance.resumeGame();
     }
 }

@@ -33,11 +33,11 @@ public class ShopManager : MonoBehaviour
             assetManager.Buy();
             GameManager.Instance.HpLvl++;
             OxygenUpgrade();
-            Debug.Log("OxygenLvl:"+ GameManager.Instance.HpLvl);
+            // Debug.Log("OxygenLvl:"+ GameManager.Instance.HpLvl);
         }
         else{
-            Debug.Log("OxygenLvl:"+ GameManager.Instance.HpLvl);
-            Debug.Log("Gold 부족");
+            // Debug.Log("OxygenLvl:"+ GameManager.Instance.HpLvl);
+            // Debug.Log("Gold 부족");
         }
     }
     public void DamageLvlUp(){
@@ -45,11 +45,11 @@ public class ShopManager : MonoBehaviour
             assetManager.Buy();
             GameManager.Instance.GigDamLvl++;
             DamageUpgrade();
-            Debug.Log("DamageLvl:"+ GameManager.Instance.GigDamLvl);
+            // Debug.Log("DamageLvl:"+ GameManager.Instance.GigDamLvl);
         }
         else{
-            Debug.Log("DamageLvl:"+ GameManager.Instance.GigDamLvl);
-            Debug.Log("Gold 부족");
+            // Debug.Log("DamageLvl:"+ GameManager.Instance.GigDamLvl);
+            // Debug.Log("Gold 부족");
         }
     }
     public void RangeLvlUp(){
@@ -57,11 +57,11 @@ public class ShopManager : MonoBehaviour
             assetManager.Buy();
             GameManager.Instance.GigRangeLvl++;
             RangeUpgrade();
-            Debug.Log("RangeLvl:"+ GameManager.Instance.GigRangeLvl);
+            // Debug.Log("RangeLvl:"+ GameManager.Instance.GigRangeLvl);
         }
         else{
-            Debug.Log("RangeLvl:"+ GameManager.Instance.GigRangeLvl);
-            Debug.Log("Gold 부족");
+            // Debug.Log("RangeLvl:"+ GameManager.Instance.GigRangeLvl);
+            // Debug.Log("Gold 부족");
         }
     }
     public void ShopActive(){

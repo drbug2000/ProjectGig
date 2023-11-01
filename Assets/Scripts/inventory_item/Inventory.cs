@@ -7,8 +7,7 @@ public class Inventory : MonoBehaviour
     // inventoryparent을 활성화하고 비활성화하는 역할을 할 것이다. 다시 말해 이 창이 켜지면 inventoy가 켜질 것 이고 이 창이 꺼지면 inventory가 꺼질 것이다.
     [SerializeField]
     private GameObject go_InventoryBase;
-    // 모든 slot들의 컴포넌트에 접근하기위해 받아왔다.
-    [SerializeField] 
+    // 모든 slot들의 컴포넌트에 접근하기위해 받아왔다. 
     public ItemSlotUI[] slots;
 
     private bool inventoryActivated;
@@ -18,6 +17,7 @@ public class Inventory : MonoBehaviour
     public bool isinventoryfull;
     void Start()
     {
+        go_InventoryBase.SetActive(false);
         // 처음 실행할 때는 inventory는 비활성화 시켜야한다.
         inventoryActivated = false;
         isinventoryfull = false;

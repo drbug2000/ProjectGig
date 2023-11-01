@@ -20,7 +20,9 @@ public class SellItem : MonoBehaviour
     {
         Cost = 0;
         Cost = theinventory.SellItem();
-        theassetmanager.GetComponent<AssetManager>().Sell();
+        if (Cost != 0) {
+            theassetmanager.GetComponent<AssetManager>().Sell();
+        }
         CostText = Cost.ToString();
         SellAll();
     }
