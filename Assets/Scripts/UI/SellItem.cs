@@ -25,7 +25,7 @@ public class SellItem : MonoBehaviour
         }
         CostText = Cost.ToString();
         //SellAll();
-        //_notice.SUB(CostText);
+        _notice.SUB(CostText);
     }
     public void SellAll(){
         _notice.SUB(CostText);

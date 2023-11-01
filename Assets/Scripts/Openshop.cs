@@ -12,6 +12,22 @@ public class Openshop : MonoBehaviour
         ShopImage.SetActive(false);
     }
 
+    public void setActiveShop(){
+        //Debug.Log("B");
+        if (ShopImage.activeSelf == true) {
+            //Debug.Log("on");
+            Time.timeScale = 1f;
+            ShopImage.SetActive(false);
+        }
+        else if (ShopImage.activeSelf == false) {
+            //Debug.Log("off");
+            Time.timeScale = 0f;
+            ShopImage.SetActive(true);
+        }
+        //StartCoroutine(CanOpenShop());
+    }
+
+
     //아래부터는 코루틴
     private void OnTriggerEnter2D(Collider2D collision)
     {
