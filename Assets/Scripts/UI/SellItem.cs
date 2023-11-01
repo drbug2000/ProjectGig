@@ -24,7 +24,8 @@ public class SellItem : MonoBehaviour
             theassetmanager.GetComponent<AssetManager>().Sell();
         }
         CostText = Cost.ToString();
-        SellAll();
+        //SellAll();
+        //_notice.SUB(CostText);
     }
     public void SellAll(){
         _notice.SUB(CostText);

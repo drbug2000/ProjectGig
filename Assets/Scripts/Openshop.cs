@@ -7,7 +7,6 @@ public class Openshop : MonoBehaviour
 {
     public GameObject ShopImage;
     public Button _setActiveShop;
-    private bool buttonPressed = false;
 
     void Start() {
         ShopImage.SetActive(false);
