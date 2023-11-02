@@ -22,10 +22,11 @@ public class SellItem : MonoBehaviour
         Cost = theinventory.SellItem();
         if (Cost != 0) {
             theassetmanager.GetComponent<AssetManager>().Sell();
+            _notice.SUB(CostText);
         }
         CostText = Cost.ToString();
         //SellAll();
-        _notice.SUB(CostText);
+        
     }
     public void SellAll(){
         _notice.SUB(CostText);
