@@ -11,7 +11,7 @@ public class NoticeUI : MonoBehaviour
     //public Animator subani;
 
     //coroutines
-    private WaitForSeconds _UIDelay1 = new WaitForSeconds(2.0f);
+    WaitForSeconds _UIDelay1 = new WaitForSeconds(2.0f);
     private WaitForSeconds _UIDelay2 = new WaitForSeconds(0.3f);
 
     // Start is called before the first frame update
@@ -33,6 +33,7 @@ public class NoticeUI : MonoBehaviour
     }
 
     IEnumerator SUBDelay(){
+        yield return null;
         subbox.SetActive(true);
         /*
         if (Input.anyKeyDown) {
@@ -40,8 +41,8 @@ public class NoticeUI : MonoBehaviour
             StopCoroutine(SUBDelay());
         }
         */
+        // yield return _UIDelay1;
         yield return _UIDelay1;
-        yield return _UIDelay2;
         subbox.SetActive(false);
         //subani.SetBool("isOn", true);
         // yield return _UIDelay1;
