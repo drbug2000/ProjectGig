@@ -35,10 +35,10 @@ public class Gun : MonoBehaviour
     public float hitTime;
 
     public float gigDamage;
-    //damage upgrade ½Ã ´Ã¾î³ª´Â damage°ª
+    //damage upgrade ï¿½ï¿½ ï¿½Ã¾î³ªï¿½ï¿½ damageï¿½ï¿½
     public float gigDamageUpGap;
 
-    //range upgrade½Ã ´Ã¾î³ª´Â ¹üÀ§/¼Óµµ ºñÀ² 
+    //range upgradeï¿½ï¿½ ï¿½Ã¾î³ªï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½/ï¿½Óµï¿½ ï¿½ï¿½ï¿½ï¿½ 
     public float gigRangeUpGap;
     public float SpeedPercent = 1.1f;
 
@@ -113,7 +113,7 @@ public class Gun : MonoBehaviour
         //Debug.Log("left gig" + left_gig);
         //Debug.Log("default gig " + default_gig);
 
-        //shopManager±îÁö ¿¬°áÈÄ È°¼ºÈ­
+        //shopManagerï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ È°ï¿½ï¿½È­
         GameManager.Instance.shopManager.DamageUpgrade += DamageUP;
         GameManager.Instance.shopManager.RangeUpgrade += RangeUP;
     }
@@ -130,11 +130,11 @@ public class Gun : MonoBehaviour
             return;
         }
 
-        //¹ß»çÁßÀÌ ¾Æ´Ò½Ã ÃÑÀÌ ¸¶¿ì½º¸¦ µû¶ó °¢µµ°¡ Á¶Á¤µÊ
+        //ï¿½ß»ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Æ´Ò½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ì½ºï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         if(State != fireState.fire)
         {
-            Vector2 mousePos = _camera.ScreenToWorldPoint(Input.mousePosition); //¸¶¿ì½º ÁÂÇ¥ Ä«¸Þ¶ó ÁÂÇ¥·Î º¯È¯
-            dirVec = mousePos - (Vector2)transform.position; //¸¶¿ì½º ¹æÇâ ±¸ÇÔ
+            Vector2 mousePos = _camera.ScreenToWorldPoint(Input.mousePosition); //ï¿½ï¿½ï¿½ì½º ï¿½ï¿½Ç¥ Ä«ï¿½Þ¶ï¿½ ï¿½ï¿½Ç¥ï¿½ï¿½ ï¿½ï¿½È¯
+            dirVec = mousePos - (Vector2)transform.position; //ï¿½ï¿½ï¿½ì½º ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
             if (dirVec.x < 0)
             {
                 //GunIsLeft = true;
@@ -156,11 +156,11 @@ public class Gun : MonoBehaviour
                 fire_point_tr.localPosition = default_fire_point;
                 gigtr.localPosition = default_gig;
             }
-            transform.up = dirVec.normalized; // ¹æÇâº¤ÅÍ¸¦ Á¤±ÔÈ­ÇÑ ´ÙÀ½ transform.up º¤ÅÍ¿¡ °è¼Ó ´ëÀÔ
+            transform.up = dirVec.normalized; // ï¿½ï¿½ï¿½âº¤ï¿½Í¸ï¿½ ï¿½ï¿½ï¿½ï¿½È­ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ transform.up ï¿½ï¿½ï¿½Í¿ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 
         }
 
-        //½ò¶§
+        //ï¿½ï¿½
         if (Input.GetButtonDown("Fire1") )
         {
             State = fireState.fire;
@@ -206,7 +206,7 @@ public class Gun : MonoBehaviour
             yield return null;
         }
 
-        //¸íÁß½Ã
+        //ï¿½ï¿½ï¿½ß½ï¿½
         //Debug.Log("fire corutine on Hit");
         if(State == fireState.hit)
         {
@@ -215,7 +215,7 @@ public class Gun : MonoBehaviour
             Timer = hitTime;
         }
         while (State == fireState.hit) {
-            //Àá½Ã Á¤Áö
+            //ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
             Timer -= Time.deltaTime;
             yield return null;
         }
@@ -230,10 +230,10 @@ public class Gun : MonoBehaviour
             yield return null;
         }
 
-        //rollback µµÁß HIT µÈ »óÈ²
+        //rollback ï¿½ï¿½ï¿½ï¿½ HIT ï¿½ï¿½ ï¿½ï¿½È²
         while (State == fireState.hit)
         {
-            //Àá½Ã Á¤Áö
+            //ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
             Timer -= Time.deltaTime;
             yield return null;
         }
