@@ -13,17 +13,20 @@ public class SaveData {
     public int GigRangeLvl = 0;
     public int HpLvl = 0;
     public Vector3 playerpos;
-    public Item item;
+    public Item[] item;
+
+    // item = new Item[8];
 
 }
 
 public class DatabaseManager : MonoBehaviour
 {
-    #region singleton
+
     private static DatabaseManager instance = null;
 
     public GameObject player;
 
+    #region singleton
     void Awake()
     {
         if (instance == null)

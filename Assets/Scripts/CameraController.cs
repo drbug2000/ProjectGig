@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
-    public Vector3 playerpos;
+    [SerializeField]
+    Transform playerpos;
     [SerializeField]
     Transform gunTransform;
     [SerializeField]
@@ -19,13 +21,18 @@ public class CameraController : MonoBehaviour
     float cameraMoveSpeed;
     float height;
     float width;
-
-    private float distancex;
-    private float distancey;
-    private float distanceplayerandgig;
+    [SerializeField]
+    private Camera cam;
+    // [SerializeField]
+    private float targetposition = 10f;
+    private float lastZoomSpeed = 1f;
+    private float smoothTime = 3f;
 
     void Start()
     {
+        // Camera cam = GetComponent<Camera>();
+        // cam.orthographicSize = 5f;
+    
         gunTransform = GameObject.Find("Gig").GetComponent<Transform>();
         height = Camera.main.orthographicSize;
         width = height * Screen.width / Screen.height;
@@ -40,31 +47,15 @@ public class CameraController : MonoBehaviour
     void LimitCameraArea()
     {
         transform.position = Vector3.Lerp(transform.position, gunTransform.position + cameraPosition, Time.deltaTime * cameraMoveSpeed);
-        float lx = mapSize.x - width;
-        float clampX = Mathf.Clamp(transform.position.x, -lx + center.x, lx + center.x);
-
-        float ly = mapSize.y - height;
-        float clampY = Mathf.Clamp(transform.position.y, -ly + center.y, ly + center.y);
+        float clampX = Mathf.Clamp(transform.position.x, -45 + center.x, 45 + center.x);
+        float clampY = Mathf.Clamp(transform.position.y, -40 + center.y, 40 + center.y);
 
         transform.position = new Vector3(clampX, clampY, -10f);
     }
 
     void MoveCameraSize() {
-        //Debug.Log(distancex);
-        //Debug.Log(distancey);
-        distancex = gunTransform.position.x - playerpos.x;
-        distancey = gunTransform.position.y - playerpos.y;
-        distancex = Mathf.Pow(distancex, 2);
-        distancey = Mathf.Pow(distancey, 2);
-        distanceplayerandgig = distancex + distancey;
-        distanceplayerandgig = Mathf.Pow(distanceplayerandgig, 1/2);
-        //Debug.Log("플레이어와 gig: " + distanceplayerandgig);
-        if (distanceplayerandgig <= 10) {
-            Camera.main.orthographicSize = 10;
-        }
-        else {
-            Camera.main.orthographicSize = distanceplayerandgig;
-        }
+        float smoothZoomSize = Mathf.SmoothDamp(cam.orthographicSize, targetposition, ref lastZoomSpeed, smoothTime);
+        cam.orthographicSize = smoothZoomSize;
     }
 
     private void OnDrawGizmos()

@@ -64,6 +64,7 @@ public class GameManager : MonoBehaviour
         //LivingEntity event subscribe
         LivingEntity deathEvent = new LivingEntity();
         deathEvent.onDeath += new System.Action(playeronDeath);
+        StartCoroutine(RestartGame());
         //PlayLobbyMusic();
     }
 
