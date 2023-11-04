@@ -6,8 +6,6 @@ using UnityEngine;
 public class CameraController : MonoBehaviour
 {
     [SerializeField]
-    Transform playerpos;
-    [SerializeField]
     Transform gunTransform;
     [SerializeField]
     Vector3 cameraPosition;
@@ -21,41 +19,43 @@ public class CameraController : MonoBehaviour
     float cameraMoveSpeed;
     float height;
     float width;
-    [SerializeField]
-    private Camera cam;
-    // [SerializeField]
-    private float targetposition = 10f;
-    private float lastZoomSpeed = 1f;
-    private float smoothTime = 3f;
+    public Gig thegig;
 
     void Start()
     {
-        // Camera cam = GetComponent<Camera>();
-        // cam.orthographicSize = 5f;
-    
         gunTransform = GameObject.Find("Gig").GetComponent<Transform>();
-        height = Camera.main.orthographicSize;
-        width = height * Screen.width / Screen.height;
+
+        settingscreensize();
     }
 
     void FixedUpdate()
     {
+        // 카메라 범위 제한
         LimitCameraArea();
-        MoveCameraSize();
     }
 
     void LimitCameraArea()
     {
+        settingscreensize();
         transform.position = Vector3.Lerp(transform.position, gunTransform.position + cameraPosition, Time.deltaTime * cameraMoveSpeed);
-        float clampX = Mathf.Clamp(transform.position.x, -45 + center.x, 45 + center.x);
-        float clampY = Mathf.Clamp(transform.position.y, -40 + center.y, 40 + center.y);
+        float lx = mapSize.x - width;
+        float clampX = Mathf.Clamp(transform.position.x, -lx + center.x, lx + center.x);
+
+        float ly = mapSize.y - height;
+        float clampY = Mathf.Clamp(transform.position.y, -ly + center.y, ly + center.y);
 
         transform.position = new Vector3(clampX, clampY, -10f);
     }
-
-    void MoveCameraSize() {
-        float smoothZoomSize = Mathf.SmoothDamp(cam.orthographicSize, targetposition, ref lastZoomSpeed, smoothTime);
-        cam.orthographicSize = smoothZoomSize;
+    // 카메라 크기 변경
+    private void settingscreensize() {
+        if (thegig.isfire == true && Camera.main.orthographicSize < 10) {
+            Camera.main.orthographicSize = Mathf.Lerp(7, 10, 0.5f);
+        }
+        else if (Camera.main.orthographicSize > 7) {
+            Camera.main.orthographicSize = Mathf.Lerp(10, 7, 0.5f);
+        }
+        height = Camera.main.orthographicSize;
+        width = height * Screen.width / Screen.height;
     }
 
     private void OnDrawGizmos()

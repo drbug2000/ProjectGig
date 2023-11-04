@@ -410,13 +410,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67e7e2188b7864529a6b0b776595b4ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerpos: {fileID: 1304242849}
   gunTransform: {fileID: 459625903}
   cameraPosition: {x: 0, y: 0, z: 0}
   center: {x: 0, y: 0}
   mapSize: {x: 60, y: 50}
   cameraMoveSpeed: 3
-  cam: {fileID: 182433103}
+  thegig: {fileID: 1483063545}
 --- !u!224 &198447878 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 3294160001957903594, guid: d8e5647f1fa2e8c408389857ed3190a5, type: 3}
@@ -1387,11 +1386,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9eadf5bbf8474737b41d1bc9098a010, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!4 &1304242849 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 3294160003625457064, guid: d8e5647f1fa2e8c408389857ed3190a5, type: 3}
-  m_PrefabInstance: {fileID: 1565593364}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1409605513
 GameObject:
   m_ObjectHideFlags: 0
