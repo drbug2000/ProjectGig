@@ -29,6 +29,7 @@ public class PlayerHealth : LivingEntity
 
     void Start(){
         GameManager.Instance.shopManager.OxygenUpgrade += HPUp;
+        health = 100;
     }
 
     private void Awake()
@@ -40,10 +41,7 @@ public class PlayerHealth : LivingEntity
         
     }
 
-    void Start() {
-        health = 100;
-    }
-
+    
 
     protected override void OnEnable()
     {
