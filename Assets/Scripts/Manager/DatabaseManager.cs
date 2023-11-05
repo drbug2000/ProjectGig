@@ -34,9 +34,11 @@ public class DatabaseManager : MonoBehaviour
             instance = this;
             DontDestroyOnLoad(this.gameObject);
         }
-        else if (instance != null)
+        else if (instance != this)
         {
-            Destroy(this.gameObject);
+            Destroy(instance.gameObject);
+            instance = this;
+            DontDestroyOnLoad(gameObject);
         }
         path = Path.Combine(Application.dataPath + "/Data/database.json");
     }
@@ -107,10 +109,11 @@ public class DatabaseManager : MonoBehaviour
 
     IEnumerator Loading() {
         yield return null;
+        Time.timeScale = 0f;
         Debug.Log("enter");
         if (File.Exists(path)) {
             Time.timeScale = 1f;
-            StopAllCoroutines();
+            StopCoroutine(Loading());
         }
         else {
             StartCoroutine(Loading());
