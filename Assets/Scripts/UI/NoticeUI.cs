@@ -23,7 +23,7 @@ public class NoticeUI : MonoBehaviour
     public void SUB(string message){
         subintext.text = message;
         subbox.SetActive(false);
-        StopAllCoroutines();
+        //StopAllCoroutines();
         StartCoroutine(SUBDelay());
         /*
         if (subbox.activeSelf == true) {
