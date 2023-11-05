@@ -48,11 +48,12 @@ public class CameraController : MonoBehaviour
     }
     // 카메라 크기 변경
     private void settingscreensize() {
+        Debug.Log(thegig.isfire);
         if (thegig.isfire == true && Camera.main.orthographicSize < 10) {
-            Camera.main.orthographicSize = Mathf.Lerp(7, 10, 0.5f);
+            Camera.main.orthographicSize = Mathf.Lerp(Camera.main.orthographicSize, Camera.main.orthographicSize + 1, 0.5f);
         }
-        else if (Camera.main.orthographicSize > 7) {
-            Camera.main.orthographicSize = Mathf.Lerp(10, 7, 0.5f);
+        else if (thegig.isfire == false && Camera.main.orthographicSize > 7) {
+            Camera.main.orthographicSize = Mathf.Lerp(Camera.main.orthographicSize, Camera.main.orthographicSize - 1, 0.5f);
         }
         height = Camera.main.orthographicSize;
         width = height * Screen.width / Screen.height;
