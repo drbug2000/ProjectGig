@@ -34,6 +34,10 @@ public class PlayerHealth : LivingEntity
         
     }
 
+    void Start() {
+        health = 100;
+    }
+
 
     protected override void OnEnable()
     {
@@ -47,6 +51,8 @@ public class PlayerHealth : LivingEntity
 
     private void Update()
     {
+        Debug.Log(health);
+        
         durationTime -= Time.deltaTime;
 
         if (!playerMove.onboard && durationTime <= 0 && !dead)
@@ -63,7 +69,7 @@ public class PlayerHealth : LivingEntity
         
         hp.fillAmount = health / maxHp;
 
-        if (health == 0) {
+        if (health <= 0) {
             GameManager.Instance.pauseGame();
             Die();
             GameManager.Instance.playeronDeath();

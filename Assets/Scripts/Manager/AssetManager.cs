@@ -16,7 +16,7 @@ public class AssetManager : MonoBehaviour
     WaitForSecondsRealtime waitforseconds = new WaitForSecondsRealtime(0.01f);
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         GoldText = GameManager.Instance.Gold;
         tmp.text = GoldText.ToString();
@@ -28,7 +28,9 @@ public class AssetManager : MonoBehaviour
     }
 
     public void Sell(){
+        Debug.Log(GameManager.Instance.Gold);
         GameManager.Instance.Gold += sellItem.Cost;
+        Debug.Log(GameManager.Instance.Gold);
         if (sellItem.Cost <= 100) {
             addmore = 1;
         }
@@ -41,8 +43,6 @@ public class AssetManager : MonoBehaviour
     }
 
     IEnumerator Changemoney() {
-        Debug.Log(GoldText);
-
         if (GoldText < GameManager.Instance.Gold) {
             for (; GoldText <= GameManager.Instance.Gold; GoldText += addmore) {
                 yield return waitforseconds;
