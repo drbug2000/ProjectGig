@@ -43,7 +43,10 @@ public class PlayerController : MonoBehaviour
         //     reload = false;
         //     return;
         // }
-
+        if (ConSturn)
+        {
+            return;
+        }
         // move에 관한 입력 감지
         move_x = Input.GetAxis(movehorizontalsName);
         // rotate에 관한 입력 감지
