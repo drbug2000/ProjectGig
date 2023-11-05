@@ -28,17 +28,13 @@ public class AssetManager : MonoBehaviour
     }
 
     public void Sell(){
-        Debug.Log(GameManager.Instance.Gold);
         GameManager.Instance.Gold += sellItem.Cost;
-        Debug.Log(GameManager.Instance.Gold);
         if (sellItem.Cost <= 100) {
             addmore = 1;
         }
         else {
             addmore = sellItem.Cost / 100;    
         }
-        
-        addmore = GameManager.Instance.Gold / 100;
         StartCoroutine(Changemoney());
     }
 

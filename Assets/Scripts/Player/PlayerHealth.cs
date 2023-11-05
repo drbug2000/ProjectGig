@@ -51,7 +51,6 @@ public class PlayerHealth : LivingEntity
 
     private void Update()
     {
-        Debug.Log(health);
         
         durationTime -= Time.deltaTime;
 
