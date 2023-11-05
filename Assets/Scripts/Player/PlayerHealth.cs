@@ -23,7 +23,13 @@ public class PlayerHealth : LivingEntity
     public SpriteRenderer playerSpriteRenderer;
     public PlayerMove playerMove;
 
+    public float HpUpGap;
+
     public Image hp;
+
+    void Start(){
+        GameManager.Instance.shopManager.OxygenUpgrade += HPUp;
+    }
 
     private void Awake()
     {
@@ -37,6 +43,7 @@ public class PlayerHealth : LivingEntity
 
     protected override void OnEnable()
     {
+        
         maxHp = 100;
         startingHealth = 100;
         // LivingEntity�� OnEnable() ���� (���� �ʱ�ȭ)
@@ -109,6 +116,10 @@ public class PlayerHealth : LivingEntity
         // LivingEntity�� Die() ����
         base.Die();
 
+    }
+
+    public void HPUp(){
+        maxHp += HpUpGap;
     }
 
 
