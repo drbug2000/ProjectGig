@@ -20,6 +20,8 @@ public class Gig : MonoBehaviour
 
     IDamageable AttTarget;
 
+    WaitForSecondsRealtime waitforsecondsforrealtime = new WaitForSecondsRealtime(0.5f);
+
     // Start is called before the first frame update
     void Start()
     {
@@ -51,7 +53,6 @@ public class Gig : MonoBehaviour
     public void outfire()
     {
         isfire = false;
-        Time.timeScale = 1f;
         transform.localPosition = new Vector3(-0.7f, 2, 0);
     }
     
@@ -100,5 +101,4 @@ public class Gig : MonoBehaviour
     {
         gigdamage = gunscript.gigDamage;
     }
-
 }

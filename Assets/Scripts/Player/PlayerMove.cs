@@ -132,7 +132,7 @@ public class PlayerMove : MonoBehaviour
         isleft = IsLeft(Gunscript.dirVec);
 
         // 점프에 관한 내용입니다.
-        if (Input.GetButtonDown("Jump") && jumpCount < 2)
+        if (playerInput.jump && jumpCount < 2)
         {
             jumpCount++;
 
@@ -144,7 +144,7 @@ public class PlayerMove : MonoBehaviour
 
         }
         
-        else if(Input.GetButtonDown("Jump") && playerRigidbody.velocity.y > 0 )
+        else if(playerInput.jump && playerRigidbody.velocity.y > 0 )
         {
             playerRigidbody.velocity = playerRigidbody.velocity * 0.5f;
         }
@@ -186,12 +186,14 @@ public class PlayerMove : MonoBehaviour
             }
             //물속의 경우 현재 입력 방향을 기준으로 sprite 방향 설정
             isleft = IsLeft(playerInput.move_x);
+
             if (playerRigidbody.velocity.y > -5 && playerRigidbody.velocity.y < 5) {
                 playerRigidbody.AddForce(swimForce * Vector3.up * playerInput.move_y);
             }
         }
 
-        if (DashTimer <= 0 && Input.GetButtonDown("Jump"))
+        //dash
+        if (DashTimer <= 0 && playerInput.jump)
         {
             float x;
             float y;
@@ -216,35 +218,7 @@ public class PlayerMove : MonoBehaviour
         }
 
 
-        // // x축 방향으로 움직일 때
-        // if (playerInput.move_x > 0)
-        // {
-        //     playerRigidbody.AddForce(Vector3.right * playerInput.move_x);
-        //     // playerSpriteRenderer.flipX = false;
-        // }
-        // else if (playerInput.move_x < 0)
-        // {
-        //     playerRigidbody.AddForce(Vector3.right * playerInput.move_x);
-        //     // playerSpriteRenderer.flipX = true;
-        // }
-        // else
-        // {
-        //     transform.Translate(Vector3.zero);
-        // }
-
-            // // y축 방향으로 움직일 때 
-            // if (playerInput.move_y > 0)
-            // {
-            //     playerRigidbody.AddForce(Vector3.up * playerInput.move_y);
-            // }
-            // else if (playerInput.move_y < 0)
-            // {
-            //     playerRigidbody.AddForce(Vector3.up * playerInput.move_y);
-            // }
-            // else
-            // {
-            //     transform.Translate(Vector3.zero);
-            // }
+        
     }
 
     public bool IsLeft()
@@ -330,6 +304,7 @@ public class PlayerMove : MonoBehaviour
     public void SetSturn(bool sturn)
     {
         Sturn = sturn;
+        playerInput.SetConSturn(sturn);
     }
 
     public void getSturn(float sturntime)
