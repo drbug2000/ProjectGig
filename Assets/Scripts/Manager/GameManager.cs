@@ -39,7 +39,7 @@ public class GameManager : MonoBehaviour
     public GameObject gameoverText;
     // 현재는 이 변수가 쓰이고 있지 않습니다.
     // private bool isGameover = false;
-    public GameObject gameoverUI; // 게임 오버시 활성화 할 UI 게임 오브젝트
+    //public GameObject gameoverUI; // 게임 오버시 활성화 할 UI 게임 오브젝트
     public int Gold = 10000;
     public int GigDamLvl = 0;
     public int GigRangeLvl = 0;
@@ -105,7 +105,7 @@ public class GameManager : MonoBehaviour
         }
         theassetmanager.Sell();
         StartCoroutine(RestartGame());
-        gameoverUI.SetActive(true);
+        gameoverText.SetActive(true);
     }
 
     // 게임 오버 상태일때 다시 실행하게 해주는 함수
