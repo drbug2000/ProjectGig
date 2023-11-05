@@ -1504,9 +1504,17 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: bd5bd86cabb6e8348bc8fbbaaf9d8d7f, type: 3}
+    - target: {fileID: 3294160002617576953, guid: d8e5647f1fa2e8c408389857ed3190a5, type: 3}
+      propertyPath: m_FillAmount
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3294160003625457056, guid: d8e5647f1fa2e8c408389857ed3190a5, type: 3}
       propertyPath: m_Name
       value: Player 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3294160003625457057, guid: d8e5647f1fa2e8c408389857ed3190a5, type: 3}
+      propertyPath: HpUpGap
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 3294160003625457060, guid: d8e5647f1fa2e8c408389857ed3190a5, type: 3}
       propertyPath: gig
@@ -2416,7 +2424,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameoverText: {fileID: 523013996}
-  gameoverUI: {fileID: 0}
   Gold: 1000
   GigDamLvl: 0
   GigRangeLvl: 0
@@ -2517,7 +2524,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &7437485433098631763
 RectTransform:
   m_ObjectHideFlags: 0
