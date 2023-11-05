@@ -13,6 +13,7 @@ public class Gun : MonoBehaviour
     private Camera _camera;
     private GameObject gunob;
     private Transform fire_point_tr;
+    private PlayerController playerInput;
 
     private SpriteRenderer Gunsprite;
     private SpriteRenderer Gigsprite;
@@ -35,10 +36,10 @@ public class Gun : MonoBehaviour
     public float hitTime;
 
     public float gigDamage;
-    //damage upgrade ½Ã ´Ã¾î³ª´Â damage°ª
+    //damage upgrade ì‹œ ëŠ˜ì–´ë‚˜ëŠ” damageê°’
     public float gigDamageUpGap;
 
-    //range upgrade½Ã ´Ã¾î³ª´Â ¹üÀ§/¼Óµµ ºñÀ² 
+    //range upgradeì‹œ ëŠ˜ì–´ë‚˜ëŠ” ë²”ìœ„/ì†ë„ ë¹„ìœ¨ 
     public float gigRangeUpGap;
     public float SpeedPercent = 1.1f;
 
@@ -95,8 +96,8 @@ public class Gun : MonoBehaviour
         Gunsprite = gunob.GetComponent<SpriteRenderer>();
         Gigsprite = gig.GetComponent<SpriteRenderer>();
         fire_point_tr = transform.Find("firePoint").gameObject.transform;
+        playerInput = gameObject.transform.parent.gameObject.GetComponent<PlayerController>();
 
-        
 
         default_gun = new Vector3(-0.65f, 0.4f, 0);
         left_guns = new Vector3(0.3f, 1.4f, 0);
@@ -113,7 +114,7 @@ public class Gun : MonoBehaviour
         //Debug.Log("left gig" + left_gig);
         //Debug.Log("default gig " + default_gig);
 
-        //shopManager±îÁö ¿¬°áÈÄ È°¼ºÈ­
+        //shopManagerê¹Œì§€ ì—°ê²°í›„ í™œì„±í™”
         GameManager.Instance.shopManager.DamageUpgrade += DamageUP;
         GameManager.Instance.shopManager.RangeUpgrade += RangeUP;
     }
@@ -130,11 +131,11 @@ public class Gun : MonoBehaviour
             return;
         }
 
-        //¹ß»çÁßÀÌ ¾Æ´Ò½Ã ÃÑÀÌ ¸¶¿ì½º¸¦ µû¶ó °¢µµ°¡ Á¶Á¤µÊ
+        //ë°œì‚¬ì¤‘ì´ ì•„ë‹ì‹œ ì´ì´ ë§ˆìš°ìŠ¤ë¥¼ ë”°ë¼ ê°ë„ê°€ ì¡°ì •ë¨
         if(State != fireState.fire)
         {
-            Vector2 mousePos = _camera.ScreenToWorldPoint(Input.mousePosition); //¸¶¿ì½º ÁÂÇ¥ Ä«¸Ş¶ó ÁÂÇ¥·Î º¯È¯
-            dirVec = mousePos - (Vector2)transform.position; //¸¶¿ì½º ¹æÇâ ±¸ÇÔ
+            Vector2 mousePos = _camera.ScreenToWorldPoint(Input.mousePosition); //ë§ˆìš°ìŠ¤ ì¢Œí‘œ ì¹´ë©”ë¼ ì¢Œí‘œë¡œ ë³€í™˜
+            dirVec = mousePos - (Vector2)transform.position; //ë§ˆìš°ìŠ¤ ë°©í–¥ êµ¬í•¨
             if (dirVec.x < 0)
             {
                 //GunIsLeft = true;
@@ -156,12 +157,12 @@ public class Gun : MonoBehaviour
                 fire_point_tr.localPosition = default_fire_point;
                 gigtr.localPosition = default_gig;
             }
-            transform.up = dirVec.normalized; // ¹æÇâº¤ÅÍ¸¦ Á¤±ÔÈ­ÇÑ ´ÙÀ½ transform.up º¤ÅÍ¿¡ °è¼Ó ´ëÀÔ
+            transform.up = dirVec.normalized; // ë°©í–¥ë²¡í„°ë¥¼ ì •ê·œí™”í•œ ë‹¤ìŒ transform.up ë²¡í„°ì— ê³„ì† ëŒ€ì…
 
         }
 
-        //½ò¶§
-        if (Input.GetButtonDown("Fire1") )
+        //ì ë•Œ
+        if (playerInput.fire && playerInput.ConSturn  )
         {
             State = fireState.fire;
             Debug.Log("fire");
@@ -206,7 +207,7 @@ public class Gun : MonoBehaviour
             yield return null;
         }
 
-        //¸íÁß½Ã
+        //ëª…ì¤‘ì‹œ
         //Debug.Log("fire corutine on Hit");
         if(State == fireState.hit)
         {
@@ -215,7 +216,7 @@ public class Gun : MonoBehaviour
             Timer = hitTime;
         }
         while (State == fireState.hit) {
-            //Àá½Ã Á¤Áö
+            //ì ì‹œ ì •ì§€
             Timer -= Time.deltaTime;
             yield return null;
         }
@@ -230,10 +231,10 @@ public class Gun : MonoBehaviour
             yield return null;
         }
 
-        //rollback µµÁß HIT µÈ »óÈ²
+        //rollback ë„ì¤‘ HIT ëœ ìƒí™©
         while (State == fireState.hit)
         {
-            //Àá½Ã Á¤Áö
+            //ì ì‹œ ì •ì§€
             Timer -= Time.deltaTime;
             yield return null;
         }

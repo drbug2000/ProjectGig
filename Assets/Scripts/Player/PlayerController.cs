@@ -18,14 +18,17 @@ public class PlayerController : MonoBehaviour
     public bool fire { get; private set; } // 감지된 발사 입력값
     //public bool revive { get; private set; } // 감지된 부활 입력값
     //public bool inventory { get; private set; } // 감지된 인벤토리 입력값
+    public bool jump { get; private set; }
     public bool shop { get; private set; }
 
-    
-    
+    public bool ConSturn { get; private set; }
+
+
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        ConSturn = false;
     }
 
     // Update is called once per frame
@@ -40,18 +43,28 @@ public class PlayerController : MonoBehaviour
         //     reload = false;
         //     return;
         // }
-
+        if (ConSturn)
+        {
+            return;
+        }
         // move에 관한 입력 감지
         move_x = Input.GetAxis(movehorizontalsName);
         // rotate에 관한 입력 감지
         move_y = Input.GetAxis(moveverticcalName);
         // fire에 관한 입력 감지
         fire = Input.GetButton(fireButtonName);
+        //Input.GetButtonDown("Fire1")
+        jump = Input.GetButtonDown("Jump");
         // reload에 관한 입력 감지
         //revive = Input.GetButtonDown(reviveButtonName);
         // Inventory에 관한 입력 감지
         //inventory = Input.GetButtonDown(inventoryButtonName);
 
         shop = Input.GetButtonDown(shopButtonName);
+    }
+
+    public void SetConSturn(bool s)
+    {
+        ConSturn = s;
     }
 }
