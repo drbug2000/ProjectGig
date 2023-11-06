@@ -87,7 +87,7 @@ public class Gun : MonoBehaviour
 
         _camera = Camera.main;
         gig = transform.Find("Gig").gameObject;
-        Debug.Log(gig);
+        // Debug.Log(gig);
         State = fireState.ready;
         gigScript = gig.GetComponent<Gig>();
         gigtr = gig.GetComponent<Transform>();

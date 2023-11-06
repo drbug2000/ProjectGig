@@ -12,10 +12,7 @@ public class SaveData {
     public int GigDamLvl = 0;
     public int GigRangeLvl = 0;
     public int HpLvl = 0;
-    public Vector3 playerpos;
     public Item[] item;
-
-    // item = new Item[8];
 
 }
 
@@ -80,7 +77,6 @@ public class DatabaseManager : MonoBehaviour
                 GameManager.Instance.GigDamLvl = saveData.GigDamLvl;
                 GameManager.Instance.GigRangeLvl = saveData.GigRangeLvl;
                 GameManager.Instance.HpLvl = saveData.HpLvl;
-                toplayerpos = saveData.playerpos;
             }
             else {
                 Debug.Log("ERROR:NOSAVEDATAEXIST");
@@ -95,16 +91,15 @@ public class DatabaseManager : MonoBehaviour
         saveData.GigDamLvl = GameManager.Instance.GigDamLvl;
         saveData.GigRangeLvl = GameManager.Instance.GigRangeLvl;
         saveData.HpLvl = GameManager.Instance.HpLvl;
-        playerpos();
+        GameObject player = GameObject.FindWithTag("Player");
+        for (int i = 0; i < 8; ++i) {
+            saveData.item[i] = player.GetComponent<Inventory>().slots[i].item;
+        }
 
         string json = JsonUtility.ToJson(saveData, true);
         File.WriteAllText(path, json);
         StartCoroutine(Loading());
         Time.timeScale = 1f;
-    }
-
-    public void playerpos() {
-        saveData.playerpos = player.gameObject.transform.position;
     }
 
     IEnumerator Loading() {
