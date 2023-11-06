@@ -276,8 +276,8 @@ public class PlayerMove : MonoBehaviour
     public void GetBitten()
     {
         Debug.Log("a물렸다");
-        
-        Sturn = true;
+
+        SetSturn(true, true);
         SetGravitySturn(true);
         // Debug.Log("default mass : " + defaultmass + "\n default drag : " + defaultdrag);
         // Debug.Log("current mass : " + playerRigidbody.mass + "\n current drag : " + playerRigidbody.drag);
@@ -288,6 +288,7 @@ public class PlayerMove : MonoBehaviour
         // Debug.Log("뱉었다");
         // Debug.Log(spitForce);
         SetGravitySturn(false);
+        SetSturn(false,false);
         playerRigidbody.AddForce(spitForce);
         // Debug.Log("default mass : " + defaultmass + "\n default drag : " + defaultdrag);
         // Debug.Log("current mass : " + playerRigidbody.mass + "\n current drag : " + playerRigidbody.drag);
