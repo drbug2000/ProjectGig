@@ -52,7 +52,7 @@ public class PlayerController : MonoBehaviour
         // rotate에 관한 입력 감지
         move_y = Input.GetAxis(moveverticcalName);
         // fire에 관한 입력 감지
-        fire = Input.GetButton(fireButtonName);
+        fire = Input.GetButtonDown(fireButtonName);
         //Input.GetButtonDown("Fire1")
         jump = Input.GetButtonDown("Jump");
         // reload에 관한 입력 감지

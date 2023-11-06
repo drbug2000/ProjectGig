@@ -649,6 +649,7 @@ MonoBehaviour:
   DashCoolTime: 5
   DashMoveCool: 3
   DashTimer: 0
+  Sturn: 0
 --- !u!114 &3294160003625457059
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -703,6 +704,7 @@ MonoBehaviour:
   health: 0
   playerSpriteRenderer: {fileID: 3294160003625457063}
   playerMove: {fileID: 3294160003625457060}
+  HpUpGap: 0
   hp: {fileID: 3294160002617576953}
 --- !u!114 &3959234417007734302
 MonoBehaviour:
@@ -739,7 +741,7 @@ GameObject:
   - component: {fileID: 6198170853656653893}
   m_Layer: 0
   m_Name: Gun
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

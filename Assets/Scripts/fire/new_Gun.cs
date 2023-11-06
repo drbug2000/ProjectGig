@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Gun : MonoBehaviour
+public class new_Gun : MonoBehaviour
 {
     public GameObject gig;
     public float bulletSpeed;
@@ -135,7 +135,7 @@ public class Gun : MonoBehaviour
         */
 
         //발사중이 아닐시 총이 마우스를 따라 각도가 조정됨
-        if(State == fireState.ready)
+        if(State != fireState.fire)
         {
             Vector2 mousePos = _camera.ScreenToWorldPoint(Input.mousePosition); //마우스 좌표 카메라 좌표로 변환
             dirVec = mousePos - (Vector2)transform.position; //마우스 방향 구함
@@ -179,16 +179,18 @@ public class Gun : MonoBehaviour
             if(State == fireState.ready)
             {
                 State = fireState.fire;
-                //Debug.Log("fire");
+                Debug.Log("fire");
                 StartCoroutine("Fire");
-            }else if (State == fireState.fire)
+            }
+            else if (State == fireState.fire)
             {
                 Hit();
-                //Debug.Log("rollback");
-            }else
+                Debug.Log("rollback");
+            }
+            else
             {
-                //Debug.Log("exception ");
-                //Debug.Log(State);
+                Debug.Log("exception ");
+                Debug.Log(State);
             }
              
         }

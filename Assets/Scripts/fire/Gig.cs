@@ -54,6 +54,7 @@ public class Gig : MonoBehaviour
     {
         isfire = false;
         transform.localPosition = new Vector3(-0.7f, 2, 0);
+        Debug.Log("outfire");
     }
     
     IEnumerator Line()
