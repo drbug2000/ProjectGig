@@ -14,6 +14,7 @@ public class Gun : MonoBehaviour
     private GameObject gunob;
     private Transform fire_point_tr;
     private PlayerController playerInput;
+    private PlayerMove playermove;
 
     private SpriteRenderer Gunsprite;
     private SpriteRenderer Gigsprite;
@@ -97,7 +98,7 @@ public class Gun : MonoBehaviour
         Gigsprite = gig.GetComponent<SpriteRenderer>();
         fire_point_tr = transform.Find("firePoint").gameObject.transform;
         playerInput = gameObject.transform.parent.gameObject.GetComponent<PlayerController>();
-
+        playermove = gameObject.transform.parent.gameObject.GetComponent<PlayerMove>();
 
         default_gun = new Vector3(-0.65f, 0.4f, 0);
         left_guns = new Vector3(0.3f, 1.4f, 0);
@@ -122,6 +123,7 @@ public class Gun : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
         if(State != fireState.ready)
         {
             if (Timer < 0)
@@ -130,6 +132,7 @@ public class Gun : MonoBehaviour
             }
             return;
         }
+        
 
         //발사중이 아닐시 총이 마우스를 따라 각도가 조정됨
         if(State != fireState.fire)
@@ -161,14 +164,37 @@ public class Gun : MonoBehaviour
 
         }
 
-        //쏠때
-        if (playerInput.fire && playerInput.ConSturn  )
+        /*
+         *작동 안함
+        if (State == fireState.fire && Input.GetButton("Fire1"))
         {
-            State = fireState.fire;
-            Debug.Log("fire");
-            
-            StartCoroutine("Fire");
+            State = fireState.rollback;
+            Debug.Log("rollback");
         }
+        */
+
+        //쏠때
+        if (playerInput.fire )//&& !playerInput.ConSturn  )
+        {
+            if(State == fireState.ready)
+            {
+                State = fireState.fire;
+                Debug.Log("fire");
+                StartCoroutine("Fire");
+            }
+            else if (State == fireState.fire)
+            {
+                State = fireState.rollback;
+                Debug.Log("rollback");
+            }
+            else
+            {
+                Debug.Log("exception ");
+            }
+             
+        }
+        
+
     }
 
     public void ready()
@@ -192,7 +218,7 @@ public class Gun : MonoBehaviour
         gigrb.isKinematic = false;
         //float StopTime = 0;
         gigScript.onfire();
-
+        playermove.SetSturn(true);
         /*
         Debug.Log("fire corutine start");
 
@@ -285,7 +311,7 @@ public class Gun : MonoBehaviour
         State = fireState.ready;
         gigrb.isKinematic = true;
         gigScript.outfire();
-
+        playermove.SetSturn(false);
         
 
 

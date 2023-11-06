@@ -13,14 +13,8 @@ public class Gun : MonoBehaviour
     private Camera _camera;
     private GameObject gunob;
     private Transform fire_point_tr;
+    private PlayerController playerInput;
 
-    public Vector3 defaultGunTrans = new Vector3(-0.7f , +0.4f , 0 );
-    public Vector3 flipGunTrans = new Vector3(0.9f, +1.0f, 0);
-
-    public Vector3 defaultGigTrans = new Vector3(0, 0, 0);
-    public Vector3 flipGigTrans = new Vector3(1.1f, -4f, 0);
-
-    public GameObject gun;
     private SpriteRenderer Gunsprite;
     private SpriteRenderer Gigsprite;
 
@@ -42,10 +36,17 @@ public class Gun : MonoBehaviour
     public float hitTime;
 
     public float gigDamage;
+<<<<<<< HEAD
     //damage upgrade �� �þ�� damage��
     public float gigDamageUpGap;
 
     //range upgrade�� �þ�� ����/�ӵ� ���� 
+=======
+    //damage upgrade 시 늘어나는 damage값
+    public float gigDamageUpGap;
+
+    //range upgrade시 늘어나는 범위/속도 비율 
+>>>>>>> develop
     public float gigRangeUpGap;
     public float SpeedPercent = 1.1f;
 
@@ -76,7 +77,7 @@ public class Gun : MonoBehaviour
                     case fireState.ready:
                         break;
                     default:
-                        // Debug.Log("Timer set error"+State);
+                        Debug.Log("Timer set error"+State);
                         break;
                 }
             }
@@ -89,25 +90,21 @@ public class Gun : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-<<<<<<< HEAD
         
 
-=======
-        //transform = defaultTransform;
->>>>>>> develop
         _camera = Camera.main;
         gig = transform.Find("Gig").gameObject;
+        Debug.Log(gig);
         State = fireState.ready;
         gigScript = gig.GetComponent<Gig>();
         gigtr = gig.GetComponent<Transform>();
         gigrb = gig.GetComponent<Rigidbody2D>();
-<<<<<<< HEAD
         gunob = transform.Find("Gun").gameObject;
         Gunsprite = gunob.GetComponent<SpriteRenderer>();
         Gigsprite = gig.GetComponent<SpriteRenderer>();
         fire_point_tr = transform.Find("firePoint").gameObject.transform;
+        playerInput = gameObject.transform.parent.gameObject.GetComponent<PlayerController>();
 
-        
 
         default_gun = new Vector3(-0.65f, 0.4f, 0);
         left_guns = new Vector3(0.3f, 1.4f, 0);
@@ -124,17 +121,13 @@ public class Gun : MonoBehaviour
         //Debug.Log("left gig" + left_gig);
         //Debug.Log("default gig " + default_gig);
 
-        //shopManager���� ������ Ȱ��ȭ
-        //GameManager.Instance.shopManager.DamageUpgrade += DamageUP;
-        //GameManager.Instance.shopManager.RangeUpgrade += RangeUP;
-=======
-        gun = transform.Find("Gun").gameObject;
-        Gunsprite = gun.GetComponent<SpriteRenderer>();
-        Gigsprite = gig.GetComponent<SpriteRenderer>();
+<<<<<<< HEAD
         //shopManager���� ������ Ȱ��ȭ
+=======
+        //shopManager까지 연결후 활성화
+>>>>>>> develop
         GameManager.Instance.shopManager.DamageUpgrade += DamageUP;
         GameManager.Instance.shopManager.RangeUpgrade += RangeUP;
->>>>>>> develop
     }
 
     // Update is called once per frame
@@ -149,18 +142,22 @@ public class Gun : MonoBehaviour
             return;
         }
 
+<<<<<<< HEAD
         //�߻����� �ƴҽ� ���� ���콺�� ���� ������ ������
         if(State != fireState.fire)
         {
             Vector2 mousePos = _camera.ScreenToWorldPoint(Input.mousePosition); //���콺 ��ǥ ī�޶� ��ǥ�� ��ȯ
             dirVec = mousePos - (Vector2)transform.position; //���콺 ���� ����
+=======
+        //발사중이 아닐시 총이 마우스를 따라 각도가 조정됨
+        if(State != fireState.fire)
+        {
+            Vector2 mousePos = _camera.ScreenToWorldPoint(Input.mousePosition); //마우스 좌표 카메라 좌표로 변환
+            dirVec = mousePos - (Vector2)transform.position; //마우스 방향 구함
+>>>>>>> develop
             if (dirVec.x < 0)
             {
                 //GunIsLeft = true;
-                //transform.position = flipTrans + defaultTransform;
-                //gun.transform.localPosition = defaultGunTrans + flipGunTrans;
-                //Debug.Log(defaultGunTrans + flipGunTrans);
-                //gigtr.localPosition = defaultGigTrans + flipGigTrans;
                 Gunsprite.flipY = true;
                 Gigsprite.flipY = true;
                 gunob.GetComponent<Transform>().localPosition = left_guns; //default_gun +left_gun_gap;
@@ -172,10 +169,6 @@ public class Gun : MonoBehaviour
             else
             {
                 //GunIsLeft = false;
-                //transform.localPosition = defaultTransform;
-                //gun.transform.localPosition = defaultGunTrans ;
-                //gigtr.localPosition = defaultGigTrans ;
-
                 Gunsprite.flipY = false;
                 Gigsprite.flipY = false;
 
@@ -183,14 +176,24 @@ public class Gun : MonoBehaviour
                 fire_point_tr.localPosition = default_fire_point;
                 gigtr.localPosition = default_gig;
             }
+<<<<<<< HEAD
             transform.up = dirVec.normalized; // ���⺤�͸� ����ȭ�� ���� transform.up ���Ϳ� ��� ����
 
         }
 
         //��
         if (Input.GetButtonDown("Fire1") )
+=======
+            transform.up = dirVec.normalized; // 방향벡터를 정규화한 다음 transform.up 벡터에 계속 대입
+
+        }
+
+        //쏠때
+        if (playerInput.fire && playerInput.ConSturn  )
+>>>>>>> develop
         {
             State = fireState.fire;
+            Debug.Log("fire");
             
             StartCoroutine("Fire");
         }
@@ -232,7 +235,11 @@ public class Gun : MonoBehaviour
             yield return null;
         }
 
+<<<<<<< HEAD
         //���߽�
+=======
+        //명중시
+>>>>>>> develop
         //Debug.Log("fire corutine on Hit");
         if(State == fireState.hit)
         {
@@ -241,7 +248,11 @@ public class Gun : MonoBehaviour
             Timer = hitTime;
         }
         while (State == fireState.hit) {
+<<<<<<< HEAD
             //��� ����
+=======
+            //잠시 정지
+>>>>>>> develop
             Timer -= Time.deltaTime;
             yield return null;
         }
@@ -256,15 +267,24 @@ public class Gun : MonoBehaviour
             yield return null;
         }
 
+<<<<<<< HEAD
         //rollback ���� HIT �� ��Ȳ
         while (State == fireState.hit)
         {
             //��� ����
+=======
+        //rollback 도중 HIT 된 상황
+        while (State == fireState.hit)
+        {
+            //잠시 정지
+>>>>>>> develop
             Timer -= Time.deltaTime;
             yield return null;
         }
 
         */
+        
+
 
         /*New Code*/
 

@@ -39,7 +39,7 @@ public class PlayerMove : MonoBehaviour
     public float DashTimer;
 
 
-    private bool Sturn = false;
+    public bool Sturn = false;
     // 저장된 위치로 옮기기 위한 변수입니다.
     private Vector3 playerpos;
 
@@ -118,7 +118,7 @@ public class PlayerMove : MonoBehaviour
             }
         }
         
-        Attack();
+        //Attack();
 
         
         // animator.SetBool("Grounded",isGrounded);
@@ -278,13 +278,7 @@ public class PlayerMove : MonoBehaviour
         Debug.Log("a물렸다");
         
         Sturn = true;
-        if (playerRigidbody.mass > 0.1f){
-            defaultmass = playerRigidbody.mass; }
-        if (playerRigidbody.drag > 1f) {
-            defaultdrag = playerRigidbody.drag;
-        }
-        playerRigidbody.mass = 0;
-        playerRigidbody.drag = 0;
+        SetGravitySturn(true);
         // Debug.Log("default mass : " + defaultmass + "\n default drag : " + defaultdrag);
         // Debug.Log("current mass : " + playerRigidbody.mass + "\n current drag : " + playerRigidbody.drag);
     }
@@ -293,18 +287,45 @@ public class PlayerMove : MonoBehaviour
     {
         // Debug.Log("뱉었다");
         // Debug.Log(spitForce);
-        playerRigidbody.mass = defaultmass;
-        playerRigidbody.drag = defaultdrag;
+        SetGravitySturn(false);
         playerRigidbody.AddForce(spitForce);
         // Debug.Log("default mass : " + defaultmass + "\n default drag : " + defaultdrag);
         // Debug.Log("current mass : " + playerRigidbody.mass + "\n current drag : " + playerRigidbody.drag);
         Sturn = false;
     }
 
+    public void SetGravitySturn(bool sturn)
+    {
+        if(sturn){
+            if (playerRigidbody.mass > 0.1f)
+            {
+                defaultmass = playerRigidbody.mass;
+            }
+            if (playerRigidbody.drag > 1f)
+            {
+                defaultdrag = playerRigidbody.drag;
+            }
+            playerRigidbody.mass = 0;
+            playerRigidbody.drag = 0;
+
+        }else
+        {
+            playerRigidbody.mass = defaultmass;
+            playerRigidbody.drag = defaultdrag;
+        }
+
+    }
+
+    public void SetSturn(bool sturn ,bool inputstrun)
+    {
+        Sturn = sturn;
+        playerInput.SetConSturn(inputstrun);
+    }
+
     public void SetSturn(bool sturn)
     {
         Sturn = sturn;
-        playerInput.SetConSturn(sturn);
+        //playerInput.SetConSturn(sturn);
     }
 
     public void getSturn(float sturntime)
