@@ -17,7 +17,7 @@ public class PlayerMove : MonoBehaviour
    
     protected bool isGrounded = false; // 바닥에 닿았는지 나타냄 점프할 때 쓰는 변수
     private bool isDead = false; // 사망 상태
-    public bool onboard; // 갑판 위에 있는지
+    
     private PlayerHealth playerHealth;
 
     protected Rigidbody2D playerRigidbody; // 사용할 리지드바디 컴포넌트
@@ -43,6 +43,31 @@ public class PlayerMove : MonoBehaviour
     // 저장된 위치로 옮기기 위한 변수입니다.
     private Vector3 playerpos;
 
+    private bool ONBOARD=true;
+    public bool onboard // 갑판 위에 있는지
+    {
+        get { return ONBOARD; }
+        set
+        {
+            if(ONBOARD ^ value)
+            {
+                ONBOARD = value;
+                if (value)
+                {
+                    playerRigidbody.gravityScale = 1; // 배 위에 있을 때 중력 1
+                    playerRigidbody.drag = 1;
+                    animator.SetBool("intoOcean", false);
+                }
+                else
+                {
+                    playerRigidbody.gravityScale = 0; // 물 속에 있을 때 중력 0
+                    playerRigidbody.drag = 1.0f;
+                    animator.SetBool("intoOcean", true);
+                }
+            }
+        }
+
+    }
     private bool ISLEFT = true;
     public bool isleft
     {
@@ -91,18 +116,20 @@ public class PlayerMove : MonoBehaviour
 
         if (onboard == true)
         {
-            playerRigidbody.gravityScale = 1; // 배 위에 있을 때 중력 1
-            playerRigidbody.drag = 1;
+            //주석부분은 onboard 변수에 get/set으로 구현됨
+            //playerRigidbody.gravityScale = 1; // 배 위에 있을 때 중력 1
+            //playerRigidbody.drag = 1;
             playerwalk();
-            animator.SetBool("intoOcean", false);
+            //animator.SetBool("intoOcean", false);
 
         }
         else
         {
-            playerRigidbody.gravityScale = 0; // 물 속에 있을 때 중력 0
-            playerRigidbody.drag = 1.0f;
+            //주석부분은 onboard 변수에 get/set으로 구현됨
+            //playerRigidbody.gravityScale = 0; // 물 속에 있을 때 중력 0
+            //playerRigidbody.drag = 1.0f;
             playerswim();
-            animator.SetBool("intoOcean", true);
+            //animator.SetBool("intoOcean", true);
         }
 
         //방향전환
