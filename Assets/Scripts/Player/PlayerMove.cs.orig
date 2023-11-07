@@ -33,12 +33,12 @@ public class PlayerMove : MonoBehaviour
     public GameObject inventoryparents;
     public GameObject Gun;
     public Gun Gunscript;
+    public ParticleSystem particleBubble;
+
 
     public float DashCoolTime;
     public float DashMoveCool;
     public float DashTimer;
-
-    public particleController particlecontroller;
 
 
     public bool Sturn = false;
@@ -64,7 +64,6 @@ public class PlayerMove : MonoBehaviour
                 {
                     playerRigidbody.gravityScale = 0; // 물 속에 있을 때 중력 0
                     playerRigidbody.drag = 1.0f;
-                    particlecontroller.AddEffect(100f, new(0, 0));
                     animator.SetBool("intoOcean", true);
                 }
             }
@@ -103,7 +102,6 @@ public class PlayerMove : MonoBehaviour
         onboard = true;
         Gun = transform.Find("gun").gameObject;
         Gunscript = Gun.GetComponent < Gun> ();
-        particlecontroller = GetComponent<particleController>();
         //inventoryparents.SetActive(false);
 
     }
@@ -124,7 +122,12 @@ public class PlayerMove : MonoBehaviour
             //playerRigidbody.gravityScale = 1; // 배 위에 있을 때 중력 1
             //playerRigidbody.drag = 1;
             playerwalk();
+<<<<<<< HEAD
             //animator.SetBool("intoOcean", false);
+=======
+            animator.SetBool("intoOcean", false);
+            particleBubble.Stop();
+>>>>>>> develop
 
         }
         else
@@ -133,8 +136,12 @@ public class PlayerMove : MonoBehaviour
             //playerRigidbody.gravityScale = 0; // 물 속에 있을 때 중력 0
             //playerRigidbody.drag = 1.0f;
             playerswim();
-
+<<<<<<< HEAD
             //animator.SetBool("intoOcean", true);
+=======
+            animator.SetBool("intoOcean", true);
+            particleBubble.Play();
+>>>>>>> develop
         }
 
         //방향전환

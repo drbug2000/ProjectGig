@@ -4,15 +4,22 @@ using UnityEngine;
 
 public class splashsurface : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    private void OnTriggerStay2D(Collider2D collision)
     {
-        
+        /*
+        if (collision.gameObject.tag == "Player")
+        {
+            theplayermove.onboard = false;
+        }
+        */
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnTriggerExit2D(Collider2D collision)
     {
-        
+        //if (collision.gameObject.tag == "Player")
+        //collision.gameObject.transform.position;
+
+        //theplayermove.onboard = true;
+
     }
 }
