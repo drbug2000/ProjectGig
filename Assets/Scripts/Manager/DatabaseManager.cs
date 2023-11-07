@@ -13,17 +13,20 @@ public class SaveData {
     public int GigRangeLvl = 0;
     public int HpLvl = 0;
     public Vector3 playerpos;
-    public Item item;
+    public Item[] item;
+
+    // item = new Item[8];
 
 }
 
 public class DatabaseManager : MonoBehaviour
 {
-    #region singleton
+
     private static DatabaseManager instance = null;
 
     public GameObject player;
 
+    #region singleton
     void Awake()
     {
         if (instance == null)
@@ -31,9 +34,11 @@ public class DatabaseManager : MonoBehaviour
             instance = this;
             DontDestroyOnLoad(this.gameObject);
         }
-        else if (instance != null)
+        else if (instance != this)
         {
-            Destroy(this.gameObject);
+            Destroy(instance.gameObject);
+            instance = this;
+            DontDestroyOnLoad(gameObject);
         }
         path = Path.Combine(Application.dataPath + "/Data/database.json");
     }
@@ -104,10 +109,11 @@ public class DatabaseManager : MonoBehaviour
 
     IEnumerator Loading() {
         yield return null;
+        Time.timeScale = 0f;
         Debug.Log("enter");
         if (File.Exists(path)) {
             Time.timeScale = 1f;
-            StopAllCoroutines();
+            StopCoroutine(Loading());
         }
         else {
             StartCoroutine(Loading());

@@ -6,26 +6,20 @@ public class PauseWindow : MonoBehaviour
 {
     public GameObject PauseGameWindow;
 
+    void Start() {
+        PauseGameWindow.SetActive(false);
+    }
+
     void Update() {
         if (Input.GetKeyDown(KeyCode.Escape)) {
             if (PauseGameWindow.activeSelf) {
                 PauseGameWindow.SetActive(false);
-                activeGame();
+                GameManager.Instance.resumeGame();
             }
             else {
                 PauseGameWindow.SetActive(true);
-                InactiveGame();
+                GameManager.Instance.pauseGame();
             }
         }
-    }
-
-    void InactiveGame()
-    {
-        GameManager.Instance.pauseGame();
-    }
-
-    void activeGame()
-    {
-        GameManager.Instance.resumeGame();
     }
 }

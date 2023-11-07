@@ -1,10 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
-    public Vector3 playerpos;
     [SerializeField]
     Transform gunTransform;
     [SerializeField]
@@ -19,26 +19,24 @@ public class CameraController : MonoBehaviour
     float cameraMoveSpeed;
     float height;
     float width;
-
-    private float distancex;
-    private float distancey;
-    private float distanceplayerandgig;
+    public Gig thegig;
 
     void Start()
     {
         gunTransform = GameObject.Find("Gig").GetComponent<Transform>();
-        height = Camera.main.orthographicSize;
-        width = height * Screen.width / Screen.height;
+
+        settingscreensize();
     }
 
     void FixedUpdate()
     {
+        // 카메라 범위 제한
         LimitCameraArea();
-        MoveCameraSize();
     }
 
     void LimitCameraArea()
     {
+        settingscreensize();
         transform.position = Vector3.Lerp(transform.position, gunTransform.position + cameraPosition, Time.deltaTime * cameraMoveSpeed);
         float lx = mapSize.x - width;
         float clampX = Mathf.Clamp(transform.position.x, -lx + center.x, lx + center.x);
@@ -48,23 +46,16 @@ public class CameraController : MonoBehaviour
 
         transform.position = new Vector3(clampX, clampY, -10f);
     }
-
-    void MoveCameraSize() {
-        //Debug.Log(distancex);
-        //Debug.Log(distancey);
-        distancex = gunTransform.position.x - playerpos.x;
-        distancey = gunTransform.position.y - playerpos.y;
-        distancex = Mathf.Pow(distancex, 2);
-        distancey = Mathf.Pow(distancey, 2);
-        distanceplayerandgig = distancex + distancey;
-        distanceplayerandgig = Mathf.Pow(distanceplayerandgig, 1/2);
-        //Debug.Log("플레이어와 gig: " + distanceplayerandgig);
-        if (distanceplayerandgig <= 10) {
-            Camera.main.orthographicSize = 10;
+    // 카메라 크기 변경
+    private void settingscreensize() {
+        if (thegig.isfire == true && Camera.main.orthographicSize < 10) {
+            Camera.main.orthographicSize = Mathf.Lerp(Camera.main.orthographicSize, Camera.main.orthographicSize + 1, 0.5f);
         }
-        else {
-            Camera.main.orthographicSize = distanceplayerandgig;
+        else if (thegig.isfire == false && Camera.main.orthographicSize > 7) {
+            Camera.main.orthographicSize = Mathf.Lerp(Camera.main.orthographicSize, Camera.main.orthographicSize - 1, 0.5f);
         }
+        height = Camera.main.orthographicSize;
+        width = height * Screen.width / Screen.height;
     }
 
     private void OnDrawGizmos()
