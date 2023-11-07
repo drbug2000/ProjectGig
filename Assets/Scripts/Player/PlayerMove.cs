@@ -33,6 +33,8 @@ public class PlayerMove : MonoBehaviour
     public GameObject inventoryparents;
     public GameObject Gun;
     public Gun Gunscript;
+    public ParticleSystem particleBubble;
+
 
     public float DashCoolTime;
     public float DashMoveCool;
@@ -95,6 +97,7 @@ public class PlayerMove : MonoBehaviour
             playerRigidbody.drag = 1;
             playerwalk();
             animator.SetBool("intoOcean", false);
+            particleBubble.Stop();
 
         }
         else
@@ -103,6 +106,7 @@ public class PlayerMove : MonoBehaviour
             playerRigidbody.drag = 1.0f;
             playerswim();
             animator.SetBool("intoOcean", true);
+            particleBubble.Play();
         }
 
         //방향전환
