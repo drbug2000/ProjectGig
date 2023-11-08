@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
 
     void Awake()
     {
+        resumeGame();
         // fishspawn = GameObject.Find("spawner").GetComponent<FishSpawn>();
 
         if (instance == null)
