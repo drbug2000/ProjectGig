@@ -43,11 +43,11 @@ public class Openshop : MonoBehaviour
     {
         if (collision.gameObject.name == "Player 1")
         {
+            StopAllCoroutines();
             if (ShopImage.activeSelf) {
                 ShopImage.SetActive(false);
                 GameManager.Instance.resumeGame();
             }
-            StopCoroutine(CanOpenShop());
         }
     }
 
