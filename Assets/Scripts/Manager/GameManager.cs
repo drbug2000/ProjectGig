@@ -65,7 +65,7 @@ public class GameManager : MonoBehaviour
         LivingEntity deathEvent = new LivingEntity();
         deathEvent.onDeath += new System.Action(playeronDeath);
         theassetmanager = GameObject.Find("Asset Set").GetComponent<AssetManager>();
-        shopManager = GameObject.Find("Shop Set").GetComponent<ShopManager>();
+        shopManager = GameObject.Find("Player 1").GetComponent<ShopManager>();
         Debug.Log("OnSceneLoaded: " + scene.name);
         if (SceneManager.GetActiveScene().name == "Merge 2"){
             Debug.Log("enter");
