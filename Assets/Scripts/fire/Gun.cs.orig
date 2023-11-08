@@ -13,7 +13,11 @@ public class Gun : MonoBehaviour
     private Camera _camera;
     private GameObject gunob;
     private Transform fire_point_tr;
+<<<<<<< HEAD
     private PlayerController playerInput;
+    private PlayerMove playermove;
+=======
+>>>>>>> develop
 
     private SpriteRenderer Gunsprite;
     private SpriteRenderer Gigsprite;
@@ -36,17 +40,10 @@ public class Gun : MonoBehaviour
     public float hitTime;
 
     public float gigDamage;
-<<<<<<< HEAD
     //damage upgrade �� �þ�� damage��
     public float gigDamageUpGap;
 
     //range upgrade�� �þ�� ����/�ӵ� ���� 
-=======
-    //damage upgrade 시 늘어나는 damage값
-    public float gigDamageUpGap;
-
-    //range upgrade시 늘어나는 범위/속도 비율 
->>>>>>> develop
     public float gigRangeUpGap;
     public float SpeedPercent = 1.1f;
 
@@ -103,8 +100,13 @@ public class Gun : MonoBehaviour
         Gunsprite = gunob.GetComponent<SpriteRenderer>();
         Gigsprite = gig.GetComponent<SpriteRenderer>();
         fire_point_tr = transform.Find("firePoint").gameObject.transform;
+<<<<<<< HEAD
         playerInput = gameObject.transform.parent.gameObject.GetComponent<PlayerController>();
+        playermove = gameObject.transform.parent.gameObject.GetComponent<PlayerMove>();
+=======
 
+        
+>>>>>>> develop
 
         default_gun = new Vector3(-0.65f, 0.4f, 0);
         left_guns = new Vector3(0.3f, 1.4f, 0);
@@ -121,11 +123,7 @@ public class Gun : MonoBehaviour
         //Debug.Log("left gig" + left_gig);
         //Debug.Log("default gig " + default_gig);
 
-<<<<<<< HEAD
         //shopManager���� ������ Ȱ��ȭ
-=======
-        //shopManager까지 연결후 활성화
->>>>>>> develop
         GameManager.Instance.shopManager.DamageUpgrade += DamageUP;
         GameManager.Instance.shopManager.RangeUpgrade += RangeUP;
     }
@@ -133,6 +131,7 @@ public class Gun : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
         if(State != fireState.ready)
         {
             if (Timer < 0)
@@ -141,20 +140,13 @@ public class Gun : MonoBehaviour
             }
             return;
         }
+        
 
-<<<<<<< HEAD
         //�߻����� �ƴҽ� ���� ���콺�� ���� ������ ������
         if(State != fireState.fire)
         {
             Vector2 mousePos = _camera.ScreenToWorldPoint(Input.mousePosition); //���콺 ��ǥ ī�޶� ��ǥ�� ��ȯ
             dirVec = mousePos - (Vector2)transform.position; //���콺 ���� ����
-=======
-        //발사중이 아닐시 총이 마우스를 따라 각도가 조정됨
-        if(State != fireState.fire)
-        {
-            Vector2 mousePos = _camera.ScreenToWorldPoint(Input.mousePosition); //마우스 좌표 카메라 좌표로 변환
-            dirVec = mousePos - (Vector2)transform.position; //마우스 방향 구함
->>>>>>> develop
             if (dirVec.x < 0)
             {
                 //GunIsLeft = true;
@@ -176,27 +168,46 @@ public class Gun : MonoBehaviour
                 fire_point_tr.localPosition = default_fire_point;
                 gigtr.localPosition = default_gig;
             }
-<<<<<<< HEAD
             transform.up = dirVec.normalized; // ���⺤�͸� ����ȭ�� ���� transform.up ���Ϳ� ��� ����
 
         }
 
+<<<<<<< HEAD
+        /*
+         *작동 안함
+        if (State == fireState.fire && Input.GetButton("Fire1"))
+=======
         //��
         if (Input.GetButtonDown("Fire1") )
-=======
-            transform.up = dirVec.normalized; // 방향벡터를 정규화한 다음 transform.up 벡터에 계속 대입
-
-        }
-
-        //쏠때
-        if (playerInput.fire && playerInput.ConSturn  )
 >>>>>>> develop
         {
-            State = fireState.fire;
-            Debug.Log("fire");
-            
-            StartCoroutine("Fire");
+            State = fireState.rollback;
+            Debug.Log("rollback");
         }
+        */
+
+        //쏠때
+        if (playerInput.fire )//&& !playerInput.ConSturn  )
+        {
+            if(State == fireState.ready)
+            {
+                State = fireState.fire;
+                Debug.Log("fire");
+                StartCoroutine("Fire");
+            }
+            else if (State == fireState.fire)
+            {
+                State = fireState.rollback;
+                Debug.Log("rollback");
+            }
+            else
+            {
+                Debug.Log("exception ");
+            }
+             
+        }
+        
+
     }
 
     public void ready()
@@ -220,7 +231,7 @@ public class Gun : MonoBehaviour
         gigrb.isKinematic = false;
         //float StopTime = 0;
         gigScript.onfire();
-
+        playermove.SetSturn(true);
         /*
         Debug.Log("fire corutine start");
 
@@ -235,11 +246,7 @@ public class Gun : MonoBehaviour
             yield return null;
         }
 
-<<<<<<< HEAD
         //���߽�
-=======
-        //명중시
->>>>>>> develop
         //Debug.Log("fire corutine on Hit");
         if(State == fireState.hit)
         {
@@ -248,11 +255,7 @@ public class Gun : MonoBehaviour
             Timer = hitTime;
         }
         while (State == fireState.hit) {
-<<<<<<< HEAD
             //��� ����
-=======
-            //잠시 정지
->>>>>>> develop
             Timer -= Time.deltaTime;
             yield return null;
         }
@@ -267,17 +270,10 @@ public class Gun : MonoBehaviour
             yield return null;
         }
 
-<<<<<<< HEAD
         //rollback ���� HIT �� ��Ȳ
         while (State == fireState.hit)
         {
             //��� ����
-=======
-        //rollback 도중 HIT 된 상황
-        while (State == fireState.hit)
-        {
-            //잠시 정지
->>>>>>> develop
             Timer -= Time.deltaTime;
             yield return null;
         }
@@ -328,7 +324,7 @@ public class Gun : MonoBehaviour
         State = fireState.ready;
         gigrb.isKinematic = true;
         gigScript.outfire();
-
+        playermove.SetSturn(false);
         
 
 
