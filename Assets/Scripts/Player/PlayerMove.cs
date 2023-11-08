@@ -104,7 +104,7 @@ public class PlayerMove : MonoBehaviour
         // playerSpriteRenderer = GetComponent<SpriteRenderer>();
         onboard = true;
         Gun = transform.Find("gun").gameObject;
-        Gunscript = Gun.GetComponent < Gun> ();
+        Gunscript = Gun.GetComponent <Gun> ();
         particlecontroller = GetComponent<particleController>();
         //inventoryparents.SetActive(false);
 
@@ -125,7 +125,17 @@ public class PlayerMove : MonoBehaviour
             //주석부분은 onboard 변수에 get/set으로 구현됨
             //playerRigidbody.gravityScale = 1; // 배 위에 있을 때 중력 1
             //playerRigidbody.drag = 1;
+    
+            if (!Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.D)) {
+                Debug.Log("0");
+                animator.SetBool("move",false);
+            } else{
+                animator.SetBool("move",true);
+            }
+
             playerwalk();
+            
+            
             //animator.SetBool("intoOcean", false);
 
         }
@@ -163,6 +173,7 @@ public class PlayerMove : MonoBehaviour
     public void playerwalk()
     {
         //walk의 경우 현재 작살의 방향을 기준으로 
+        
         isleft = IsLeft(Gunscript.dirVec);
 
         // 점프에 관한 내용입니다.
@@ -309,7 +320,7 @@ public class PlayerMove : MonoBehaviour
 
     public void GetBitten()
     {
-        Debug.Log("a물렸다");
+        //Debug.Log("a물렸다");
 
         SetSturn(true, true);
         SetGravitySturn(true);

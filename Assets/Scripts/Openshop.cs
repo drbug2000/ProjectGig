@@ -43,7 +43,7 @@ public class Openshop : MonoBehaviour
     {
         if (collision.gameObject.name == "Player 1")
         {
-            Debug.Log("exit");
+            //Debug.Log("exit");
             if (ShopImage.activeSelf) {
                 ShopImage.SetActive(false);
                 GameManager.Instance.resumeGame();
@@ -57,10 +57,10 @@ public class Openshop : MonoBehaviour
         //yield return null;
         //Debug.Log("coroutine");
         while(true){
-            Debug.Log("coroutine");
+            //Debug.Log("coroutine");
             if (Input.GetKeyDown(KeyCode.P))
             {
-                Debug.Log("P");
+                //Debug.Log("P");
                 if (ShopImage.activeSelf) {
                     GameManager.Instance.resumeGame();
                     ShopImage.SetActive(false);
