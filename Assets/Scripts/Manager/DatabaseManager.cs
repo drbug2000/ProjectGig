@@ -12,16 +12,18 @@ public class SaveData {
     public int GigDamLvl = 0;
     public int GigRangeLvl = 0;
     public int HpLvl = 0;
-    public Item[] item;
+    public List<string> invenitemname = new List<string>();
 
 }
 
 public class DatabaseManager : MonoBehaviour
 {
+    [SerializeField]
+    private Item[] item;
 
     private static DatabaseManager instance = null;
 
-    public GameObject player;
+    public Inventory theinventory;
 
     #region singleton
     void Awake()
@@ -55,8 +57,6 @@ public class DatabaseManager : MonoBehaviour
 
     public string path;
     private string savefilepathpath;
-    private Animator animator;
-    public Vector3 toplayerpos;
 
     SaveData saveData = new SaveData();
 
@@ -77,6 +77,9 @@ public class DatabaseManager : MonoBehaviour
                 GameManager.Instance.GigDamLvl = saveData.GigDamLvl;
                 GameManager.Instance.GigRangeLvl = saveData.GigRangeLvl;
                 GameManager.Instance.HpLvl = saveData.HpLvl;
+                for (int i = 0; i < saveData.invenitemname.Count; ++i) {
+
+                }
             }
             else {
                 Debug.Log("ERROR:NOSAVEDATAEXIST");
@@ -91,9 +94,11 @@ public class DatabaseManager : MonoBehaviour
         saveData.GigDamLvl = GameManager.Instance.GigDamLvl;
         saveData.GigRangeLvl = GameManager.Instance.GigRangeLvl;
         saveData.HpLvl = GameManager.Instance.HpLvl;
-        GameObject player = GameObject.FindWithTag("Player");
         for (int i = 0; i < 8; ++i) {
-            saveData.item[i] = player.GetComponent<Inventory>().slots[i].item;
+            if (theinventory.slots[i].item != null) {
+                Debug.Log(theinventory.slots[i].item.itemName);
+                saveData.invenitemname.Add(theinventory.slots[i].item.itemName);
+            }
         }
 
         string json = JsonUtility.ToJson(saveData, true);
