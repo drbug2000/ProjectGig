@@ -144,6 +144,14 @@ public class PlayerMove : MonoBehaviour
             //주석부분은 onboard 변수에 get/set으로 구현됨
             //playerRigidbody.gravityScale = 0; // 물 속에 있을 때 중력 0
             //playerRigidbody.drag = 1.0f;
+
+            if (!Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.D) && !Input.GetKey(KeyCode.W) && !Input.GetKey(KeyCode.S)) {
+                Debug.Log("0");
+                animator.SetBool("move",false);
+            } else{
+                animator.SetBool("move",true);
+            }
+
             playerswim();
 
             //animator.SetBool("intoOcean", true);
