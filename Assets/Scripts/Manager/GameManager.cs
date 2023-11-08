@@ -63,7 +63,7 @@ public class GameManager : MonoBehaviour
     // 현재는 이 변수가 쓰이고 있지 않습니다.
     // private bool isGameover = false;
     //public GameObject gameoverUI; // 게임 오버시 활성화 할 UI 게임 오브젝트
-    public int Gold = 10000;
+    public int Gold = 0;
     public int GigDamLvl = 0;
     public int GigRangeLvl = 0;
     public int HpLvl = 0;
