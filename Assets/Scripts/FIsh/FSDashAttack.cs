@@ -146,6 +146,7 @@ public class FSDashAttack : FishState
                 //add joint with target
                 //shark.joint.connectedBody = targetRD;
                 Bite(targetRD);
+                fish.particlecontroller.StartMainEffect(1f);
                 //Ainime : Stop anime
                 Dash(fish.MaxSpeed);
                 break;
@@ -312,6 +313,7 @@ public class FSDashAttack : FishState
             if (fishfin.UnderTheSea)
             {
                 target.GetComponent<IDamageable>().OnDamage(shark.shakeDamage, shark.gameObject, Vector2.zero, Vector2.zero);
+                fish.particlecontroller.StartMainEffect(1f);
             }
             /*
             Debug.Log("shake speed " + shakespeed);

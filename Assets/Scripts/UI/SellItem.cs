@@ -9,11 +9,13 @@ public class SellItem : MonoBehaviour
     NoticeUI _notice;
     public int Cost = 0;
     public string CostText;
+    public particleController effectsystem;
 
     public AssetManager theassetmanager;
 
     public void Awake(){
         _notice = FindObjectOfType<NoticeUI>();
+        effectsystem = GetComponent<particleController>();
     }
     
     public void Clicksellbutton()
@@ -21,9 +23,11 @@ public class SellItem : MonoBehaviour
         Cost = 0;
         Cost = theinventory.SellItem();
         CostText = Cost.ToString();
+        effectsystem.StartMainEffect(1f);
         if (Cost != 0) {
             theassetmanager.GetComponent<AssetManager>().Sell();
             _notice.SUB(CostText);
+            
         }
         
         //SellAll();
