@@ -23,7 +23,7 @@ public class Openshop : MonoBehaviour
         }
         else if (ShopImage.activeSelf == false) {
             //Debug.Log("off");
-            Time.timeScale = 0f;
+            //Time.timeScale = 0f;
             ShopImage.SetActive(true);
         }
         //StartCoroutine(CanOpenShop());

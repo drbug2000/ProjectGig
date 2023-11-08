@@ -165,6 +165,7 @@ MonoBehaviour:
   awaytarget: {fileID: 0}
   animator: {fileID: 0}
   fishcollider: {fileID: 0}
+  particlecontroller: {fileID: 0}
   item: {fileID: 11400000, guid: 0f0c0a08cbd8eeb4a9a02aaf6ecd4ff8, type: 2}
   startHP: 6
   DefaultSize: 0
@@ -208,7 +209,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!70 &6106021548517720236
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

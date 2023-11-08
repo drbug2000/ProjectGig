@@ -47,12 +47,13 @@ public class GameManager : MonoBehaviour
     // 체인을 걸어서 이 함수는 매 씬마다 호출된다.
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
+        resumeGame();
         Debug.Log("OnSceneLoaded: " + scene.name);
         if (SceneManager.GetActiveScene().name == "Merge 2"){
             Debug.Log("enter");
             DatabaseManager.Instance.JsonLoad();
         }
-        resumeGame();
+        
     }
 
     void OnDisable()

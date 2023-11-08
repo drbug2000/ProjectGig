@@ -153,6 +153,7 @@ public class DatabaseManager : MonoBehaviour
 
     IEnumerator Loading() {
         yield return null;
+
         Time.timeScale = 0f;
         Debug.Log("enter");
         if (File.Exists(path)) {
