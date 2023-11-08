@@ -15,11 +15,9 @@ public class Title : MonoBehaviour
     {
         SettingWindow.SetActive(false);
         if (!File.Exists(DatabaseManager.Instance.path)) {
-            Debug.Log("없어요");
             ContinueButton.SetActive(false);
         }
         else {
-            Debug.Log("있어요");
             ContinueButton.SetActive(true);
         }
     }
