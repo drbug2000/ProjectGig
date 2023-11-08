@@ -9,8 +9,8 @@ public class SellItem : MonoBehaviour
     NoticeUI _notice;
     public int Cost = 0;
     public string CostText;
-    public particleController effectsystem;
-
+	public particleController effectsystem;
+	public GameObject storageManager;
     public AssetManager theassetmanager;
 
     public void Awake(){
@@ -25,6 +25,7 @@ public class SellItem : MonoBehaviour
         CostText = Cost.ToString();
         effectsystem.StartMainEffect(1f);
         if (Cost != 0) {
+            storageManager.GetComponent<StorageManager>().UpdateFish();
             theassetmanager.GetComponent<AssetManager>().Sell();
             _notice.SUB(CostText);
             
