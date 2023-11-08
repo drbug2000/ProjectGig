@@ -23,16 +23,16 @@ public class SellItem : MonoBehaviour
         Cost = 0;
         Cost = theinventory.SellItem();
         CostText = Cost.ToString();
-        effectsystem.StartMainEffect(1f);
+        
         if (Cost != 0) {
             storageManager.GetComponent<StorageManager>().UpdateFish();
             theassetmanager.GetComponent<AssetManager>().Sell();
             _notice.SUB(CostText);
             
         }
-        
+        effectsystem.StartMainEffect(1f);
         //SellAll();
-        
+
     }
     public void SellAll(){
         _notice.SUB(CostText);
