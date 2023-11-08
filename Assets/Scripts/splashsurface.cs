@@ -46,7 +46,7 @@ public class splashsurface : MonoBehaviour
         Vector2 position = collision.transform.position;
         Vector3 size = collision.bounds.size;
 
-        particlecontroller.AddEffect(3f, position, (int)size.x, (float)size.y);
+        particlecontroller.AddEffect(3f, position, 5*(int)size.x, -1f); //size.x*size.y);
 
 
 
