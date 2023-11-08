@@ -336,7 +336,7 @@ public class PlayerMove : MonoBehaviour
             {
                 defaultmass = playerRigidbody.mass;
             }
-            if (playerRigidbody.drag > 1f)
+            if (playerRigidbody.drag > 0.9f)
             {
                 defaultdrag = playerRigidbody.drag;
             }

@@ -26,14 +26,17 @@ public class particleController : MonoBehaviour
     public void StartMainEffect()
     {
         TurnOnEffectSystem(mainEffect);
+        mainActiveFlag = false;
     }
     public void StartMainEffect(float time)
     {
         StartCoroutine(OnEffect(mainEffect, time));
+        mainActiveFlag = true;
     }
     public void EndMainEffect()
     {
         TurnOffEffectSystem(mainEffect);
+        mainActiveFlag = false;
     }
     public void EndSubEffect() {
         StopCoroutine("OnEffect");
@@ -45,7 +48,7 @@ public class particleController : MonoBehaviour
         {
             effect.SetActive(true);
             effect.GetComponent<ParticleSystem>().Play();
-            mainActiveFlag = true;
+            
         }
     }
 
@@ -56,7 +59,7 @@ public class particleController : MonoBehaviour
         {
             effect.SetActive(false);
             //effect.Stop();
-            mainActiveFlag = false;
+            
         }
     }
 
@@ -81,16 +84,17 @@ public class particleController : MonoBehaviour
     }
 
     //global position
-    public GameObject AddEffect(float secTime, /*int Count, float intensity,*/Vector3 position  )
+    public GameObject AddEffect(float secTime, /*int Count, float intensity,*/Vector2 position  )
     {
         GameObject _effect;
         if (!mainActiveFlag)
         {
             _effect = mainEffect;
+            mainActiveFlag = true;
         }
         else
         {
-            _effect = Instantiate(effectSystemPrefab, position, Quaternion.identity);
+            _effect = Instantiate(effectSystemPrefab, transform);//position, Quaternion.identity);
         }
 
         StartCoroutine(OnEffect(_effect,secTime));
@@ -112,6 +116,7 @@ public class particleController : MonoBehaviour
     IEnumerator OnEffect(GameObject effect, float time)
     {
         Debug.Log("effect start");
+        Debug.Log("effect pos:" + effect.transform.position);
         float Timer = time;
         
         TurnOnEffectSystem(effect);
@@ -132,6 +137,10 @@ public class particleController : MonoBehaviour
         if(!System.Object.ReferenceEquals(mainEffect, effect))
         {
             Destroy(effect);
+        }
+        else
+        {
+            mainActiveFlag = false;
         }
         
 

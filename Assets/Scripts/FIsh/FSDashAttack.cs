@@ -315,7 +315,7 @@ public class FSDashAttack : FishState
             if (fishfin.UnderTheSea)
             {
                 target.GetComponent<IDamageable>().OnDamage(shark.shakeDamage, shark.gameObject, Vector2.zero, Vector2.zero);
-                
+                fish.particlecontroller.AddEffectLocal(2f, fishfin.WhereMouth() - fishfin.currentPos);
             }
             /*
             Debug.Log("shake speed " + shakespeed);
@@ -326,8 +326,8 @@ public class FSDashAttack : FishState
         if (fishfin.IsTurn)
         {
             playermove.Teleport(fishfin.WhereMouth());
+            
             fishfin.IsTurn = false;
-            fish.particlecontroller.AddEffectLocal(1f, fishfin.WhereMouth() - fishfin.currentPos);
         }
 
     }
