@@ -35,7 +35,7 @@ public class Openshop : MonoBehaviour
     {
         if (collision.gameObject.name == "Player 1")
         {
-            StartCoroutine(CanOpenShop());
+            StartCoroutine("CanOpenShop");
         }
     }
 
@@ -43,30 +43,36 @@ public class Openshop : MonoBehaviour
     {
         if (collision.gameObject.name == "Player 1")
         {
+            //Debug.Log("exit");
             if (ShopImage.activeSelf) {
                 ShopImage.SetActive(false);
                 GameManager.Instance.resumeGame();
             }
-            StopCoroutine(CanOpenShop());
+            StopCoroutine("CanOpenShop");
         }
     }
 
     IEnumerator CanOpenShop()
     {
-        yield return null;
-        if (Input.GetKeyDown(KeyCode.P))
-        {
-            if (ShopImage.activeSelf) {
-                GameManager.Instance.resumeGame();
-                ShopImage.SetActive(false);
+        //yield return null;
+        //Debug.Log("coroutine");
+        while(true){
+            //Debug.Log("coroutine");
+            if (Input.GetKeyDown(KeyCode.P))
+            {
+                //Debug.Log("P");
+                if (ShopImage.activeSelf) {
+                    GameManager.Instance.resumeGame();
+                    ShopImage.SetActive(false);
+                }
+                else if (!ShopImage.activeSelf) {
+                    storageManager.GetComponent<StorageManager>().UpdateFish();
+                    GameManager.Instance.pauseGame();
+                    ShopImage.SetActive(true);
+                }
             }
-            else if (!ShopImage.activeSelf) {
-                storageManager.GetComponent<StorageManager>().UpdateFish();
-                GameManager.Instance.pauseGame();
-                ShopImage.SetActive(true);
-            }
+            yield return null;
         }
-
-        StartCoroutine(CanOpenShop());
+        //StartCoroutine(CanOpenShop());
     }
 }

@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
     void Awake()
     {
         resumeGame();
+        // DatabaseManager.Instance.JsonLoad();
         // fishspawn = GameObject.Find("spawner").GetComponent<FishSpawn>();
 
         if (instance == null)
@@ -37,6 +38,26 @@ public class GameManager : MonoBehaviour
     }
     #endregion
 
+    void OnEnable()
+    {
+    	  // 씬 매니저의 sceneLoaded에 체인을 건다.
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    // 체인을 걸어서 이 함수는 매 씬마다 호출된다.
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        Debug.Log("OnSceneLoaded: " + scene.name);
+        if (SceneManager.GetActiveScene().name == "Merge 2"){
+            Debug.Log("enter");
+            DatabaseManager.Instance.JsonLoad();
+        }
+    }
+
+    void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
     public GameObject gameoverText;
     // 현재는 이 변수가 쓰이고 있지 않습니다.
     // private bool isGameover = false;
