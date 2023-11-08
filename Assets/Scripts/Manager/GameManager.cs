@@ -8,6 +8,21 @@ public class GameManager : MonoBehaviour
     #region Singleton
     private static GameManager instance = null;
 
+    public int Gold = 0;
+    public int GigDamLvl = 0;
+    public int GigRangeLvl = 0;
+    public int HpLvl = 0;
+    
+
+    public AudioSource _audioSource;
+    public AudioClip _introLobbyAudioClip;
+    public AudioClip _inGameClip;
+
+    public FishSpawn fishspawn ; //외부에서 접근 가능한 변수 추가
+    public ShopManager shopManager;
+
+    public AssetManager theassetmanager;
+    public GameObject gameoverText;
     void Awake()
     {
         resumeGame();
@@ -47,6 +62,10 @@ public class GameManager : MonoBehaviour
     // 체인을 걸어서 이 함수는 매 씬마다 호출된다.
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
+        LivingEntity deathEvent = new LivingEntity();
+        deathEvent.onDeath += new System.Action(playeronDeath);
+        theassetmanager = GameObject.Find("Asset Set").GetComponent<AssetManager>();
+        shopManager = GameObject.Find("Shop Set").GetComponent<ShopManager>();
         Debug.Log("OnSceneLoaded: " + scene.name);
         if (SceneManager.GetActiveScene().name == "Merge 2"){
             Debug.Log("enter");
@@ -59,36 +78,11 @@ public class GameManager : MonoBehaviour
     {
         SceneManager.sceneLoaded -= OnSceneLoaded;
     }
-    public GameObject gameoverText;
+    
     // 현재는 이 변수가 쓰이고 있지 않습니다.
     // private bool isGameover = false;
     //public GameObject gameoverUI; // 게임 오버시 활성화 할 UI 게임 오브젝트
-    public int Gold = 0;
-    public int GigDamLvl = 0;
-    public int GigRangeLvl = 0;
-    public int HpLvl = 0;
     
-
-    public AudioSource _audioSource;
-    public AudioClip _introLobbyAudioClip;
-    public AudioClip _inGameClip;
-
-    public FishSpawn fishspawn ; //외부에서 접근 가능한 변수 추가
-    public ShopManager shopManager;
-
-    public AssetManager theassetmanager;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        //PauseGameWindowCanvas.SetActive(false);
-        // isGameover = false;
-
-        //LivingEntity event subscribe
-        LivingEntity deathEvent = new LivingEntity();
-        deathEvent.onDeath += new System.Action(playeronDeath);
-        //PlayLobbyMusic();
-    }
 
     /*
     public void PlayLobbyMusic()
