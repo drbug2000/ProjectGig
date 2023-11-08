@@ -19,7 +19,6 @@ public class ItemSlotUI : MonoBehaviour
     void Start()
     {
         SetColor(0f);
-        itemCount = 0;
     }
 
     //아이템 이미지의 투명도 조절

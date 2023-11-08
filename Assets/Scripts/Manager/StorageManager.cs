@@ -23,7 +23,7 @@ public class StorageManager : MonoBehaviour
     */
     public void CheckFish(){
         if(slot[0].GetComponent<ItemSlotUI>().item == null){
-                Debug.Log("null");
+                //Debug.Log("null");
                 ResetFish();
             }
         for(int i=0; i<slot.Length; i++){
@@ -33,9 +33,9 @@ public class StorageManager : MonoBehaviour
                     littleFishCount = slot[i].GetComponent<ItemSlotUI>().itemCount;
                 } else if(slot[i].GetComponent<ItemSlotUI>().item.itemName == "middlefish"){
                     middleFishCount = slot[i].GetComponent<ItemSlotUI>().itemCount;
-                    Debug.Log("middle");
+                    //Debug.Log("middle");
                 } else if(slot[i].GetComponent<ItemSlotUI>().item.itemName == "bigfish"){
-                    Debug.Log("big");
+                    //Debug.Log("big");
                     bigFishCount = slot[i].GetComponent<ItemSlotUI>().itemCount;
                 } else if(slot[i].GetComponent<ItemSlotUI>().item.itemName == "shark"){
                     sharkCount = slot[i].GetComponent<ItemSlotUI>().itemCount;
@@ -45,7 +45,7 @@ public class StorageManager : MonoBehaviour
     }
 
     public void UpdateFish(){
-        Debug.Log("Update");
+        //Debug.Log("Update");
         CheckFish();
         value1.text = littleFishCount.ToString();
         value2.text = middleFishCount.ToString();
@@ -73,11 +73,4 @@ public class StorageManager : MonoBehaviour
     {
         UpdateFish();
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
 }
