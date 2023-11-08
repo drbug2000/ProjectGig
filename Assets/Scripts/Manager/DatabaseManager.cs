@@ -12,7 +12,12 @@ public class SaveData {
     public int GigDamLvl = 0;
     public int GigRangeLvl = 0;
     public int HpLvl = 0;
-    public List<string> invenitemname = new List<string>();
+    public Dictionary<string, int> dic = new Dictionary<string, int> {
+        {"littlefish", 0},
+        {"middlefish", 0},
+        {"bigfish", 0},
+        {"shark", 0}
+    };
 
 }
 
@@ -23,7 +28,8 @@ public class DatabaseManager : MonoBehaviour
 
     private static DatabaseManager instance = null;
 
-    public Inventory theinventory;
+    public ItemSlotUI[] slots;
+    public StorageManager thestoragemanager;
 
     #region singleton
     void Awake()
@@ -77,9 +83,27 @@ public class DatabaseManager : MonoBehaviour
                 GameManager.Instance.GigDamLvl = saveData.GigDamLvl;
                 GameManager.Instance.GigRangeLvl = saveData.GigRangeLvl;
                 GameManager.Instance.HpLvl = saveData.HpLvl;
-                for (int i = 0; i < saveData.invenitemname.Count; ++i) {
-
+                int i = 0;
+                if (saveData.dic["littlefish"] != 0) {
+                    slots[i].item = item[0];
+                    slots[i].itemCount = saveData.dic["littlefish"];
+                    i += 1;
                 }
+                if (saveData.dic["middlefish"] != 0) {
+                    slots[i].item = item[1];
+                    slots[i].itemCount = saveData.dic["middlefish"];
+                    i += 1;
+                }
+                if (saveData.dic["bigfish"] != 0) {
+                    slots[i].item = item[2];
+                    slots[i].itemCount = saveData.dic["bigfish"];
+                    i += 1;
+                }
+                if (saveData.dic["shark"] != 0) {
+                    slots[i].item = item[3];
+                    slots[i].itemCount = saveData.dic["shark"];
+                }
+
             }
             else {
                 Debug.Log("ERROR:NOSAVEDATAEXIST");
@@ -93,14 +117,12 @@ public class DatabaseManager : MonoBehaviour
         saveData.Gold = GameManager.Instance.Gold;
         saveData.GigDamLvl = GameManager.Instance.GigDamLvl;
         saveData.GigRangeLvl = GameManager.Instance.GigRangeLvl;
-        saveData.HpLvl = GameManager.Instance.HpLvl;
-        for (int i = 0; i < 8; ++i) {
-            if (theinventory.slots[i].item != null) {
-                Debug.Log(theinventory.slots[i].item.itemName);
-                saveData.invenitemname.Add(theinventory.slots[i].item.itemName);
-            }
-        }
-
+        saveData.HpLvl = GameManager.Instance.HpLvl;         
+        saveData.dic["littlefish"] = thestoragemanager.littleFishCount;
+        saveData.dic["middlefish"] = thestoragemanager.middleFishCount;
+        saveData.dic["bigfish"] = thestoragemanager.bigFishCount;
+        saveData.dic["shark"] = thestoragemanager.sharkCount;
+    
         string json = JsonUtility.ToJson(saveData, true);
         File.WriteAllText(path, json);
         StartCoroutine(Loading());

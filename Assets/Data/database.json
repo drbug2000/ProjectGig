@@ -1,10 +1,6 @@
 {
-    "Gold": 0,
+    "Gold": 100,
     "GigDamLvl": 0,
-    "GigRangeLvl": 0,
-    "HpLvl": 0,
-    "invenitemname": [
-        "Bigfish",
-        "Bigfish"
-    ]
+    "GigRangeLvl": 1,
+    "HpLvl": 0
 }
