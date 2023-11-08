@@ -164,7 +164,7 @@ public class Gun : MonoBehaviour
         if (Input.GetButtonDown("Fire1") )
         {
             State = fireState.fire;
-            Debug.Log("fire");
+            //Debug.Log("fire");
             
             StartCoroutine("Fire");
         }

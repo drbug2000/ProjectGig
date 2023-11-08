@@ -7,6 +7,8 @@ public class Openshop : MonoBehaviour
 {
     public GameObject ShopImage;
     public Button _setActiveShop;
+    public GameObject storageManager;
+
 
     void Start() {
         ShopImage.SetActive(false);
@@ -59,6 +61,7 @@ public class Openshop : MonoBehaviour
                 ShopImage.SetActive(false);
             }
             else if (!ShopImage.activeSelf) {
+                storageManager.GetComponent<StorageManager>().UpdateFish();
                 GameManager.Instance.pauseGame();
                 ShopImage.SetActive(true);
             }
