@@ -50,7 +50,7 @@ public class DatabaseManager : MonoBehaviour
             instance = this;
             DontDestroyOnLoad(gameObject);
         }
-        path = Path.Combine(Application.dataPath + "/Data/database.json");
+        path = Path.Combine(Application.dataPath + "Data/database.json");
     }
 
     public static DatabaseManager Instance
@@ -126,7 +126,7 @@ public class DatabaseManager : MonoBehaviour
     }
     [ContextMenu("To Json Data")] // 컴포넌트 메뉴에 아래 함수를 호출하는 To Json Data 라는 명령어가 생성됨
     public void JsonSave() {
-        Time.timeScale = 0f;
+        // Time.timeScale = 0f;
 
         saveData.Gold = GameManager.Instance.Gold;
         saveData.GigDamLvl = GameManager.Instance.GigDamLvl;
@@ -138,25 +138,22 @@ public class DatabaseManager : MonoBehaviour
         todic.dic["shark"] = thestoragemanager.sharkCount;
 
         saveData.countofinv[0] = thestoragemanager.littleFishCount;
-        
         saveData.countofinv[1] = thestoragemanager.middleFishCount;
-
         saveData.countofinv[2] = thestoragemanager.bigFishCount;
-        
         saveData.countofinv[3] = thestoragemanager.sharkCount;
     
         string json = JsonUtility.ToJson(saveData, true);
         File.WriteAllText(path, json);
         StartCoroutine(Loading());
-        Time.timeScale = 1f;
+        // Time.timeScale = 1f;
     }
 
     IEnumerator Loading() {
         yield return null;
-        Time.timeScale = 0f;
+        // Time.timeScale = 0f;
         Debug.Log("enter");
         if (File.Exists(path)) {
-            Time.timeScale = 1f;
+            GameManager.Instance.resumeGame();
             StopCoroutine(Loading());
         }
         else {

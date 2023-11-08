@@ -11,9 +11,6 @@ public class GameManager : MonoBehaviour
     void Awake()
     {
         resumeGame();
-        // DatabaseManager.Instance.JsonLoad();
-        // fishspawn = GameObject.Find("spawner").GetComponent<FishSpawn>();
-
         if (instance == null)
         {
             instance = this;
@@ -50,9 +47,11 @@ public class GameManager : MonoBehaviour
         Debug.Log("OnSceneLoaded: " + scene.name);
         if (SceneManager.GetActiveScene().name == "Merge 2"){
             Debug.Log("enter");
+            resumeGame();
             DatabaseManager.Instance.JsonLoad();
         }
         resumeGame();
+        
     }
 
     void OnDisable()
@@ -81,6 +80,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        resumeGame();
         //PauseGameWindowCanvas.SetActive(false);
         // isGameover = false;
 
@@ -88,6 +88,10 @@ public class GameManager : MonoBehaviour
         LivingEntity deathEvent = new LivingEntity();
         deathEvent.onDeath += new System.Action(playeronDeath);
         //PlayLobbyMusic();
+    }
+
+    void Update() {
+        Debug.Log(Time.timeScale);
     }
 
     /*
