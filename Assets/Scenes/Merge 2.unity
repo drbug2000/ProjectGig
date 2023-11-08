@@ -1074,7 +1074,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Game Over
+  m_text: 'Game Over
+
+    Press ''R'' to restart'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: c0c571b0db459114db5f30fd77ede1d2, type: 2}
   m_sharedMaterial: {fileID: 7543523814719475441, guid: c0c571b0db459114db5f30fd77ede1d2, type: 2}
@@ -4821,6 +4823,7 @@ MonoBehaviour:
   theinventory: {fileID: 1304242848}
   Cost: 1000
   CostText: 
+  effectsystem: {fileID: 0}
   storageManager: {fileID: 1084844019}
   theassetmanager: {fileID: 7437485434880593800}
 --- !u!1 &7437485433146677324
