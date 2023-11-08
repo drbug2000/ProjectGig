@@ -81,7 +81,7 @@ public class particleController : MonoBehaviour
     }
 
     //global position
-    public void AddEffect(float secTime, /*int Count, float intensity,*/Vector2 position  )
+    public GameObject AddEffect(float secTime, /*int Count, float intensity,*/Vector3 position  )
     {
         GameObject _effect;
         if (!mainActiveFlag)
@@ -94,7 +94,19 @@ public class particleController : MonoBehaviour
         }
 
         StartCoroutine(OnEffect(_effect,secTime));
+        return _effect;
+    }
 
+    public void AddEffectLocal(float secTime, Vector2 Pos)
+    {
+        GameObject _effect;
+        _effect = AddEffect(secTime, transform.position);
+        _effect.transform.localPosition = Pos;
+    }
+
+    public void SetMainLocal(Vector2 localPos)
+    {
+        mainEffect.transform.localPosition = localPos;
     }
 
     IEnumerator OnEffect(GameObject effect, float time)
@@ -117,7 +129,11 @@ public class particleController : MonoBehaviour
         }
 
         TurnOffEffectSystem(effect);
-
+        if(!System.Object.ReferenceEquals(mainEffect, effect))
+        {
+            Destroy(effect);
+        }
+        
 
 
     }

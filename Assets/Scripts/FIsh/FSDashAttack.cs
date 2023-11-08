@@ -41,42 +41,42 @@ public class FSDashAttack : FishState
                 switch (State)
                 {
                     case attState.ready:
-                        Debug.Log("Timeset" + State);
+                        //Debug.Log("Timeset" + State);
                         
                         
                         setState((int)attState.setTarget);
                         break;
                     case attState.setTarget:
-                        Debug.Log("Timeset" + State);
+                        //Debug.Log("Timeset" + State);
                         
                         setState((int)attState.Dash);
                         break;
                     case attState.Dash:
-                        Debug.Log("Timeset" + State);
+                        //Debug.Log("Timeset" + State);
                         
                         setState((int)attState.ready);
                         //((NewShark)fish).Bite = false;
                         break;
                     case attState.bite:
                         //timer =attackTime;
-                        Debug.Log("Timeset" + State);
+                        //Debug.Log("Timeset" + State);
                         setState((int)attState.shake);
                         
                         //fishfin.StopFish();
                         break;
                     case attState.shake:
-                        Debug.Log("Timeset" + State);
+                        //Debug.Log("Timeset" + State);
                         
                         setState((int)attState.restore);
                         break;
                     case attState.restore:
-                        Debug.Log("Timeset" + State);
+                        //Debug.Log("Timeset" + State);
                         
                         setState((int)attState.ready);
                         break;
                     case attState.end:
 
-                        Debug.Log("Timeset" + State);
+                        //Debug.Log("Timeset" + State);
                         break;
                     default:
                         Debug.Log("attack FSM State error");
@@ -91,8 +91,8 @@ public class FSDashAttack : FishState
     public void setState( int state )
     {
         State = (attState)state;
-        Debug.Log("state set" + State);
-        Debug.Log("Bite value" + shark.Bite);
+       // Debug.Log("state set" + State);
+        //Debug.Log("Bite value" + shark.Bite);
         switch (State) 
         {
             case attState.ready:
@@ -108,8 +108,8 @@ public class FSDashAttack : FishState
                 shark.Bite = false;
                 //set target spot
                 fishfin.SetSpot(fishfin.TransVector(target.transform.position));
-                Debug.Log("player " + target.transform.position);
-                Debug.Log("shark " + fish.GetComponent<Transform>().position);
+                //Debug.Log("player " + target.transform.position);
+               // Debug.Log("shark " + fish.GetComponent<Transform>().position);
 
                 //change anime
                 break;
@@ -146,7 +146,8 @@ public class FSDashAttack : FishState
                 //add joint with target
                 //shark.joint.connectedBody = targetRD;
                 Bite(targetRD);
-                fish.particlecontroller.StartMainEffect(1f);
+                //fish.particlecontroller.AddEffect(1f, fishfin.WhereMouth());
+                
                 //Ainime : Stop anime
                 Dash(fish.MaxSpeed);
                 break;
@@ -177,7 +178,7 @@ public class FSDashAttack : FishState
 
         //animator = GetComponent<Animator>();
         fish.animator.SetBool("Detected", true);
-        Debug.Log(" new FSATttack Enter");
+        //Debug.Log(" new FSATttack Enter");
 
         State = attState.ready;
 
@@ -277,6 +278,7 @@ public class FSDashAttack : FishState
         shark.joint.enabled = true;
         playermove.GetBitten();
         playermove.Teleport(fishfin.WhereMouth());
+        fish.particlecontroller.AddEffectLocal(1f, fishfin.WhereMouth() - fishfin.currentPos);
     }
     public void SpitOut()
     {
@@ -299,7 +301,7 @@ public class FSDashAttack : FishState
         float shakespeed;
         if (fishfin.velocityM < shark.shakeMinSpeed)
         {
-            Debug.Log("shake");
+            //Debug.Log("shake");
             dashdir = new Vector2(Random.Range(6, 8), Random.Range(-3, 3));
             shakespeed = Random.Range(10, fish.MaxSpeed)* shark.shakeForce;
             if (Percent(shakePer))
@@ -313,7 +315,7 @@ public class FSDashAttack : FishState
             if (fishfin.UnderTheSea)
             {
                 target.GetComponent<IDamageable>().OnDamage(shark.shakeDamage, shark.gameObject, Vector2.zero, Vector2.zero);
-                fish.particlecontroller.StartMainEffect(1f);
+                
             }
             /*
             Debug.Log("shake speed " + shakespeed);
@@ -325,6 +327,7 @@ public class FSDashAttack : FishState
         {
             playermove.Teleport(fishfin.WhereMouth());
             fishfin.IsTurn = false;
+            fish.particlecontroller.AddEffectLocal(1f, fishfin.WhereMouth() - fishfin.currentPos);
         }
 
     }
