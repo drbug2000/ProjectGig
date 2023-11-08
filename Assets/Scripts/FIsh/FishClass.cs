@@ -14,7 +14,7 @@ public class FishClass : MonoBehaviour
     public GameObject awaytarget;
     public Animator animator;
     public CapsuleCollider2D fishcollider;
-
+    public particleController particlecontroller;
     public Item item;
 
 

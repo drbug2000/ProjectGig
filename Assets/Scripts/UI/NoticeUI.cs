@@ -11,7 +11,7 @@ public class NoticeUI : MonoBehaviour
     //public Animator subani;
 
     //coroutines
-    WaitForSeconds _UIDelay1 = new WaitForSeconds(2.0f);
+    private WaitForSecondsRealtime _UIDelay1 = new WaitForSecondsRealtime(2.0f);
     private WaitForSeconds _UIDelay2 = new WaitForSeconds(0.3f);
 
     // Start is called before the first frame update
