@@ -38,6 +38,7 @@ public class NewShark : FishClass
 
         joint = GetComponent<FixedJoint2D>();
         joint.enabled = false;
+        particlecontroller = GetComponent<particleController>();
     }
 
     // Start is called before the first frame update
@@ -53,7 +54,7 @@ public class NewShark : FishClass
     // Update is called once per frame
     public override void Update()
     {
-        //ÇöÀç State¿¡ ÇÔ¼ö¸¦ ¸Å ÇÁ·¹ÀÓ ½ÇÇàÇÔ
+        //í˜„ì¬ Stateì— í•¨ìˆ˜ë¥¼ ë§¤ í”„ë ˆì„ ì‹¤í–‰í•¨
         currentState.stateUpdate();
     }
 
