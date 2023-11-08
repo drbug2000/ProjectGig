@@ -16,6 +16,7 @@ public class ShopManager : MonoBehaviour
     public Action OxygenUpgrade;
     public Action DamageUpgrade;
     public Action RangeUpgrade;
+    
 
     public ItemSlotUI[] itemslotui;
     public Item[] item;
@@ -65,6 +66,7 @@ public class ShopManager : MonoBehaviour
         }
     }
     public void ShopActive(){
+        
         gameObject.SetActive(true);
     }
 

@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15a0d1a24c01d40188707ed255a50ed8, type: 3}
   m_Name: littlefishItem
   m_EditorClassIdentifier: 
-  itemName: Littlefish
+  itemName: littlefish
   itemImage: {fileID: 0}
   Cost: 20

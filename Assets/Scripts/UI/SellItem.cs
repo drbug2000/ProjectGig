@@ -9,6 +9,7 @@ public class SellItem : MonoBehaviour
     NoticeUI _notice;
     public int Cost = 0;
     public string CostText;
+    public GameObject storageManager;
 
     public AssetManager theassetmanager;
 
@@ -22,6 +23,7 @@ public class SellItem : MonoBehaviour
         Cost = theinventory.SellItem();
         CostText = Cost.ToString();
         if (Cost != 0) {
+            storageManager.GetComponent<StorageManager>().UpdateFish();
             theassetmanager.GetComponent<AssetManager>().Sell();
             _notice.SUB(CostText);
         }
