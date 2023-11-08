@@ -13,7 +13,7 @@ public class particleController : MonoBehaviour
     {
         //effectSystem = gameObject;
         
-        mainEffect = Instantiate(effectSystemPrefab, new Vector2(0,0), Quaternion.identity);
+        mainEffect = Instantiate(effectSystemPrefab, transform);
         TurnOffEffectSystem(mainEffect);
     }
 
@@ -21,6 +21,22 @@ public class particleController : MonoBehaviour
     void Update()
     {
 
+    }
+
+    public void StartMainEffect()
+    {
+        TurnOnEffectSystem(mainEffect);
+    }
+    public void StartMainEffect(float time)
+    {
+        StartCoroutine(OnEffect(mainEffect, time));
+    }
+    public void EndMainEffect()
+    {
+        TurnOffEffectSystem(mainEffect);
+    }
+    public void EndSubEffect() {
+        StopCoroutine("OnEffect");
     }
 
     public void TurnOnEffectSystem(GameObject effect)
@@ -64,6 +80,7 @@ public class particleController : MonoBehaviour
         }
     }
 
+    //global position
     public void AddEffect(float secTime, /*int Count, float intensity,*/Vector2 position  )
     {
         GameObject _effect;

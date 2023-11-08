@@ -6568,6 +6568,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5355095274612048562, guid: 18646ea04b0d2b149b72a827fc801fc2, type: 3}
+      propertyPath: ForceModule.inWorldSpace
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 18646ea04b0d2b149b72a827fc801fc2, type: 3}
 --- !u!1 &1302299058

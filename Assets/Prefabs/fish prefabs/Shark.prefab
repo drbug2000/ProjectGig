@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 4249893747086449108}
   - component: {fileID: 3130247305762812312}
   - component: {fileID: 6465844373232659305}
+  - component: {fileID: 9203904896094964551}
   m_Layer: 6
   m_Name: Shark
   m_TagString: fish
@@ -253,3 +254,18 @@ FixedJoint2D:
   m_ConnectedAnchor: {x: -4, y: -9}
   m_DampingRatio: 0
   m_Frequency: 0
+--- !u!114 &9203904896094964551
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2633367817043942535}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01c0bb32fa782f34da8f7b5dc1f08bea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  effectSystemPrefab: {fileID: 1752941759516654307, guid: 060a7b52778269742bb89fd6483c291f, type: 3}
+  mainEffect: {fileID: 0}
+  mainActiveFlag: 0

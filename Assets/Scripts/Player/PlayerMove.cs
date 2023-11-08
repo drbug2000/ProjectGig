@@ -58,13 +58,15 @@ public class PlayerMove : MonoBehaviour
                 {
                     playerRigidbody.gravityScale = 1; // 배 위에 있을 때 중력 1
                     playerRigidbody.drag = 1;
+                    particlecontroller.EndMainEffect();
                     animator.SetBool("intoOcean", false);
                 }
                 else
                 {
                     playerRigidbody.gravityScale = 0; // 물 속에 있을 때 중력 0
                     playerRigidbody.drag = 1.0f;
-                    particlecontroller.AddEffect(100f, new(0, 0));
+                    //particlecontroller.AddEffect(100f, new(0, 0));
+                    particlecontroller.StartMainEffect();
                     animator.SetBool("intoOcean", true);
                 }
             }
