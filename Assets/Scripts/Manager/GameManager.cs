@@ -52,6 +52,7 @@ public class GameManager : MonoBehaviour
             Debug.Log("enter");
             DatabaseManager.Instance.JsonLoad();
         }
+        resumeGame();
     }
 
     void OnDisable()

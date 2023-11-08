@@ -127,7 +127,7 @@ public class PlayerMove : MonoBehaviour
             //playerRigidbody.drag = 1;
     
             if (!Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.D)) {
-                Debug.Log("0");
+                //Debug.Log("0");
                 animator.SetBool("move",false);
             } else{
                 animator.SetBool("move",true);
@@ -146,7 +146,7 @@ public class PlayerMove : MonoBehaviour
             //playerRigidbody.drag = 1.0f;
 
             if (!Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.D) && !Input.GetKey(KeyCode.W) && !Input.GetKey(KeyCode.S)) {
-                Debug.Log("0");
+                //Debug.Log("0");
                 animator.SetBool("move",false);
             } else{
                 animator.SetBool("move",true);

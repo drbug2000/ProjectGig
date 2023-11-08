@@ -23,7 +23,7 @@ public class underthesea : MonoBehaviour
             theplayermove.onboard = true;
             
         }
-        if (collision.gameObject.name == "Player")
+        if (collision.gameObject.name == "Player 1")
         {
             Debug.Log(collision.gameObject.transform.position.y + ": " + transform.position.y);
             if (collision.gameObject.transform.position.y > transform.position.y)
