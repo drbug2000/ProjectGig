@@ -18,12 +18,13 @@ public class Openshop : MonoBehaviour
         //Debug.Log("B");
         if (ShopImage.activeSelf == true) {
             //Debug.Log("on");
-            Time.timeScale = 1f;
+            GameManager.Instance.resumeGame();
             ShopImage.SetActive(false);
         }
         else if (ShopImage.activeSelf == false) {
             //Debug.Log("off");
-            //Time.timeScale = 0f;
+            
+            GameManager.Instance.pauseGame();
             ShopImage.SetActive(true);
         }
         //StartCoroutine(CanOpenShop());
