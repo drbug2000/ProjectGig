@@ -1587,6 +1587,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1043702023}
   - component: {fileID: 1043702024}
+  - component: {fileID: 1043702025}
+  - component: {fileID: 1043702026}
   m_Layer: 0
   m_Name: splashseasurface
   m_TagString: Untagged
@@ -1635,6 +1637,34 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &1043702025
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1043702022}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01c0bb32fa782f34da8f7b5dc1f08bea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  effectSystemPrefab: {fileID: 5769282219789277990, guid: 3da554d5cc3738e408121772647f6813, type: 3}
+  mainEffect: {fileID: 0}
+  mainActiveFlag: 0
+--- !u!114 &1043702026
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1043702022}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ccf3cb8332aace4b8c91f27fedae749, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  particlecontroller: {fileID: 0}
 --- !u!1 &1302299058
 GameObject:
   m_ObjectHideFlags: 0

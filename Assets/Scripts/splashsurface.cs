@@ -4,6 +4,15 @@ using UnityEngine;
 
 public class splashsurface : MonoBehaviour
 {
+
+    public particleController particlecontroller;
+
+
+    void Start()
+    {
+        particlecontroller = GetComponent<particleController>();
+
+    }
     private void OnTriggerStay2D(Collider2D collision)
     {
         /*
@@ -20,6 +29,26 @@ public class splashsurface : MonoBehaviour
         //collision.gameObject.transform.position;
 
         //theplayermove.onboard = true;
+
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+
+        
+        splashEffect(collision);
+
+    }
+
+    private void splashEffect(Collider2D collision)
+    {
+        Debug.Log("splash");
+        Vector2 position = collision.transform.position;
+        Vector3 size = collision.bounds.size;
+
+        particlecontroller.AddEffect(3f, position, (int)size.x, (float)size.y);
+
+
 
     }
 }

@@ -83,8 +83,11 @@ public class particleController : MonoBehaviour
         }
     }
 
+    //public GameObject AddEffect(float secTime, Vector2 position,);
+
+
     //global position
-    public GameObject AddEffect(float secTime, /*int Count, float intensity,*/Vector2 position  )
+    public GameObject AddEffect(float secTime,Vector2 position,int Count=-1, float intensity=-1)
     {
         GameObject _effect;
         if (!mainActiveFlag)
@@ -97,6 +100,15 @@ public class particleController : MonoBehaviour
             _effect = Instantiate(effectSystemPrefab, transform);//position, Quaternion.identity);
         }
 
+        if(Count > 0)
+        {
+            SetParticleCount(_effect, Count);
+        }
+        if (intensity > 0)
+        {
+            SetIntensity(_effect, intensity);
+        }
+        SetPosition(_effect, position);
         StartCoroutine(OnEffect(_effect,secTime));
         return _effect;
     }
@@ -105,13 +117,27 @@ public class particleController : MonoBehaviour
     {
         GameObject _effect;
         _effect = AddEffect(secTime, transform.position);
-        _effect.transform.localPosition = Pos;
+        SetPositionLocal(_effect, Pos);
+        //_effect.transform.localPosition = Pos;
     }
+
+
 
     public void SetMainLocal(Vector2 localPos)
     {
         mainEffect.transform.localPosition = localPos;
     }
+
+
+    public void SetPosition(GameObject effect, Vector2 Pos)
+    {
+        effect.transform.position = Pos;
+    }
+    public void SetPositionLocal(GameObject effect, Vector2 localPos)
+    {
+        effect.transform.localPosition = localPos;
+    }
+
 
     IEnumerator OnEffect(GameObject effect, float time)
     {
