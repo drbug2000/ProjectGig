@@ -1633,9 +1633,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8556dbdf46d7940b3b489723a1ddb326, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 1048815463}
   path: 
-  toplayerpos: {x: 0, y: 0, z: 0}
 --- !u!4 &990121078
 Transform:
   m_ObjectHideFlags: 0
@@ -1656,7 +1654,6 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3294160003625457060, guid: d8e5647f1fa2e8c408389857ed3190a5, type: 3}
   m_PrefabInstance: {fileID: 1565593364}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1048815463}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 239b4a7c14b8e7c4ab0e694ec2c5aaba, type: 3}
@@ -1880,6 +1877,13 @@ GameObject:
 --- !u!1001 &1224951845
 PrefabInstance:
   m_ObjectHideFlags: 0
+  item:
+  - {fileID: 11400000, guid: 65e144ebc43666d4f89e74b84715ff49, type: 2}
+  - {fileID: 11400000, guid: 10c7a1bd495e9744fb23e7cbe06d2c74, type: 2}
+  - {fileID: 11400000, guid: cd0da5a907105ef4fba88e0ac308722f, type: 2}
+  - {fileID: 11400000, guid: 0f0c0a08cbd8eeb4a9a02aaf6ecd4ff8, type: 2}
+  theinventory: {fileID: 1304242848}
+  m_GameObject: {fileID: 0}
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}

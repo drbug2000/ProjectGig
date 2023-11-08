@@ -14,7 +14,10 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/inventory.unity
     guid: f63a175494418e8439be84f0c28de681
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/fishScenes.unity
     guid: 487b03348c3e3b54bbc1a1fa7d0e0b75
+  - enabled: 1
+    path: Assets/Scenes/Merge 2.unity
+    guid: d71cf2613461ad244b0cafd705f92caa
   m_configObjects: {}

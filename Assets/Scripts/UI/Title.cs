@@ -37,13 +37,13 @@ public class Title : MonoBehaviour
 
     public void startgame()
     {
-        SceneManager.LoadScene("Merge 1");
+        SceneManager.LoadScene("Merge 2");
     }
 
     public void Loadgame()
     {  
         DatabaseManager.Instance.JsonLoad();
-        SceneManager.LoadScene("Merge 1");
+        SceneManager.LoadScene("Merge 2");
     }
 
     public void Setting()
