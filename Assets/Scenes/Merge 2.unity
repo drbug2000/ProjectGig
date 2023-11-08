@@ -2843,6 +2843,10 @@ PrefabInstance:
       propertyPath: gig
       value: 
       objectReference: {fileID: 1483063545}
+    - target: {fileID: 3294160003625457060, guid: d8e5647f1fa2e8c408389857ed3190a5, type: 3}
+      propertyPath: particleBubble
+      value: 
+      objectReference: {fileID: 5355095274612048562, guid: 18646ea04b0d2b149b72a827fc801fc2, type: 3}
     - target: {fileID: 3294160003625457064, guid: d8e5647f1fa2e8c408389857ed3190a5, type: 3}
       propertyPath: m_RootOrder
       value: 8
