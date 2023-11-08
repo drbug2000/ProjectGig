@@ -890,6 +890,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ShopImage: {fileID: 7437485433221565370}
   _setActiveShop: {fileID: 7437485434959146413}
+  storageManager: {fileID: 0}
 --- !u!61 &585050598
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3194,6 +3195,8 @@ MonoBehaviour:
   theinventory: {fileID: 1304242848}
   Cost: 1000
   CostText: 
+  effectsystem: {fileID: 0}
+  storageManager: {fileID: 0}
   theassetmanager: {fileID: 7437485434880593800}
 --- !u!1 &7437485433146677324
 GameObject:
