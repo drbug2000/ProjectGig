@@ -278,7 +278,7 @@ public class FSDashAttack : FishState
         shark.joint.enabled = true;
         playermove.GetBitten();
         playermove.Teleport(fishfin.WhereMouth());
-        fish.particlecontroller.AddEffectLocal(1f, fishfin.WhereMouth() - fishfin.currentPos);
+        fish.particlecontroller.AddEffectLocal(3f, fishfin.WhereMouth() - fishfin.currentPos);
     }
     public void SpitOut()
     {
