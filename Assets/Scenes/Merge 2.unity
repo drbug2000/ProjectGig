@@ -5369,7 +5369,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   theinventory: {fileID: 1304242848}
-  Cost: 1000
+  Cost: 0
   CostText: 
   effectsystem: {fileID: 0}
   storageManager: {fileID: 1084844019}
