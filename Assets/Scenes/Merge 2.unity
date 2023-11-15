@@ -3140,7 +3140,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3294160001957903596, guid: d8e5647f1fa2e8c408389857ed3190a5, type: 3}
       propertyPath: m_UiScaleMode
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3294160001957903596, guid: d8e5647f1fa2e8c408389857ed3190a5, type: 3}
+      propertyPath: m_ReferenceResolution.x
+      value: 1920
+      objectReference: {fileID: 0}
+    - target: {fileID: 3294160001957903596, guid: d8e5647f1fa2e8c408389857ed3190a5, type: 3}
+      propertyPath: m_ReferenceResolution.y
+      value: 1080
       objectReference: {fileID: 0}
     - target: {fileID: 3294160001957903597, guid: d8e5647f1fa2e8c408389857ed3190a5, type: 3}
       propertyPath: m_AdditionalShaderChannelsFlag

@@ -26,14 +26,11 @@ public class PlayerHealth : LivingEntity
     public float HpUpGap;
 
     public Image hp;
-
-    void Start(){
-        GameManager.Instance.shopManager.OxygenUpgrade += HPUp;
-        health = 100;
-    }
-
+    
     private void Awake()
     {
+        GameManager.Instance.shopManager.OxygenUpgrade += HPUp;
+        health = 100;
         //������Ʈ �Ҵ�: �ǰ� �ÿ� �� ��ȯ�� ����
         playerSpriteRenderer = GetComponent<SpriteRenderer>();
         //������Ʈ �Ҵ�: �ٴٿ� ���� �Ǻ� ����

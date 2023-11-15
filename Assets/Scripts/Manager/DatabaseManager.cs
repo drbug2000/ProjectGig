@@ -50,7 +50,7 @@ public class DatabaseManager : MonoBehaviour
             instance = this;
             DontDestroyOnLoad(gameObject);
         }
-        path = Path.Combine(Application.dataPath + "Data/database.json");
+        path = Path.Combine(Application.streamingAssetsPath + "database.json");
     }
 
     public static DatabaseManager Instance
@@ -67,7 +67,6 @@ public class DatabaseManager : MonoBehaviour
     #endregion
 
     public string path;
-    private string savefilepathpath;
 
     SaveData saveData = new SaveData();
     Todictionary todic = new Todictionary();
@@ -76,11 +75,11 @@ public class DatabaseManager : MonoBehaviour
     public void JsonLoad() {
         // SaveData saveData = new SaveData();
 
-        if (!File.Exists(path)) {
-            JsonSave();
-        } 
-        else 
-        {
+        // if (!File.Exists(path)) {
+        //     JsonSave();
+        // } 
+        // else 
+        // {
             string loadJson = File.ReadAllText(path);
             saveData = JsonUtility.FromJson<SaveData>(loadJson);
 
@@ -122,7 +121,7 @@ public class DatabaseManager : MonoBehaviour
             else {
                 Debug.Log("ERROR:NOSAVEDATAEXIST");
             }
-        }
+        // }
     }
     [ContextMenu("To Json Data")] // 컴포넌트 메뉴에 아래 함수를 호출하는 To Json Data 라는 명령어가 생성됨
     public void JsonSave() {
@@ -150,14 +149,9 @@ public class DatabaseManager : MonoBehaviour
 
     IEnumerator Loading() {
         yield return null;
-        // Time.timeScale = 0f;
-        Debug.Log("enter");
-        if (File.Exists(path)) {
-            GameManager.Instance.resumeGame();
-            StopCoroutine(Loading());
+        while(!File.Exists(path)) {
+            GameManager.Instance.pauseGame();
         }
-        else {
-            StartCoroutine(Loading());
-        }
+        GameManager.Instance.resumeGame();
     }
 }
