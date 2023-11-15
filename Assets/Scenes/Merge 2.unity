@@ -1800,7 +1800,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3294160003625457060, guid: d8e5647f1fa2e8c408389857ed3190a5, type: 3}
   m_PrefabInstance: {fileID: 1565593364}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1565593365}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 239b4a7c14b8e7c4ab0e694ec2c5aaba, type: 3}
@@ -2346,7 +2346,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3959234417007734302, guid: d8e5647f1fa2e8c408389857ed3190a5, type: 3}
   m_PrefabInstance: {fileID: 1565593364}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1565593365}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b9eadf5bbf8474737b41d1bc9098a010, type: 3}
@@ -3837,6 +3837,27 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 1724442912, guid: d8e5647f1fa2e8c408389857ed3190a5, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: d8e5647f1fa2e8c408389857ed3190a5, type: 3}
+--- !u!1 &1565593365 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3294160003625457056, guid: d8e5647f1fa2e8c408389857ed3190a5, type: 3}
+  m_PrefabInstance: {fileID: 1565593364}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1565593366
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1565593365}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 805c399a246e9b74c9ad06222ab19d14, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  assetManager: {fileID: 7437485434880593800}
+  itemslotui: []
+  item: []
+  image: []
 --- !u!1 &1597661560
 GameObject:
   m_ObjectHideFlags: 0
@@ -4387,7 +4408,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a111c7d4b9924b74eae68462f614d207, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameoverText: {fileID: 523013996}
   Gold: 1000
   GigDamLvl: 0
   GigRangeLvl: 0
@@ -4396,8 +4416,9 @@ MonoBehaviour:
   _introLobbyAudioClip: {fileID: 0}
   _inGameClip: {fileID: 0}
   fishspawn: {fileID: 9112327}
-  shopManager: {fileID: 7437485433221565374}
+  shopManager: {fileID: 0}
   theassetmanager: {fileID: 7437485434880593800}
+  gameoverText: {fileID: 523013996}
 --- !u!4 &1801910941
 Transform:
   m_ObjectHideFlags: 0
@@ -5251,7 +5272,6 @@ GameObject:
   - component: {fileID: 7437485433221565371}
   - component: {fileID: 7437485433221565373}
   - component: {fileID: 7437485433221565372}
-  - component: {fileID: 7437485433221565374}
   m_Layer: 5
   m_Name: Shop Set
   m_TagString: Untagged
@@ -5323,22 +5343,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7437485433221565370}
   m_CullTransparentMesh: 1
---- !u!114 &7437485433221565374
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7437485433221565370}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 805c399a246e9b74c9ad06222ab19d14, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  assetManager: {fileID: 7437485434880593800}
-  itemslotui: []
-  item: []
-  image: []
 --- !u!1 &7437485433240462640
 GameObject:
   m_ObjectHideFlags: 0
@@ -5871,7 +5875,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7437485433221565374}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: ShopManager, Assembly-CSharp
         m_MethodName: OxygenLvlUp
         m_Mode: 1
@@ -6192,7 +6196,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7437485433221565374}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: ShopManager, Assembly-CSharp
         m_MethodName: DamageLvlUp
         m_Mode: 1
@@ -7083,7 +7087,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7437485433221565374}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: ShopManager, Assembly-CSharp
         m_MethodName: RangeLvlUp
         m_Mode: 1
