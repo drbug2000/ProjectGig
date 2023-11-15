@@ -129,6 +129,7 @@ MonoBehaviour:
   awaytarget: {fileID: 0}
   animator: {fileID: 0}
   fishcollider: {fileID: 0}
+  particlecontroller: {fileID: 0}
   item: {fileID: 11400000, guid: 10c7a1bd495e9744fb23e7cbe06d2c74, type: 2}
   startHP: 20
   DefaultSize: 0
@@ -142,7 +143,7 @@ MonoBehaviour:
   RoamBoxMaxX: 40
   RoamBoxMinX: -40
   RoamBoxMaxY: -20
-  RoamBoxMinY: -80
+  RoamBoxMinY: -49
   SpotRangeBig: 12
   SpotRangeSmall: 8
   RoamWaitTime: 2

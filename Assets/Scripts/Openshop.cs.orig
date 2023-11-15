@@ -10,7 +10,7 @@ public class Openshop : MonoBehaviour
     public GameObject storageManager;
 
 
-    void Awake() {
+    void Start() {
         ShopImage.SetActive(false);
     }
 
@@ -23,8 +23,11 @@ public class Openshop : MonoBehaviour
         }
         else if (ShopImage.activeSelf == false) {
             //Debug.Log("off");
-            
+<<<<<<< HEAD
+            //Time.timeScale = 0f;
+=======
             GameManager.Instance.pauseGame();
+>>>>>>> eb804e60fa784e969a0c9922200b660e121eb95b
             ShopImage.SetActive(true);
         }
         //StartCoroutine(CanOpenShop());

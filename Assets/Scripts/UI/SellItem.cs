@@ -30,7 +30,7 @@ public class SellItem : MonoBehaviour
             _notice.SUB(CostText);
             
         }
-        effectsystem.StartMainEffect(1f);
+        //effectsystem.StartMainEffect(1f);
         //SellAll();
 
     }

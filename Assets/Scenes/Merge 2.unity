@@ -296,7 +296,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   theplayermove: {fileID: 1005981822}
-  escapeforce: 400
+  escapeforce: 300
 --- !u!4 &121588513
 Transform:
   m_ObjectHideFlags: 0
