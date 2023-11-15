@@ -256,7 +256,7 @@ public class Gun : MonoBehaviour
                     //gigtr.Translate(-1 * transform.up * bulletSpeed * Time.deltaTime, Space.World);
                     gigtr.Translate(-1 * DIR.normalized * bulletSpeed * Time.deltaTime, Space.World);
 
-                    if (DIR.magnitude < 0.5f)
+                    if (DIR.magnitude < 1.5)
                     {
                         Debug.Log("magnitude");
                         Timer = -1;

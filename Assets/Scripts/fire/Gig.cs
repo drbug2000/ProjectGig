@@ -53,7 +53,7 @@ public class Gig : MonoBehaviour
     public void outfire()
     {
         isfire = false;
-        transform.localPosition = new Vector3(-0.7f, 2, 0);
+        //transform.localPosition = new Vector3(-0.7f, 2, 0);
         transform.localRotation = Quaternion.Euler(0, 0, 90);
         //Debug.Log("outfire");
     }
