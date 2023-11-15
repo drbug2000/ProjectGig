@@ -178,8 +178,8 @@ MonoBehaviour:
   MinSpeed: 2.5
   RoamBoxMaxX: 40
   RoamBoxMinX: -40
-  RoamBoxMaxY: -5
-  RoamBoxMinY: -30
+  RoamBoxMaxY: 0
+  RoamBoxMinY: -15
   SpotRangeBig: 10
   SpotRangeSmall: 4
   RoamWaitTime: 4
