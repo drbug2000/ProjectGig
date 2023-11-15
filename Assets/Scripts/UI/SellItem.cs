@@ -34,7 +34,4 @@ public class SellItem : MonoBehaviour
         //SellAll();
 
     }
-    public void SellAll(){
-        _notice.SUB(CostText);
-    }
 }

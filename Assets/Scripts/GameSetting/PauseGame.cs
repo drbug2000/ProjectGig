@@ -9,14 +9,17 @@ public class PauseGame : MonoBehaviour
     // Loading Window를 위한 gameobject
     // public GameObject LoadingWindow;
     // public Animator Loadinganimator;
+    AllNoticeUI _notice;
 
     void Start() {
         // LoadingWindow.SetActive(false);
+        _notice = FindObjectOfType<AllNoticeUI>();
     }
 
     public void SaveButtonClick() {
         // LoadingWindow.SetActive(true);
         DatabaseManager.Instance.JsonSave();
+        _notice.Alert("Save complete");
         
     }
 
