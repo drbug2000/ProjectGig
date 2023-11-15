@@ -62,7 +62,7 @@ public class Gun : MonoBehaviour
                 {
                     case fireState.fire:
                     case fireState.hit:
-                        Timer = fireTime;
+                        Timer = fireTime*2;
                         State = fireState.rollback;
                         break;
                     case fireState.rollback:
@@ -218,72 +218,25 @@ public class Gun : MonoBehaviour
         //float StopTime = 0;
         gigScript.onfire();
         playermove.SetSturn(true);
-        /*
-        Debug.Log("fire corutine start");
-
-        //Debug.Log("transform.up"+ transform.up);
-        //Debug.Log("gigrt.up" + gigtr.up);
         
-        Timer = fireTime;
-        while (State == fireState.fire)
-        {
-            gigtr.Translate(transform.up * bulletSpeed*Time.deltaTime,Space.World);
-            Timer -= Time.deltaTime;
-            yield return null;
-        }
-
-        //명중시
-        //Debug.Log("fire corutine on Hit");
-        if(State == fireState.hit)
-        {
-            Debug.Log("fire corutine on Hit");
-            StopTime = Timer;
-            Timer = hitTime;
-        }
-        while (State == fireState.hit) {
-            //잠시 정지
-            Timer -= Time.deltaTime;
-            yield return null;
-        }
-
-        //rollback
-        Debug.Log("fire corutine rollback");
-        Timer = fireTime - StopTime;
-        while (State == fireState.rollback)
-        {
-            gigtr.Translate(-1*transform.up * bulletSpeed * Time.deltaTime, Space.World);
-            Timer -= Time.deltaTime;
-            yield return null;
-        }
-
-        //rollback 도중 HIT 된 상황
-        while (State == fireState.hit)
-        {
-            //잠시 정지
-            Timer -= Time.deltaTime;
-            yield return null;
-        }
-
-        */
-        
-
-
-        /*New Code*/
 
         float FireTimer=0;
         Timer = fireTime;
-        
-
-        while (FireTimer >= 0)
+        Vector2 DIR = gigtr.position - transform.position;
+        bool end_flag = false;
+        while (!end_flag)
         {
             Timer -= Time.deltaTime;
+            DIR = gigtr.position - transform.position;
             //FireTimer -= Time.deltaTime;
             //Debug.Log("corrutine while ");
+            
             switch (State)
             {
                 case fireState.fire:
                     gigtr.Translate(transform.up * bulletSpeed * Time.deltaTime, Space.World);
-                    FireTimer += Time.deltaTime;
+                    gigtr.right = DIR.normalized;
+                    //FireTimer += Time.deltaTime;
                     //Debug.Log("switch fire");
                     //Timer -= Time.deltaTime;
                     //yield return null;
@@ -291,13 +244,28 @@ public class Gun : MonoBehaviour
                 case fireState.hit:
                     //Timer = hitTime;
                     //State = fireState.rollback;
+                    
                     break;
                 case fireState.rollback:
                     //State = fireState.ready;
-                    FireTimer -= Time.deltaTime;
-                    gigtr.Translate(-1 * transform.up * bulletSpeed * Time.deltaTime, Space.World);
+                    //FireTimer -= Time.deltaTime;
+                    
+                    //Vector2 DIR =  gigtr.position - transform.position;
+                    gigtr.right = DIR.normalized;
+                    //transform.localRotation = Quaternion.Euler(0, 0, 90);
+                    //gigtr.Translate(-1 * transform.up * bulletSpeed * Time.deltaTime, Space.World);
+                    gigtr.Translate(-1 * DIR.normalized * bulletSpeed * Time.deltaTime, Space.World);
+
+                    if (DIR.magnitude < 0.5f)
+                    {
+                        Debug.Log("magnitude");
+                        Timer = -1;
+                        end_flag = true;
+                    }
                     break;
                 case fireState.ready:
+                    //FireTimer = -1;
+                    end_flag = true;
                     break;
                 default:
                     Debug.Log("corutine Timer set error" + State);
@@ -310,8 +278,7 @@ public class Gun : MonoBehaviour
         State = fireState.ready;
         gigrb.isKinematic = true;
         gigScript.outfire();
-        playermove.SetSturn(false);
-        
+        playermove.SetSturn(false);   
 
 
     }
