@@ -63,6 +63,30 @@ public class particleController : MonoBehaviour
         }
     }
 
+    public void SetEffectSize(GameObject effect, float size)
+    {
+        if (effect.GetComponent<ParticleSystem>() != null)
+        {
+            Debug.Log("size in effect : 0"+size);
+            var EF = effect.GetComponent<ParticleSystem>();
+            var EF_main = EF.main;
+            EF_main.maxParticles = (int)(size * size * 100);
+            EF_main.startLifetime = size / 4 + 1;
+            EF_main.startSpeed = (int)(size * 1.2) + 7;
+            var EF_shape = EF.shape;
+            //EF = effect.GetComponent<ParticleSystem>().shape;
+            EF_shape.radius = (int)(size * 1.5 + 1.5);
+            var EF_emission = EF.emission;
+            //EF = effect.GetComponent<ParticleSystem>().emission;
+            EF_emission.rateOverTime = (int)(size * 100);
+        }
+        else
+        {
+            Debug.Log("we got null. flag : " + mainActiveFlag);
+        }
+
+    }
+
     // 입자 개수를 조절하는 함수
     public void SetParticleCount(GameObject effect, int count)
     {
@@ -70,6 +94,7 @@ public class particleController : MonoBehaviour
         {
             var main = effect.GetComponent<ParticleSystem>().main;
             main.maxParticles = count;
+            //main.
         }
     }
 
@@ -87,7 +112,7 @@ public class particleController : MonoBehaviour
 
 
     //global position
-    public GameObject AddEffect(float secTime,Vector2 position,int Count=-1, float intensity=-1)
+    public GameObject AddEffect(float secTime,Vector2 position,float size=-1)//,int Count=-1, float intensity=-1)
     {
         GameObject _effect;
         if (!mainActiveFlag)
@@ -99,7 +124,7 @@ public class particleController : MonoBehaviour
         {
             _effect = Instantiate(effectSystemPrefab, transform);//position, Quaternion.identity);
         }
-
+        /*
         if(Count > 0)
         {
             SetParticleCount(_effect, Count);
@@ -108,6 +133,13 @@ public class particleController : MonoBehaviour
         {
             SetIntensity(_effect, intensity);
         }
+        */
+        if (size >= 0)
+        {
+            SetEffectSize(_effect, size);
+        }
+        else { Debug.Log("not set size:"+size); }
+        
         SetPosition(_effect, position);
         StartCoroutine(OnEffect(_effect,secTime));
         return _effect;
@@ -131,7 +163,7 @@ public class particleController : MonoBehaviour
 
     public void SetPosition(GameObject effect, Vector2 Pos)
     {
-        effect.transform.position = Pos;
+        effect.transform.position =new( Pos.x,0);
     }
     public void SetPositionLocal(GameObject effect, Vector2 localPos)
     {
@@ -141,8 +173,8 @@ public class particleController : MonoBehaviour
 
     IEnumerator OnEffect(GameObject effect, float time)
     {
-        Debug.Log("effect start");
-        Debug.Log("effect pos:" + effect.transform.position);
+        //Debug.Log("effect start");
+        //Debug.Log("effect pos:" + effect.transform.position);
         float Timer = time;
         
         TurnOnEffectSystem(effect);
