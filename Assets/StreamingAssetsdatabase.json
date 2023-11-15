@@ -1,0 +1,18 @@
+{
+    "Gold": 0,
+    "GigDamLvl": 0,
+    "GigRangeLvl": 0,
+    "HpLvl": 0,
+    "nameofinv": [
+        "littlefish",
+        "middlefish",
+        "bigfish",
+        "shark"
+    ],
+    "countofinv": [
+        0,
+        0,
+        0,
+        0
+    ]
+}

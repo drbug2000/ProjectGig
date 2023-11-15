@@ -15,7 +15,7 @@ public class NoticeUI : MonoBehaviour
     private WaitForSeconds _UIDelay2 = new WaitForSeconds(0.3f);
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         subbox.SetActive(false);
     }
