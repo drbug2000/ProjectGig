@@ -25,6 +25,8 @@ public class GameManager : MonoBehaviour
     public GameObject gameoverText;
     void Awake()
     {
+        //theassetmanager = GameObject.Find("Asset Set").GetComponent<AssetManager>();
+        shopManager = GameObject.Find("Player 1").GetComponent<ShopManager>();
         resumeGame();
         if (instance == null)
         {
