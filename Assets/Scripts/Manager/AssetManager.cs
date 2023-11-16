@@ -3,12 +3,34 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
 //using Unity.VisualScripting;
 //using Unity.VisualScripting.ReorderableList;
 using JetBrains.Annotations;
+// using UnityEditor.UIElements;
 
 public class AssetManager : MonoBehaviour
 {
+    void OnEnable()
+    {
+    	  // 씬 매니저의 sceneLoaded에 체인을 건다.
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    // 체인을 걸어서 이 함수는 매 씬마다 호출된다.
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        Debug.Log("OnSceneLoaded: " + scene.name);
+        if (SceneManager.GetActiveScene().name == "Merge 2"){
+            StartCoroutine(Restoremoney());
+        }
+        
+    }
+
+    void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
     public TMP_Text tmp;
     public int GoldText;
     public SellItem sellItem;
@@ -18,6 +40,11 @@ public class AssetManager : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
+        GoldText = GameManager.Instance.Gold;
+        tmp.text = GoldText.ToString();
+    }
+
+    void Start() {
         GoldText = GameManager.Instance.Gold;
         tmp.text = GoldText.ToString();
     }
@@ -60,6 +87,12 @@ public class AssetManager : MonoBehaviour
             }
         }
         StopCoroutine(Changemoney());
+    }
+
+    IEnumerator Restoremoney() {
+        yield return new WaitForSecondsRealtime(1f);
+        GoldText = GameManager.Instance.Gold;
+        tmp.text = GoldText.ToString();
     }
     //public void Asset(string Gold)
 }
