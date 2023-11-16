@@ -114,6 +114,7 @@ public class GameManager : MonoBehaviour
     public void playeronDeath(){
 
         //죽었을 때 1000G 이상 가지고 있으면 -1000G
+        
         if (Gold >= 1000){
             Gold -= 1000;
         }
@@ -121,6 +122,7 @@ public class GameManager : MonoBehaviour
         else{
             Gold = 0;
         }
+        
         theassetmanager.Sell();
         StartCoroutine(RestartGame());
         gameoverText.SetActive(true);

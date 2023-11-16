@@ -163,10 +163,10 @@ MonoBehaviour:
   speed: 6
   MaxSpeed: 20
   MinSpeed: 4
-  RoamBoxMaxX: -20
-  RoamBoxMinX: 30
-  RoamBoxMaxY: 0
-  RoamBoxMinY: -20
+  RoamBoxMaxX: 40
+  RoamBoxMinX: -40
+  RoamBoxMaxY: -20
+  RoamBoxMinY: -40
   SpotRangeBig: 10
   SpotRangeSmall: 4
   RoamWaitTime: 2

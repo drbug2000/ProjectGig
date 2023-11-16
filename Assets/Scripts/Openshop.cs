@@ -8,6 +8,7 @@ public class Openshop : MonoBehaviour
     public GameObject ShopImage;
     public Button _setActiveShop;
     public GameObject storageManager;
+    public AllNoticeUI _notice;
 
 
     void Awake() {
@@ -37,6 +38,7 @@ public class Openshop : MonoBehaviour
         if (collision.gameObject.name == "Player 1")
         {
             StartCoroutine("CanOpenShop");
+            _notice.Alert("press P to open shop");
         }
     }
 
