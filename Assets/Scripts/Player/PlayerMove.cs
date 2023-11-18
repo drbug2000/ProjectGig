@@ -288,8 +288,11 @@ public class PlayerMove : MonoBehaviour
                 x = playerInput.move_x;
                 y = playerInput.move_y;
             }
-            playerRigidbody.AddForce(DashForce*(new Vector2(x,y)));
-            DashTimer = DashCoolTime;
+            if (! (x == 0 && y == 0) )
+            {
+                playerRigidbody.AddForce(DashForce * (new Vector2(x, y)).normalized);
+                DashTimer = DashCoolTime;
+            }
         }
 
         
