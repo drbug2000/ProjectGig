@@ -254,7 +254,7 @@ public class PlayerMove : MonoBehaviour
         //물속의 경우 현재 운동 방향을 기준으로 sprite 방향 설정
         //isleft = IsLeft(playerRigidbody.velocity.x);
 
-        if (DashTimer < DashMoveCool)
+        if (DashTimer < DashCoolTime - DashMoveCool)
         {
             //move in sea
             if (playerRigidbody.velocity.x > -5 && playerRigidbody.velocity.x < 5) {
@@ -433,7 +433,7 @@ public class PlayerMove : MonoBehaviour
 
     private void ChangeDashBarAmount(float amount) //* HP 게이지 변경 
     {
-        if (amount < DashMoveCool/DashCoolTime)
+        if (amount < (DashCoolTime - DashMoveCool)/DashCoolTime)
         {
             ChangeDashBarColor(green_color);
         }
