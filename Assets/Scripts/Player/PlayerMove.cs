@@ -40,14 +40,12 @@ public class PlayerMove : MonoBehaviour
 
     public particleController particlecontroller;
 
-    
-
-
     public bool Sturn = false;
     // 저장된 위치로 옮기기 위한 변수입니다.
     private Vector3 playerpos;
 
     private bool ONBOARD=true;
+    private WaitForSeconds float_time;
     public bool onboard // 갑판 위에 있는지
     {
         get { return ONBOARD; }
@@ -109,6 +107,7 @@ public class PlayerMove : MonoBehaviour
         Gunscript = Gun.GetComponent <Gun> ();
         particlecontroller = GetComponent<particleController>();
         //inventoryparents.SetActive(false);
+        float_time = new WaitForSeconds(0.1f);
 
     }
 
@@ -120,6 +119,11 @@ public class PlayerMove : MonoBehaviour
         if (isDead || Sturn)
         {
             return;
+        }
+
+        if (DashTimer >= 0)
+        {
+            DashTimer -= Time.deltaTime;
         }
 
         if (onboard == true)
@@ -267,10 +271,7 @@ public class PlayerMove : MonoBehaviour
             DashTimer = DashCoolTime;
         }
 
-        if(DashTimer >= 0)
-        {
-            DashTimer -= Time.deltaTime;
-        }
+        
 
 
         
@@ -398,8 +399,10 @@ public class PlayerMove : MonoBehaviour
         //float defaultdrag = playerRigidbody.drag;
         //playerRigidbody.mass=0;
         //playerRigidbody.drag=0;
-
-        yield return new WaitForSeconds(sturntime);
+        for(int i =0; i< sturntime*10; i++)
+        {
+            yield return float_time;
+        }
 
         //playerRigidbody.mass = defaultmass;
         //playerRigidbody.drag = defaultdrag;

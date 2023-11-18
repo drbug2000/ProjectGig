@@ -37,18 +37,18 @@ public class splashsurface : MonoBehaviour
 
         
         splashEffect(collision);
-        Debug.Log("splash colider active");
+        //Debug.Log("splash colider active");
     }
 
     private void splashEffect(Collider2D collision)
     {
-        Debug.Log("splash");
+        //Debug.Log("splash");
         Vector2 position = collision.transform.position;
         Vector3 size = collision.bounds.size;
 
         particlecontroller.AddEffect(3f, position,  (float)size.x);//, -1f); //size.x*size.y);
 
-        Debug.Log("size" + size);
+        //Debug.Log("size" + size);
 
     }
 }
