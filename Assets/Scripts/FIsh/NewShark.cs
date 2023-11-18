@@ -88,7 +88,7 @@ public class NewShark : FishClass
     public override void OnCollisionEnter2D(Collision2D collision)
     {
         base.OnCollisionEnter2D(collision);
-        if (collision.gameObject.tag == "Player" && ReferenceEquals(currentState,attack))
+        if (collision.gameObject.name == "Player 1" && ReferenceEquals(currentState,attack))
         {
             this.Bite = true;
             Debug.Log("bite value true");
@@ -99,7 +99,7 @@ public class NewShark : FishClass
     public void OnTriggerEnter2D(Collider2D other)
     {
         //base.OnCollisionEnter2D(collision);
-        if (other.gameObject.tag == "Player" && ReferenceEquals(currentState, attack))
+        if (other.gameObject.name == "Player 1" && ReferenceEquals(currentState, attack))
         {
             this.Bite = true;
             Debug.Log("bite value true");
