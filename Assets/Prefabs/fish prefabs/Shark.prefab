@@ -154,7 +154,7 @@ MonoBehaviour:
   fishcollider: {fileID: 0}
   particlecontroller: {fileID: 0}
   item: {fileID: 11400000, guid: 65e144ebc43666d4f89e74b84715ff49, type: 2}
-  startHP: 20
+  startHP: 60
   DefaultSize: 0
   RatioSize: 1
   mass: 0.1
