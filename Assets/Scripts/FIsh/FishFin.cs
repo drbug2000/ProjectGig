@@ -62,7 +62,7 @@ public class FishFin  : MonoBehaviour
             else
             {//물밖으로 나갔을때
                 fishRigidbody.gravityScale = 1;//= (float)fish.gravity * 10f;
-                Debug.Log("grabity :" + (float)fish.gravity*10 );
+                //Debug.Log("grabity :" + (float)fish.gravity*10 );
                 SetDrag(fish.drag*2);
                 //fish.DefaultState();
                 //첨벙거림 effect
