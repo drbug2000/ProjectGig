@@ -40,6 +40,7 @@ public class Title : MonoBehaviour
 
     public void Loadgame()
     {  
+        DatabaseManager.Instance.JsonLoad();
         SceneManager.LoadScene("Merge 2");
     }
 
