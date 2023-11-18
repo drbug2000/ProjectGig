@@ -40,6 +40,8 @@ public class PlayerMove : MonoBehaviour
 
     public particleController particlecontroller;
 
+    
+
 
     public bool Sturn = false;
     // 저장된 위치로 옮기기 위한 변수입니다.
