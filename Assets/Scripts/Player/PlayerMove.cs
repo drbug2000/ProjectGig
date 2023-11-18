@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Security.Cryptography.X509Certificates;
+using UnityEngine.UI;
 using UnityEngine;
 
 public class PlayerMove : MonoBehaviour
@@ -37,12 +38,16 @@ public class PlayerMove : MonoBehaviour
     public float DashCoolTime;
     public float DashMoveCool;
     public float DashTimer;
-
+    public Image barImage;
     public particleController particlecontroller;
 
     public bool Sturn = false;
     // 저장된 위치로 옮기기 위한 변수입니다.
     private Vector3 playerpos;
+
+    private Color green_color = new Color(0.15f, 0.77f, 0.33f, 1f);
+    private Color yellow_color = new Color(0.7f, 0.7f, 0.15f, 1f);
+
 
     private bool ONBOARD=true;
     private WaitForSeconds float_time;
@@ -60,6 +65,7 @@ public class PlayerMove : MonoBehaviour
                     playerRigidbody.drag = 1;
                     particlecontroller.EndMainEffect();
                     animator.SetBool("intoOcean", false);
+                    ChangeDashBarColor(green_color);
                 }
                 else
                 {
@@ -94,6 +100,13 @@ public class PlayerMove : MonoBehaviour
             playerpos = DatabaseManager.Instance.toplayerpos;
         }
         */
+        if (barImage == null) {
+            Debug.Log("Dashbar is NULL");
+                }
+        else
+        {
+            Debug.Log("clor" + barImage.color);
+        }
         // 초기화
         playerInput = GetComponent<PlayerController>();
         playerRigidbody = GetComponent<Rigidbody2D>();
@@ -108,6 +121,8 @@ public class PlayerMove : MonoBehaviour
         particlecontroller = GetComponent<particleController>();
         //inventoryparents.SetActive(false);
         float_time = new WaitForSeconds(0.1f);
+
+        ChangeDashBarColor(green_color);
 
     }
 
@@ -124,6 +139,7 @@ public class PlayerMove : MonoBehaviour
         if (DashTimer >= 0)
         {
             DashTimer -= Time.deltaTime;
+            ChangeDashBarAmount(DashTimer / DashCoolTime);
         }
 
         if (onboard == true)
@@ -240,6 +256,7 @@ public class PlayerMove : MonoBehaviour
 
         if (DashTimer < DashMoveCool)
         {
+            //move in sea
             if (playerRigidbody.velocity.x > -5 && playerRigidbody.velocity.x < 5) {
                 playerRigidbody.AddForce(swimForce * Vector3.right * playerInput.move_x);
             }
@@ -249,6 +266,10 @@ public class PlayerMove : MonoBehaviour
             if (playerRigidbody.velocity.y > -5 && playerRigidbody.velocity.y < 5) {
                 playerRigidbody.AddForce(swimForce * Vector3.up * playerInput.move_y);
             }
+        }
+        else
+        {
+            ChangeDashBarColor(yellow_color);
         }
 
         //dash
@@ -408,7 +429,32 @@ public class PlayerMove : MonoBehaviour
         //playerRigidbody.drag = defaultdrag;
         Sturn = false;
     }
-
     
+
+    private void ChangeDashBarAmount(float amount) //* HP 게이지 변경 
+    {
+        if (amount < DashMoveCool/DashCoolTime)
+        {
+            ChangeDashBarColor(green_color);
+        }
+        barImage.fillAmount = amount;
+
+        //* HP가 0이거나 꽉차면 HP바 숨기기
+        if (barImage.fillAmount == 0f || barImage.fillAmount == 1f)
+        {
+            //Hide();
+            barImage.enabled = false;
+        }
+        else if(!barImage.enabled)
+        {
+            barImage.enabled = true;
+        }//else if(bar)
+    }
+    private void ChangeDashBarColor(Color color)
+    {
+        barImage.color = color;
+    }
+
+
 
 }
