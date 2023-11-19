@@ -129,6 +129,12 @@ public class PlayerMove : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        if (DashTimer >= 0)
+        {
+            DashTimer -= Time.deltaTime;
+            ChangeDashBarAmount(DashTimer / DashCoolTime);
+        }
         // isDead = playerHealth.dead;
         // 사용자 입력을 감지하고 점프하는 처리
         if (isDead || Sturn)
@@ -136,11 +142,7 @@ public class PlayerMove : MonoBehaviour
             return;
         }
 
-        if (DashTimer >= 0)
-        {
-            DashTimer -= Time.deltaTime;
-            ChangeDashBarAmount(DashTimer / DashCoolTime);
-        }
+        
 
         if (onboard == true)
         {

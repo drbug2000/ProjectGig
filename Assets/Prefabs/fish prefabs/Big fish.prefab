@@ -148,9 +148,9 @@ MonoBehaviour:
   SpotRangeSmall: 8
   RoamWaitTime: 2
   detectArea: 5
-  detectTime: 3
+  detectTime: 4
   awaytime: 2
-  awaySpeed: 4.5
+  awaySpeed: 4
   sturntime: 0
   mouthPosAdder: {x: 0, y: 0}
 --- !u!114 &6185172994356578639

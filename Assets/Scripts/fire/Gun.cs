@@ -258,7 +258,7 @@ public class Gun : MonoBehaviour
 
                     if (DIR.magnitude < 1.5)
                     {
-                        Debug.Log("magnitude");
+                        //Debug.Log("magnitude");
                         Timer = -1;
                         end_flag = true;
                     }
