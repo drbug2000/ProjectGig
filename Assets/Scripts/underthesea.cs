@@ -28,6 +28,7 @@ public class underthesea : MonoBehaviour
             Debug.Log(collision.gameObject.transform.position.y + ": " + transform.position.y);
             if (collision.gameObject.transform.position.y > transform.position.y)
             {
+                Debug.Log("splash");
                 collision.gameObject.GetComponent<Rigidbody2D>().AddForce(new(0, escapeforce));
             }
         }

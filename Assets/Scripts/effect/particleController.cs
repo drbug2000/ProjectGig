@@ -67,7 +67,7 @@ public class particleController : MonoBehaviour
     {
         if (effect.GetComponent<ParticleSystem>() != null)
         {
-            Debug.Log("size in effect : 0"+size);
+            //Debug.Log("size in effect : 0"+size);
             var EF = effect.GetComponent<ParticleSystem>();
             var EF_main = EF.main;
             EF_main.maxParticles = (int)(size * size * 100);

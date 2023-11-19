@@ -43,17 +43,24 @@ public class Gig : MonoBehaviour
     
     public void onfire()
     {
-        isfire = true;
+
+        if (!isfire)//singleon
+        {
+            isfire = true;
+            StartCoroutine("Line");
+        }
         //Time.timeScale = 0.6f;
         //Timer = fireTime;
         //StartCoroutine("RollBasck", Speed);
-        StartCoroutine("Line");
+        
     }
 
     public void outfire()
     {
+
+
         isfire = false;
-        transform.localPosition = new Vector3(-0.7f, 2, 0);
+        //transform.localPosition = new Vector3(-0.7f, 2, 0);
         transform.localRotation = Quaternion.Euler(0, 0, 90);
         //Debug.Log("outfire");
     }
@@ -61,6 +68,7 @@ public class Gig : MonoBehaviour
     IEnumerator Line()
     {
         LR.enabled = true;
+        
         while (isfire)
         {
             LR.SetPosition(0, gun.transform.Find("firePoint").gameObject.transform.position);
@@ -68,16 +76,17 @@ public class Gig : MonoBehaviour
 
             yield return null;
         }
+        //isfire = false;
         LR.enabled = false;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        Debug.Log("gig : Hit somthing");
+        //Debug.Log("gig : Hit somthing");
         if (collision.gameObject.tag == "fish" && isfire)
         {
             gunscript.Hit();
-            Debug.Log("gig : Hit fish");
+            //Debug.Log("gig : Hit fish");
             AttTarget = collision.gameObject.GetComponent<IDamageable>();
             //�ӽ� ����
             AttTarget.OnDamage(gigdamage, gameObject, Vector2.zero, Vector2.zero);

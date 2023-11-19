@@ -130,7 +130,7 @@ MonoBehaviour:
   fishcollider: {fileID: 0}
   particlecontroller: {fileID: 0}
   item: {fileID: 11400000, guid: 0f0c0a08cbd8eeb4a9a02aaf6ecd4ff8, type: 2}
-  startHP: 3
+  startHP: 4
   DefaultSize: 0
   RatioSize: 1
   mass: 0.1

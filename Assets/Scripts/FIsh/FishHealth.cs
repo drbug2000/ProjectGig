@@ -4,55 +4,57 @@ using System;
 
 public class FishHealth : LivingEntity
 {
-    //¹°°í±âÀÇ »ı¸í,  ÇÇ°İÀ» °ü¸®ÇÏ´Â ½ºÅ©¸³Æ®
-    //1. È°¼ºÈ­ ½Ã »ı¸í °ª ÃÊ±âÈ­
-    //2. ÇÇ°İ ½Ã µ¥¹ÌÁö¸¦ ÀÔ°í, »öÀÌ º¯È¯µÈ´Ù.
-    //3. ÇÇ°İ ½Ã Hp°¡ 0 ÀÌÇÏÀÏ °æ¿ì »ç¸Á »óÅÂ·Î º¯È¯ÇÑ´Ù.
-    //4. »ç¸Á ½Ã ºñÈ°¼ºÈ­: playerAttack ¶Ç´Â ÀÛ»ì¿¡¼­ fish.onDeath ÀÌº¥Æ®¸¦ ±¸µ¶
-    //5. »ç¸Á ½Ã ¾ÆÀÌÅÛÈ­: playerAttack ¶Ç´Â ÀÛ»ì¿¡¼­ fish.onDeath ÀÌº¥Æ®¸¦ ±¸µ¶
+    //ë¬¼ê³ ê¸°ì˜ ìƒëª…,  í”¼ê²©ì„ ê´€ë¦¬í•˜ëŠ” ìŠ¤í¬ë¦½íŠ¸
+    //1. í™œì„±í™” ì‹œ ìƒëª… ê°’ ì´ˆê¸°í™”
+    //2. í”¼ê²© ì‹œ ë°ë¯¸ì§€ë¥¼ ì…ê³ , ìƒ‰ì´ ë³€í™˜ëœë‹¤.
+    //3. í”¼ê²© ì‹œ Hpê°€ 0 ì´í•˜ì¼ ê²½ìš° ì‚¬ë§ ìƒíƒœë¡œ ë³€í™˜í•œë‹¤.
+    //4. ì‚¬ë§ ì‹œ ë¹„í™œì„±í™”: playerAttack ë˜ëŠ” ì‘ì‚´ì—ì„œ fish.onDeath ì´ë²¤íŠ¸ë¥¼ êµ¬ë…
+    //5. ì‚¬ë§ ì‹œ ì•„ì´í…œí™”: playerAttack ë˜ëŠ” ì‘ì‚´ì—ì„œ fish.onDeath ì´ë²¤íŠ¸ë¥¼ êµ¬ë…
     private FishClass fish;
     private SpriteRenderer flshSpriteRenderer;
+    private WaitForSeconds corrutine_time;
     //Action Dead;
 
     private void Awake()
     {
-        //ÄÄÆ÷³ÍÆ® ÇÒ´ç: ÇÇ°İ ½Ã¿¡ »ö º¯È¯
+        //ì»´í¬ë„ŒíŠ¸ í• ë‹¹: í”¼ê²© ì‹œì— ìƒ‰ ë³€í™˜
         flshSpriteRenderer = GetComponent<SpriteRenderer>();
         fish = GetComponent<FishClass>();
         onDeath += fish.OnDeath;
         //startingHealth = fish.FishHP;
+        corrutine_time = new WaitForSeconds(0.7f);
 
     }
 
     protected override void OnEnable()
     {
         
-        // LivingEntityÀÇ OnEnable() ½ÇÇà (»óÅÂ ÃÊ±âÈ­)
+        // LivingEntityì˜ OnEnable() ì‹¤í–‰ (ìƒíƒœ ì´ˆê¸°í™”)
         base.OnEnable();
 
-        //»ç¸ÁÈÄ ÇÇ°İ ½ºÇÁ¶óÀÌÆ® Á¤»óÈ­
+        //ì‚¬ë§í›„ í”¼ê²© ìŠ¤í”„ë¼ì´íŠ¸ ì •ìƒí™”
         flshSpriteRenderer.material.color = new Color(1f, 1f, 1f);
         
         //health = fish.startHP;
 
     }
 
-    // µ¥¹ÌÁö Ã³¸®
+    // ë°ë¯¸ì§€ ì²˜ë¦¬
     public override void OnDamage(float damage, GameObject hiter , Vector3 hitPoint, Vector3 hitDirection)
     {
         if (!dead)
         {
-            //ºÓÀº »öÀ¸·Î 1ÃÊ°£ º¯È¯ÇÏ´Â ÄÚ·çÆ¾ ½ÇÇà
+            //ë¶‰ì€ ìƒ‰ìœ¼ë¡œ 1ì´ˆê°„ ë³€í™˜í•˜ëŠ” ì½”ë£¨í‹´ ì‹¤í–‰
             StartCoroutine(DamageEffect());
         }
         else
         {
-            //ÀÌ¹Ì Á×¾îÀÖ´Â ¹°°í±â¸¦ °ø°İÇßÀ» ¶§
-            //Ã³À½ ¹°°í±â¸¦ Á×¿´À» ¶§¿ÍÀÇ Â÷ÀÌ´Â fishclass¿¡¼­ Ã³¸®
+            //ì´ë¯¸ ì£½ì–´ìˆëŠ” ë¬¼ê³ ê¸°ë¥¼ ê³µê²©í–ˆì„ ë•Œ
+            //ì²˜ìŒ ë¬¼ê³ ê¸°ë¥¼ ì£½ì˜€ì„ ë•Œì™€ì˜ ì°¨ì´ëŠ” fishclassì—ì„œ ì²˜ë¦¬
             Die();
         }
         
-        // LivingEntityÀÇ OnDamage() ½ÇÇà(µ¥¹ÌÁö Àû¿ë)
+        // LivingEntityì˜ OnDamage() ì‹¤í–‰(ë°ë¯¸ì§€ ì ìš©)
         base.OnDamage(damage, hiter,hitPoint, hitDirection);
 
         if (dead)
@@ -60,18 +62,18 @@ public class FishHealth : LivingEntity
             fish.target = hiter;
         }
     }
-    //»ö º¯È¯ ÄÚ·çÆ¾ ±¸Çö
+    //ìƒ‰ ë³€í™˜ ì½”ë£¨í‹´ êµ¬í˜„
     private IEnumerator DamageEffect()
     {
         flshSpriteRenderer.material.color = new Color(1f, 168 / 255f, 168 / 255f);
-        yield return new WaitForSeconds(0.7f);
+        yield return corrutine_time;
         flshSpriteRenderer.material.color = new Color(1f, 1f, 1f);
     }
 
 
     public override void Die()
     {
-        // LivingEntityÀÇ Die() ½ÇÇà
+        // LivingEntityì˜ Die() ì‹¤í–‰
         base.Die();
     }
 }

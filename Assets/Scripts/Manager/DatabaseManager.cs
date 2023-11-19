@@ -152,6 +152,6 @@ public class DatabaseManager : MonoBehaviour
         while(!File.Exists(path)) {
             GameManager.Instance.pauseGame();
         }
-        GameManager.Instance.resumeGame();
+        // GameManager.Instance.resumeGame();
     }
 }

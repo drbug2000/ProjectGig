@@ -18,7 +18,7 @@ public class FishSpawn : MonoBehaviour
     public int spawnRangeY;
 
     public int respawnTime;
-
+    private WaitForSeconds respawntime;
 
 
     // Start is called before the first frame update
@@ -40,6 +40,8 @@ public class FishSpawn : MonoBehaviour
         spawnFishPrefab(middlefish, middleFishCounter);
         spawnFishPrefab(bigfish, bigFishCounter);
         spawnFishPrefab(shark, sharkCounter);
+
+        respawntime = new WaitForSeconds(this.respawnTime);
 
     }
 
@@ -66,7 +68,7 @@ public class FishSpawn : MonoBehaviour
 
     }
 
-    //(0,0)À» ±âÁØÀ¸·Î ÁÂ¿ì·Î x¸¸Å­ ¶³¾îÁ® ÀÖ°í, ¾Æ·¡·Î y¸¸Å­ÀÇ ±æÀÌ¸¦ °¡Áø µÎ ÆòÇà¼±¿¡¼­ ¹°°í±â »ı¼º 
+    //(0,0)ì„ ê¸°ì¤€ìœ¼ë¡œ ì¢Œìš°ë¡œ xë§Œí¼ ë–¨ì–´ì ¸ ìˆê³ , ì•„ë˜ë¡œ yë§Œí¼ì˜ ê¸¸ì´ë¥¼ ê°€ì§„ ë‘ í‰í–‰ì„ ì—ì„œ ë¬¼ê³ ê¸° ìƒì„± 
     Vector2 SideRandomPos(int xInterval,int yInterval)
     {
 
@@ -92,7 +94,7 @@ public class FishSpawn : MonoBehaviour
 
     Vector2 RandomStartPos(int row, int col)
     {
-        //(-row/2,0)(row,-col) »ç°¢Çü Å×µÎ¸®¿¡¼­ ·£´ıÇÏ°Ô »ı¼º
+        //(-row/2,0)(row,-col) ì‚¬ê°í˜• í…Œë‘ë¦¬ì—ì„œ ëœë¤í•˜ê²Œ ìƒì„±
         Vector2 StartPos;
         int i = Random.Range(0, row + 2*col);
 
@@ -120,7 +122,7 @@ public class FishSpawn : MonoBehaviour
     IEnumerator fishRespawn(GameObject fish)
     {
         FishClass fishclass = fish.GetComponent<FishClass>();
-        yield return new WaitForSeconds(this.respawnTime);
+        yield return respawntime;
         //fish.SetActive(true);
         Debug.Log("fish respawn"+fishclass);
         fishclass.respawn(SideRandomPos(spawnRangeX, spawnRangeY));

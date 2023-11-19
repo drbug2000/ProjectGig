@@ -47,6 +47,8 @@ public class Gun : MonoBehaviour
     public float StateTimer;
     public float timer;
 
+    //bool end_flag = true;
+
     //public bool GunIsLeft;
     public Vector2 dirVec;
     private float Timer
@@ -75,7 +77,6 @@ public class Gun : MonoBehaviour
                         break;
                 }
             }
-            
         }
     }
     
@@ -161,7 +162,6 @@ public class Gun : MonoBehaviour
                 gigtr.localPosition = default_gig;
             }
             transform.up = dirVec.normalized; // 방향벡터를 정규화한 다음 transform.up 벡터에 계속 대입
-
         }
 
         /*
@@ -178,9 +178,12 @@ public class Gun : MonoBehaviour
         {
             if(State == fireState.ready)
             {
-                State = fireState.fire;
+                
                 //Debug.Log("fire");
-                StartCoroutine("Fire");
+                //if (end_flag){
+                    State = fireState.fire;
+                    StartCoroutine("Fire");
+                //}
             }else if (State == fireState.fire)
             {
                 Hit();
@@ -189,11 +192,8 @@ public class Gun : MonoBehaviour
             {
                 //Debug.Log("exception ");
                 //Debug.Log(State);
-            }
-             
+            }             
         }
-        
-
     }
 
     public void ready()
@@ -256,7 +256,7 @@ public class Gun : MonoBehaviour
                     //gigtr.Translate(-1 * transform.up * bulletSpeed * Time.deltaTime, Space.World);
                     gigtr.Translate(-1 * DIR.normalized * bulletSpeed * Time.deltaTime, Space.World);
 
-                    if (DIR.magnitude < 0.5f)
+                    if (DIR.magnitude < 1.5)
                     {
                         Debug.Log("magnitude");
                         Timer = -1;
@@ -279,8 +279,6 @@ public class Gun : MonoBehaviour
         gigrb.isKinematic = true;
         gigScript.outfire();
         playermove.SetSturn(false);   
-
-
     }
 
 

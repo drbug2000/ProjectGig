@@ -26,7 +26,9 @@ public class PlayerHealth : LivingEntity
     public float HpUpGap;
 
     public Image hp;
-    
+    private WaitForSeconds damage_effect_time;
+
+
     private void Awake()
     {
         
@@ -35,7 +37,8 @@ public class PlayerHealth : LivingEntity
         playerSpriteRenderer = GetComponent<SpriteRenderer>();
         //������Ʈ �Ҵ�: �ٴٿ� ���� �Ǻ� ����
         playerMove = GetComponent<PlayerMove>();
-        
+        damage_effect_time  = new WaitForSeconds(0.3f);
+
     }
 
     private void Start()
@@ -88,7 +91,7 @@ public class PlayerHealth : LivingEntity
     private IEnumerator DamagedEffect()
     {
         playerSpriteRenderer.material.color = new Color(1f, 168 / 255f, 168 / 255f);
-        yield return new WaitForSeconds(0.3f);
+        yield return damage_effect_time; 
         playerSpriteRenderer.material.color = new Color(1f, 1f, 1f);
 
     }

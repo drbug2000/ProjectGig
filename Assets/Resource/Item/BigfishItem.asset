@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: bigfish
   itemImage: {fileID: 0}
-  Cost: 100
+  Cost: 300
