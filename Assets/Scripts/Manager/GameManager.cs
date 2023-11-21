@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -27,6 +28,18 @@ public class GameManager : MonoBehaviour
     {
         //theassetmanager = GameObject.Find("Asset Set").GetComponent<AssetManager>();
         shopManager = GameObject.Find("Player 1").GetComponent<ShopManager>();
+        
+        gameoverText = GameObject.Find("Canvas").transform.Find("Gameover Text").gameObject;
+        gameoverText.SetActive(false);
+        /*
+        if(gameoverText.IsActive()==false){
+            gameoverText.SetActive(true);
+            
+        } else{
+            gameoverText = GameObject.Find("Gameover Text");
+        }
+        */
+        
         resumeGame();
         if (instance == null)
         {
@@ -65,6 +78,9 @@ public class GameManager : MonoBehaviour
         deathEvent.onDeath += new System.Action(playeronDeath);
         theassetmanager = GameObject.Find("Asset Set").GetComponent<AssetManager>();
         shopManager = GameObject.Find("Player 1").GetComponent<ShopManager>();
+    
+        gameoverText = GameObject.Find("Canvas").transform.Find("Gameover Text").gameObject;
+        
         Debug.Log("OnSceneLoaded: " + scene.name);
         if (SceneManager.GetActiveScene().name == "Merge 2"){
             Debug.Log("enter");
