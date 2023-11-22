@@ -40,13 +40,6 @@ public class GameManager : MonoBehaviour
             gameoverText = GameObject.Find("Gameover Text");
         }
         */
-        if (GameObject.Find("Player 1").GetComponent<PlayerHealth>().dead == true) {
-            isdeadingamemanager = true;
-        }
-        else {
-            isdeadingamemanager = false;
-        }
-        
         resumeGame();
         if (instance == null)
         {
@@ -88,12 +81,13 @@ public class GameManager : MonoBehaviour
         fishspawn = GameObject.Find("spawner").GetComponent<FishSpawn>();
         gameoverText = GameObject.Find("Canvas").transform.Find("Gameover Text").gameObject;
 
-    if (GameObject.Find("player 1").GetComponent<PlayerHealth>() != null) {
-        if (SceneManager.GetActiveScene().name == "Merge 2" && isdeadingamemanager){
+    // if (GameObject.Find("player 1").GetComponent<PlayerHealth>() != null) {
+        if (SceneManager.GetActiveScene().name == "Merge 2" && !isdeadingamemanager){
             resumeGame();
             DatabaseManager.Instance.JsonLoad();
         }
-    }
+        isdeadingamemanager = false;
+    // }
         resumeGame();
         
     }
@@ -137,7 +131,7 @@ public class GameManager : MonoBehaviour
     public void playeronDeath(){
 
         //죽었을 때 1000G 이상 가지고 있으면 -1000G
-        
+        isdeadingamemanager = true;
         if (Gold >= 1000){
             Gold -= 1000;
         }
@@ -155,13 +149,14 @@ public class GameManager : MonoBehaviour
     IEnumerator RestartGame()
     {
         yield return null;
-        while(true) {
+        // while(true) {
             if (Input.GetKeyDown("r"))
             {
                 SceneManager.LoadScene(SceneManager.GetActiveScene().name);
                 StopAllCoroutines();
             }
-        }
+        // }
+        StartCoroutine(RestartGame());
     }
 
     // Game을 멈추는 함수
