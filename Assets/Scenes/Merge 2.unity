@@ -842,17 +842,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db3a33408a76f4222ad619b12c25ccfb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &421266094 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4154843921471131060, guid: d8e5647f1fa2e8c408389857ed3190a5, type: 3}
-  m_PrefabInstance: {fileID: 1565593364}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a0f9a35b4d1e630458bf8db6d8d78d60, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &459625903 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2560533849949007932, guid: d8e5647f1fa2e8c408389857ed3190a5, type: 3}
@@ -4149,17 +4138,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3294160003625457064, guid: d8e5647f1fa2e8c408389857ed3190a5, type: 3}
   m_PrefabInstance: {fileID: 1565593364}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1565593369 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3294160003625457057, guid: d8e5647f1fa2e8c408389857ed3190a5, type: 3}
-  m_PrefabInstance: {fileID: 1565593364}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1565593365}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 18c04691e65837b4a810b4a40d02317b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1589763677
 GameObject:
   m_ObjectHideFlags: 0
@@ -6679,9 +6657,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1565593369}
-        m_TargetAssemblyTypeName: PlayerHealth, Assembly-CSharp
-        m_MethodName: HPUp
+      - m_Target: {fileID: 1565593366}
+        m_TargetAssemblyTypeName: ShopManager, Assembly-CSharp
+        m_MethodName: OxygenLvlUp
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -7000,9 +6978,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 421266094}
-        m_TargetAssemblyTypeName: Gun, Assembly-CSharp
-        m_MethodName: DamageUP
+      - m_Target: {fileID: 1565593366}
+        m_TargetAssemblyTypeName: ShopManager, Assembly-CSharp
+        m_MethodName: DamageLvlUp
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -7891,9 +7869,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 421266094}
-        m_TargetAssemblyTypeName: Gun, Assembly-CSharp
-        m_MethodName: RangeUP
+      - m_Target: {fileID: 1565593366}
+        m_TargetAssemblyTypeName: ShopManager, Assembly-CSharp
+        m_MethodName: RangeLvlUp
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
