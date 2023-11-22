@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
     public int GigRangeLvl = 0;
     public int HpLvl = 0;
     
+    public bool isdeadingamemanager;
 
     public AudioSource _audioSource;
     public AudioClip _introLobbyAudioClip;
@@ -39,6 +40,12 @@ public class GameManager : MonoBehaviour
             gameoverText = GameObject.Find("Gameover Text");
         }
         */
+        if (GameObject.Find("Player 1").GetComponent<PlayerHealth>().dead == true) {
+            isdeadingamemanager = true;
+        }
+        else {
+            isdeadingamemanager = false;
+        }
         
         resumeGame();
         if (instance == null)
@@ -80,13 +87,13 @@ public class GameManager : MonoBehaviour
         shopManager = GameObject.Find("Player 1").GetComponent<ShopManager>();
         fishspawn = GameObject.Find("spawner").GetComponent<FishSpawn>();
         gameoverText = GameObject.Find("Canvas").transform.Find("Gameover Text").gameObject;
-        
-        Debug.Log("OnSceneLoaded: " + scene.name);
-        if (SceneManager.GetActiveScene().name == "Merge 2"){
-            Debug.Log("enter");
+
+    if (GameObject.Find("player 1").GetComponent<PlayerHealth>() != null) {
+        if (SceneManager.GetActiveScene().name == "Merge 2" && isdeadingamemanager){
             resumeGame();
             DatabaseManager.Instance.JsonLoad();
         }
+    }
         resumeGame();
         
     }
@@ -148,13 +155,13 @@ public class GameManager : MonoBehaviour
     IEnumerator RestartGame()
     {
         yield return null;
-        if (Input.GetKeyDown("r"))
-        {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-            StopAllCoroutines();
+        while(true) {
+            if (Input.GetKeyDown("r"))
+            {
+                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+                StopAllCoroutines();
+            }
         }
-
-        StartCoroutine(RestartGame());
     }
 
     // Game을 멈추는 함수

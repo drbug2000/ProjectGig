@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
+using Unity.VisualScripting;
 // using UnityEditor.PackageManager;
 // using Unity.IO.LowLevel.Unsafe;
 // using JetBrains.Annotations;
@@ -153,5 +154,16 @@ public class DatabaseManager : MonoBehaviour
             GameManager.Instance.pauseGame();
         }
         // GameManager.Instance.resumeGame();
+    }
+
+    public void ClearAllTheData() {
+        GameManager.Instance.Gold = 0;
+        GameManager.Instance.GigDamLvl = 0;
+        GameManager.Instance.GigRangeLvl = 0;
+        GameManager.Instance.HpLvl = 0;
+        for (int i = 0; i < 4; ++i) {
+            slots[i].item = null;
+            slots[i].itemCount = 0;
+        }
     }
 }
