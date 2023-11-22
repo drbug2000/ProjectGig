@@ -2422,16 +2422,20 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3968353520739857586, guid: e08e841a3009ddd40897be02f526f3fd, type: 3}
+      propertyPath: respawnTime
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 3968353520739857586, guid: e08e841a3009ddd40897be02f526f3fd, type: 3}
       propertyPath: sharkCounter
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3968353520739857586, guid: e08e841a3009ddd40897be02f526f3fd, type: 3}
       propertyPath: smallFishCounter
-      value: 6
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 3968353520739857586, guid: e08e841a3009ddd40897be02f526f3fd, type: 3}
       propertyPath: middleFishCounter
-      value: 5
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 3968353520739857587, guid: e08e841a3009ddd40897be02f526f3fd, type: 3}
       propertyPath: m_Name
