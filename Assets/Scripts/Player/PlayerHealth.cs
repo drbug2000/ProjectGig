@@ -62,7 +62,7 @@ public class PlayerHealth : LivingEntity
     private void Update()
     {
         
-        durationTime -= Time.deltaTime;
+        durationTime -= Time.unscaledDeltaTime;
 
         if (!playerMove.onboard && durationTime <= 0 && !dead)
         {
