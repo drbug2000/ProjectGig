@@ -3460,11 +3460,11 @@ PrefabInstance:
       objectReference: {fileID: 637677259}
     - target: {fileID: 3294160003625457060, guid: d8e5647f1fa2e8c408389857ed3190a5, type: 3}
       propertyPath: DashForce
-      value: 550
+      value: 690
       objectReference: {fileID: 0}
     - target: {fileID: 3294160003625457060, guid: d8e5647f1fa2e8c408389857ed3190a5, type: 3}
       propertyPath: DashMoveCool
-      value: 1.8
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 3294160003625457060, guid: d8e5647f1fa2e8c408389857ed3190a5, type: 3}
       propertyPath: particleBubble

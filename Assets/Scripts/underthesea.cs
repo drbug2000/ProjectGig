@@ -25,10 +25,10 @@ public class underthesea : MonoBehaviour
         }
         if (collision.gameObject.name == "Player 1")
         {
-            Debug.Log(collision.gameObject.transform.position.y + ": " + transform.position.y);
+            //Debug.Log(collision.gameObject.transform.position.y + ": " + transform.position.y);
             if (collision.gameObject.transform.position.y > transform.position.y)
             {
-                Debug.Log("splash");
+                //Debug.Log("splash");
                 collision.gameObject.GetComponent<Rigidbody2D>().AddForce(new(0, escapeforce));
             }
         }

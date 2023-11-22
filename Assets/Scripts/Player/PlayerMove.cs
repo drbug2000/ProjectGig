@@ -129,7 +129,7 @@ public class PlayerMove : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        //print("time going");
         if (DashTimer >= 0)
         {
             DashTimer -= Time.deltaTime;
