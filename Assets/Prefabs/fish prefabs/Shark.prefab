@@ -171,7 +171,7 @@ MonoBehaviour:
   SpotRangeSmall: 4
   RoamWaitTime: 2
   detectArea: 12
-  detectTime: 1
+  detectTime: 0.5
   awaytime: 0
   awaySpeed: 0
   sturntime: 0
