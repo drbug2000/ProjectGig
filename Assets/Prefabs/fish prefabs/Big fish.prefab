@@ -131,7 +131,7 @@ MonoBehaviour:
   fishcollider: {fileID: 0}
   particlecontroller: {fileID: 0}
   item: {fileID: 11400000, guid: 10c7a1bd495e9744fb23e7cbe06d2c74, type: 2}
-  startHP: 20
+  startHP: 30
   DefaultSize: 0
   RatioSize: 1
   mass: 0.15
@@ -147,10 +147,10 @@ MonoBehaviour:
   SpotRangeBig: 12
   SpotRangeSmall: 8
   RoamWaitTime: 2
-  detectArea: 5
-  detectTime: 4
+  detectArea: 9
+  detectTime: 2
   awaytime: 2
-  awaySpeed: 4
+  awaySpeed: 7
   sturntime: 0
   mouthPosAdder: {x: 0, y: 0}
 --- !u!114 &6185172994356578639

@@ -186,7 +186,7 @@ MonoBehaviour:
   detectArea: 4
   detectTime: 1
   awaytime: 3
-  awaySpeed: 7
+  awaySpeed: 4.4
   sturntime: 2
   mouthPosAdder: {x: 0, y: 0}
 --- !u!50 &1829918663520162329

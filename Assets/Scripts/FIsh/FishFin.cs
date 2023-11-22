@@ -306,9 +306,9 @@ public class FishFin  : MonoBehaviour
         //보정값 적용
         mouth += fish.mouthPosAdder + fish.fishcollider.offset;
         //상어 방향에 따른 x좌표 방향 조정
-        if (!isleft) { mouth.x *= -1; Debug.Log("주댕이 오른"); }
-        else { Debug.Log("주댕이 왼"); }
-        Debug.Log("현재 측정 속도 방향" + velocity.x);
+        if (!isleft) { mouth.x *= -1; }//Debug.Log("주댕이 오른"); }
+        //else { Debug.Log("주댕이 왼"); }
+        //Debug.Log("현재 측정 속도 방향" + velocity.x);
 
         //if (way == -1) { mouth.x *= -1; }
         if(way == 0) { return mouth; }
