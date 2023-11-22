@@ -28,7 +28,7 @@ public class GameManager : MonoBehaviour
     {
         //theassetmanager = GameObject.Find("Asset Set").GetComponent<AssetManager>();
         shopManager = GameObject.Find("Player 1").GetComponent<ShopManager>();
-        
+        fishspawn = GameObject.Find("spawner").GetComponent<FishSpawn>();
         gameoverText = GameObject.Find("Canvas").transform.Find("Gameover Text").gameObject;
         gameoverText.SetActive(false);
         /*
@@ -78,7 +78,7 @@ public class GameManager : MonoBehaviour
         deathEvent.onDeath += new System.Action(playeronDeath);
         theassetmanager = GameObject.Find("Asset Set").GetComponent<AssetManager>();
         shopManager = GameObject.Find("Player 1").GetComponent<ShopManager>();
-    
+        fishspawn = GameObject.Find("spawner").GetComponent<FishSpawn>();
         gameoverText = GameObject.Find("Canvas").transform.Find("Gameover Text").gameObject;
         
         Debug.Log("OnSceneLoaded: " + scene.name);
