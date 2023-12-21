@@ -4921,6 +4921,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Shark
       objectReference: {fileID: 0}
+    - target: {fileID: 2633367817043942535, guid: 02ca0e61d16951e42a85c402f8529c9a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6465844373232659305, guid: 02ca0e61d16951e42a85c402f8529c9a, type: 3}
       propertyPath: m_ConnectedAnchor.x
       value: 8.228628
@@ -5041,6 +5045,7 @@ MonoBehaviour:
   GigDamLvl: 0
   GigRangeLvl: 0
   HpLvl: 0
+  isdeadingamemanager: 0
   _audioSource: {fileID: 0}
   _introLobbyAudioClip: {fileID: 0}
   _inGameClip: {fileID: 0}
