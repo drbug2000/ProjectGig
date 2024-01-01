@@ -41,6 +41,11 @@ window
 이때 플레이어는 작살공격과, 대쉬 이동을 통해 사냥과 회피를 동시에 해야한다.
 
 ## 개발
+
+<img src = "https://github.com/drbug2000/ProjectGig/assets/79149384/9058a8a4-7473-47a2-9bbb-51f4d7ab63a7" width="10%" height="10%">   
+
+Unity
+
 ### 빌드 및 컴파일
 ### 기여
 #### 개발 기여
