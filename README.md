@@ -1,15 +1,16 @@
 # ProjectGig
 CONA 게임개발 프로젝트 - 해양 서바이벌 크래프팅
 
-### 로고 넣을 자리
 
-### 제목
-(가제) - Gig survival 
+![IMG_0472](https://github.com/drbug2000/ProjectGig/assets/79149384/7ee705d0-a601-4f32-bf24-4c3886e5044b)
+
+## Gig survival 
 
 ### 설명
 (간결한 개요, 장르 , 테마 , 주요 기능)
 ![image](https://github.com/drbug2000/ProjectGig/assets/79149384/697731e8-2c8f-4d96-acfd-30ba1d6c7dfe)
 
+[Notion Page](https://carnation-elbow-153.notion.site/Gig-survival-b89e525462924e949130f8c34c17ab0a)
 작살질을 통해 다양한 물고기를 잡아 돈을 벌고, 작살을 업그레이드 하는 슈팅 서바이벌 게임   
 2D 사이드뷰 도트 게임으로 제작
 
@@ -34,7 +35,7 @@ window
 설정 : ESC    
  
 
-### 게임의 핵심 플레이 , 메카닉
+### 게임의 핵심 플레이, 메카닉
 게임을 독특하게 만드는 조작적 특징
 
 작살 공격을 물속에서도 가능하게 함으로써 물속을 탐험하며 다양한 깊이의 물고기를 사냥할 수 있다.
