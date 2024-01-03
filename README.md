@@ -56,7 +56,7 @@ Unity
 버그 리포트 코드 기여 등등
 
 김상준 : (gitHub) [drbug2000](https://github.com/drbug2000) / drbug2000@naver.com   
-정석현 :    
+정석현 : (gitHub) [hanryang](https://github.com/hanryang) / codjeongsh02@gmail.com   
 최예슬 :     
 남성현 :    
 
