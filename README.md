@@ -36,7 +36,7 @@ window
 설정 : ESC    
  
 
-### 게임의 핵심 플레이, 메카닉
+### 핵심 플레이
 
 작살 공격을 물속에서도 가능하게 함으로써 물속을 탐험하며 다양한 깊이의 물고기를 사냥할 수 있다.
 물속에서 돌진 공격하는 상어를 피해 도망다녀야한다.
@@ -52,17 +52,25 @@ Unity
 ### 빌드 및 컴파일
 ### 기여
 #### 개발 기여
-각자 git id or email
-버그 리포트 코드 기여 등등
 
 김상준 : (gitHub) [drbug2000](https://github.com/drbug2000) / drbug2000@naver.com   
 정석현 : (gitHub) [hanryang](https://github.com/hanryang) / codjeongsh02@gmail.com   
-최예슬 :     
-남성현 :    
+최예슬 : (gitHub) [yeseul1231](https://github.com/yeseul1231)   
+남성현 : (gitHub) [namsunghyun3057](https://github.com/namsunghyun3057)   
 
+#### 역할
+기획 : 김상준 정석현 최예슬 남성현   
+개발: 김상준 정석현 남성현   
+아트/디자인 : 최예슬 정석현   
+사운드 : 정석현   
+
+##### contributor
+개발 도움    
+이준우 : (gitHub) [bucheasal](https://github.com/bucheasal)
+
+
+   
 ### git branch flow
-
-
 ## 지원 및 연락처 
 ### 이슈 트렉킹 페이지
 ### 연락처 정보
